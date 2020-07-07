@@ -1,14 +1,9 @@
-#mapCanvas {
-    width:100%;
-    height:100%;
-}
-
-.flex.row {
+/* .flex.row {
     display:flex;
     flex-direction:row;
     justify-content: flex-start;
     align-content:baseline;
-}
+} */
 
 .pixi_atlas_of_worlds {
     /* width:150%; */

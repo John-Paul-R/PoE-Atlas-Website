@@ -14,15 +14,21 @@ var boolDrawNodes = true;
 var boolDrawNames = true;
 
 //Create the Pixi Application
+let maxH = 2304;
+let maxW = 4096;
 let pixiH = 2304;
 let pixiW = 4096;
-let app =  new PIXI.Application({width: pixiW, height: pixiH});
 
-//The center position of the PIXI canvas. Updates automatically when resized.
-let midx = 0;
-let midy = 0;
-
-initAtlasTierButtons();
+let app =  new PIXI.Application({
+    width: pixiW,
+    height: pixiH,
+    autoStart: false,
+    autoResize:true,
+    antialias: true,
+    sharedLoader: true,
+    sharedTicker: true,
+    resizeTo: window
+});
 
 //Load Pixi resources
 const loader = PIXI.Loader.shared;
@@ -32,6 +38,9 @@ loader
     .add("img/Atlas.jpg")
     .load(setup);
 
+//The center position of the PIXI canvas. Updates automatically when resized.
+var midx = 0;
+var midy = 0;
 
 //===========
 // Functions
@@ -40,7 +49,16 @@ function loadProgressHandler() {
 
 }
 function setup(loader, resources) {
-    initSprites(loader, resources);
+    //==================
+    //  Initialization
+    //==================
+    createPixiView();
+    initPixiDisplayObjects(loader, resources);
+    onWindowResize();
+    window.addEventListener('resize', onWindowResize);
+    loadMapsData();
+    initAtlasTierButtons();
+    
 
     //60fps (more?) Animation Ticker (is this fps capped?)
     // app.ticker.add(delta => animationLoop(delta));
@@ -50,30 +68,50 @@ function createPixiView() {
     domTarget = document.getElementById("atlas_of_worlds");
     domTarget.appendChild(app.view);
     domTarget.lastChild.className = "pixi_atlas_of_worlds";
+    
 }
 
-function initSprites(loader, resources) {
-    //Create main Atlas sprite & containers for Lines and Nodes
+function resizePixiView() {
+    // app.renderer.resize(pixiW, pixiH);
+    atlasSprite.scale.set(pixiW/maxW, pixiH/maxH);
+    let windowMidX = app.screen.width/2;
+    let windowMidY = app.screen.height/2;
+    let xOffset = (app.screen.width-pixiW)/2;
+    let yOffset = (app.screen.height-pixiH)/2;
+    atlasSprite.position.set(windowMidX, windowMidY);
+    linesContainer.x = xOffset;
+    linesContainer.y = yOffset;
+    nodesContainer.x = xOffset;
+    nodesContainer.y = yOffset;
+}
+
+function initPixiDisplayObjects(loader, resources) {
+    //Create main Atlas sprite
     atlasSprite = new PIXI.Sprite(resources["img/Atlas.jpg"].texture);
-    linesContainer = new PIXI.Container();
-    nodesContainer = new PIXI.Container();
     
     //Add Atlas sprite to stage
-    app.stage.addChild(atlasSprite);
+    app.stage.addChildAt(atlasSprite, 0);
+    atlasSprite.anchor.set(0.5);
+    initPixiContainers();
+}
+function initPixiContainers() {
+    //Create main containers for Lines and Nodes
+    linesContainer = new PIXI.Container();
+    nodesContainer = new PIXI.Container();
 
-    //Add Lines and Nodes containers to Atlas sprite. (Lines 1st, so that they are in back.)
-    atlasSprite.addChild(linesContainer);
-    atlasSprite.addChild(nodesContainer);
+    //Add Lines and Nodes containers to stage. (Lines 1st, so that they are in back.)
+    app.stage.addChild(linesContainer);
+    app.stage.addChild(nodesContainer);
 
-    //Request map data, parse it, and draw all Atlas regions for the 1st time.
-    loadMapsData(loader, resources, atlasSprite);
-
+    // linesContainer.anchor.set(0.5);
+    // nodesContainer.anchor.set(0.5);
 }
 
 //Factor by which to multiply node positions from the data file when drawing
-const mapScalingFactor = 4.05; //TODO: Make sure that pixi's text rendering is not the cause of misalignments.
+var mapScaleFactor = pixiW/maxW*4;//4.05; //TODO: Make sure that pixi's text rendering is not the cause of misalignments.
 var regionTiers = [0,0,0,0,0,0,0,0]; //Tiers of each region (array index = regionID)
 var regionNodes = [[], [], [], [], [], [], [], []]; //lists of nodes(IDs) in each region
+//Request map data, parse it, and draw all Atlas regions for the 1st time.
 function loadMapsData(loader, resources, atlasSprite) {
     
     let request = new XMLHttpRequest();
@@ -111,9 +149,9 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent) {
     if (linesContainer.children.length > regionID) {
         // linesContainer.removeChildAt(regionID);
         // nodesContainer.removeChildAt(regionID);
-        //This removes all references to the child DisplayObjects, allowing the garbage...
-        //  collector to remove them from memory. Simply doing container.removeChildAt did not...
-        //  do this
+        //This removes all references to the container AND child DisplayObjects, allowing...
+        //  the garbage collector to remove them from memory. Simply doing...
+        //  container.removeChildAt does not do this
         linesContainer.getChildAt(regionID).destroy(true, false, false);
         nodesContainer.getChildAt(regionID).destroy(true, false, false);
     }
@@ -126,8 +164,8 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent) {
     let regionNodesGraph = new PIXI.Graphics();
     regionNodesGraph.lineStyle(2, '0x0', 1, 0.5, false);
     regionNodesGraph.beginFill(0,1)
-    const nodeCenterOffset = 25;
-    const nodeRadius = 30;
+    const nodeCenterOffset = 25*mapScaleFactor/4;
+    const nodeRadius = 30*mapScaleFactor/4;
 
     //init region lines Graphics object (Lines)
     let regionLinesGraph = new PIXI.Graphics();
@@ -135,7 +173,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent) {
     let lineColor = 0xffffff;
 
     //Set text display options
-    let textDisplayOptions = {fontFamily : 'Arial', fontSize: 24, fill : 0xff1010, align : 'center'};
+    let textDisplayOptions = {fontFamily : 'Arial', fontSize: 24*mapScaleFactor/4, fill : 0xff1010, align : 'center'};
 
     //Add Nodes and Lines to their respective containers
     linesContainer.addChildAt(regionLinesGraph, regionID);
@@ -193,10 +231,9 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent) {
         
     }
 
-    //Force rendering of all lines and nodes in region (I think)
+    //Force immediate stage render
     //TODO see if something like this helps at ALL, or if its actually a hindrance.
-    app.renderer.render(regionLinesGraph);
-    app.renderer.render(regionNodesGraph);
+    app.renderer.render(app.stage);
 }
 
 // Returns an array of length 3 based on the supplied region tier.
@@ -213,36 +250,36 @@ function getTieredNodeDataByID(nodeID) {
     switch(tier) {
     case 0:
         if (entry.Tier0 > 0) {
-            entryX = entry.X0*mapScalingFactor;
-            entryY = entry.Y0*mapScalingFactor;
+            entryX = entry.X0*mapScaleFactor;
+            entryY = entry.Y0*mapScaleFactor;
             atlasNodeKeys = entry.AtlasNodeKeys0;
         }
         break;
     case 1:
         if (entry.Tier1 > 0) {
-            entryX = entry.X1*mapScalingFactor;
-            entryY = entry.Y1*mapScalingFactor;
+            entryX = entry.X1*mapScaleFactor;
+            entryY = entry.Y1*mapScaleFactor;
             atlasNodeKeys = entry.AtlasNodeKeys1;
         }
         break;
     case 2:
         if (entry.Tier2 > 0) {
-            entryX = entry.X2*mapScalingFactor;
-            entryY = entry.Y2*mapScalingFactor;
+            entryX = entry.X2*mapScaleFactor;
+            entryY = entry.Y2*mapScaleFactor;
             atlasNodeKeys = entry.AtlasNodeKeys2;
         }
         break;
     case 3:
         if (entry.Tier3 > 0) {
-            entryX = entry.X3*mapScalingFactor;
-            entryY = entry.Y3*mapScalingFactor;
+            entryX = entry.X3*mapScaleFactor;
+            entryY = entry.Y3*mapScaleFactor;
             atlasNodeKeys = entry.AtlasNodeKeys3;
         }
         break;
     case 4:
         if (entry.Tier4 > 0) {
-            entryX = entry.X4*mapScalingFactor;
-            entryY = entry.Y4*mapScalingFactor;
+            entryX = entry.X4*mapScaleFactor;
+            entryY = entry.Y4*mapScaleFactor;
             atlasNodeKeys = entry.AtlasNodeKeys4;
         }
         break;
@@ -293,13 +330,10 @@ function initAtlasTierButtons() {
         watchstoneButtons[i].addEventListener("click", function() {cycleAtlasRegionTier(i-1);} );
     }
     placeAtlasTierButtons();
-    //Auto update button positions if window is resized
-    window.addEventListener('resize', placeAtlasTierButtons);
 }
 
 //Place atlas tier buttons in center, stacked vertically
 function placeAtlasTierButtons() {
-    updateMidPosition();
     let elements = document.getElementsByClassName("watchstone centered");
     let btnHeight = elements[0].offsetHeight;
     let y0 = (elements.length*btnHeight)/2;
@@ -320,16 +354,28 @@ function placeElement(element, x_pos, y_pos) {
 }
 
 //Stores the position of the center of the PIXI canvas, not the window.
-function updateMidPosition() {
+function onWindowResize() {
     let innerHeight = window.innerHeight;
     let innerWidth = window.innerWidth;
     if (innerHeight > innerWidth) {
-        midx = innerWidth/2;
-        midy = (innerWidth/pixiW * pixiH)/2
+        // midx = innerWidth/2;
+        // midy = (innerWidth/pixiW * pixiH)/2
+
+        pixiW = innerWidth;
+        pixiH = innerWidth*(maxH/maxW);
     } else {
-        midy = innerHeight/2;
-        midx = (innerHeight/pixiH * pixiW)/2
+        // midy = innerHeight/2;
+        // midx = (innerHeight/pixiH * pixiW)/2
+
+        pixiH = innerHeight;
+        pixiW = innerHeight*(maxW/maxH);
     }
+     midx = app.screen.width/2;
+     midy = app.screen.height/2;
+    placeAtlasTierButtons();
+    resizePixiView();
+    mapScaleFactor = pixiW/maxW*4;
+    drawAllAtlasRegions();
 }
 
 function removeElementsByClass(className){

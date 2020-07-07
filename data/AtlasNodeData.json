@@ -1,0 +1,7484 @@
+[
+  {
+    "RowID": 0,
+    "WorldAreasKey": 1152,
+    "ItemVisualIdentityKey": 5697,
+    "Flag0": 0,
+    "MapsKey": 396,
+    "Unknown3": 0,
+    "FlavourTextKey": 1620,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      73
+    ],
+    "AtlasNodeKeys1": [
+      73
+    ],
+    "AtlasNodeKeys2": [
+      73
+    ],
+    "AtlasNodeKeys3": [
+      73
+    ],
+    "AtlasNodeKeys4": [
+      73
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 275.609009,
+    "X1": 275.609009,
+    "X2": 263.287994,
+    "X3": 245.787994,
+    "X4": 238.395004,
+    "Y0": 298.705994,
+    "Y1": 298.705994,
+    "Y2": 291.723999,
+    "Y3": 320.113007,
+    "Y4": 320.93399
+  },
+  {
+    "RowID": 1,
+    "WorldAreasKey": 1225,
+    "ItemVisualIdentityKey": 4828,
+    "Flag0": 0,
+    "MapsKey": 459,
+    "Unknown3": 0,
+    "FlavourTextKey": 1691,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      43,
+      12,
+      5
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 16,
+    "X0": 926.73999,
+    "X1": 926.73999,
+    "X2": 926.73999,
+    "X3": 926.73999,
+    "X4": 830.656982,
+    "Y0": 85.832001,
+    "Y1": 85.832001,
+    "Y2": 85.832001,
+    "Y3": 85.832001,
+    "Y4": 83.505997
+  },
+  {
+    "RowID": 2,
+    "WorldAreasKey": 1200,
+    "ItemVisualIdentityKey": 4789,
+    "Flag0": 0,
+    "MapsKey": 436,
+    "Unknown3": 0,
+    "FlavourTextKey": 1666,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [
+      124,
+      76,
+      11
+    ],
+    "AtlasNodeKeys3": [
+      124,
+      76,
+      11,
+      13
+    ],
+    "AtlasNodeKeys4": [
+      124,
+      76,
+      3,
+      11
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 12,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 94.014,
+    "X1": 94.014,
+    "X2": 165.475006,
+    "X3": 176.184006,
+    "X4": 166.205994,
+    "Y0": 497.598999,
+    "Y1": 497.598999,
+    "Y2": 420.388,
+    "Y3": 404.509003,
+    "Y4": 382.330994
+  },
+  {
+    "RowID": 3,
+    "WorldAreasKey": 1194,
+    "ItemVisualIdentityKey": 4830,
+    "Flag0": 0,
+    "MapsKey": 431,
+    "Unknown3": 0,
+    "FlavourTextKey": 1660,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      124,
+      2,
+      13
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 16,
+    "X0": 123.574997,
+    "X1": 123.574997,
+    "X2": 123.574997,
+    "X3": 123.574997,
+    "X4": 166.929001,
+    "Y0": 518.057007,
+    "Y1": 518.057007,
+    "Y2": 518.057007,
+    "Y3": 518.057007,
+    "Y4": 427.821991
+  },
+  {
+    "RowID": 4,
+    "WorldAreasKey": 1159,
+    "ItemVisualIdentityKey": 4744,
+    "Flag0": 0,
+    "MapsKey": 401,
+    "Unknown3": 0,
+    "FlavourTextKey": 1626,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [
+      118,
+      78,
+      64,
+      53
+    ],
+    "AtlasNodeKeys1": [
+      118,
+      86,
+      78,
+      55
+    ],
+    "AtlasNodeKeys2": [
+      118,
+      78,
+      55,
+      36
+    ],
+    "AtlasNodeKeys3": [
+      118,
+      78,
+      55,
+      36
+    ],
+    "AtlasNodeKeys4": [
+      118,
+      78,
+      55,
+      36
+    ],
+    "Tier0": 5,
+    "Tier1": 9,
+    "Tier2": 12,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 816.346985,
+    "X1": 815.528015,
+    "X2": 814.135986,
+    "X3": 813.396973,
+    "X4": 811.786987,
+    "Y0": 341.010986,
+    "Y1": 334.98999,
+    "Y2": 313.287994,
+    "Y3": 315.134003,
+    "Y4": 311.269989
+  },
+  {
+    "RowID": 5,
+    "WorldAreasKey": 1221,
+    "ItemVisualIdentityKey": 4831,
+    "Flag0": 0,
+    "MapsKey": 455,
+    "Unknown3": 0,
+    "FlavourTextKey": 1687,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      43,
+      24,
+      14,
+      1
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 15,
+    "X0": 913.10199,
+    "X1": 913.10199,
+    "X2": 913.10199,
+    "X3": 913.10199,
+    "X4": 779.625977,
+    "Y0": 70.572998,
+    "Y1": 70.572998,
+    "Y2": 70.572998,
+    "Y3": 70.572998,
+    "Y4": 75.912003
+  },
+  {
+    "RowID": 6,
+    "WorldAreasKey": 1220,
+    "ItemVisualIdentityKey": 4810,
+    "Flag0": 0,
+    "MapsKey": 454,
+    "Unknown3": 0,
+    "FlavourTextKey": 1686,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      86,
+      55
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 15,
+    "X0": 782.58197,
+    "X1": 782.58197,
+    "X2": 782.58197,
+    "X3": 782.58197,
+    "X4": 789.559021,
+    "Y0": 528.642029,
+    "Y1": 528.642029,
+    "Y2": 528.642029,
+    "Y3": 528.642029,
+    "Y4": 417.519989
+  },
+  {
+    "RowID": 7,
+    "WorldAreasKey": 1212,
+    "ItemVisualIdentityKey": 4722,
+    "Flag0": 0,
+    "MapsKey": 446,
+    "Unknown3": 0,
+    "FlavourTextKey": 1678,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      86,
+      53,
+      33
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 15,
+    "X0": 761.062988,
+    "X1": 761.062988,
+    "X2": 761.062988,
+    "X3": 761.062988,
+    "X4": 742.286011,
+    "Y0": 523.823975,
+    "Y1": 523.823975,
+    "Y2": 523.823975,
+    "Y3": 523.823975,
+    "Y4": 431.699005
+  },
+  {
+    "RowID": 8,
+    "WorldAreasKey": 1231,
+    "ItemVisualIdentityKey": 4824,
+    "Flag0": 0,
+    "MapsKey": 465,
+    "Unknown3": 0,
+    "FlavourTextKey": 1696,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 16,
+    "X0": 521.340027,
+    "X1": 524.385986,
+    "X2": 536.56897,
+    "X3": 536.56897,
+    "X4": 504.058014,
+    "Y0": 512.916016,
+    "Y1": 526.403992,
+    "Y2": 528.580017,
+    "Y3": 535.106018,
+    "Y4": 361.570007
+  },
+  {
+    "RowID": 9,
+    "WorldAreasKey": 1218,
+    "ItemVisualIdentityKey": 4804,
+    "Flag0": 0,
+    "MapsKey": 452,
+    "Unknown3": 0,
+    "FlavourTextKey": 1684,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      95,
+      73,
+      11
+    ],
+    "AtlasNodeKeys1": [
+      95,
+      73,
+      11
+    ],
+    "AtlasNodeKeys2": [
+      95,
+      73,
+      11
+    ],
+    "AtlasNodeKeys3": [
+      114,
+      95,
+      11
+    ],
+    "AtlasNodeKeys4": [
+      114,
+      95,
+      11
+    ],
+    "Tier0": 4,
+    "Tier1": 8,
+    "Tier2": 12,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 221.781006,
+    "X1": 221.781006,
+    "X2": 221.781006,
+    "X3": 221.781006,
+    "X4": 221.781006,
+    "Y0": 295.635986,
+    "Y1": 295.635986,
+    "Y2": 295.635986,
+    "Y3": 295.635986,
+    "Y4": 295.635986
+  },
+  {
+    "RowID": 10,
+    "WorldAreasKey": 1216,
+    "ItemVisualIdentityKey": 4817,
+    "Flag0": 0,
+    "MapsKey": 450,
+    "Unknown3": 0,
+    "FlavourTextKey": 1682,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [
+      86,
+      55,
+      53,
+      36
+    ],
+    "AtlasNodeKeys4": [
+      86,
+      55,
+      36
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 797.882019,
+    "X1": 797.882019,
+    "X2": 797.882019,
+    "X3": 835.090027,
+    "X4": 829.737,
+    "Y0": 528.822021,
+    "Y1": 528.822021,
+    "Y2": 528.822021,
+    "Y3": 435.800995,
+    "Y4": 430.052002
+  },
+  {
+    "RowID": 11,
+    "WorldAreasKey": 1222,
+    "ItemVisualIdentityKey": 4834,
+    "Flag0": 0,
+    "MapsKey": 456,
+    "Unknown3": 0,
+    "FlavourTextKey": 1688,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [
+      76,
+      73,
+      9
+    ],
+    "AtlasNodeKeys1": [
+      124,
+      76,
+      73,
+      9
+    ],
+    "AtlasNodeKeys2": [
+      76,
+      73,
+      2,
+      9
+    ],
+    "AtlasNodeKeys3": [
+      76,
+      73,
+      2,
+      9
+    ],
+    "AtlasNodeKeys4": [
+      76,
+      73,
+      2,
+      9
+    ],
+    "Tier0": 5,
+    "Tier1": 9,
+    "Tier2": 12,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 172.225006,
+    "X1": 177.281006,
+    "X2": 184.673996,
+    "X3": 188.735992,
+    "X4": 188.735992,
+    "Y0": 373.196991,
+    "Y1": 357.252014,
+    "Y2": 346.984985,
+    "Y3": 341.446014,
+    "Y4": 341.446014
+  },
+  {
+    "RowID": 12,
+    "WorldAreasKey": 1217,
+    "ItemVisualIdentityKey": 4856,
+    "Flag0": 0,
+    "MapsKey": 451,
+    "Unknown3": 0,
+    "FlavourTextKey": 1683,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [
+      57,
+      43,
+      27
+    ],
+    "AtlasNodeKeys4": [
+      57,
+      43,
+      27,
+      1
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 938.04303,
+    "X1": 938.04303,
+    "X2": 938.04303,
+    "X3": 834.369019,
+    "X4": 835.989014,
+    "Y0": 97.379997,
+    "Y1": 97.379997,
+    "Y2": 97.379997,
+    "Y3": 125.189003,
+    "Y4": 135.210007
+  },
+  {
+    "RowID": 13,
+    "WorldAreasKey": 1223,
+    "ItemVisualIdentityKey": 4829,
+    "Flag0": 0,
+    "MapsKey": 457,
+    "Unknown3": 0,
+    "FlavourTextKey": 1689,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [
+      66,
+      2
+    ],
+    "AtlasNodeKeys4": [
+      3,
+      37
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 105.502998,
+    "X1": 105.502998,
+    "X2": 105.502998,
+    "X3": 174.686996,
+    "X4": 171.087006,
+    "Y0": 510.752991,
+    "Y1": 510.752991,
+    "Y2": 510.752991,
+    "Y3": 481.22699,
+    "Y4": 482.075989
+  },
+  {
+    "RowID": 14,
+    "WorldAreasKey": 1213,
+    "ItemVisualIdentityKey": 4816,
+    "Flag0": 0,
+    "MapsKey": 447,
+    "Unknown3": 0,
+    "FlavourTextKey": 1679,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [
+      105,
+      60,
+      43,
+      24
+    ],
+    "AtlasNodeKeys3": [
+      85,
+      60,
+      43,
+      24
+    ],
+    "AtlasNodeKeys4": [
+      105,
+      85,
+      60,
+      24,
+      5
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 902.270996,
+    "X1": 902.270996,
+    "X2": 765.770996,
+    "X3": 765.770996,
+    "X4": 722.765991,
+    "Y0": 64.389,
+    "Y1": 64.389,
+    "Y2": 81.5,
+    "Y3": 81.5,
+    "Y4": 82.663002
+  },
+  {
+    "RowID": 15,
+    "WorldAreasKey": 1219,
+    "ItemVisualIdentityKey": 4852,
+    "Flag0": 0,
+    "MapsKey": 453,
+    "Unknown3": 0,
+    "FlavourTextKey": 1685,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [
+      117,
+      152,
+      80,
+      51
+    ],
+    "AtlasNodeKeys3": [
+      117,
+      152,
+      80,
+      51
+    ],
+    "AtlasNodeKeys4": [
+      147,
+      117,
+      80,
+      51
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 72.416,
+    "X1": 72.416,
+    "X2": 278.475006,
+    "X3": 278.475006,
+    "X4": 278.885986,
+    "Y0": 87.717003,
+    "Y1": 87.717003,
+    "Y2": 81.807999,
+    "Y3": 81.807999,
+    "Y4": 69.898003
+  },
+  {
+    "RowID": 16,
+    "WorldAreasKey": 1210,
+    "ItemVisualIdentityKey": 4811,
+    "Flag0": 0,
+    "MapsKey": 444,
+    "Unknown3": 0,
+    "FlavourTextKey": 1676,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [
+      126,
+      30,
+      19
+    ],
+    "AtlasNodeKeys4": [
+      126,
+      30,
+      19
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 76.459,
+    "X1": 76.459,
+    "X2": 76.459,
+    "X3": 167.302002,
+    "X4": 163.802002,
+    "Y0": 72.522003,
+    "Y1": 72.522003,
+    "Y2": 72.522003,
+    "Y3": 131.606995,
+    "Y4": 133.436005
+  },
+  {
+    "RowID": 17,
+    "WorldAreasKey": 1211,
+    "ItemVisualIdentityKey": 4779,
+    "Flag0": 0,
+    "MapsKey": 445,
+    "Unknown3": 0,
+    "FlavourTextKey": 1677,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      116,
+      98,
+      50,
+      34
+    ],
+    "AtlasNodeKeys1": [
+      98,
+      50,
+      34
+    ],
+    "AtlasNodeKeys2": [
+      112,
+      98,
+      50,
+      34
+    ],
+    "AtlasNodeKeys3": [
+      112,
+      98,
+      50,
+      34
+    ],
+    "AtlasNodeKeys4": [
+      112,
+      98,
+      50,
+      34
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 637.807983,
+    "X1": 644.807983,
+    "X2": 644.807983,
+    "X3": 649.504028,
+    "X4": 649.504028,
+    "Y0": 158.942001,
+    "Y1": 158.164001,
+    "Y2": 158.164001,
+    "Y3": 156.151001,
+    "Y4": 156.151001
+  },
+  {
+    "RowID": 18,
+    "WorldAreasKey": 1209,
+    "ItemVisualIdentityKey": 4803,
+    "Flag0": 0,
+    "MapsKey": 443,
+    "Unknown3": 0,
+    "FlavourTextKey": 1675,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      126,
+      151,
+      30
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 15,
+    "X0": 109.009003,
+    "X1": 109.009003,
+    "X2": 109.009003,
+    "X3": 109.009003,
+    "X4": 206.755005,
+    "Y0": 55.368999,
+    "Y1": 55.368999,
+    "Y2": 55.368999,
+    "Y3": 55.368999,
+    "Y4": 160.507004
+  },
+  {
+    "RowID": 19,
+    "WorldAreasKey": 1208,
+    "ItemVisualIdentityKey": 4781,
+    "Flag0": 0,
+    "MapsKey": 442,
+    "Unknown3": 0,
+    "FlavourTextKey": 1674,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [
+      51,
+      30,
+      16
+    ],
+    "AtlasNodeKeys4": [
+      51,
+      30,
+      16
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 91.972,
+    "X1": 91.972,
+    "X2": 91.972,
+    "X3": 167.675003,
+    "X4": 167.675003,
+    "Y0": 65.541,
+    "Y1": 65.541,
+    "Y2": 65.541,
+    "Y3": 82.158997,
+    "Y4": 82.158997
+  },
+  {
+    "RowID": 20,
+    "WorldAreasKey": 1203,
+    "ItemVisualIdentityKey": 5904,
+    "Flag0": 0,
+    "MapsKey": 437,
+    "Unknown3": 0,
+    "FlavourTextKey": 1669,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      25
+    ],
+    "AtlasNodeKeys1": [
+      25
+    ],
+    "AtlasNodeKeys2": [
+      25
+    ],
+    "AtlasNodeKeys3": [
+      25
+    ],
+    "AtlasNodeKeys4": [
+      25
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 15,
+    "X0": 457.503998,
+    "X1": 457.503998,
+    "X2": 457.503998,
+    "X3": 457.503998,
+    "X4": 294.761993,
+    "Y0": 258.454987,
+    "Y1": 258.454987,
+    "Y2": 258.454987,
+    "Y3": 258.454987,
+    "Y4": 243.753006
+  },
+  {
+    "RowID": 21,
+    "WorldAreasKey": 1201,
+    "ItemVisualIdentityKey": 5701,
+    "Flag0": 0,
+    "MapsKey": 376,
+    "Unknown3": 0,
+    "FlavourTextKey": 1667,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      98
+    ],
+    "AtlasNodeKeys1": [
+      98
+    ],
+    "AtlasNodeKeys2": [
+      98
+    ],
+    "AtlasNodeKeys3": [
+      98
+    ],
+    "AtlasNodeKeys4": [
+      98
+    ],
+    "Tier0": 2,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 642.190979,
+    "X1": 644.13501,
+    "X2": 663.968018,
+    "X3": 663.968018,
+    "X4": 663.968018,
+    "Y0": 234.220001,
+    "Y1": 234.998001,
+    "Y2": 237.720001,
+    "Y3": 237.720001,
+    "Y4": 237.720001
+  },
+  {
+    "RowID": 22,
+    "WorldAreasKey": 1207,
+    "ItemVisualIdentityKey": 4840,
+    "Flag0": 0,
+    "MapsKey": 441,
+    "Unknown3": 0,
+    "FlavourTextKey": 1673,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [
+      137,
+      76,
+      66,
+      40
+    ],
+    "AtlasNodeKeys1": [
+      137,
+      124,
+      76,
+      66,
+      40
+    ],
+    "AtlasNodeKeys2": [
+      137,
+      124,
+      76,
+      66,
+      40
+    ],
+    "AtlasNodeKeys3": [
+      137,
+      124,
+      76,
+      66,
+      40
+    ],
+    "AtlasNodeKeys4": [
+      137,
+      124,
+      76,
+      66,
+      40,
+      37
+    ],
+    "Tier0": 4,
+    "Tier1": 8,
+    "Tier2": 11,
+    "Tier3": 12,
+    "Tier4": 15,
+    "X0": 237.738007,
+    "X1": 269.446991,
+    "X2": 260.138,
+    "X3": 262.036011,
+    "X4": 263.225006,
+    "Y0": 448.75,
+    "Y1": 429.477997,
+    "Y2": 433.373993,
+    "Y3": 438.506012,
+    "Y4": 434.457001
+  },
+  {
+    "RowID": 23,
+    "WorldAreasKey": 1206,
+    "ItemVisualIdentityKey": 4721,
+    "Flag0": 0,
+    "MapsKey": 440,
+    "Unknown3": 0,
+    "FlavourTextKey": 1672,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [
+      103,
+      100,
+      41,
+      67
+    ],
+    "AtlasNodeKeys4": [
+      103,
+      39,
+      25
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 474.744995,
+    "X1": 474.744995,
+    "X2": 474.744995,
+    "X3": 343.649994,
+    "X4": 361.721008,
+    "Y0": 264.808014,
+    "Y1": 264.808014,
+    "Y2": 264.808014,
+    "Y3": 227.511002,
+    "Y4": 229.975006
+  },
+  {
+    "RowID": 24,
+    "WorldAreasKey": 1205,
+    "ItemVisualIdentityKey": 4814,
+    "Flag0": 0,
+    "MapsKey": 439,
+    "Unknown3": 0,
+    "FlavourTextKey": 1671,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [
+      105,
+      104,
+      34,
+      27
+    ],
+    "AtlasNodeKeys1": [
+      105,
+      104,
+      43,
+      34
+    ],
+    "AtlasNodeKeys2": [
+      105,
+      104,
+      43,
+      34,
+      14
+    ],
+    "AtlasNodeKeys3": [
+      104,
+      43,
+      34,
+      14
+    ],
+    "AtlasNodeKeys4": [
+      104,
+      43,
+      34,
+      14,
+      5
+    ],
+    "Tier0": 5,
+    "Tier1": 8,
+    "Tier2": 11,
+    "Tier3": 12,
+    "Tier4": 15,
+    "X0": 767.343018,
+    "X1": 758.786987,
+    "X2": 758.786987,
+    "X3": 752.72998,
+    "X4": 747.559998,
+    "Y0": 114.039001,
+    "Y1": 114.039001,
+    "Y2": 126.095001,
+    "Y3": 125.855003,
+    "Y4": 139.888
+  },
+  {
+    "RowID": 25,
+    "WorldAreasKey": 1202,
+    "ItemVisualIdentityKey": 4794,
+    "Flag0": 0,
+    "MapsKey": 437,
+    "Unknown3": 0,
+    "FlavourTextKey": 1668,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      20
+    ],
+    "AtlasNodeKeys1": [
+      20
+    ],
+    "AtlasNodeKeys2": [
+      20
+    ],
+    "AtlasNodeKeys3": [
+      20
+    ],
+    "AtlasNodeKeys4": [
+      67,
+      20,
+      23
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 15,
+    "X0": 472.257996,
+    "X1": 472.257996,
+    "X2": 472.257996,
+    "X3": 472.257996,
+    "X4": 317.647003,
+    "Y0": 245.112,
+    "Y1": 245.112,
+    "Y2": 245.112,
+    "Y3": 245.112,
+    "Y4": 226.792007
+  },
+  {
+    "RowID": 26,
+    "WorldAreasKey": 1204,
+    "ItemVisualIdentityKey": 4747,
+    "Flag0": 0,
+    "MapsKey": 438,
+    "Unknown3": 0,
+    "FlavourTextKey": 1670,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      137,
+      77,
+      70,
+      63
+    ],
+    "AtlasNodeKeys1": [
+      137,
+      77,
+      70,
+      63
+    ],
+    "AtlasNodeKeys2": [
+      137,
+      77,
+      70,
+      63
+    ],
+    "AtlasNodeKeys3": [
+      137,
+      77,
+      70,
+      63
+    ],
+    "AtlasNodeKeys4": [
+      137,
+      77,
+      70,
+      63
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 358.138,
+    "X1": 364.359985,
+    "X2": 364.359985,
+    "X3": 370.721008,
+    "X4": 359.783997,
+    "Y0": 412.225006,
+    "Y1": 416.502991,
+    "Y2": 416.502991,
+    "Y3": 418.575989,
+    "Y4": 424.03299
+  },
+  {
+    "RowID": 27,
+    "WorldAreasKey": 1224,
+    "ItemVisualIdentityKey": 4776,
+    "Flag0": 0,
+    "MapsKey": 458,
+    "Unknown3": 0,
+    "FlavourTextKey": 1690,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [
+      118,
+      104,
+      90,
+      29,
+      24
+    ],
+    "AtlasNodeKeys1": [
+      90,
+      57,
+      43,
+      29
+    ],
+    "AtlasNodeKeys2": [
+      90,
+      57,
+      43,
+      29
+    ],
+    "AtlasNodeKeys3": [
+      90,
+      57,
+      43,
+      29,
+      12
+    ],
+    "AtlasNodeKeys4": [
+      90,
+      57,
+      43,
+      29,
+      12
+    ],
+    "Tier0": 5,
+    "Tier1": 8,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 805.97699,
+    "X1": 796.643982,
+    "X2": 798.588013,
+    "X3": 796.663025,
+    "X4": 790.09198,
+    "Y0": 184.347,
+    "Y1": 201.457993,
+    "Y2": 195.235992,
+    "Y3": 190.104004,
+    "Y4": 200.781998
+  },
+  {
+    "RowID": 28,
+    "WorldAreasKey": 1199,
+    "ItemVisualIdentityKey": 4735,
+    "Flag0": 0,
+    "MapsKey": 435,
+    "Unknown3": 0,
+    "FlavourTextKey": 1665,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [
+      146,
+      115,
+      74,
+      49
+    ],
+    "AtlasNodeKeys1": [
+      146,
+      115,
+      52,
+      49
+    ],
+    "AtlasNodeKeys2": [
+      146,
+      115,
+      52,
+      38
+    ],
+    "AtlasNodeKeys3": [
+      146,
+      115,
+      52,
+      38
+    ],
+    "AtlasNodeKeys4": [
+      146,
+      115,
+      52,
+      38
+    ],
+    "Tier0": 2,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 521.320984,
+    "X1": 522.044983,
+    "X2": 521.093994,
+    "X3": 523.679016,
+    "X4": 521.463013,
+    "Y0": 375.938995,
+    "Y1": 370.527008,
+    "Y2": 375.237,
+    "Y3": 373.390015,
+    "Y4": 370.604004
+  },
+  {
+    "RowID": 29,
+    "WorldAreasKey": 1198,
+    "ItemVisualIdentityKey": 4716,
+    "Flag0": 0,
+    "MapsKey": 434,
+    "Unknown3": 0,
+    "FlavourTextKey": 1664,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      120,
+      118,
+      27
+    ],
+    "AtlasNodeKeys1": [
+      120,
+      118,
+      27
+    ],
+    "AtlasNodeKeys2": [
+      118,
+      94,
+      27
+    ],
+    "AtlasNodeKeys3": [
+      118,
+      94,
+      27
+    ],
+    "AtlasNodeKeys4": [
+      118,
+      96,
+      27
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 16,
+    "X0": 750.469971,
+    "X1": 735.692017,
+    "X2": 755.525024,
+    "X3": 755.525024,
+    "X4": 767.434998,
+    "Y0": 246.835007,
+    "Y1": 257.723999,
+    "Y2": 259.667999,
+    "Y3": 259.667999,
+    "Y4": 261.311005
+  },
+  {
+    "RowID": 30,
+    "WorldAreasKey": 1197,
+    "ItemVisualIdentityKey": 4755,
+    "Flag0": 0,
+    "MapsKey": 433,
+    "Unknown3": 0,
+    "FlavourTextKey": 1663,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [
+      126,
+      117,
+      151,
+      152
+    ],
+    "AtlasNodeKeys1": [
+      126,
+      151,
+      152,
+      51
+    ],
+    "AtlasNodeKeys2": [
+      126,
+      152,
+      51
+    ],
+    "AtlasNodeKeys3": [
+      126,
+      152,
+      51,
+      19,
+      16
+    ],
+    "AtlasNodeKeys4": [
+      147,
+      152,
+      51,
+      19,
+      18,
+      16
+    ],
+    "Tier0": 5,
+    "Tier1": 8,
+    "Tier2": 12,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 220.003998,
+    "X1": 199.781998,
+    "X2": 189.811005,
+    "X3": 221.199997,
+    "X4": 234.753006,
+    "Y0": 101.974998,
+    "Y1": 111.307999,
+    "Y2": 109.831001,
+    "Y3": 124.601997,
+    "Y4": 124.191002
+  },
+  {
+    "RowID": 31,
+    "WorldAreasKey": 1196,
+    "ItemVisualIdentityKey": 5653,
+    "Flag0": 0,
+    "MapsKey": 432,
+    "Unknown3": 0,
+    "FlavourTextKey": 1662,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [
+      32
+    ],
+    "AtlasNodeKeys1": [
+      32
+    ],
+    "AtlasNodeKeys2": [
+      32
+    ],
+    "AtlasNodeKeys3": [
+      32
+    ],
+    "AtlasNodeKeys4": [
+      32
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 13,
+    "Tier4": 16,
+    "X0": 504.947998,
+    "X1": 504.947998,
+    "X2": 504.947998,
+    "X3": 544.481995,
+    "X4": 544.708008,
+    "Y0": 540.312988,
+    "Y1": 540.312988,
+    "Y2": 540.312988,
+    "Y3": 448.238007,
+    "Y4": 448.687988
+  },
+  {
+    "RowID": 32,
+    "WorldAreasKey": 1195,
+    "ItemVisualIdentityKey": 4774,
+    "Flag0": 0,
+    "MapsKey": 432,
+    "Unknown3": 0,
+    "FlavourTextKey": 1661,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [
+      31
+    ],
+    "AtlasNodeKeys1": [
+      31
+    ],
+    "AtlasNodeKeys2": [
+      31
+    ],
+    "AtlasNodeKeys3": [
+      81,
+      31
+    ],
+    "AtlasNodeKeys4": [
+      146,
+      81,
+      45,
+      31
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 13,
+    "Tier4": 16,
+    "X0": 538.111023,
+    "X1": 538.111023,
+    "X2": 538.111023,
+    "X3": 528.531006,
+    "X4": 541.994995,
+    "Y0": 541.642029,
+    "Y1": 541.642029,
+    "Y2": 541.642029,
+    "Y3": 435.533997,
+    "Y4": 428.306
+  },
+  {
+    "RowID": 33,
+    "WorldAreasKey": 1193,
+    "ItemVisualIdentityKey": 4835,
+    "Flag0": 0,
+    "MapsKey": 430,
+    "Unknown3": 0,
+    "FlavourTextKey": 1659,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [
+      127,
+      109,
+      62,
+      74,
+      64,
+      53
+    ],
+    "AtlasNodeKeys1": [
+      127,
+      109,
+      62,
+      74
+    ],
+    "AtlasNodeKeys2": [
+      127,
+      109,
+      62,
+      74,
+      68,
+      53
+    ],
+    "AtlasNodeKeys3": [
+      127,
+      109,
+      62,
+      86,
+      74,
+      68,
+      53
+    ],
+    "AtlasNodeKeys4": [
+      127,
+      109,
+      62,
+      74,
+      68,
+      53,
+      7
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 728.111023,
+    "X1": 706.010986,
+    "X2": 707.375977,
+    "X3": 706.276001,
+    "X4": 701.765991,
+    "Y0": 427.583008,
+    "Y1": 414.283997,
+    "Y2": 418.377991,
+    "Y3": 412.264008,
+    "Y4": 414.990997
+  },
+  {
+    "RowID": 34,
+    "WorldAreasKey": 1191,
+    "ItemVisualIdentityKey": 4741,
+    "Flag0": 0,
+    "MapsKey": 429,
+    "Unknown3": 0,
+    "FlavourTextKey": 1658,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [
+      120,
+      105,
+      104,
+      92,
+      24,
+      17
+    ],
+    "AtlasNodeKeys1": [
+      120,
+      105,
+      104,
+      92,
+      24,
+      17
+    ],
+    "AtlasNodeKeys2": [
+      120,
+      105,
+      104,
+      92,
+      24,
+      17
+    ],
+    "AtlasNodeKeys3": [
+      120,
+      105,
+      104,
+      92,
+      85,
+      24,
+      17
+    ],
+    "AtlasNodeKeys4": [
+      120,
+      104,
+      92,
+      85,
+      24,
+      17
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 708.026001,
+    "X1": 703.359009,
+    "X2": 713.859009,
+    "X3": 713.859009,
+    "X4": 711.80603,
+    "Y0": 153.981003,
+    "Y1": 155.537003,
+    "Y2": 143.481003,
+    "Y3": 143.481003,
+    "Y4": 153.337997
+  },
+  {
+    "RowID": 35,
+    "WorldAreasKey": 1190,
+    "ItemVisualIdentityKey": 4740,
+    "Flag0": 0,
+    "MapsKey": 428,
+    "Unknown3": 0,
+    "FlavourTextKey": 1657,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [
+      146,
+      110,
+      109,
+      74,
+      52
+    ],
+    "AtlasNodeKeys1": [
+      131,
+      110,
+      109,
+      74,
+      52
+    ],
+    "AtlasNodeKeys2": [
+      131,
+      110,
+      109,
+      74,
+      52
+    ],
+    "AtlasNodeKeys3": [
+      131,
+      110,
+      109,
+      74,
+      52
+    ],
+    "AtlasNodeKeys4": [
+      131,
+      110,
+      109,
+      74,
+      52
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 628.953979,
+    "X1": 629.255005,
+    "X2": 616.807983,
+    "X3": 622.375,
+    "X4": 623.010986,
+    "Y0": 459.196014,
+    "Y1": 459.130005,
+    "Y2": 454.683014,
+    "Y3": 456.977997,
+    "Y4": 459.429993
+  },
+  {
+    "RowID": 36,
+    "WorldAreasKey": 1214,
+    "ItemVisualIdentityKey": 4815,
+    "Flag0": 0,
+    "MapsKey": 448,
+    "Unknown3": 0,
+    "FlavourTextKey": 1680,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [
+      86,
+      4,
+      55,
+      53
+    ],
+    "AtlasNodeKeys3": [
+      4,
+      55,
+      10
+    ],
+    "AtlasNodeKeys4": [
+      4,
+      55,
+      10
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 12,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 727.91803,
+    "X1": 727.91803,
+    "X2": 832.140015,
+    "X3": 832.140015,
+    "X4": 828.976013,
+    "Y0": 530.924011,
+    "Y1": 530.924011,
+    "Y2": 392.089996,
+    "Y3": 381.18399,
+    "Y4": 373.800995
+  },
+  {
+    "RowID": 37,
+    "WorldAreasKey": 1215,
+    "ItemVisualIdentityKey": 4731,
+    "Flag0": 0,
+    "MapsKey": 449,
+    "Unknown3": 0,
+    "FlavourTextKey": 1681,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      124,
+      66,
+      22,
+      13
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 15,
+    "X0": 143.973007,
+    "X1": 143.973007,
+    "X2": 143.973007,
+    "X3": 143.973007,
+    "X4": 244.182999,
+    "Y0": 524.320984,
+    "Y1": 524.320984,
+    "Y2": 524.320984,
+    "Y3": 524.320984,
+    "Y4": 479.966003
+  },
+  {
+    "RowID": 38,
+    "WorldAreasKey": 1189,
+    "ItemVisualIdentityKey": 4720,
+    "Flag0": 0,
+    "MapsKey": 427,
+    "Unknown3": 0,
+    "FlavourTextKey": 1656,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [
+      49,
+      28
+    ],
+    "AtlasNodeKeys3": [
+      49,
+      28
+    ],
+    "AtlasNodeKeys4": [
+      49,
+      28
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 472.350006,
+    "X1": 472.350006,
+    "X2": 525.294983,
+    "X3": 527.880005,
+    "X4": 526.963989,
+    "Y0": 540.309021,
+    "Y1": 540.309021,
+    "Y2": 352.674988,
+    "Y3": 348.243011,
+    "Y4": 345.821014
+  },
+  {
+    "RowID": 39,
+    "WorldAreasKey": 1186,
+    "ItemVisualIdentityKey": 4749,
+    "Flag0": 0,
+    "MapsKey": 424,
+    "Unknown3": 0,
+    "FlavourTextKey": 1653,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      128,
+      100,
+      41,
+      23
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 14,
+    "X0": 483.929993,
+    "X1": 483.929993,
+    "X2": 483.929993,
+    "X3": 483.929993,
+    "X4": 331.664001,
+    "Y0": 233.606003,
+    "Y1": 233.606003,
+    "Y2": 233.606003,
+    "Y3": 233.606003,
+    "Y4": 195.520004
+  },
+  {
+    "RowID": 40,
+    "WorldAreasKey": 1187,
+    "ItemVisualIdentityKey": 4770,
+    "Flag0": 0,
+    "MapsKey": 425,
+    "Unknown3": 0,
+    "FlavourTextKey": 1654,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      137,
+      76,
+      73,
+      63,
+      22
+    ],
+    "AtlasNodeKeys1": [
+      137,
+      76,
+      73,
+      63,
+      22
+    ],
+    "AtlasNodeKeys2": [
+      137,
+      76,
+      73,
+      63,
+      22
+    ],
+    "AtlasNodeKeys3": [
+      137,
+      76,
+      73,
+      63,
+      22
+    ],
+    "AtlasNodeKeys4": [
+      137,
+      82,
+      76,
+      73,
+      63,
+      22
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 15,
+    "X0": 293.02301,
+    "X1": 293.02301,
+    "X2": 293.02301,
+    "X3": 293.02301,
+    "X4": 293.02301,
+    "Y0": 388.19101,
+    "Y1": 388.19101,
+    "Y2": 388.19101,
+    "Y3": 388.19101,
+    "Y4": 388.19101
+  },
+  {
+    "RowID": 41,
+    "WorldAreasKey": 1185,
+    "ItemVisualIdentityKey": 4742,
+    "Flag0": 0,
+    "MapsKey": 423,
+    "Unknown3": 0,
+    "FlavourTextKey": 1652,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      125,
+      151,
+      67
+    ],
+    "AtlasNodeKeys1": [
+      151,
+      103,
+      67
+    ],
+    "AtlasNodeKeys2": [
+      151,
+      103,
+      67
+    ],
+    "AtlasNodeKeys3": [
+      151,
+      67,
+      23
+    ],
+    "AtlasNodeKeys4": [
+      151,
+      39,
+      67
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 15,
+    "X0": 314.10199,
+    "X1": 286.490997,
+    "X2": 288.125,
+    "X3": 279.631989,
+    "X4": 312.488007,
+    "Y0": 224.487,
+    "Y1": 207.376007,
+    "Y2": 206.987,
+    "Y3": 198.863007,
+    "Y4": 204.613007
+  },
+  {
+    "RowID": 42,
+    "WorldAreasKey": 1184,
+    "ItemVisualIdentityKey": 4758,
+    "Flag0": 0,
+    "MapsKey": 422,
+    "Unknown3": 0,
+    "FlavourTextKey": 1651,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      126,
+      151,
+      95,
+      67
+    ],
+    "AtlasNodeKeys1": [
+      126,
+      151,
+      95,
+      67
+    ],
+    "AtlasNodeKeys2": [
+      126,
+      151,
+      95,
+      67
+    ],
+    "AtlasNodeKeys3": [
+      126,
+      151,
+      95,
+      67
+    ],
+    "AtlasNodeKeys4": [
+      126,
+      151,
+      95,
+      67
+    ],
+    "Tier0": 4,
+    "Tier1": 8,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 16,
+    "X0": 222.792007,
+    "X1": 222.792007,
+    "X2": 222.792007,
+    "X3": 222.792007,
+    "X4": 222.792007,
+    "Y0": 234.598007,
+    "Y1": 234.598007,
+    "Y2": 234.598007,
+    "Y3": 234.598007,
+    "Y4": 234.598007
+  },
+  {
+    "RowID": 43,
+    "WorldAreasKey": 1183,
+    "ItemVisualIdentityKey": 4800,
+    "Flag0": 0,
+    "MapsKey": 421,
+    "Unknown3": 0,
+    "FlavourTextKey": 1650,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [
+      104,
+      57,
+      24,
+      27
+    ],
+    "AtlasNodeKeys2": [
+      104,
+      57,
+      24,
+      14,
+      27
+    ],
+    "AtlasNodeKeys3": [
+      104,
+      24,
+      14,
+      12,
+      27
+    ],
+    "AtlasNodeKeys4": [
+      104,
+      24,
+      12,
+      5,
+      27,
+      1
+    ],
+    "Tier0": 0,
+    "Tier1": 8,
+    "Tier2": 12,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 877.013977,
+    "X1": 789.903015,
+    "X2": 817.125,
+    "X3": 809.609985,
+    "X4": 787.315002,
+    "Y0": 47.903999,
+    "Y1": 144.348999,
+    "Y2": 117.515999,
+    "Y3": 95.677002,
+    "Y4": 145.485992
+  },
+  {
+    "RowID": 44,
+    "WorldAreasKey": 1182,
+    "ItemVisualIdentityKey": 6559,
+    "Flag0": 0,
+    "MapsKey": 420,
+    "Unknown3": 0,
+    "FlavourTextKey": 1649,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [
+      45
+    ],
+    "AtlasNodeKeys1": [
+      45
+    ],
+    "AtlasNodeKeys2": [
+      45
+    ],
+    "AtlasNodeKeys3": [
+      45
+    ],
+    "AtlasNodeKeys4": [
+      45
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 16,
+    "X0": 594.513977,
+    "X1": 594.513977,
+    "X2": 594.513977,
+    "X3": 594.513977,
+    "X4": 581.091003,
+    "Y0": 526.492981,
+    "Y1": 526.492981,
+    "Y2": 526.492981,
+    "Y3": 526.492981,
+    "Y4": 468.894989
+  },
+  {
+    "RowID": 45,
+    "WorldAreasKey": 1181,
+    "ItemVisualIdentityKey": 4775,
+    "Flag0": 0,
+    "MapsKey": 420,
+    "Unknown3": 0,
+    "FlavourTextKey": 1648,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [
+      44
+    ],
+    "AtlasNodeKeys1": [
+      44
+    ],
+    "AtlasNodeKeys2": [
+      44
+    ],
+    "AtlasNodeKeys3": [
+      44
+    ],
+    "AtlasNodeKeys4": [
+      44,
+      32
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 16,
+    "X0": 552.536987,
+    "X1": 552.536987,
+    "X2": 552.536987,
+    "X3": 552.536987,
+    "X4": 563.163025,
+    "Y0": 538.145996,
+    "Y1": 538.145996,
+    "Y2": 538.145996,
+    "Y3": 538.145996,
+    "Y4": 448.014008
+  },
+  {
+    "RowID": 46,
+    "WorldAreasKey": 1180,
+    "ItemVisualIdentityKey": 4773,
+    "Flag0": 0,
+    "MapsKey": 419,
+    "Unknown3": 0,
+    "FlavourTextKey": 1647,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      149,
+      62,
+      74
+    ],
+    "AtlasNodeKeys1": [
+      149,
+      62,
+      74
+    ],
+    "AtlasNodeKeys2": [
+      149,
+      62,
+      74
+    ],
+    "AtlasNodeKeys3": [
+      149,
+      62,
+      74
+    ],
+    "AtlasNodeKeys4": [
+      149,
+      62,
+      74
+    ],
+    "Tier0": 2,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 648.898987,
+    "X1": 648.898987,
+    "X2": 648.898987,
+    "X3": 648.898987,
+    "X4": 648.898987,
+    "Y0": 376.084991,
+    "Y1": 376.084991,
+    "Y2": 376.084991,
+    "Y3": 376.084991,
+    "Y4": 376.084991
+  },
+  {
+    "RowID": 47,
+    "WorldAreasKey": 1179,
+    "ItemVisualIdentityKey": 5610,
+    "Flag0": 0,
+    "MapsKey": 418,
+    "Unknown3": 0,
+    "FlavourTextKey": 1646,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      48
+    ],
+    "AtlasNodeKeys1": [
+      48
+    ],
+    "AtlasNodeKeys2": [
+      48
+    ],
+    "AtlasNodeKeys3": [
+      48
+    ],
+    "AtlasNodeKeys4": [
+      48
+    ],
+    "Tier0": 2,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 396.821014,
+    "X1": 396.821014,
+    "X2": 396.821014,
+    "X3": 396.821014,
+    "X4": 396.821014,
+    "Y0": 118.322998,
+    "Y1": 118.322998,
+    "Y2": 118.322998,
+    "Y3": 118.322998,
+    "Y4": 118.322998
+  },
+  {
+    "RowID": 48,
+    "WorldAreasKey": 1178,
+    "ItemVisualIdentityKey": 4771,
+    "Flag0": 0,
+    "MapsKey": 418,
+    "Unknown3": 0,
+    "FlavourTextKey": 1645,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      142,
+      134,
+      83,
+      47
+    ],
+    "AtlasNodeKeys1": [
+      142,
+      134,
+      83,
+      72,
+      47
+    ],
+    "AtlasNodeKeys2": [
+      142,
+      138,
+      134,
+      83,
+      47
+    ],
+    "AtlasNodeKeys3": [
+      142,
+      138,
+      134,
+      83,
+      47
+    ],
+    "AtlasNodeKeys4": [
+      142,
+      138,
+      134,
+      83,
+      47
+    ],
+    "Tier0": 2,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 431.851013,
+    "X1": 431.851013,
+    "X2": 420.962006,
+    "X3": 420.962006,
+    "X4": 420.962006,
+    "Y0": 121.533997,
+    "Y1": 121.533997,
+    "Y2": 108.311996,
+    "Y3": 108.311996,
+    "Y4": 108.311996
+  },
+  {
+    "RowID": 49,
+    "WorldAreasKey": 1177,
+    "ItemVisualIdentityKey": 4767,
+    "Flag0": 0,
+    "MapsKey": 417,
+    "Unknown3": 0,
+    "FlavourTextKey": 1644,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [
+      133,
+      113,
+      28
+    ],
+    "AtlasNodeKeys1": [
+      133,
+      113,
+      56,
+      28
+    ],
+    "AtlasNodeKeys2": [
+      133,
+      113,
+      56,
+      38
+    ],
+    "AtlasNodeKeys3": [
+      133,
+      113,
+      56,
+      38
+    ],
+    "AtlasNodeKeys4": [
+      133,
+      113,
+      56,
+      38
+    ],
+    "Tier0": 1,
+    "Tier1": 4,
+    "Tier2": 8,
+    "Tier3": 10,
+    "Tier4": 14,
+    "X0": 549.161011,
+    "X1": 549.161011,
+    "X2": 549.161011,
+    "X3": 549.161011,
+    "X4": 549.161011,
+    "Y0": 330.915009,
+    "Y1": 330.915009,
+    "Y2": 330.915009,
+    "Y3": 330.915009,
+    "Y4": 330.915009
+  },
+  {
+    "RowID": 50,
+    "WorldAreasKey": 1176,
+    "ItemVisualIdentityKey": 4763,
+    "Flag0": 0,
+    "MapsKey": 416,
+    "Unknown3": 0,
+    "FlavourTextKey": 1643,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      142,
+      105,
+      116,
+      60,
+      17
+    ],
+    "AtlasNodeKeys1": [
+      141,
+      132,
+      105,
+      60,
+      17
+    ],
+    "AtlasNodeKeys2": [
+      112,
+      105,
+      60,
+      17
+    ],
+    "AtlasNodeKeys3": [
+      112,
+      105,
+      60,
+      17
+    ],
+    "AtlasNodeKeys4": [
+      112,
+      105,
+      60,
+      17
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 593.065979,
+    "X1": 607.843994,
+    "X2": 607.843994,
+    "X3": 607.843994,
+    "X4": 607.843994,
+    "Y0": 120.842003,
+    "Y1": 125.120003,
+    "Y2": 125.120003,
+    "Y3": 125.120003,
+    "Y4": 125.120003
+  },
+  {
+    "RowID": 51,
+    "WorldAreasKey": 1175,
+    "ItemVisualIdentityKey": 4788,
+    "Flag0": 0,
+    "MapsKey": 415,
+    "Unknown3": 0,
+    "FlavourTextKey": 1642,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [
+      117,
+      152,
+      30
+    ],
+    "AtlasNodeKeys2": [
+      30,
+      15
+    ],
+    "AtlasNodeKeys3": [
+      30,
+      19,
+      15
+    ],
+    "AtlasNodeKeys4": [
+      147,
+      30,
+      19,
+      15
+    ],
+    "Tier0": 0,
+    "Tier1": 7,
+    "Tier2": 12,
+    "Tier3": 14,
+    "Tier4": 15,
+    "X0": 92.325996,
+    "X1": 247.882004,
+    "X2": 213.908005,
+    "X3": 225.725006,
+    "X4": 225.725006,
+    "Y0": 89.171997,
+    "Y1": 84.893997,
+    "Y2": 73.077003,
+    "Y3": 73.816002,
+    "Y4": 73.816002
+  },
+  {
+    "RowID": 52,
+    "WorldAreasKey": 1174,
+    "ItemVisualIdentityKey": 4791,
+    "Flag0": 0,
+    "MapsKey": 414,
+    "Unknown3": 0,
+    "FlavourTextKey": 1641,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [
+      146,
+      35
+    ],
+    "AtlasNodeKeys1": [
+      131,
+      74,
+      56,
+      35,
+      28
+    ],
+    "AtlasNodeKeys2": [
+      131,
+      74,
+      56,
+      35,
+      28
+    ],
+    "AtlasNodeKeys3": [
+      131,
+      130,
+      56,
+      35,
+      28
+    ],
+    "AtlasNodeKeys4": [
+      131,
+      130,
+      71,
+      35,
+      28
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 586.286987,
+    "X1": 572.731995,
+    "X2": 567.997009,
+    "X3": 566.728027,
+    "X4": 585.653015,
+    "Y0": 484.531006,
+    "Y1": 436.480011,
+    "Y2": 427.885986,
+    "Y3": 430.93399,
+    "Y4": 418.875
+  },
+  {
+    "RowID": 53,
+    "WorldAreasKey": 1173,
+    "ItemVisualIdentityKey": 4754,
+    "Flag0": 0,
+    "MapsKey": 413,
+    "Unknown3": 0,
+    "FlavourTextKey": 1640,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [
+      110,
+      4,
+      33
+    ],
+    "AtlasNodeKeys1": [
+      127,
+      110,
+      109,
+      86,
+      55
+    ],
+    "AtlasNodeKeys2": [
+      127,
+      86,
+      33,
+      36
+    ],
+    "AtlasNodeKeys3": [
+      55,
+      33,
+      10
+    ],
+    "AtlasNodeKeys4": [
+      55,
+      33,
+      7
+    ],
+    "Tier0": 4,
+    "Tier1": 8,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 782.174988,
+    "X1": 767.625,
+    "X2": 774.624023,
+    "X3": 770.312988,
+    "X4": 753.629028,
+    "Y0": 452.010986,
+    "Y1": 455.303986,
+    "Y2": 405.690002,
+    "Y3": 403.967987,
+    "Y4": 407.505005
+  },
+  {
+    "RowID": 54,
+    "WorldAreasKey": 1172,
+    "ItemVisualIdentityKey": 4833,
+    "Flag0": 0,
+    "MapsKey": 412,
+    "Unknown3": 0,
+    "FlavourTextKey": 1639,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      102,
+      78,
+      64
+    ],
+    "AtlasNodeKeys1": [
+      102,
+      78,
+      64
+    ],
+    "AtlasNodeKeys2": [
+      102,
+      78,
+      64
+    ],
+    "AtlasNodeKeys3": [
+      102,
+      78,
+      64
+    ],
+    "AtlasNodeKeys4": [
+      102,
+      96,
+      78,
+      64
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 718.356995,
+    "X1": 718.356995,
+    "X2": 718.356995,
+    "X3": 718.356995,
+    "X4": 718.356995,
+    "Y0": 307.725006,
+    "Y1": 307.725006,
+    "Y2": 307.725006,
+    "Y3": 307.725006,
+    "Y4": 307.725006
+  },
+  {
+    "RowID": 55,
+    "WorldAreasKey": 1170,
+    "ItemVisualIdentityKey": 4841,
+    "Flag0": 0,
+    "MapsKey": 410,
+    "Unknown3": 0,
+    "FlavourTextKey": 1637,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [
+      86,
+      4,
+      64,
+      53
+    ],
+    "AtlasNodeKeys2": [
+      78,
+      4,
+      64,
+      36
+    ],
+    "AtlasNodeKeys3": [
+      78,
+      4,
+      64,
+      53,
+      36,
+      10
+    ],
+    "AtlasNodeKeys4": [
+      78,
+      4,
+      64,
+      53,
+      36,
+      10,
+      6
+    ],
+    "Tier0": 0,
+    "Tier1": 8,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 814.966003,
+    "X1": 801.671021,
+    "X2": 774.520996,
+    "X3": 774.520996,
+    "X4": 774.520996,
+    "Y0": 528.43103,
+    "Y1": 395.363007,
+    "Y2": 378.320007,
+    "Y3": 378.320007,
+    "Y4": 378.320007
+  },
+  {
+    "RowID": 56,
+    "WorldAreasKey": 1169,
+    "ItemVisualIdentityKey": 4805,
+    "Flag0": 0,
+    "MapsKey": 409,
+    "Unknown3": 0,
+    "FlavourTextKey": 1636,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [
+      149,
+      52,
+      49
+    ],
+    "AtlasNodeKeys2": [
+      52,
+      49
+    ],
+    "AtlasNodeKeys3": [
+      130,
+      52,
+      49
+    ],
+    "AtlasNodeKeys4": [
+      71,
+      49
+    ],
+    "Tier0": 0,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 537.916992,
+    "X1": 561.25,
+    "X2": 562.028015,
+    "X3": 556.895996,
+    "X4": 552.377991,
+    "Y0": 528.658997,
+    "Y1": 396.436005,
+    "Y2": 383.213989,
+    "Y3": 375.835999,
+    "Y4": 361.872009
+  },
+  {
+    "RowID": 57,
+    "WorldAreasKey": 1171,
+    "ItemVisualIdentityKey": 4798,
+    "Flag0": 0,
+    "MapsKey": 411,
+    "Unknown3": 0,
+    "FlavourTextKey": 1638,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [
+      118,
+      43,
+      27
+    ],
+    "AtlasNodeKeys2": [
+      118,
+      43,
+      27
+    ],
+    "AtlasNodeKeys3": [
+      118,
+      12,
+      27
+    ],
+    "AtlasNodeKeys4": [
+      118,
+      12,
+      27
+    ],
+    "Tier0": 0,
+    "Tier1": 9,
+    "Tier2": 12,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 890.028015,
+    "X1": 832.864014,
+    "X2": 834.710999,
+    "X3": 835.439026,
+    "X4": 835.439026,
+    "Y0": 54.537998,
+    "Y1": 174.432999,
+    "Y2": 175.910004,
+    "Y3": 194.612,
+    "Y4": 194.612
+  },
+  {
+    "RowID": 58,
+    "WorldAreasKey": 1168,
+    "ItemVisualIdentityKey": 8043,
+    "Flag0": 0,
+    "MapsKey": 408,
+    "Unknown3": 0,
+    "FlavourTextKey": 1635,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      59
+    ],
+    "AtlasNodeKeys1": [
+      59
+    ],
+    "AtlasNodeKeys2": [
+      59
+    ],
+    "AtlasNodeKeys3": [
+      59
+    ],
+    "AtlasNodeKeys4": [
+      59
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 385.643005,
+    "X1": 366.138,
+    "X2": 371.050995,
+    "X3": 359.587006,
+    "X4": 359.587006,
+    "Y0": 196.729004,
+    "Y1": 147.817993,
+    "Y2": 148.091003,
+    "Y3": 143.451004,
+    "Y4": 143.451004
+  },
+  {
+    "RowID": 59,
+    "WorldAreasKey": 1167,
+    "ItemVisualIdentityKey": 4772,
+    "Flag0": 0,
+    "MapsKey": 408,
+    "Unknown3": 0,
+    "FlavourTextKey": 1634,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      152,
+      83,
+      80,
+      100,
+      58
+    ],
+    "AtlasNodeKeys1": [
+      152,
+      103,
+      83,
+      80,
+      72,
+      100,
+      58
+    ],
+    "AtlasNodeKeys2": [
+      152,
+      103,
+      83,
+      80,
+      72,
+      100,
+      58
+    ],
+    "AtlasNodeKeys3": [
+      128,
+      152,
+      103,
+      83,
+      80,
+      100,
+      58
+    ],
+    "AtlasNodeKeys4": [
+      128,
+      152,
+      83,
+      80,
+      100,
+      58
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 365.276001,
+    "X1": 372.73999,
+    "X2": 382.994995,
+    "X3": 338.419006,
+    "X4": 359.881012,
+    "Y0": 176.289001,
+    "Y1": 179.731995,
+    "Y2": 180.832993,
+    "Y3": 151.173004,
+    "Y4": 161.391006
+  },
+  {
+    "RowID": 60,
+    "WorldAreasKey": 1166,
+    "ItemVisualIdentityKey": 4762,
+    "Flag0": 0,
+    "MapsKey": 407,
+    "Unknown3": 0,
+    "FlavourTextKey": 1633,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [
+      105,
+      50
+    ],
+    "AtlasNodeKeys1": [
+      105,
+      50
+    ],
+    "AtlasNodeKeys2": [
+      105,
+      50,
+      14
+    ],
+    "AtlasNodeKeys3": [
+      105,
+      50,
+      14
+    ],
+    "AtlasNodeKeys4": [
+      50,
+      14
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 669.598999,
+    "X1": 669.598999,
+    "X2": 663.674011,
+    "X3": 666.310974,
+    "X4": 652.500977,
+    "Y0": 79.514,
+    "Y1": 79.514,
+    "Y2": 75.443001,
+    "Y3": 75.358002,
+    "Y4": 75.831001
+  },
+  {
+    "RowID": 61,
+    "WorldAreasKey": 1125,
+    "ItemVisualIdentityKey": 8044,
+    "Flag0": 0,
+    "MapsKey": 375,
+    "Unknown3": 0,
+    "FlavourTextKey": 1593,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      62
+    ],
+    "AtlasNodeKeys1": [
+      62
+    ],
+    "AtlasNodeKeys2": [
+      62
+    ],
+    "AtlasNodeKeys3": [
+      62
+    ],
+    "AtlasNodeKeys4": [
+      62
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 696.85498,
+    "X1": 696.85498,
+    "X2": 696.85498,
+    "X3": 696.85498,
+    "X4": 696.85498,
+    "Y0": 336.94101,
+    "Y1": 336.94101,
+    "Y2": 336.94101,
+    "Y3": 336.94101,
+    "Y4": 336.94101
+  },
+  {
+    "RowID": 62,
+    "WorldAreasKey": 1124,
+    "ItemVisualIdentityKey": 4764,
+    "Flag0": 0,
+    "MapsKey": 375,
+    "Unknown3": 0,
+    "FlavourTextKey": 1592,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      127,
+      102,
+      61,
+      74,
+      46,
+      33
+    ],
+    "AtlasNodeKeys1": [
+      127,
+      102,
+      61,
+      74,
+      46,
+      33
+    ],
+    "AtlasNodeKeys2": [
+      127,
+      102,
+      61,
+      74,
+      46,
+      33
+    ],
+    "AtlasNodeKeys3": [
+      127,
+      102,
+      61,
+      74,
+      46,
+      33
+    ],
+    "AtlasNodeKeys4": [
+      127,
+      102,
+      61,
+      74,
+      46,
+      33
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 681.08197,
+    "X1": 681.08197,
+    "X2": 681.08197,
+    "X3": 681.08197,
+    "X4": 681.08197,
+    "Y0": 381.429993,
+    "Y1": 381.429993,
+    "Y2": 381.429993,
+    "Y3": 381.429993,
+    "Y4": 381.429993
+  },
+  {
+    "RowID": 63,
+    "WorldAreasKey": 1163,
+    "ItemVisualIdentityKey": 4799,
+    "Flag0": 0,
+    "MapsKey": 405,
+    "Unknown3": 0,
+    "FlavourTextKey": 1630,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      137,
+      136,
+      77,
+      73,
+      40,
+      26
+    ],
+    "AtlasNodeKeys1": [
+      137,
+      135,
+      77,
+      40,
+      26
+    ],
+    "AtlasNodeKeys2": [
+      137,
+      135,
+      77,
+      40,
+      26
+    ],
+    "AtlasNodeKeys3": [
+      145,
+      137,
+      135,
+      77,
+      40,
+      26
+    ],
+    "AtlasNodeKeys4": [
+      145,
+      137,
+      135,
+      77,
+      40,
+      26
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 342.403992,
+    "X1": 338.515015,
+    "X2": 336.571014,
+    "X3": 336.571014,
+    "X4": 352.588013,
+    "Y0": 342.411987,
+    "Y1": 360.300995,
+    "Y2": 368.07901,
+    "Y3": 368.07901,
+    "Y4": 389.024994
+  },
+  {
+    "RowID": 64,
+    "WorldAreasKey": 1162,
+    "ItemVisualIdentityKey": 4793,
+    "Flag0": 0,
+    "MapsKey": 404,
+    "Unknown3": 0,
+    "FlavourTextKey": 1629,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [
+      127,
+      78,
+      4,
+      54,
+      33
+    ],
+    "AtlasNodeKeys1": [
+      127,
+      78,
+      55,
+      54
+    ],
+    "AtlasNodeKeys2": [
+      127,
+      78,
+      55,
+      54
+    ],
+    "AtlasNodeKeys3": [
+      127,
+      78,
+      55,
+      54
+    ],
+    "AtlasNodeKeys4": [
+      127,
+      78,
+      55,
+      54
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 15,
+    "X0": 773.77002,
+    "X1": 753.158997,
+    "X2": 742.658997,
+    "X3": 742.658997,
+    "X4": 742.658997,
+    "Y0": 375.138,
+    "Y1": 357.638,
+    "Y2": 354.527008,
+    "Y3": 354.527008,
+    "Y4": 354.527008
+  },
+  {
+    "RowID": 65,
+    "WorldAreasKey": 1161,
+    "ItemVisualIdentityKey": 4795,
+    "Flag0": 0,
+    "MapsKey": 403,
+    "Unknown3": 0,
+    "FlavourTextKey": 1628,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [
+      132,
+      88
+    ],
+    "AtlasNodeKeys4": [
+      132,
+      88
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 13,
+    "Tier4": 16,
+    "X0": 565.726013,
+    "X1": 565.726013,
+    "X2": 565.726013,
+    "X3": 559.017029,
+    "X4": 552.689026,
+    "Y0": 63.598,
+    "Y1": 63.598,
+    "Y2": 63.598,
+    "Y3": 103.516998,
+    "Y4": 105.977997
+  },
+  {
+    "RowID": 66,
+    "WorldAreasKey": 1160,
+    "ItemVisualIdentityKey": 4736,
+    "Flag0": 0,
+    "MapsKey": 402,
+    "Unknown3": 0,
+    "FlavourTextKey": 1627,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [
+      137,
+      70,
+      22
+    ],
+    "AtlasNodeKeys1": [
+      124,
+      70,
+      22
+    ],
+    "AtlasNodeKeys2": [
+      124,
+      70,
+      22
+    ],
+    "AtlasNodeKeys3": [
+      124,
+      70,
+      22,
+      13
+    ],
+    "AtlasNodeKeys4": [
+      70,
+      22,
+      37
+    ],
+    "Tier0": 4,
+    "Tier1": 8,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 276.208008,
+    "X1": 255.792999,
+    "X2": 264.171997,
+    "X3": 263.803009,
+    "X4": 303.652008,
+    "Y0": 466.923004,
+    "Y1": 477.144012,
+    "Y2": 474.368011,
+    "Y3": 475.106995,
+    "Y4": 460.852997
+  },
+  {
+    "RowID": 67,
+    "WorldAreasKey": 1188,
+    "ItemVisualIdentityKey": 4807,
+    "Flag0": 0,
+    "MapsKey": 426,
+    "Unknown3": 0,
+    "FlavourTextKey": 1655,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      42,
+      41
+    ],
+    "AtlasNodeKeys1": [
+      42,
+      41
+    ],
+    "AtlasNodeKeys2": [
+      103,
+      42,
+      41
+    ],
+    "AtlasNodeKeys3": [
+      42,
+      41,
+      23
+    ],
+    "AtlasNodeKeys4": [
+      42,
+      41,
+      25
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 13,
+    "Tier4": 16,
+    "X0": 264.54599,
+    "X1": 264.54599,
+    "X2": 264.54599,
+    "X3": 274.885986,
+    "X4": 262.976013,
+    "Y0": 230.358002,
+    "Y1": 230.358002,
+    "Y2": 230.358002,
+    "Y3": 231.835007,
+    "Y4": 227.727997
+  },
+  {
+    "RowID": 68,
+    "WorldAreasKey": 1158,
+    "ItemVisualIdentityKey": 4857,
+    "Flag0": 0,
+    "MapsKey": 400,
+    "Unknown3": 0,
+    "FlavourTextKey": 1625,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [
+      110,
+      109,
+      86,
+      33
+    ],
+    "AtlasNodeKeys3": [
+      110,
+      109,
+      86,
+      33
+    ],
+    "AtlasNodeKeys4": [
+      110,
+      109,
+      86,
+      33
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 744.919006,
+    "X1": 744.919006,
+    "X2": 737.741028,
+    "X3": 738.086975,
+    "X4": 740.622009,
+    "Y0": 528.784973,
+    "Y1": 528.784973,
+    "Y2": 471.385986,
+    "Y3": 474.330994,
+    "Y4": 472.884003
+  },
+  {
+    "RowID": 69,
+    "WorldAreasKey": 1157,
+    "ItemVisualIdentityKey": 8253,
+    "Flag0": 0,
+    "MapsKey": 399,
+    "Unknown3": 0,
+    "FlavourTextKey": 1624,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [
+      70
+    ],
+    "AtlasNodeKeys1": [
+      70
+    ],
+    "AtlasNodeKeys2": [
+      70
+    ],
+    "AtlasNodeKeys3": [
+      70
+    ],
+    "AtlasNodeKeys4": [
+      70
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 314.332001,
+    "X1": 302.515015,
+    "X2": 298.821991,
+    "X3": 299.929993,
+    "X4": 318.214996,
+    "Y0": 454.635986,
+    "Y1": 450.204987,
+    "Y2": 451.312988,
+    "Y3": 450.942993,
+    "Y4": 450.101013
+  },
+  {
+    "RowID": 70,
+    "WorldAreasKey": 1156,
+    "ItemVisualIdentityKey": 4842,
+    "Flag0": 0,
+    "MapsKey": 399,
+    "Unknown3": 0,
+    "FlavourTextKey": 1623,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [
+      137,
+      129,
+      69,
+      66,
+      26
+    ],
+    "AtlasNodeKeys1": [
+      137,
+      129,
+      69,
+      66,
+      26
+    ],
+    "AtlasNodeKeys2": [
+      137,
+      129,
+      69,
+      66,
+      26
+    ],
+    "AtlasNodeKeys3": [
+      137,
+      129,
+      69,
+      66,
+      26
+    ],
+    "AtlasNodeKeys4": [
+      137,
+      129,
+      69,
+      66,
+      26
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 339.789001,
+    "X1": 330.927002,
+    "X2": 326.126007,
+    "X3": 321.325012,
+    "X4": 345.612,
+    "Y0": 466.615997,
+    "Y1": 462.924011,
+    "Y2": 462.924011,
+    "Y3": 462.184998,
+    "Y4": 469.334991
+  },
+  {
+    "RowID": 71,
+    "WorldAreasKey": 1155,
+    "ItemVisualIdentityKey": 4809,
+    "Flag0": 0,
+    "MapsKey": 398,
+    "Unknown3": 0,
+    "FlavourTextKey": 1622,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      133,
+      56,
+      52
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 14,
+    "X0": 582.79303,
+    "X1": 582.79303,
+    "X2": 582.79303,
+    "X3": 582.79303,
+    "X4": 567.596985,
+    "Y0": 540.653015,
+    "Y1": 540.653015,
+    "Y2": 540.653015,
+    "Y3": 540.653015,
+    "Y4": 391.158997
+  },
+  {
+    "RowID": 72,
+    "WorldAreasKey": 1153,
+    "ItemVisualIdentityKey": 4769,
+    "Flag0": 0,
+    "MapsKey": 397,
+    "Unknown3": 0,
+    "FlavourTextKey": 1621,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [
+      153,
+      83,
+      59,
+      48
+    ],
+    "AtlasNodeKeys2": [
+      138,
+      153,
+      59
+    ],
+    "AtlasNodeKeys3": [
+      138,
+      128,
+      153
+    ],
+    "AtlasNodeKeys4": [
+      138,
+      128,
+      153
+    ],
+    "Tier0": 0,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 502.582001,
+    "X1": 426.747986,
+    "X2": 439.307007,
+    "X3": 439.307007,
+    "X4": 432.735992,
+    "Y0": 253.610001,
+    "Y1": 188.276993,
+    "Y2": 184.604004,
+    "Y3": 184.604004,
+    "Y4": 199.800003
+  },
+  {
+    "RowID": 73,
+    "WorldAreasKey": 1151,
+    "ItemVisualIdentityKey": 4768,
+    "Flag0": 0,
+    "MapsKey": 396,
+    "Unknown3": 0,
+    "FlavourTextKey": 1619,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      143,
+      76,
+      0,
+      63,
+      40,
+      9,
+      11
+    ],
+    "AtlasNodeKeys1": [
+      135,
+      76,
+      0,
+      40,
+      9,
+      11
+    ],
+    "AtlasNodeKeys2": [
+      135,
+      97,
+      76,
+      0,
+      40,
+      9,
+      11
+    ],
+    "AtlasNodeKeys3": [
+      135,
+      76,
+      0,
+      40,
+      11
+    ],
+    "AtlasNodeKeys4": [
+      82,
+      76,
+      0,
+      40,
+      11
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 275.06601,
+    "X1": 275.06601,
+    "X2": 274.677002,
+    "X3": 274.287994,
+    "X4": 250.878006,
+    "Y0": 335.513,
+    "Y1": 335.513,
+    "Y2": 326.569,
+    "Y3": 341.346985,
+    "Y4": 338.061005
+  },
+  {
+    "RowID": 74,
+    "WorldAreasKey": 1150,
+    "ItemVisualIdentityKey": 4760,
+    "Flag0": 0,
+    "MapsKey": 395,
+    "Unknown3": 0,
+    "FlavourTextKey": 1618,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [
+      149,
+      146,
+      62,
+      46,
+      35,
+      33,
+      28
+    ],
+    "AtlasNodeKeys1": [
+      149,
+      62,
+      52,
+      46,
+      35,
+      33
+    ],
+    "AtlasNodeKeys2": [
+      149,
+      62,
+      52,
+      46,
+      35,
+      33
+    ],
+    "AtlasNodeKeys3": [
+      62,
+      130,
+      46,
+      35,
+      33
+    ],
+    "AtlasNodeKeys4": [
+      62,
+      130,
+      46,
+      35,
+      33
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 631.552979,
+    "X1": 641.14502,
+    "X2": 646.978027,
+    "X3": 646.978027,
+    "X4": 646.978027,
+    "Y0": 424.253998,
+    "Y1": 425.825012,
+    "Y2": 426.213989,
+    "Y3": 426.213989,
+    "Y4": 423.049988
+  },
+  {
+    "RowID": 75,
+    "WorldAreasKey": 1149,
+    "ItemVisualIdentityKey": 6560,
+    "Flag0": 0,
+    "MapsKey": 394,
+    "Unknown3": 0,
+    "FlavourTextKey": 1617,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [
+      76
+    ],
+    "AtlasNodeKeys1": [
+      76
+    ],
+    "AtlasNodeKeys2": [
+      76
+    ],
+    "AtlasNodeKeys3": [
+      76
+    ],
+    "AtlasNodeKeys4": [
+      76
+    ],
+    "Tier0": 4,
+    "Tier1": 8,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 215.362,
+    "X1": 221.195007,
+    "X2": 221.195007,
+    "X3": 221.195007,
+    "X4": 221.195007,
+    "Y0": 376.71701,
+    "Y1": 359.994995,
+    "Y2": 359.994995,
+    "Y3": 359.994995,
+    "Y4": 359.994995
+  },
+  {
+    "RowID": 76,
+    "WorldAreasKey": 1148,
+    "ItemVisualIdentityKey": 4780,
+    "Flag0": 0,
+    "MapsKey": 394,
+    "Unknown3": 0,
+    "FlavourTextKey": 1616,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [
+      75,
+      73,
+      40,
+      22,
+      11
+    ],
+    "AtlasNodeKeys1": [
+      124,
+      75,
+      73,
+      40,
+      22,
+      11
+    ],
+    "AtlasNodeKeys2": [
+      124,
+      75,
+      73,
+      40,
+      2,
+      22,
+      11
+    ],
+    "AtlasNodeKeys3": [
+      124,
+      75,
+      73,
+      40,
+      2,
+      22,
+      11
+    ],
+    "AtlasNodeKeys4": [
+      124,
+      75,
+      73,
+      40,
+      2,
+      22,
+      11
+    ],
+    "Tier0": 4,
+    "Tier1": 8,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 206.488998,
+    "X1": 214.009995,
+    "X2": 225.932007,
+    "X3": 223.716003,
+    "X4": 223.716003,
+    "Y0": 410.252991,
+    "Y1": 400.938995,
+    "Y2": 397.572998,
+    "Y3": 385.386993,
+    "Y4": 385.386993
+  },
+  {
+    "RowID": 77,
+    "WorldAreasKey": 1147,
+    "ItemVisualIdentityKey": 4778,
+    "Flag0": 0,
+    "MapsKey": 393,
+    "Unknown3": 0,
+    "FlavourTextKey": 1615,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      148,
+      129,
+      121,
+      63,
+      26
+    ],
+    "AtlasNodeKeys1": [
+      148,
+      139,
+      129,
+      121,
+      63,
+      26
+    ],
+    "AtlasNodeKeys2": [
+      148,
+      129,
+      121,
+      63,
+      26
+    ],
+    "AtlasNodeKeys3": [
+      148,
+      145,
+      129,
+      121,
+      63,
+      26
+    ],
+    "AtlasNodeKeys4": [
+      145,
+      129,
+      121,
+      63,
+      26
+    ],
+    "Tier0": 2,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 406.944,
+    "X1": 400.128998,
+    "X2": 404.11499,
+    "X3": 410.105988,
+    "X4": 404.315002,
+    "Y0": 416.444,
+    "Y1": 399.678986,
+    "Y2": 411.390015,
+    "Y3": 411.257996,
+    "Y4": 418.813995
+  },
+  {
+    "RowID": 78,
+    "WorldAreasKey": 1146,
+    "ItemVisualIdentityKey": 4746,
+    "Flag0": 0,
+    "MapsKey": 392,
+    "Unknown3": 0,
+    "FlavourTextKey": 1614,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [
+      4,
+      64,
+      54
+    ],
+    "AtlasNodeKeys1": [
+      4,
+      64,
+      54
+    ],
+    "AtlasNodeKeys2": [
+      4,
+      64,
+      55,
+      54
+    ],
+    "AtlasNodeKeys3": [
+      4,
+      64,
+      55,
+      54
+    ],
+    "AtlasNodeKeys4": [
+      4,
+      64,
+      55,
+      54
+    ],
+    "Tier0": 4,
+    "Tier1": 8,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 780.619995,
+    "X1": 780.619995,
+    "X2": 780.619995,
+    "X3": 780.619995,
+    "X4": 780.619995,
+    "Y0": 316.628998,
+    "Y1": 316.628998,
+    "Y2": 316.628998,
+    "Y3": 316.628998,
+    "Y4": 316.628998
+  },
+  {
+    "RowID": 79,
+    "WorldAreasKey": 1145,
+    "ItemVisualIdentityKey": 4861,
+    "Flag0": 0,
+    "MapsKey": 391,
+    "Unknown3": 0,
+    "FlavourTextKey": 1613,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [
+      80
+    ],
+    "AtlasNodeKeys1": [
+      80
+    ],
+    "AtlasNodeKeys2": [
+      80
+    ],
+    "AtlasNodeKeys3": [
+      80
+    ],
+    "AtlasNodeKeys4": [
+      80
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 349.696991,
+    "X1": 349.696991,
+    "X2": 349.696991,
+    "X3": 349.696991,
+    "X4": 328.459015,
+    "Y0": 102.915001,
+    "Y1": 102.915001,
+    "Y2": 102.915001,
+    "Y3": 102.915001,
+    "Y4": 99.556999
+  },
+  {
+    "RowID": 80,
+    "WorldAreasKey": 1144,
+    "ItemVisualIdentityKey": 4729,
+    "Flag0": 0,
+    "MapsKey": 391,
+    "Unknown3": 0,
+    "FlavourTextKey": 1612,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [
+      117,
+      152,
+      83,
+      79,
+      59
+    ],
+    "AtlasNodeKeys1": [
+      117,
+      152,
+      83,
+      79,
+      59
+    ],
+    "AtlasNodeKeys2": [
+      117,
+      152,
+      83,
+      79,
+      59,
+      15
+    ],
+    "AtlasNodeKeys3": [
+      117,
+      152,
+      83,
+      79,
+      59,
+      15
+    ],
+    "AtlasNodeKeys4": [
+      147,
+      117,
+      152,
+      83,
+      79,
+      59,
+      15
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 316.252991,
+    "X1": 316.252991,
+    "X2": 318.468994,
+    "X3": 318.468994,
+    "X4": 339.003998,
+    "Y0": 116.263,
+    "Y1": 116.263,
+    "Y2": 115.154999,
+    "Y3": 115.154999,
+    "Y4": 118.441002
+  },
+  {
+    "RowID": 81,
+    "WorldAreasKey": 1143,
+    "ItemVisualIdentityKey": 4818,
+    "Flag0": 0,
+    "MapsKey": 390,
+    "Unknown3": 0,
+    "FlavourTextKey": 1611,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [
+      146
+    ],
+    "AtlasNodeKeys1": [
+      146
+    ],
+    "AtlasNodeKeys2": [
+      119
+    ],
+    "AtlasNodeKeys3": [
+      146,
+      119,
+      32
+    ],
+    "AtlasNodeKeys4": [
+      146,
+      119,
+      32
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 15,
+    "X0": 521.697998,
+    "X1": 518.487976,
+    "X2": 517.380005,
+    "X3": 513.296997,
+    "X4": 513.133972,
+    "Y0": 422.971008,
+    "Y1": 422.653015,
+    "Y2": 423.022003,
+    "Y3": 421.72699,
+    "Y4": 414.178986
+  },
+  {
+    "RowID": 82,
+    "WorldAreasKey": 1142,
+    "ItemVisualIdentityKey": 4848,
+    "Flag0": 0,
+    "MapsKey": 389,
+    "Unknown3": 0,
+    "FlavourTextKey": 1610,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      135,
+      114,
+      73,
+      40
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 14,
+    "X0": 189.401001,
+    "X1": 189.401001,
+    "X2": 189.401001,
+    "X3": 189.401001,
+    "X4": 311.789001,
+    "Y0": 252.763,
+    "Y1": 252.763,
+    "Y2": 252.763,
+    "Y3": 252.763,
+    "Y4": 337.367004
+  },
+  {
+    "RowID": 83,
+    "WorldAreasKey": 1141,
+    "ItemVisualIdentityKey": 4854,
+    "Flag0": 0,
+    "MapsKey": 388,
+    "Unknown3": 0,
+    "FlavourTextKey": 1609,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      153,
+      80,
+      59,
+      48
+    ],
+    "AtlasNodeKeys1": [
+      80,
+      72,
+      59,
+      48
+    ],
+    "AtlasNodeKeys2": [
+      138,
+      80,
+      59,
+      48
+    ],
+    "AtlasNodeKeys3": [
+      138,
+      80,
+      59,
+      48
+    ],
+    "AtlasNodeKeys4": [
+      138,
+      80,
+      59,
+      48
+    ],
+    "Tier0": 2,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 412.372009,
+    "X1": 400.31601,
+    "X2": 393.31601,
+    "X3": 393.31601,
+    "X4": 393.31601,
+    "Y0": 175.733994,
+    "Y1": 149.289001,
+    "Y2": 141.511002,
+    "Y3": 141.511002,
+    "Y4": 141.511002
+  },
+  {
+    "RowID": 84,
+    "WorldAreasKey": 1140,
+    "ItemVisualIdentityKey": 4785,
+    "Flag0": 0,
+    "MapsKey": 387,
+    "Unknown3": 0,
+    "FlavourTextKey": 1608,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      142,
+      134
+    ],
+    "AtlasNodeKeys1": [
+      142,
+      134
+    ],
+    "AtlasNodeKeys2": [
+      142,
+      134
+    ],
+    "AtlasNodeKeys3": [
+      142,
+      134,
+      88
+    ],
+    "AtlasNodeKeys4": [
+      142,
+      134,
+      88
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 15,
+    "X0": 467.033997,
+    "X1": 467.033997,
+    "X2": 471.464996,
+    "X3": 472.647003,
+    "X4": 477.623993,
+    "Y0": 103.264999,
+    "Y1": 103.634003,
+    "Y2": 107.327003,
+    "Y3": 120.815002,
+    "Y4": 123.432999
+  },
+  {
+    "RowID": 85,
+    "WorldAreasKey": 1139,
+    "ItemVisualIdentityKey": 4761,
+    "Flag0": 0,
+    "MapsKey": 386,
+    "Unknown3": 0,
+    "FlavourTextKey": 1607,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [
+      105,
+      34,
+      14
+    ],
+    "AtlasNodeKeys4": [
+      105,
+      34,
+      14
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 947.236023,
+    "X1": 947.236023,
+    "X2": 947.236023,
+    "X3": 723.02301,
+    "X4": 705.052979,
+    "Y0": 111.194,
+    "Y1": 111.194,
+    "Y2": 111.194,
+    "Y3": 113.760002,
+    "Y4": 115.063004
+  },
+  {
+    "RowID": 86,
+    "WorldAreasKey": 1138,
+    "ItemVisualIdentityKey": 4783,
+    "Flag0": 0,
+    "MapsKey": 385,
+    "Unknown3": 0,
+    "FlavourTextKey": 1606,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [
+      4,
+      55,
+      53
+    ],
+    "AtlasNodeKeys2": [
+      68,
+      53,
+      36
+    ],
+    "AtlasNodeKeys3": [
+      68,
+      33,
+      10
+    ],
+    "AtlasNodeKeys4": [
+      68,
+      7,
+      10,
+      6
+    ],
+    "Tier0": 0,
+    "Tier1": 9,
+    "Tier2": 12,
+    "Tier3": 13,
+    "Tier4": 16,
+    "X0": 830.413025,
+    "X1": 835.849976,
+    "X2": 826.869995,
+    "X3": 798.655029,
+    "X4": 810.919006,
+    "Y0": 525.786011,
+    "Y1": 459.84201,
+    "Y2": 467.545013,
+    "Y3": 470.084015,
+    "Y4": 474.997009
+  },
+  {
+    "RowID": 87,
+    "WorldAreasKey": 1137,
+    "ItemVisualIdentityKey": 7675,
+    "Flag0": 0,
+    "MapsKey": 384,
+    "Unknown3": 0,
+    "FlavourTextKey": 1605,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      88
+    ],
+    "AtlasNodeKeys1": [
+      88
+    ],
+    "AtlasNodeKeys2": [
+      88
+    ],
+    "AtlasNodeKeys3": [
+      88
+    ],
+    "AtlasNodeKeys4": [
+      88
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 13,
+    "Tier4": 16,
+    "X0": 523.427979,
+    "X1": 523.427979,
+    "X2": 523.427979,
+    "X3": 503.03299,
+    "X4": 498.778992,
+    "Y0": 24.181,
+    "Y1": 24.181,
+    "Y2": 24.181,
+    "Y3": 132.606003,
+    "Y4": 144.520004
+  },
+  {
+    "RowID": 88,
+    "WorldAreasKey": 1136,
+    "ItemVisualIdentityKey": 4784,
+    "Flag0": 0,
+    "MapsKey": 384,
+    "Unknown3": 0,
+    "FlavourTextKey": 1604,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      87
+    ],
+    "AtlasNodeKeys1": [
+      87
+    ],
+    "AtlasNodeKeys2": [
+      87
+    ],
+    "AtlasNodeKeys3": [
+      87,
+      84,
+      65
+    ],
+    "AtlasNodeKeys4": [
+      87,
+      84,
+      65
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 13,
+    "Tier4": 16,
+    "X0": 567.773987,
+    "X1": 567.773987,
+    "X2": 567.773987,
+    "X3": 518.205994,
+    "X4": 512.187988,
+    "Y0": 34.124001,
+    "Y1": 34.124001,
+    "Y2": 34.124001,
+    "Y3": 116.330002,
+    "Y4": 123.526001
+  },
+  {
+    "RowID": 89,
+    "WorldAreasKey": 1135,
+    "ItemVisualIdentityKey": 5757,
+    "Flag0": 0,
+    "MapsKey": 383,
+    "Unknown3": 0,
+    "FlavourTextKey": 1603,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [
+      90
+    ],
+    "AtlasNodeKeys1": [
+      90
+    ],
+    "AtlasNodeKeys2": [
+      90
+    ],
+    "AtlasNodeKeys3": [
+      90
+    ],
+    "AtlasNodeKeys4": [
+      90
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 11,
+    "Tier3": 12,
+    "Tier4": 15,
+    "X0": 763.48999,
+    "X1": 767.768005,
+    "X2": 772.434998,
+    "X3": 767.302979,
+    "X4": 763.606995,
+    "Y0": 210.783005,
+    "Y1": 184.727005,
+    "Y2": 185.893997,
+    "Y3": 184.610992,
+    "Y4": 187.074997
+  },
+  {
+    "RowID": 90,
+    "WorldAreasKey": 1134,
+    "ItemVisualIdentityKey": 4756,
+    "Flag0": 0,
+    "MapsKey": 383,
+    "Unknown3": 0,
+    "FlavourTextKey": 1602,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [
+      120,
+      89,
+      27
+    ],
+    "AtlasNodeKeys1": [
+      120,
+      104,
+      89,
+      27
+    ],
+    "AtlasNodeKeys2": [
+      120,
+      104,
+      89,
+      27
+    ],
+    "AtlasNodeKeys3": [
+      120,
+      104,
+      89,
+      27
+    ],
+    "AtlasNodeKeys4": [
+      120,
+      104,
+      89,
+      27
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 11,
+    "Tier3": 12,
+    "Tier4": 15,
+    "X0": 753.356995,
+    "X1": 746.356995,
+    "X2": 746.356995,
+    "X3": 746.356995,
+    "X4": 746.356995,
+    "Y0": 189.917999,
+    "Y1": 207.029007,
+    "Y2": 207.029007,
+    "Y3": 207.029007,
+    "Y4": 207.029007
+  },
+  {
+    "RowID": 91,
+    "WorldAreasKey": 1133,
+    "ItemVisualIdentityKey": 8255,
+    "Flag0": 0,
+    "MapsKey": 382,
+    "Unknown3": 0,
+    "FlavourTextKey": 1601,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      92
+    ],
+    "AtlasNodeKeys1": [
+      92
+    ],
+    "AtlasNodeKeys2": [
+      92
+    ],
+    "AtlasNodeKeys3": [
+      92
+    ],
+    "AtlasNodeKeys4": [
+      92
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 667.523987,
+    "X1": 667.523987,
+    "X2": 673.745972,
+    "X3": 673.745972,
+    "X4": 673.745972,
+    "Y0": 203.964005,
+    "Y1": 203.964005,
+    "Y2": 199.296997,
+    "Y3": 199.296997,
+    "Y4": 199.296997
+  },
+  {
+    "RowID": 92,
+    "WorldAreasKey": 1132,
+    "ItemVisualIdentityKey": 4739,
+    "Flag0": 0,
+    "MapsKey": 382,
+    "Unknown3": 0,
+    "FlavourTextKey": 1600,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      98,
+      91,
+      34
+    ],
+    "AtlasNodeKeys1": [
+      120,
+      98,
+      91,
+      34
+    ],
+    "AtlasNodeKeys2": [
+      98,
+      91,
+      34
+    ],
+    "AtlasNodeKeys3": [
+      120,
+      98,
+      91,
+      34
+    ],
+    "AtlasNodeKeys4": [
+      98,
+      91,
+      34
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 672.585022,
+    "X1": 672.585022,
+    "X2": 672.585022,
+    "X3": 672.585022,
+    "X4": 672.585022,
+    "Y0": 183.041,
+    "Y1": 183.041,
+    "Y2": 183.041,
+    "Y3": 183.041,
+    "Y4": 183.041
+  },
+  {
+    "RowID": 93,
+    "WorldAreasKey": 1131,
+    "ItemVisualIdentityKey": 4748,
+    "Flag0": 0,
+    "MapsKey": 381,
+    "Unknown3": 0,
+    "FlavourTextKey": 1599,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      146,
+      129,
+      115
+    ],
+    "AtlasNodeKeys1": [
+      146,
+      129,
+      115
+    ],
+    "AtlasNodeKeys2": [
+      146,
+      129,
+      115
+    ],
+    "AtlasNodeKeys3": [
+      146,
+      129,
+      115
+    ],
+    "AtlasNodeKeys4": [
+      146,
+      129,
+      115
+    ],
+    "Tier0": 2,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 467.658997,
+    "X1": 463.338013,
+    "X2": 468.701996,
+    "X3": 466.855988,
+    "X4": 467.027008,
+    "Y0": 407.653992,
+    "Y1": 412.251007,
+    "Y2": 406.884003,
+    "Y3": 414.846985,
+    "Y4": 414.325989
+  },
+  {
+    "RowID": 94,
+    "WorldAreasKey": 1130,
+    "ItemVisualIdentityKey": 4797,
+    "Flag0": 0,
+    "MapsKey": 380,
+    "Unknown3": 0,
+    "FlavourTextKey": 1598,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [
+      120,
+      107,
+      102,
+      29
+    ],
+    "AtlasNodeKeys3": [
+      120,
+      107,
+      102,
+      29
+    ],
+    "AtlasNodeKeys4": [
+      107,
+      102,
+      96
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 542.612,
+    "X1": 542.612,
+    "X2": 686.112,
+    "X3": 686.112,
+    "X4": 656.952026,
+    "Y0": 57.383999,
+    "Y1": 57.383999,
+    "Y2": 263.496002,
+    "Y3": 263.496002,
+    "Y4": 264.727997
+  },
+  {
+    "RowID": 95,
+    "WorldAreasKey": 1129,
+    "ItemVisualIdentityKey": 4792,
+    "Flag0": 0,
+    "MapsKey": 379,
+    "Unknown3": 0,
+    "FlavourTextKey": 1597,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      143,
+      42,
+      9
+    ],
+    "AtlasNodeKeys1": [
+      143,
+      135,
+      42,
+      9
+    ],
+    "AtlasNodeKeys2": [
+      97,
+      42,
+      9
+    ],
+    "AtlasNodeKeys3": [
+      97,
+      42,
+      9
+    ],
+    "AtlasNodeKeys4": [
+      97,
+      42,
+      9
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 11,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 278.421997,
+    "X1": 278.421997,
+    "X2": 244.272003,
+    "X3": 244.272003,
+    "X4": 244.272003,
+    "Y0": 273.089996,
+    "Y1": 273.089996,
+    "Y2": 265.614014,
+    "Y3": 265.614014,
+    "Y4": 265.614014
+  },
+  {
+    "RowID": 96,
+    "WorldAreasKey": 1128,
+    "ItemVisualIdentityKey": 4832,
+    "Flag0": 0,
+    "MapsKey": 378,
+    "Unknown3": 0,
+    "FlavourTextKey": 1596,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      120,
+      94,
+      54,
+      29
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 15,
+    "X0": 554.679993,
+    "X1": 554.679993,
+    "X2": 554.679993,
+    "X3": 554.679993,
+    "X4": 715.672974,
+    "Y0": 49.750999,
+    "Y1": 49.750999,
+    "Y2": 49.750999,
+    "Y3": 49.750999,
+    "Y4": 264.545013
+  },
+  {
+    "RowID": 97,
+    "WorldAreasKey": 1089,
+    "ItemVisualIdentityKey": 4757,
+    "Flag0": 0,
+    "MapsKey": 344,
+    "Unknown3": 0,
+    "FlavourTextKey": 1557,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [
+      143,
+      95,
+      73
+    ],
+    "AtlasNodeKeys3": [
+      143,
+      114,
+      95
+    ],
+    "AtlasNodeKeys4": [
+      143,
+      114,
+      95
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 10,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 209.412003,
+    "X1": 209.412003,
+    "X2": 312.90799,
+    "X3": 312.90799,
+    "X4": 312.90799,
+    "Y0": 240.725006,
+    "Y1": 240.725006,
+    "Y2": 269.473999,
+    "Y3": 269.473999,
+    "Y4": 269.473999
+  },
+  {
+    "RowID": 98,
+    "WorldAreasKey": 1126,
+    "ItemVisualIdentityKey": 4790,
+    "Flag0": 0,
+    "MapsKey": 376,
+    "Unknown3": 0,
+    "FlavourTextKey": 1594,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      120,
+      107,
+      150,
+      92,
+      21,
+      17
+    ],
+    "AtlasNodeKeys1": [
+      141,
+      120,
+      107,
+      92,
+      21,
+      17
+    ],
+    "AtlasNodeKeys2": [
+      141,
+      120,
+      112,
+      107,
+      92,
+      21,
+      17
+    ],
+    "AtlasNodeKeys3": [
+      141,
+      120,
+      112,
+      107,
+      92,
+      21,
+      17
+    ],
+    "AtlasNodeKeys4": [
+      141,
+      120,
+      112,
+      107,
+      92,
+      21,
+      17
+    ],
+    "Tier0": 2,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 625.366028,
+    "X1": 631.664978,
+    "X2": 642.942993,
+    "X3": 642.942993,
+    "X4": 642.942993,
+    "Y0": 204.065002,
+    "Y1": 210.065002,
+    "Y2": 209.287003,
+    "Y3": 209.287003,
+    "Y4": 209.287003
+  },
+  {
+    "RowID": 99,
+    "WorldAreasKey": 1165,
+    "ItemVisualIdentityKey": 5683,
+    "Flag0": 0,
+    "MapsKey": 406,
+    "Unknown3": 0,
+    "FlavourTextKey": 1632,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      100
+    ],
+    "AtlasNodeKeys1": [
+      100
+    ],
+    "AtlasNodeKeys2": [
+      100
+    ],
+    "AtlasNodeKeys3": [
+      100
+    ],
+    "AtlasNodeKeys4": [
+      100
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 312.916992,
+    "X1": 301.066986,
+    "X2": 299.157013,
+    "X3": 292.428986,
+    "X4": 292.720001,
+    "Y0": 208.117996,
+    "Y1": 198.067001,
+    "Y2": 197.248001,
+    "Y3": 189.798004,
+    "Y4": 179.653
+  },
+  {
+    "RowID": 100,
+    "WorldAreasKey": 1164,
+    "ItemVisualIdentityKey": 4777,
+    "Flag0": 0,
+    "MapsKey": 406,
+    "Unknown3": 0,
+    "FlavourTextKey": 1631,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      125,
+      151,
+      152,
+      99,
+      59
+    ],
+    "AtlasNodeKeys1": [
+      151,
+      152,
+      103,
+      99,
+      59
+    ],
+    "AtlasNodeKeys2": [
+      151,
+      152,
+      103,
+      99,
+      59
+    ],
+    "AtlasNodeKeys3": [
+      151,
+      152,
+      103,
+      99,
+      59,
+      23
+    ],
+    "AtlasNodeKeys4": [
+      151,
+      152,
+      99,
+      59,
+      39
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 323.003998,
+    "X1": 310.938995,
+    "X2": 313.570007,
+    "X3": 308.968994,
+    "X4": 310.072998,
+    "Y0": 198.789001,
+    "Y1": 189.639999,
+    "Y2": 187.272003,
+    "Y3": 179.091995,
+    "Y4": 159.585007
+  },
+  {
+    "RowID": 101,
+    "WorldAreasKey": 1123,
+    "ItemVisualIdentityKey": 5591,
+    "Flag0": 0,
+    "MapsKey": 374,
+    "Unknown3": 0,
+    "FlavourTextKey": 1591,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      103
+    ],
+    "AtlasNodeKeys1": [
+      103
+    ],
+    "AtlasNodeKeys2": [
+      103
+    ],
+    "AtlasNodeKeys3": [
+      103
+    ],
+    "AtlasNodeKeys4": [
+      103
+    ],
+    "Tier0": 0,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 522.40802,
+    "X1": 384.740997,
+    "X2": 382.894989,
+    "X3": 422.777008,
+    "X4": 382.528992,
+    "Y0": 245.192993,
+    "Y1": 207.860001,
+    "Y2": 208.229004,
+    "Y3": 203.798004,
+    "Y4": 212.832993
+  },
+  {
+    "RowID": 102,
+    "WorldAreasKey": 1121,
+    "ItemVisualIdentityKey": 4759,
+    "Flag0": 0,
+    "MapsKey": 373,
+    "Unknown3": 0,
+    "FlavourTextKey": 1589,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      149,
+      120,
+      113,
+      62,
+      54
+    ],
+    "AtlasNodeKeys1": [
+      149,
+      120,
+      113,
+      62,
+      54
+    ],
+    "AtlasNodeKeys2": [
+      149,
+      113,
+      62,
+      94,
+      54
+    ],
+    "AtlasNodeKeys3": [
+      149,
+      113,
+      62,
+      94,
+      54
+    ],
+    "AtlasNodeKeys4": [
+      149,
+      113,
+      62,
+      94,
+      54
+    ],
+    "Tier0": 2,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 656.296997,
+    "X1": 656.296997,
+    "X2": 656.296997,
+    "X3": 656.296997,
+    "X4": 656.296997,
+    "Y0": 319.089996,
+    "Y1": 319.089996,
+    "Y2": 319.089996,
+    "Y3": 319.089996,
+    "Y4": 319.089996
+  },
+  {
+    "RowID": 103,
+    "WorldAreasKey": 1122,
+    "ItemVisualIdentityKey": 4766,
+    "Flag0": 0,
+    "MapsKey": 374,
+    "Unknown3": 0,
+    "FlavourTextKey": 1590,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      101
+    ],
+    "AtlasNodeKeys1": [
+      153,
+      101,
+      100,
+      59,
+      41
+    ],
+    "AtlasNodeKeys2": [
+      153,
+      101,
+      100,
+      59,
+      41,
+      67
+    ],
+    "AtlasNodeKeys3": [
+      128,
+      153,
+      101,
+      100,
+      59,
+      23
+    ],
+    "AtlasNodeKeys4": [
+      128,
+      153,
+      101,
+      23
+    ],
+    "Tier0": 0,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 500.630005,
+    "X1": 361.019012,
+    "X2": 360.649994,
+    "X3": 392.251007,
+    "X4": 416.187012,
+    "Y0": 268.15799,
+    "Y1": 230.824997,
+    "Y2": 227.501007,
+    "Y3": 222.852997,
+    "Y4": 227.466995
+  },
+  {
+    "RowID": 104,
+    "WorldAreasKey": 1119,
+    "ItemVisualIdentityKey": 4751,
+    "Flag0": 0,
+    "MapsKey": 371,
+    "Unknown3": 0,
+    "FlavourTextKey": 1587,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [
+      120,
+      34,
+      24,
+      27
+    ],
+    "AtlasNodeKeys1": [
+      120,
+      90,
+      43,
+      34,
+      24
+    ],
+    "AtlasNodeKeys2": [
+      120,
+      90,
+      43,
+      34,
+      24
+    ],
+    "AtlasNodeKeys3": [
+      120,
+      90,
+      43,
+      34,
+      24
+    ],
+    "AtlasNodeKeys4": [
+      120,
+      90,
+      43,
+      34,
+      24
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 11,
+    "Tier3": 12,
+    "Tier4": 15,
+    "X0": 744.03302,
+    "X1": 741.700012,
+    "X2": 759.588989,
+    "X3": 760.880981,
+    "X4": 741.585022,
+    "Y0": 164.761002,
+    "Y1": 172.539001,
+    "Y2": 165.927994,
+    "Y3": 160.914001,
+    "Y4": 175.936996
+  },
+  {
+    "RowID": 105,
+    "WorldAreasKey": 1113,
+    "ItemVisualIdentityKey": 4765,
+    "Flag0": 0,
+    "MapsKey": 365,
+    "Unknown3": 0,
+    "FlavourTextKey": 1581,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [
+      60,
+      50,
+      34,
+      24
+    ],
+    "AtlasNodeKeys1": [
+      60,
+      50,
+      34,
+      24
+    ],
+    "AtlasNodeKeys2": [
+      60,
+      50,
+      34,
+      24,
+      14
+    ],
+    "AtlasNodeKeys3": [
+      85,
+      60,
+      50,
+      34
+    ],
+    "AtlasNodeKeys4": [
+      85,
+      50,
+      14
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 700.723022,
+    "X1": 700.723022,
+    "X2": 694.890015,
+    "X3": 695.473022,
+    "X4": 674.810974,
+    "Y0": 112.942001,
+    "Y1": 112.942001,
+    "Y2": 109.831001,
+    "Y3": 109.064003,
+    "Y4": 111.994003
+  },
+  {
+    "RowID": 106,
+    "WorldAreasKey": 1112,
+    "ItemVisualIdentityKey": 4743,
+    "Flag0": 0,
+    "MapsKey": 364,
+    "Unknown3": 0,
+    "FlavourTextKey": 1580,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      148,
+      145,
+      121
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 14,
+    "X0": 200.582993,
+    "X1": 200.582993,
+    "X2": 200.582993,
+    "X3": 200.582993,
+    "X4": 438.149994,
+    "Y0": 247.018997,
+    "Y1": 247.018997,
+    "Y2": 247.018997,
+    "Y3": 247.018997,
+    "Y4": 373.044006
+  },
+  {
+    "RowID": 107,
+    "WorldAreasKey": 1114,
+    "ItemVisualIdentityKey": 4837,
+    "Flag0": 0,
+    "MapsKey": 366,
+    "Unknown3": 0,
+    "FlavourTextKey": 1582,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      120,
+      113,
+      150,
+      98
+    ],
+    "AtlasNodeKeys1": [
+      120,
+      113,
+      150,
+      98
+    ],
+    "AtlasNodeKeys2": [
+      113,
+      150,
+      98,
+      94
+    ],
+    "AtlasNodeKeys3": [
+      113,
+      150,
+      98,
+      94
+    ],
+    "AtlasNodeKeys4": [
+      113,
+      150,
+      98,
+      94
+    ],
+    "Tier0": 2,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 622.494019,
+    "X1": 622.494019,
+    "X2": 614.327026,
+    "X3": 614.327026,
+    "X4": 614.327026,
+    "Y0": 261.920013,
+    "Y1": 261.920013,
+    "Y2": 261.920013,
+    "Y3": 261.920013,
+    "Y4": 261.920013
+  },
+  {
+    "RowID": 108,
+    "WorldAreasKey": 1111,
+    "ItemVisualIdentityKey": 4796,
+    "Flag0": 0,
+    "MapsKey": 363,
+    "Unknown3": 0,
+    "FlavourTextKey": 1579,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      141,
+      112,
+      116,
+      150
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 14,
+    "X0": 569.416016,
+    "X1": 569.416016,
+    "X2": 569.416016,
+    "X3": 569.416016,
+    "X4": 571.567993,
+    "Y0": 51.091,
+    "Y1": 51.091,
+    "Y2": 51.091,
+    "Y3": 51.091,
+    "Y4": 206.830994
+  },
+  {
+    "RowID": 109,
+    "WorldAreasKey": 1110,
+    "ItemVisualIdentityKey": 4752,
+    "Flag0": 0,
+    "MapsKey": 362,
+    "Unknown3": 0,
+    "FlavourTextKey": 1578,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [
+      110,
+      35,
+      33
+    ],
+    "AtlasNodeKeys1": [
+      110,
+      53,
+      35,
+      33
+    ],
+    "AtlasNodeKeys2": [
+      110,
+      68,
+      35,
+      33
+    ],
+    "AtlasNodeKeys3": [
+      110,
+      68,
+      35,
+      33
+    ],
+    "AtlasNodeKeys4": [
+      110,
+      68,
+      35,
+      33
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 685.03302,
+    "X1": 692.419006,
+    "X2": 687.072998,
+    "X3": 683.380005,
+    "X4": 697.909973,
+    "Y0": 434.93399,
+    "Y1": 438.257996,
+    "Y2": 443.953003,
+    "Y3": 440.260986,
+    "Y4": 452.207001
+  },
+  {
+    "RowID": 110,
+    "WorldAreasKey": 1109,
+    "ItemVisualIdentityKey": 4728,
+    "Flag0": 0,
+    "MapsKey": 361,
+    "Unknown3": 0,
+    "FlavourTextKey": 1577,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [
+      109,
+      53,
+      35
+    ],
+    "AtlasNodeKeys1": [
+      109,
+      53,
+      35
+    ],
+    "AtlasNodeKeys2": [
+      109,
+      68,
+      35
+    ],
+    "AtlasNodeKeys3": [
+      109,
+      68,
+      35
+    ],
+    "AtlasNodeKeys4": [
+      109,
+      68,
+      35
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 15,
+    "X0": 700.161987,
+    "X1": 704.593994,
+    "X2": 666.734009,
+    "X3": 670.796021,
+    "X4": 666.231018,
+    "Y0": 461.994995,
+    "Y1": 464.210999,
+    "Y2": 463.592987,
+    "Y3": 462.484985,
+    "Y4": 465.196991
+  },
+  {
+    "RowID": 111,
+    "WorldAreasKey": 1107,
+    "ItemVisualIdentityKey": 8254,
+    "Flag0": 0,
+    "MapsKey": 359,
+    "Unknown3": 0,
+    "FlavourTextKey": 1575,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      112
+    ],
+    "AtlasNodeKeys1": [
+      112
+    ],
+    "AtlasNodeKeys2": [
+      112
+    ],
+    "AtlasNodeKeys3": [
+      112
+    ],
+    "AtlasNodeKeys4": [
+      112
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 579.122009,
+    "X1": 579.122009,
+    "X2": 572.510986,
+    "X3": 569.492004,
+    "X4": 569.492004,
+    "Y0": 18.506001,
+    "Y1": 18.506001,
+    "Y2": 119.616997,
+    "Y3": 138.401993,
+    "Y4": 138.401993
+  },
+  {
+    "RowID": 112,
+    "WorldAreasKey": 1106,
+    "ItemVisualIdentityKey": 4808,
+    "Flag0": 0,
+    "MapsKey": 359,
+    "Unknown3": 0,
+    "FlavourTextKey": 1574,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      111
+    ],
+    "AtlasNodeKeys1": [
+      111
+    ],
+    "AtlasNodeKeys2": [
+      141,
+      132,
+      111,
+      150,
+      98,
+      50,
+      17
+    ],
+    "AtlasNodeKeys3": [
+      141,
+      132,
+      111,
+      150,
+      98,
+      50,
+      17
+    ],
+    "AtlasNodeKeys4": [
+      141,
+      132,
+      111,
+      108,
+      98,
+      50,
+      17
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 581.875977,
+    "X1": 581.875977,
+    "X2": 589.48999,
+    "X3": 587.341003,
+    "X4": 586.109009,
+    "Y0": 64.380997,
+    "Y1": 64.380997,
+    "Y2": 177.177002,
+    "Y3": 179.246002,
+    "Y4": 164.460999
+  },
+  {
+    "RowID": 113,
+    "WorldAreasKey": 1105,
+    "ItemVisualIdentityKey": 4836,
+    "Flag0": 0,
+    "MapsKey": 358,
+    "Unknown3": 0,
+    "FlavourTextKey": 1573,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      133,
+      107,
+      102,
+      49
+    ],
+    "AtlasNodeKeys1": [
+      133,
+      107,
+      102,
+      49
+    ],
+    "AtlasNodeKeys2": [
+      133,
+      107,
+      102,
+      49
+    ],
+    "AtlasNodeKeys3": [
+      133,
+      107,
+      102,
+      49
+    ],
+    "AtlasNodeKeys4": [
+      133,
+      107,
+      102,
+      49
+    ],
+    "Tier0": 2,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 591.213989,
+    "X1": 591.213989,
+    "X2": 591.213989,
+    "X3": 591.213989,
+    "X4": 591.213989,
+    "Y0": 315.093994,
+    "Y1": 315.093994,
+    "Y2": 315.093994,
+    "Y3": 315.093994,
+    "Y4": 315.093994
+  },
+  {
+    "RowID": 114,
+    "WorldAreasKey": 1108,
+    "ItemVisualIdentityKey": 4725,
+    "Flag0": 0,
+    "MapsKey": 360,
+    "Unknown3": 0,
+    "FlavourTextKey": 1576,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [
+      140,
+      135,
+      97,
+      9
+    ],
+    "AtlasNodeKeys4": [
+      140,
+      97,
+      82,
+      9
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 207.561005,
+    "X1": 207.561005,
+    "X2": 207.561005,
+    "X3": 288.061005,
+    "X4": 311.471008,
+    "Y0": 258.072998,
+    "Y1": 258.072998,
+    "Y2": 258.072998,
+    "Y3": 298.128998,
+    "Y4": 297.717987
+  },
+  {
+    "RowID": 115,
+    "WorldAreasKey": 1104,
+    "ItemVisualIdentityKey": 4844,
+    "Flag0": 0,
+    "MapsKey": 357,
+    "Unknown3": 0,
+    "FlavourTextKey": 1572,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      148,
+      121,
+      93,
+      28
+    ],
+    "AtlasNodeKeys1": [
+      148,
+      121,
+      93,
+      28
+    ],
+    "AtlasNodeKeys2": [
+      148,
+      121,
+      93,
+      28
+    ],
+    "AtlasNodeKeys3": [
+      148,
+      121,
+      93,
+      28
+    ],
+    "AtlasNodeKeys4": [
+      148,
+      121,
+      93,
+      28
+    ],
+    "Tier0": 2,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 458.292999,
+    "X1": 458.292999,
+    "X2": 456.076996,
+    "X3": 463.463013,
+    "X4": 465.688995,
+    "Y0": 380.596008,
+    "Y1": 380.596008,
+    "Y2": 364.71701,
+    "Y3": 357.700989,
+    "Y4": 362.080994
+  },
+  {
+    "RowID": 116,
+    "WorldAreasKey": 1115,
+    "ItemVisualIdentityKey": 4843,
+    "Flag0": 0,
+    "MapsKey": 367,
+    "Unknown3": 0,
+    "FlavourTextKey": 1583,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      144,
+      150,
+      50,
+      17
+    ],
+    "AtlasNodeKeys1": [
+      144,
+      132,
+      150
+    ],
+    "AtlasNodeKeys2": [
+      144,
+      132,
+      150
+    ],
+    "AtlasNodeKeys3": [
+      144,
+      132,
+      150
+    ],
+    "AtlasNodeKeys4": [
+      144,
+      132,
+      108,
+      150
+    ],
+    "Tier0": 2,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 548.164978,
+    "X1": 540.674988,
+    "X2": 530.174988,
+    "X3": 535.20697,
+    "X4": 524.890015,
+    "Y0": 172.332001,
+    "Y1": 181.022003,
+    "Y2": 184.132996,
+    "Y3": 193.526001,
+    "Y4": 200.802002
+  },
+  {
+    "RowID": 117,
+    "WorldAreasKey": 1103,
+    "ItemVisualIdentityKey": 4849,
+    "Flag0": 0,
+    "MapsKey": 356,
+    "Unknown3": 0,
+    "FlavourTextKey": 1571,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [
+      134,
+      80,
+      30
+    ],
+    "AtlasNodeKeys1": [
+      134,
+      80,
+      51
+    ],
+    "AtlasNodeKeys2": [
+      134,
+      80,
+      15
+    ],
+    "AtlasNodeKeys3": [
+      134,
+      80,
+      15
+    ],
+    "AtlasNodeKeys4": [
+      134,
+      80,
+      15
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 298.285004,
+    "X1": 312.131989,
+    "X2": 340.196991,
+    "X3": 343.152008,
+    "X4": 346.053009,
+    "Y0": 79.878998,
+    "Y1": 82.169998,
+    "Y2": 78.847,
+    "Y3": 76.630997,
+    "Y4": 88.649002
+  },
+  {
+    "RowID": 118,
+    "WorldAreasKey": 1102,
+    "ItemVisualIdentityKey": 4745,
+    "Flag0": 0,
+    "MapsKey": 355,
+    "Unknown3": 0,
+    "FlavourTextKey": 1570,
+    "AtlasRegionsKey": 3,
+    "AtlasNodeKeys0": [
+      4,
+      29,
+      27
+    ],
+    "AtlasNodeKeys1": [
+      4,
+      57,
+      29
+    ],
+    "AtlasNodeKeys2": [
+      4,
+      57,
+      29
+    ],
+    "AtlasNodeKeys3": [
+      4,
+      57,
+      29
+    ],
+    "AtlasNodeKeys4": [
+      4,
+      57,
+      29
+    ],
+    "Tier0": 5,
+    "Tier1": 8,
+    "Tier2": 12,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 822.351013,
+    "X1": 822.351013,
+    "X2": 822.351013,
+    "X3": 822.351013,
+    "X4": 822.351013,
+    "Y0": 249.408997,
+    "Y1": 249.408997,
+    "Y2": 249.408997,
+    "Y3": 249.408997,
+    "Y4": 249.408997
+  },
+  {
+    "RowID": 119,
+    "WorldAreasKey": 1101,
+    "ItemVisualIdentityKey": 4801,
+    "Flag0": 0,
+    "MapsKey": 354,
+    "Unknown3": 0,
+    "FlavourTextKey": 1569,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [
+      146,
+      81
+    ],
+    "AtlasNodeKeys3": [
+      146,
+      81
+    ],
+    "AtlasNodeKeys4": [
+      146,
+      81
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 15,
+    "X0": 487.381989,
+    "X1": 487.381989,
+    "X2": 492.04599,
+    "X3": 487.868988,
+    "X4": 487.140991,
+    "Y0": 539.057983,
+    "Y1": 539.057983,
+    "Y2": 416.036987,
+    "Y3": 420.162994,
+    "Y4": 413.761993
+  },
+  {
+    "RowID": 120,
+    "WorldAreasKey": 1100,
+    "ItemVisualIdentityKey": 4813,
+    "Flag0": 0,
+    "MapsKey": 353,
+    "Unknown3": 0,
+    "FlavourTextKey": 1568,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      107,
+      104,
+      102,
+      98,
+      90,
+      34,
+      29
+    ],
+    "AtlasNodeKeys1": [
+      107,
+      104,
+      102,
+      98,
+      92,
+      90,
+      34,
+      29
+    ],
+    "AtlasNodeKeys2": [
+      104,
+      98,
+      94,
+      90,
+      34
+    ],
+    "AtlasNodeKeys3": [
+      104,
+      98,
+      94,
+      92,
+      90,
+      34
+    ],
+    "AtlasNodeKeys4": [
+      104,
+      98,
+      96,
+      90,
+      34
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 688.442993,
+    "X1": 688.442993,
+    "X2": 706.33197,
+    "X3": 706.33197,
+    "X4": 706.33197,
+    "Y0": 246.761993,
+    "Y1": 246.761993,
+    "Y2": 216.429001,
+    "Y3": 216.429001,
+    "Y4": 209.447006
+  },
+  {
+    "RowID": 121,
+    "WorldAreasKey": 1099,
+    "ItemVisualIdentityKey": 4802,
+    "Flag0": 0,
+    "MapsKey": 352,
+    "Unknown3": 0,
+    "FlavourTextKey": 1567,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      129,
+      115,
+      77
+    ],
+    "AtlasNodeKeys1": [
+      129,
+      115,
+      77
+    ],
+    "AtlasNodeKeys2": [
+      129,
+      115,
+      77
+    ],
+    "AtlasNodeKeys3": [
+      129,
+      115,
+      77
+    ],
+    "AtlasNodeKeys4": [
+      145,
+      129,
+      115,
+      106,
+      77
+    ],
+    "Tier0": 2,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 432.858002,
+    "X1": 422.515991,
+    "X2": 429.291992,
+    "X3": 435.071991,
+    "X4": 434.632996,
+    "Y0": 411.153992,
+    "Y1": 417.695007,
+    "Y2": 415.454987,
+    "Y3": 406.584015,
+    "Y4": 419.677002
+  },
+  {
+    "RowID": 122,
+    "WorldAreasKey": 1097,
+    "ItemVisualIdentityKey": 7735,
+    "Flag0": 0,
+    "MapsKey": 350,
+    "Unknown3": 0,
+    "FlavourTextKey": 1565,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [
+      126
+    ],
+    "AtlasNodeKeys1": [
+      126
+    ],
+    "AtlasNodeKeys2": [
+      126
+    ],
+    "AtlasNodeKeys3": [
+      126
+    ],
+    "AtlasNodeKeys4": [
+      126
+    ],
+    "Tier0": 5,
+    "Tier1": 9,
+    "Tier2": 12,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 168.167999,
+    "X1": 168.167999,
+    "X2": 168.167999,
+    "X3": 168.167999,
+    "X4": 168.167999,
+    "Y0": 194.382004,
+    "Y1": 194.382004,
+    "Y2": 194.382004,
+    "Y3": 194.382004,
+    "Y4": 194.382004
+  },
+  {
+    "RowID": 123,
+    "WorldAreasKey": 1095,
+    "ItemVisualIdentityKey": 6048,
+    "Flag0": 0,
+    "MapsKey": 349,
+    "Unknown3": 0,
+    "FlavourTextKey": 1563,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      125
+    ],
+    "AtlasNodeKeys1": [
+      125
+    ],
+    "AtlasNodeKeys2": [
+      125
+    ],
+    "AtlasNodeKeys3": [
+      125
+    ],
+    "AtlasNodeKeys4": [
+      125
+    ],
+    "Tier0": 2,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 408.941986,
+    "X1": 401.164001,
+    "X2": 401.164001,
+    "X3": 401.164001,
+    "X4": 401.164001,
+    "Y0": 213.567001,
+    "Y1": 244.289001,
+    "Y2": 244.289001,
+    "Y3": 244.289001,
+    "Y4": 244.289001
+  },
+  {
+    "RowID": 124,
+    "WorldAreasKey": 1093,
+    "ItemVisualIdentityKey": 4851,
+    "Flag0": 0,
+    "MapsKey": 348,
+    "Unknown3": 0,
+    "FlavourTextKey": 1561,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [
+      76,
+      66,
+      22,
+      11
+    ],
+    "AtlasNodeKeys2": [
+      76,
+      66,
+      2,
+      22
+    ],
+    "AtlasNodeKeys3": [
+      76,
+      66,
+      2,
+      22
+    ],
+    "AtlasNodeKeys4": [
+      76,
+      3,
+      2,
+      22,
+      37
+    ],
+    "Tier0": 0,
+    "Tier1": 9,
+    "Tier2": 12,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 84.489998,
+    "X1": 190.268005,
+    "X2": 215.285004,
+    "X3": 215.059998,
+    "X4": 211.869003,
+    "Y0": 482.234985,
+    "Y1": 456.567993,
+    "Y2": 471.338013,
+    "Y3": 430.395996,
+    "Y4": 426.515015
+  },
+  {
+    "RowID": 125,
+    "WorldAreasKey": 1094,
+    "ItemVisualIdentityKey": 4750,
+    "Flag0": 0,
+    "MapsKey": 349,
+    "Unknown3": 0,
+    "FlavourTextKey": 1562,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      143,
+      136,
+      123,
+      153,
+      100,
+      41
+    ],
+    "AtlasNodeKeys1": [
+      143,
+      136,
+      123,
+      153
+    ],
+    "AtlasNodeKeys2": [
+      143,
+      136,
+      123,
+      153
+    ],
+    "AtlasNodeKeys3": [
+      143,
+      136,
+      123,
+      153
+    ],
+    "AtlasNodeKeys4": [
+      143,
+      136,
+      123,
+      153
+    ],
+    "Tier0": 2,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 404.890015,
+    "X1": 423.167999,
+    "X2": 423.167999,
+    "X3": 423.167999,
+    "X4": 423.167999,
+    "Y0": 241.651993,
+    "Y1": 256.429993,
+    "Y2": 256.429993,
+    "Y3": 256.429993,
+    "Y4": 256.429993
+  },
+  {
+    "RowID": 126,
+    "WorldAreasKey": 1096,
+    "ItemVisualIdentityKey": 4786,
+    "Flag0": 0,
+    "MapsKey": 350,
+    "Unknown3": 0,
+    "FlavourTextKey": 1564,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [
+      122,
+      42,
+      30
+    ],
+    "AtlasNodeKeys1": [
+      122,
+      42,
+      30
+    ],
+    "AtlasNodeKeys2": [
+      122,
+      151,
+      42,
+      30
+    ],
+    "AtlasNodeKeys3": [
+      122,
+      151,
+      42,
+      30,
+      16
+    ],
+    "AtlasNodeKeys4": [
+      122,
+      42,
+      18,
+      16
+    ],
+    "Tier0": 5,
+    "Tier1": 9,
+    "Tier2": 12,
+    "Tier3": 14,
+    "Tier4": 16,
+    "X0": 190.514008,
+    "X1": 171.070007,
+    "X2": 171.070007,
+    "X3": 168.485001,
+    "X4": 165.195999,
+    "Y0": 157.509003,
+    "Y1": 156.341995,
+    "Y2": 156.341995,
+    "Y3": 165.205002,
+    "Y4": 167.613998
+  },
+  {
+    "RowID": 127,
+    "WorldAreasKey": 1092,
+    "ItemVisualIdentityKey": 4846,
+    "Flag0": 0,
+    "MapsKey": 347,
+    "Unknown3": 0,
+    "FlavourTextKey": 1560,
+    "AtlasRegionsKey": 7,
+    "AtlasNodeKeys0": [
+      62,
+      64,
+      33
+    ],
+    "AtlasNodeKeys1": [
+      62,
+      64,
+      53,
+      33
+    ],
+    "AtlasNodeKeys2": [
+      62,
+      64,
+      53,
+      33
+    ],
+    "AtlasNodeKeys3": [
+      62,
+      64,
+      33
+    ],
+    "AtlasNodeKeys4": [
+      62,
+      64,
+      33
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 725.216003,
+    "X1": 731.083008,
+    "X2": 724.049988,
+    "X3": 724.049988,
+    "X4": 719.122009,
+    "Y0": 364.345001,
+    "Y1": 389.993011,
+    "Y2": 381.066986,
+    "Y3": 381.066986,
+    "Y4": 374.907013
+  },
+  {
+    "RowID": 128,
+    "WorldAreasKey": 1091,
+    "ItemVisualIdentityKey": 4850,
+    "Flag0": 0,
+    "MapsKey": 346,
+    "Unknown3": 0,
+    "FlavourTextKey": 1559,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [
+      103,
+      72,
+      59
+    ],
+    "AtlasNodeKeys4": [
+      103,
+      72,
+      59,
+      39
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 487.619995,
+    "X1": 487.619995,
+    "X2": 487.619995,
+    "X3": 387.149994,
+    "X4": 377.45401,
+    "Y0": 251.169006,
+    "Y1": 251.169006,
+    "Y2": 251.169006,
+    "Y3": 174.279007,
+    "Y4": 187.537003
+  },
+  {
+    "RowID": 129,
+    "WorldAreasKey": 1090,
+    "ItemVisualIdentityKey": 4715,
+    "Flag0": 0,
+    "MapsKey": 345,
+    "Unknown3": 0,
+    "FlavourTextKey": 1558,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [
+      121,
+      93,
+      77,
+      70
+    ],
+    "AtlasNodeKeys1": [
+      121,
+      93,
+      77,
+      70
+    ],
+    "AtlasNodeKeys2": [
+      121,
+      93,
+      77,
+      70
+    ],
+    "AtlasNodeKeys3": [
+      121,
+      93,
+      77,
+      70
+    ],
+    "AtlasNodeKeys4": [
+      121,
+      93,
+      77,
+      70
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 370.643005,
+    "X1": 374.92099,
+    "X2": 374.92099,
+    "X3": 384.891998,
+    "X4": 389.813995,
+    "Y0": 473.68399,
+    "Y1": 479.127991,
+    "Y2": 479.127991,
+    "Y3": 482.451996,
+    "Y4": 486.319
+  },
+  {
+    "RowID": 130,
+    "WorldAreasKey": 1127,
+    "ItemVisualIdentityKey": 4838,
+    "Flag0": 0,
+    "MapsKey": 377,
+    "Unknown3": 0,
+    "FlavourTextKey": 1595,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [
+      149,
+      74,
+      56,
+      52
+    ],
+    "AtlasNodeKeys4": [
+      149,
+      74,
+      52
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 567.565979,
+    "X1": 567.565979,
+    "X2": 567.565979,
+    "X3": 607.981995,
+    "X4": 619.481018,
+    "Y0": 542.890015,
+    "Y1": 542.890015,
+    "Y2": 542.890015,
+    "Y3": 415.868011,
+    "Y4": 412.582001
+  },
+  {
+    "RowID": 131,
+    "WorldAreasKey": 1088,
+    "ItemVisualIdentityKey": 4737,
+    "Flag0": 0,
+    "MapsKey": 343,
+    "Unknown3": 0,
+    "FlavourTextKey": 1556,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [
+      146,
+      52,
+      35
+    ],
+    "AtlasNodeKeys2": [
+      146,
+      52,
+      35
+    ],
+    "AtlasNodeKeys3": [
+      146,
+      52,
+      35
+    ],
+    "AtlasNodeKeys4": [
+      146,
+      52,
+      35
+    ],
+    "Tier0": 0,
+    "Tier1": 7,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 523.927979,
+    "X1": 582.106018,
+    "X2": 584.648987,
+    "X3": 590.781006,
+    "X4": 609.552002,
+    "Y0": 530.903992,
+    "Y1": 477.515991,
+    "Y2": 469.065002,
+    "Y3": 481.032013,
+    "Y4": 473.898987
+  },
+  {
+    "RowID": 132,
+    "WorldAreasKey": 1087,
+    "ItemVisualIdentityKey": 4782,
+    "Flag0": 0,
+    "MapsKey": 342,
+    "Unknown3": 0,
+    "FlavourTextKey": 1555,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [
+      142,
+      116,
+      50
+    ],
+    "AtlasNodeKeys2": [
+      142,
+      112,
+      116
+    ],
+    "AtlasNodeKeys3": [
+      142,
+      112,
+      116,
+      65
+    ],
+    "AtlasNodeKeys4": [
+      142,
+      112,
+      116,
+      65
+    ],
+    "Tier0": 0,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 15,
+    "X0": 536.68103,
+    "X1": 536.291992,
+    "X2": 536.291992,
+    "X3": 533.27301,
+    "X4": 532.921021,
+    "Y0": 70.417,
+    "Y1": 131.084,
+    "Y2": 131.084,
+    "Y3": 156.242996,
+    "Y4": 171.360001
+  },
+  {
+    "RowID": 133,
+    "WorldAreasKey": 1086,
+    "ItemVisualIdentityKey": 4738,
+    "Flag0": 0,
+    "MapsKey": 341,
+    "Unknown3": 0,
+    "FlavourTextKey": 1554,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [
+      149,
+      113,
+      49
+    ],
+    "AtlasNodeKeys1": [
+      149,
+      113,
+      49
+    ],
+    "AtlasNodeKeys2": [
+      149,
+      113,
+      49
+    ],
+    "AtlasNodeKeys3": [
+      149,
+      113,
+      49
+    ],
+    "AtlasNodeKeys4": [
+      149,
+      113,
+      71,
+      49
+    ],
+    "Tier0": 2,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 561.898987,
+    "X1": 589.120972,
+    "X2": 589.120972,
+    "X3": 589.120972,
+    "X4": 590.763977,
+    "Y0": 379.589996,
+    "Y1": 358.979004,
+    "Y2": 358.979004,
+    "Y3": 358.979004,
+    "Y4": 356.925995
+  },
+  {
+    "RowID": 134,
+    "WorldAreasKey": 1085,
+    "ItemVisualIdentityKey": 4806,
+    "Flag0": 0,
+    "MapsKey": 340,
+    "Unknown3": 0,
+    "FlavourTextKey": 1553,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [
+      117,
+      84,
+      48
+    ],
+    "AtlasNodeKeys1": [
+      117,
+      84,
+      48
+    ],
+    "AtlasNodeKeys2": [
+      117,
+      84,
+      48
+    ],
+    "AtlasNodeKeys3": [
+      117,
+      84,
+      48
+    ],
+    "AtlasNodeKeys4": [
+      117,
+      84,
+      48
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 393.429993,
+    "X1": 393.429993,
+    "X2": 393.429993,
+    "X3": 401.553986,
+    "X4": 396.458008,
+    "Y0": 71.806999,
+    "Y1": 71.806999,
+    "Y2": 71.806999,
+    "Y3": 69.591003,
+    "Y4": 70.360001
+  },
+  {
+    "RowID": 135,
+    "WorldAreasKey": 1084,
+    "ItemVisualIdentityKey": 4787,
+    "Flag0": 0,
+    "MapsKey": 339,
+    "Unknown3": 0,
+    "FlavourTextKey": 1552,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [
+      139,
+      136,
+      95,
+      73,
+      63
+    ],
+    "AtlasNodeKeys2": [
+      140,
+      139,
+      73,
+      63
+    ],
+    "AtlasNodeKeys3": [
+      140,
+      139,
+      114,
+      73,
+      63
+    ],
+    "AtlasNodeKeys4": [
+      140,
+      139,
+      82,
+      63
+    ],
+    "Tier0": 0,
+    "Tier1": 6,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 212.802994,
+    "X1": 328.303009,
+    "X2": 326.747009,
+    "X3": 326.747009,
+    "X4": 361.656006,
+    "Y0": 269.638,
+    "Y1": 320.194,
+    "Y2": 333.027008,
+    "Y3": 333.027008,
+    "Y4": 341.652008
+  },
+  {
+    "RowID": 136,
+    "WorldAreasKey": 1083,
+    "ItemVisualIdentityKey": 4812,
+    "Flag0": 0,
+    "MapsKey": 338,
+    "Unknown3": 0,
+    "FlavourTextKey": 1551,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      148,
+      143,
+      125,
+      63
+    ],
+    "AtlasNodeKeys1": [
+      148,
+      143,
+      135,
+      125
+    ],
+    "AtlasNodeKeys2": [
+      148,
+      140,
+      125
+    ],
+    "AtlasNodeKeys3": [
+      148,
+      140,
+      125
+    ],
+    "AtlasNodeKeys4": [
+      148,
+      140,
+      125
+    ],
+    "Tier0": 2,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 393.915985,
+    "X1": 393.527008,
+    "X2": 417.248993,
+    "X3": 417.248993,
+    "X4": 417.248993,
+    "Y0": 305.242004,
+    "Y1": 295.519989,
+    "Y2": 302.908997,
+    "Y3": 302.908997,
+    "Y4": 302.908997
+  },
+  {
+    "RowID": 137,
+    "WorldAreasKey": 1082,
+    "ItemVisualIdentityKey": 4839,
+    "Flag0": 0,
+    "MapsKey": 337,
+    "Unknown3": 0,
+    "FlavourTextKey": 1550,
+    "AtlasRegionsKey": 4,
+    "AtlasNodeKeys0": [
+      70,
+      66,
+      63,
+      40,
+      26,
+      22
+    ],
+    "AtlasNodeKeys1": [
+      70,
+      63,
+      40,
+      26,
+      22
+    ],
+    "AtlasNodeKeys2": [
+      70,
+      63,
+      40,
+      26,
+      22
+    ],
+    "AtlasNodeKeys3": [
+      70,
+      63,
+      40,
+      26,
+      22
+    ],
+    "AtlasNodeKeys4": [
+      70,
+      63,
+      40,
+      26,
+      22
+    ],
+    "Tier0": 3,
+    "Tier1": 7,
+    "Tier2": 10,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 317.351013,
+    "X1": 323.723999,
+    "X2": 323.290985,
+    "X3": 323.290985,
+    "X4": 323.290985,
+    "Y0": 433.565002,
+    "Y1": 433.542999,
+    "Y2": 429.213013,
+    "Y3": 429.213013,
+    "Y4": 429.213013
+  },
+  {
+    "RowID": 138,
+    "WorldAreasKey": 1081,
+    "ItemVisualIdentityKey": 4853,
+    "Flag0": 0,
+    "MapsKey": 336,
+    "Unknown3": 0,
+    "FlavourTextKey": 1549,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [
+      83,
+      72,
+      48
+    ],
+    "AtlasNodeKeys3": [
+      83,
+      72,
+      48
+    ],
+    "AtlasNodeKeys4": [
+      83,
+      72,
+      48
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 498.462006,
+    "X1": 498.462006,
+    "X2": 430.795013,
+    "X3": 431.164001,
+    "X4": 431.164001,
+    "Y0": 239.016998,
+    "Y1": 239.016998,
+    "Y2": 148.406006,
+    "Y3": 138.804993,
+    "Y4": 138.804993
+  },
+  {
+    "RowID": 139,
+    "WorldAreasKey": 1080,
+    "ItemVisualIdentityKey": 4727,
+    "Flag0": 0,
+    "MapsKey": 335,
+    "Unknown3": 0,
+    "FlavourTextKey": 1548,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [
+      148,
+      135,
+      77
+    ],
+    "AtlasNodeKeys2": [
+      148,
+      135
+    ],
+    "AtlasNodeKeys3": [
+      148,
+      145,
+      135
+    ],
+    "AtlasNodeKeys4": [
+      148,
+      145,
+      135
+    ],
+    "Tier0": 0,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 200.983002,
+    "X1": 383.760986,
+    "X2": 390.760986,
+    "X3": 390.760986,
+    "X4": 405.957001,
+    "Y0": 276.920013,
+    "Y1": 333.697998,
+    "Y2": 334.86499,
+    "Y3": 334.86499,
+    "Y4": 336.096985
+  },
+  {
+    "RowID": 140,
+    "WorldAreasKey": 1079,
+    "ItemVisualIdentityKey": 4724,
+    "Flag0": 0,
+    "MapsKey": 334,
+    "Unknown3": 0,
+    "FlavourTextKey": 1547,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [
+      143,
+      136,
+      135
+    ],
+    "AtlasNodeKeys3": [
+      143,
+      136,
+      135,
+      114
+    ],
+    "AtlasNodeKeys4": [
+      143,
+      136,
+      135,
+      114
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 9,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 217.203003,
+    "X1": 217.203003,
+    "X2": 356.535004,
+    "X3": 356.535004,
+    "X4": 373.373993,
+    "Y0": 249.953995,
+    "Y1": 249.953995,
+    "Y2": 301.050995,
+    "Y3": 301.050995,
+    "Y4": 299.819
+  },
+  {
+    "RowID": 141,
+    "WorldAreasKey": 1078,
+    "ItemVisualIdentityKey": 4723,
+    "Flag0": 0,
+    "MapsKey": 333,
+    "Unknown3": 0,
+    "FlavourTextKey": 1546,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [
+      150,
+      98,
+      50
+    ],
+    "AtlasNodeKeys2": [
+      112,
+      150,
+      98
+    ],
+    "AtlasNodeKeys3": [
+      112,
+      150,
+      98
+    ],
+    "AtlasNodeKeys4": [
+      112,
+      108,
+      150,
+      98
+    ],
+    "Tier0": 0,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 552.953003,
+    "X1": 596.127991,
+    "X2": 605.565002,
+    "X3": 607.530029,
+    "X4": 605.252991,
+    "Y0": 68.612,
+    "Y1": 195.598999,
+    "Y2": 237.218994,
+    "Y3": 236.686005,
+    "Y4": 237.860992
+  },
+  {
+    "RowID": 142,
+    "WorldAreasKey": 1077,
+    "ItemVisualIdentityKey": 4717,
+    "Flag0": 0,
+    "MapsKey": 332,
+    "Unknown3": 0,
+    "FlavourTextKey": 1545,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      144,
+      84,
+      50,
+      48
+    ],
+    "AtlasNodeKeys1": [
+      144,
+      132,
+      84,
+      48
+    ],
+    "AtlasNodeKeys2": [
+      144,
+      132,
+      84,
+      48
+    ],
+    "AtlasNodeKeys3": [
+      144,
+      132,
+      84,
+      48
+    ],
+    "AtlasNodeKeys4": [
+      144,
+      132,
+      84,
+      48
+    ],
+    "Tier0": 2,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 476.786987,
+    "X1": 476.786987,
+    "X2": 476.786987,
+    "X3": 472.091003,
+    "X4": 470.684998,
+    "Y0": 147.561996,
+    "Y1": 147.561996,
+    "Y2": 147.561996,
+    "Y3": 156.619003,
+    "Y4": 173.494003
+  },
+  {
+    "RowID": 143,
+    "WorldAreasKey": 1076,
+    "ItemVisualIdentityKey": 4847,
+    "Flag0": 0,
+    "MapsKey": 331,
+    "Unknown3": 0,
+    "FlavourTextKey": 1544,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      136,
+      125,
+      95,
+      73
+    ],
+    "AtlasNodeKeys1": [
+      136,
+      125,
+      95
+    ],
+    "AtlasNodeKeys2": [
+      140,
+      97,
+      125
+    ],
+    "AtlasNodeKeys3": [
+      140,
+      97,
+      125
+    ],
+    "AtlasNodeKeys4": [
+      140,
+      97,
+      125
+    ],
+    "Tier0": 3,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 338.993011,
+    "X1": 344.437012,
+    "X2": 366.221985,
+    "X3": 366.221985,
+    "X4": 366.221985,
+    "Y0": 287.994995,
+    "Y1": 273.21701,
+    "Y2": 273.286011,
+    "Y3": 273.286011,
+    "Y4": 273.286011
+  },
+  {
+    "RowID": 144,
+    "WorldAreasKey": 1075,
+    "ItemVisualIdentityKey": 4845,
+    "Flag0": 0,
+    "MapsKey": 330,
+    "Unknown3": 0,
+    "FlavourTextKey": 1543,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      142,
+      116,
+      153
+    ],
+    "AtlasNodeKeys1": [
+      142,
+      116,
+      153
+    ],
+    "AtlasNodeKeys2": [
+      142,
+      116,
+      153
+    ],
+    "AtlasNodeKeys3": [
+      142,
+      116,
+      153
+    ],
+    "AtlasNodeKeys4": [
+      142,
+      116,
+      153
+    ],
+    "Tier0": 2,
+    "Tier1": 5,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 465.928986,
+    "X1": 465.928986,
+    "X2": 465.928986,
+    "X3": 465.928986,
+    "X4": 463.407013,
+    "Y0": 201.841995,
+    "Y1": 201.841995,
+    "Y2": 201.841995,
+    "Y3": 201.841995,
+    "Y4": 202.283005
+  },
+  {
+    "RowID": 145,
+    "WorldAreasKey": 1074,
+    "ItemVisualIdentityKey": 4732,
+    "Flag0": 0,
+    "MapsKey": 329,
+    "Unknown3": 0,
+    "FlavourTextKey": 1542,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [
+      148,
+      139,
+      77,
+      63
+    ],
+    "AtlasNodeKeys4": [
+      148,
+      139,
+      121,
+      106,
+      77,
+      63
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 196.470993,
+    "X1": 196.470993,
+    "X2": 196.470993,
+    "X3": 396.765991,
+    "X4": 389.72699,
+    "Y0": 264.710999,
+    "Y1": 264.710999,
+    "Y2": 264.710999,
+    "Y3": 374.147003,
+    "Y4": 382.132996
+  },
+  {
+    "RowID": 146,
+    "WorldAreasKey": 1073,
+    "ItemVisualIdentityKey": 4733,
+    "Flag0": 0,
+    "MapsKey": 328,
+    "Unknown3": 0,
+    "FlavourTextKey": 1541,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [
+      93,
+      81,
+      74,
+      52,
+      35,
+      28
+    ],
+    "AtlasNodeKeys1": [
+      131,
+      93,
+      81,
+      28
+    ],
+    "AtlasNodeKeys2": [
+      131,
+      119,
+      93,
+      28
+    ],
+    "AtlasNodeKeys3": [
+      131,
+      119,
+      93,
+      81,
+      28
+    ],
+    "AtlasNodeKeys4": [
+      131,
+      119,
+      93,
+      81,
+      32,
+      28
+    ],
+    "Tier0": 2,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 533.583984,
+    "X1": 521.411987,
+    "X2": 517.973999,
+    "X3": 516.127014,
+    "X4": 527.455017,
+    "Y0": 407.075012,
+    "Y1": 403.204987,
+    "Y2": 399.217987,
+    "Y3": 392.94101,
+    "Y4": 394.709015
+  },
+  {
+    "RowID": 147,
+    "WorldAreasKey": 1098,
+    "ItemVisualIdentityKey": 4726,
+    "Flag0": 0,
+    "MapsKey": 351,
+    "Unknown3": 0,
+    "FlavourTextKey": 1566,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [],
+    "AtlasNodeKeys1": [],
+    "AtlasNodeKeys2": [],
+    "AtlasNodeKeys3": [],
+    "AtlasNodeKeys4": [
+      152,
+      80,
+      51,
+      30,
+      15
+    ],
+    "Tier0": 0,
+    "Tier1": 0,
+    "Tier2": 0,
+    "Tier3": 0,
+    "Tier4": 15,
+    "X0": 114.111,
+    "X1": 114.111,
+    "X2": 114.111,
+    "X3": 114.111,
+    "X4": 282.338989,
+    "Y0": 36.797001,
+    "Y1": 36.797001,
+    "Y2": 36.797001,
+    "Y3": 36.797001,
+    "Y4": 106.726997
+  },
+  {
+    "RowID": 148,
+    "WorldAreasKey": 1072,
+    "ItemVisualIdentityKey": 4719,
+    "Flag0": 0,
+    "MapsKey": 327,
+    "Unknown3": 0,
+    "FlavourTextKey": 1540,
+    "AtlasRegionsKey": 5,
+    "AtlasNodeKeys0": [
+      136,
+      115,
+      77
+    ],
+    "AtlasNodeKeys1": [
+      139,
+      136,
+      115,
+      77
+    ],
+    "AtlasNodeKeys2": [
+      139,
+      136,
+      115,
+      77
+    ],
+    "AtlasNodeKeys3": [
+      145,
+      139,
+      136,
+      115,
+      77
+    ],
+    "AtlasNodeKeys4": [
+      145,
+      139,
+      136,
+      115,
+      106
+    ],
+    "Tier0": 1,
+    "Tier1": 4,
+    "Tier2": 8,
+    "Tier3": 10,
+    "Tier4": 14,
+    "X0": 450.832001,
+    "X1": 450.832001,
+    "X2": 450.832001,
+    "X3": 450.832001,
+    "X4": 450.832001,
+    "Y0": 331.677002,
+    "Y1": 331.677002,
+    "Y2": 331.677002,
+    "Y3": 331.677002,
+    "Y4": 331.677002
+  },
+  {
+    "RowID": 149,
+    "WorldAreasKey": 1071,
+    "ItemVisualIdentityKey": 4855,
+    "Flag0": 0,
+    "MapsKey": 326,
+    "Unknown3": 0,
+    "FlavourTextKey": 1539,
+    "AtlasRegionsKey": 6,
+    "AtlasNodeKeys0": [
+      133,
+      102,
+      74,
+      46
+    ],
+    "AtlasNodeKeys1": [
+      133,
+      102,
+      74,
+      56,
+      46
+    ],
+    "AtlasNodeKeys2": [
+      133,
+      102,
+      74,
+      46
+    ],
+    "AtlasNodeKeys3": [
+      133,
+      102,
+      130,
+      46
+    ],
+    "AtlasNodeKeys4": [
+      133,
+      102,
+      130,
+      46
+    ],
+    "Tier0": 2,
+    "Tier1": 6,
+    "Tier2": 9,
+    "Tier3": 11,
+    "Tier4": 14,
+    "X0": 597.177002,
+    "X1": 603.01001,
+    "X2": 603.01001,
+    "X3": 608.783997,
+    "X4": 609.60498,
+    "Y0": 392.196014,
+    "Y1": 395.696014,
+    "Y2": 395.696014,
+    "Y3": 385.752014,
+    "Y4": 379.59201
+  },
+  {
+    "RowID": 150,
+    "WorldAreasKey": 1116,
+    "ItemVisualIdentityKey": 4718,
+    "Flag0": 0,
+    "MapsKey": 368,
+    "Unknown3": 0,
+    "FlavourTextKey": 1584,
+    "AtlasRegionsKey": 2,
+    "AtlasNodeKeys0": [
+      107,
+      116,
+      98
+    ],
+    "AtlasNodeKeys1": [
+      141,
+      107,
+      116
+    ],
+    "AtlasNodeKeys2": [
+      141,
+      112,
+      107,
+      116
+    ],
+    "AtlasNodeKeys3": [
+      141,
+      112,
+      107,
+      116
+    ],
+    "AtlasNodeKeys4": [
+      141,
+      108,
+      107,
+      116
+    ],
+    "Tier0": 1,
+    "Tier1": 4,
+    "Tier2": 8,
+    "Tier3": 10,
+    "Tier4": 14,
+    "X0": 550.692993,
+    "X1": 550.692993,
+    "X2": 550.692993,
+    "X3": 550.692993,
+    "X4": 550.692993,
+    "Y0": 229.444,
+    "Y1": 229.444,
+    "Y2": 229.444,
+    "Y3": 229.444,
+    "Y4": 229.444
+  },
+  {
+    "RowID": 151,
+    "WorldAreasKey": 1117,
+    "ItemVisualIdentityKey": 4734,
+    "Flag0": 0,
+    "MapsKey": 369,
+    "Unknown3": 0,
+    "FlavourTextKey": 1585,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [
+      152,
+      100,
+      42,
+      41,
+      30
+    ],
+    "AtlasNodeKeys1": [
+      152,
+      100,
+      42,
+      41,
+      30
+    ],
+    "AtlasNodeKeys2": [
+      126,
+      152,
+      100,
+      42,
+      41
+    ],
+    "AtlasNodeKeys3": [
+      126,
+      152,
+      100,
+      42,
+      41
+    ],
+    "AtlasNodeKeys4": [
+      100,
+      42,
+      41,
+      18
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 11,
+    "Tier3": 13,
+    "Tier4": 15,
+    "X0": 231.343002,
+    "X1": 225.899002,
+    "X2": 225.899002,
+    "X3": 225.899002,
+    "X4": 239.451996,
+    "Y0": 166.306,
+    "Y1": 165.139008,
+    "Y2": 165.139008,
+    "Y3": 165.139008,
+    "Y4": 175.817001
+  },
+  {
+    "RowID": 152,
+    "WorldAreasKey": 1118,
+    "ItemVisualIdentityKey": 4730,
+    "Flag0": 0,
+    "MapsKey": 370,
+    "Unknown3": 0,
+    "FlavourTextKey": 1586,
+    "AtlasRegionsKey": 0,
+    "AtlasNodeKeys0": [
+      151,
+      80,
+      100,
+      59,
+      30
+    ],
+    "AtlasNodeKeys1": [
+      151,
+      80,
+      100,
+      59,
+      51,
+      30
+    ],
+    "AtlasNodeKeys2": [
+      151,
+      80,
+      100,
+      59,
+      30,
+      15
+    ],
+    "AtlasNodeKeys3": [
+      151,
+      80,
+      100,
+      59,
+      30,
+      15
+    ],
+    "AtlasNodeKeys4": [
+      147,
+      80,
+      100,
+      59,
+      30
+    ],
+    "Tier0": 4,
+    "Tier1": 7,
+    "Tier2": 11,
+    "Tier3": 12,
+    "Tier4": 14,
+    "X0": 270.701996,
+    "X1": 270.701996,
+    "X2": 270.701996,
+    "X3": 278.457001,
+    "X4": 297.721985,
+    "Y0": 129.875,
+    "Y1": 129.875,
+    "Y2": 129.875,
+    "Y3": 132.828995,
+    "Y4": 133.119995
+  },
+  {
+    "RowID": 153,
+    "WorldAreasKey": 1120,
+    "ItemVisualIdentityKey": 4753,
+    "Flag0": 0,
+    "MapsKey": 372,
+    "Unknown3": 0,
+    "FlavourTextKey": 1588,
+    "AtlasRegionsKey": 1,
+    "AtlasNodeKeys0": [
+      144,
+      125,
+      83
+    ],
+    "AtlasNodeKeys1": [
+      144,
+      125,
+      103,
+      72
+    ],
+    "AtlasNodeKeys2": [
+      144,
+      125,
+      103,
+      72
+    ],
+    "AtlasNodeKeys3": [
+      144,
+      125,
+      103,
+      72
+    ],
+    "AtlasNodeKeys4": [
+      144,
+      125,
+      103,
+      72
+    ],
+    "Tier0": 1,
+    "Tier1": 4,
+    "Tier2": 8,
+    "Tier3": 10,
+    "Tier4": 14,
+    "X0": 451.509003,
+    "X1": 451.509003,
+    "X2": 451.509003,
+    "X3": 451.509003,
+    "X4": 451.509003,
+    "Y0": 230.992996,
+    "Y1": 230.992996,
+    "Y2": 230.992996,
+    "Y3": 230.992996,
+    "Y4": 230.992996
+  }
+]

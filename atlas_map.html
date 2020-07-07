@@ -1,0 +1,48 @@
+<!DOCTYPE html><html>
+<head>
+    <section id="resources">
+        <script src="pixi/pixi.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/map_style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </section>
+    <script type="text/javascript">
+        let type="WebGL"
+        if(!PIXI.utils.isWebGLSupported()){type="canvas"}
+        PIXI.utils.sayHello(type)
+    </script>
+    <title>PoE Atlas</title>
+</head>
+
+<body>
+    <header></header>
+    <section id="page_container">
+        <div id="content_main" class="filled">
+            <div class="atlas_of_worlds">
+                <button id="master_tier_button" class="watchstone master centered">Cycle All</button>
+                <button id="atlas_tier_button_r0" class="watchstone 0 centered">Tier 0</button>
+                <button id="atlas_tier_button_r1" class="watchstone 1 centered">Tier 0</button>
+                <button id="atlas_tier_button_r2" class="watchstone 2 centered">Tier 0</button>
+                <button id="atlas_tier_button_r3" class="watchstone 3 centered">Tier 0</button>
+                <button id="atlas_tier_button_r4" class="watchstone 4 centered">Tier 0</button>
+                <button id="atlas_tier_button_r5" class="watchstone 5 centered">Tier 0</button>
+                <button id="atlas_tier_button_r6" class="watchstone 6 centered">Tier 0</button>
+                <button id="atlas_tier_button_r7" class="watchstone 7 centered">Tier 0</button>
+                <div id="pixi_main">
+                    <!-- <p>Pixi Controls</p>
+                    <div id="pixi_controls_bar" class="flex row">
+                        <button onclick="createPixiView()">Create Pixi View</button>
+                        <div id="pixiViewCounter"></div>
+                        <button onclick="clearPixiViews()">Clear Views</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer></footer>
+</body>
+
+<section id="scripts">
+    <script src="js/pixi_atlas_of_worlds.js"></script>
+</section>
+    
+</html>

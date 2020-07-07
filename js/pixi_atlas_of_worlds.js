@@ -8,12 +8,15 @@ var atlasSprite;
 //Self explanatory.
 var linesContainer;
 var nodesContainer;
+//Render Toggles
+var boolDrawLines = true;
+var boolDrawNodes = true;
+var boolDrawNames = true;
 
 //Create the Pixi Application
 let pixiH = 2304;
 let pixiW = 4096;
 let app =  new PIXI.Application({width: pixiW, height: pixiH});
-
 
 //The center position of the PIXI canvas. Updates automatically when resized.
 let midx = 0;
@@ -33,7 +36,6 @@ loader
 //===========
 // Functions
 //===========
-
 function loadProgressHandler() {
 
 }
@@ -48,12 +50,6 @@ function createPixiView() {
     domTarget = document.getElementById("atlas_of_worlds");
     domTarget.appendChild(app.view);
     domTarget.lastChild.className = "pixi_atlas_of_worlds";
-
-    //Make Fullscreen
-    // app.renderer.view.style.position = "absolute";
-    // app.renderer.view.style.display = "block";
-    // app.renderer.autoResize = true;
-    // app.renderer.resize(window.innerWidth, window.innerHeight);
 }
 
 function initSprites(loader, resources) {
@@ -109,27 +105,37 @@ function drawAllAtlasRegions() {
     }
 }
 
-function drawAtlasRegion(regionID, redrawAdjacent) {
+function drawAtlasRegion(regionID, boolRedrawAdjacent) {
     
     //Remove previous nodes and lines for this region.
     if (linesContainer.children.length > regionID) {
-        linesContainer.removeChildAt(regionID);
-        nodesContainer.removeChildAt(regionID);
+        // linesContainer.removeChildAt(regionID);
+        // nodesContainer.removeChildAt(regionID);
+        //This removes all references to the child DisplayObjects, allowing the garbage...
+        //  collector to remove them from memory. Simply doing container.removeChildAt did not...
+        //  do this
+        linesContainer.getChildAt(regionID).destroy(true, false, false);
+        nodesContainer.getChildAt(regionID).destroy(true, false, false);
     }
 
     //This bit keeps track of whether adjacent regions have been redrawn w/in this func call
-    redrawAdjacent = redrawAdjacent || false;
+    boolRedrawAdjacent = boolRedrawAdjacent || false;
     let regionsRedrawn = [false, false, false, false, false, false, false, false];
 
     //init region nodes Graphics object (Nodes)
     let regionNodesGraph = new PIXI.Graphics();
     regionNodesGraph.lineStyle(2, '0x0', 1, 0.5, false);
     regionNodesGraph.beginFill(0,1)
+    const nodeCenterOffset = 25;
+    const nodeRadius = 30;
 
     //init region lines Graphics object (Lines)
     let regionLinesGraph = new PIXI.Graphics();
     let lineThickness = 2;
     let lineColor = 0xffffff;
+
+    //Set text display options
+    let textDisplayOptions = {fontFamily : 'Arial', fontSize: 24, fill : 0xff1010, align : 'center'};
 
     //Add Nodes and Lines to their respective containers
     linesContainer.addChildAt(regionLinesGraph, regionID);
@@ -151,34 +157,46 @@ function drawAtlasRegion(regionID, redrawAdjacent) {
         let entryAtlasNodeKeys = entryData[2];
         
         //Draw Connecting Lines between nodes (PIXI.Graphics)
-        for (let i=0; i<entryAtlasNodeKeys.length; i++) {
-            let nodeKey = entryAtlasNodeKeys[i];
-            let nodeData = getTieredNodeDataByID(nodeKey)
-
-            //Draw Lines
-            regionLinesGraph.lineStyle(lineThickness, lineColor)
-                .moveTo(entryX+25, entryY+25)
-                .lineTo(nodeData[0]+25, nodeData[1]+25);
-
-            //Redraw adjacent region if not already done.
-            if (redrawAdjacent && regionsRedrawn[mapData[nodeKey].AtlasRegionsKey] === false) {
-                regionsRedrawn[mapData[nodeKey].AtlasRegionsKey] = true;
-                drawAtlasRegion(mapData[nodeKey].AtlasRegionsKey);
+        if (boolDrawLines) {
+            for (let i=0; i<entryAtlasNodeKeys.length; i++) {
+                let adjNodeKey = entryAtlasNodeKeys[i];
+                let adjNodeData = getTieredNodeDataByID(adjNodeKey)
+    
+                //Draw Lines
+                regionLinesGraph.lineStyle(lineThickness, lineColor)
+                    .moveTo(entryX+nodeCenterOffset, entryY+nodeCenterOffset)
+                    .lineTo(adjNodeData[0]+nodeCenterOffset, adjNodeData[1]+nodeCenterOffset);
+    
+                //Redraw adjacent region if not already done.
+                let adjNodeRegionKey = mapData[adjNodeKey].AtlasRegionsKey;
+                if (boolRedrawAdjacent && regionsRedrawn[adjNodeRegionKey] === false) {
+                    regionsRedrawn[adjNodeRegionKey] = true;
+                    drawAtlasRegion(adjNodeRegionKey);
+                }
             }
         }
 
-        //Draw Nodes on 'regionNodesGraph' and add text sprites
-        regionNodesGraph.drawCircle(entryX+25,entryY+25,30);
-        let textSprite = new PIXI.Text(entry, {fontFamily : 'Arial', fontSize: 24, fill : 0xff1010, align : 'center'});
-        textSprite.x = entryX;
-        textSprite.y = entryY;
-        regionNodesGraph.addChild(textSprite);
+        //Draw Nodes on 'regionNodesGraph'
+        if (boolDrawNodes) {
+            regionNodesGraph.drawCircle(
+                entryX+nodeCenterOffset,
+                entryY+nodeCenterOffset,
+                nodeRadius);
+        }
+        //Add node label text sprites to 'regionNodesGraph' 
+        if (boolDrawNames) {
+            let textSprite = new PIXI.Text(entry, textDisplayOptions);
+            textSprite.x = entryX;
+            textSprite.y = entryY;
+            regionNodesGraph.addChild(textSprite);
+        }
+        
     }
 
-    //Force rendering of ALL lines and nodes (I think)
+    //Force rendering of all lines and nodes in region (I think)
     //TODO see if something like this helps at ALL, or if its actually a hindrance.
-    // app.renderer.render(linesContainer);
-    // app.renderer.render(nodesContainer);
+    app.renderer.render(regionLinesGraph);
+    app.renderer.render(regionNodesGraph);
 }
 
 // Returns an array of length 3 based on the supplied region tier.
@@ -338,16 +356,23 @@ function usefulTools() {
     app.renderer.resize(window.innerWidth, window.innerHeight);
     //if you do ^^^ do this to all HTML elements: <style>* {padding: 0; margin: 0}</style>
 
-        // Alternative: sprite.position.set(x, y)
-        //cat.scale.x = 2;
-        //cat.scale.y = 2;
-        //cat.scale.set(0.5, 0.5);
-        //cat.rotation = 0.5;
-        // Anchor for Location, Pivot for Rotation
-        // cat.anchor.x = 0.5;
-        // cat.anchor.y = 0.5;
-        // cat.anchor.set(x, y)
-        // cat.pivot.set(32, 32)
+    // Alternative: sprite.position.set(x, y)
+    //cat.scale.x = 2;
+    //cat.scale.y = 2;
+    //cat.scale.set(0.5, 0.5);
+    //cat.rotation = 0.5;
+    // Anchor for Location, Pivot for Rotation
+    // cat.anchor.x = 0.5;
+    // cat.anchor.y = 0.5;
+    // cat.anchor.set(x, y)
+    // cat.pivot.set(32, 32)
+    
+    //Make Fullscreen
+    // app.renderer.view.style.position = "absolute";
+    // app.renderer.view.style.display = "block";
+    // app.renderer.autoResize = true;
+    // app.renderer.resize(window.innerWidth, window.innerHeight);
+
 }
 
 function clearPixiViews() {

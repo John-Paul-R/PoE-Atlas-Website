@@ -1,0 +1,9 @@
+# Ignore vscode-specific files
+.vscode
+.VSCodeCounter
+
+*.log
+
+#ignore pixi (js lib)
+pixi.js
+pixi.min.js

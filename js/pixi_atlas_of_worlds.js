@@ -2,16 +2,17 @@
 //  Globals
 //===========
 //Parsed json data file w/ map positions & other node data
-var mapData;
+// let mapData;
 //The main sprite for the Atlas. (background image)
-var atlasSprite;
+let atlasSprite;
 //Self explanatory.
-var linesContainer;
-var nodesContainer;
+let linesContainer;
+let nodesContainer;
 //Render Toggles
-var boolDrawLines = true;
-var boolDrawNodes = true;
-var boolDrawNames = true;
+let boolDrawLines = true;
+let boolDrawNodes = true;
+let boolDrawNames = true;
+let boolDrawTiers = true;
 
 //Create the Pixi Application
 let maxH = 2304;
@@ -29,6 +30,7 @@ let app =  new PIXI.Application({
     sharedTicker: true,
     resizeTo: window
 });
+let stage = app.stage;
 
 //Load Pixi resources
 const loader = PIXI.Loader.shared;
@@ -39,8 +41,8 @@ loader
     .load(setup);
 
 //The center position of the PIXI canvas. Updates automatically when resized.
-var midx = 0;
-var midy = 0;
+let midx = 0;
+let midy = 0;
 
 //===========
 // Functions
@@ -54,6 +56,9 @@ function setup(loader, resources) {
     //==================
     createPixiView();
     initPixiDisplayObjects(loader, resources);
+    //TODO break this ^^^ up again and put "initialization" outside of "setup," and into the main thread.
+    //TODO make it so that loadMapsData doesn't need to wait for Atlas.jpg to load. (a part of the above)
+    //TODO have a "initWindowSizeDependants" and an "onWindowSize", the former not affecting "atlasSprite", so it can run in main thread, not having to wait for "setup" to finish
     onWindowResize();
     window.addEventListener('resize', onWindowResize);
     loadMapsData();
@@ -90,7 +95,7 @@ function initPixiDisplayObjects(loader, resources) {
     atlasSprite = new PIXI.Sprite(resources["img/Atlas.jpg"].texture);
     
     //Add Atlas sprite to stage
-    app.stage.addChildAt(atlasSprite, 0);
+    stage.addChildAt(atlasSprite, 0);
     atlasSprite.anchor.set(0.5);
     initPixiContainers();
 }
@@ -100,8 +105,8 @@ function initPixiContainers() {
     nodesContainer = new PIXI.Container();
 
     //Add Lines and Nodes containers to stage. (Lines 1st, so that they are in back.)
-    app.stage.addChild(linesContainer);
-    app.stage.addChild(nodesContainer);
+    stage.addChild(linesContainer);
+    stage.addChild(nodesContainer);
 
     // linesContainer.anchor.set(0.5);
     // nodesContainer.anchor.set(0.5);
@@ -109,55 +114,78 @@ function initPixiContainers() {
 
 //Factor by which to multiply node positions from the data file when drawing
 var mapScaleFactor = pixiW/maxW*4;//4.05; //TODO: Make sure that pixi's text rendering is not the cause of misalignments.
+const NUM_REGIONS = 8;
+const NUM_TIERS = 5;
 var regionTiers = [0,0,0,0,0,0,0,0]; //Tiers of each region (array index = regionID)
 var regionNodes = [[], [], [], [], [], [], [], []]; //lists of nodes(IDs) in each region
+var nodeData = [];
+class NodeData {
+    constructor(ID, name, regionID, tieredData) {
+        this.ID = ID;
+        this.name = name;
+        this.regionID = regionID;
+        this.tieredData = tieredData;
+    }
+}
 //Request map data, parse it, and draw all Atlas regions for the 1st time.
 function loadMapsData(loader, resources, atlasSprite) {
     
     let request = new XMLHttpRequest();
-    request.open("GET", "data/AtlasNodeItemized.json", true);
+    request.open("GET", "data/AtlasNode+WorldAreas_Itemized-1594337404.json", true);
     request.send(null);
     request.onreadystatechange = function() {
         if ( request.readyState === 4 && request.status === 200 ) {
-            mapData = JSON.parse(request.responseText);
+            let mapData = JSON.parse(request.responseText);
             // console.log(mapData);
             // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
             for (let i=0; i<mapData.length; i++) {
                 let entry = mapData[i];
                 regionNodes[entry.AtlasRegionsKey].push(entry.RowID);
+                nodeData.push(new NodeData(entry.RowID, entry.Name, entry.AtlasRegionsKey, [
+                    [entry.X0, entry.Y0, entry.AtlasNodeKeys0, entry.Tier0],
+                    [entry.X1, entry.Y1, entry.AtlasNodeKeys1, entry.Tier1],
+                    [entry.X2, entry.Y2, entry.AtlasNodeKeys2, entry.Tier2],
+                    [entry.X3, entry.Y3, entry.AtlasNodeKeys3, entry.Tier3],
+                    [entry.X4, entry.Y4, entry.AtlasNodeKeys4, entry.Tier4]
+                ]));
+                
             }
+            //Draw Atlas Nodes & Lines
+            drawAllAtlasRegions();
+            //(This ^^^ must be in here, instead of after the call to loadMapsData, because the...
+            //  http request is async. The resources wouldn't necessarily be loaded when the...
+            //  drawAllAtlasRegions function is called.)
         }
-
-        //Draw Atlas Nodes & Lines
-        drawAllAtlasRegions();
-        //(This ^^^ must be in here, instead of after the call to loadMapsData, because the...
-        //  http request is async. The resources wouldn't necessarily be loaded when the...
-        //  drawAllAtlasRegions function is called.)
     }
-
 }
 
 function drawAllAtlasRegions() {
-    for(let i=0; i<regionTiers.length; i++) {
+    for(let i=0; i<NUM_REGIONS; i++) {
         drawAtlasRegion(i, false);
     }
 }
 
-function drawAtlasRegion(regionID, boolRedrawAdjacent) {
+function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
     
+    let regionLinesGraph;
+    let lineThickness = 2;
+    let lineColor = 0xffffff;
     //Remove previous nodes and lines for this region.
-    if (linesContainer.children.length > regionID) {
+    if (nodesContainer.children.length > regionID) {
         // linesContainer.removeChildAt(regionID);
         // nodesContainer.removeChildAt(regionID);
         //This removes all references to the container AND child DisplayObjects, allowing...
         //  the garbage collector to remove them from memory. Simply doing...
         //  container.removeChildAt does not do this
-        linesContainer.getChildAt(regionID).destroy(true, false, false);
+        regionLinesGraph = linesContainer.getChildAt(regionID).clear();//destroy(true, false, false);
+        //The nodesContainer can be cached
         nodesContainer.getChildAt(regionID).destroy(true, false, false);
+    } else {
+        //init region lines Graphics object (Lines)
+        regionLinesGraph = new PIXI.Graphics();
     }
 
     //This bit keeps track of whether adjacent regions have been redrawn w/in this func call
-    boolRedrawAdjacent = boolRedrawAdjacent || false;
     let regionsRedrawn = [false, false, false, false, false, false, false, false];
 
     //init region nodes Graphics object (Nodes)
@@ -167,80 +195,87 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent) {
     const nodeCenterOffset = 25*mapScaleFactor/4;
     const nodeRadius = 30*mapScaleFactor/4;
 
-    //init region lines Graphics object (Lines)
-    let regionLinesGraph = new PIXI.Graphics();
-    let lineThickness = 2;
-    let lineColor = 0xffffff;
-
     //Set text display options
-    let textDisplayOptions = {fontFamily : 'Arial', fontSize: 24*mapScaleFactor/4, fill : 0xff1010, align : 'center'};
+    let textDisplayOptions = {fontFamily : 'Arial', fontSize: 24*mapScaleFactor/4, fill : 0xff1010, align : 'right'};
 
-    //Add Nodes and Lines to their respective containers
+    //Add Nodes and Lines to their respective containers and renderedRegion list
     linesContainer.addChildAt(regionLinesGraph, regionID);
     nodesContainer.addChildAt(regionNodesGraph, regionID);
 
     //'region' stores the IDs of the nodes in this region.
     let region = regionNodes[regionID];
+    let regionTier = regionTiers[regionID];
     //Do not redraw the region that is currently being drawn.
     regionsRedrawn[regionID] = true;
 
     //loop over nodes in this region
     for (let i=0; i<region.length; i++) {
-        let entry = region[i];
+        let entryID = region[i];
 
         //Node location and neighbor IDs
-        let entryData = getTieredNodeDataByID(entry);
+        let entryData = getTieredNodeDataByID(entryID);//tieredNodeData[entryID][regionTiers[regionID]];//getTieredNodeDataByID(entryID);
         let entryX = entryData[0];
         let entryY = entryData[1];
         let entryAtlasNodeKeys = entryData[2];
-        
-        //Draw Connecting Lines between nodes (PIXI.Graphics)
-        if (boolDrawLines) {
-            for (let i=0; i<entryAtlasNodeKeys.length; i++) {
-                let adjNodeKey = entryAtlasNodeKeys[i];
-                let adjNodeData = getTieredNodeDataByID(adjNodeKey)
-    
-                //Draw Lines
-                regionLinesGraph.lineStyle(lineThickness, lineColor)
-                    .moveTo(entryX+nodeCenterOffset, entryY+nodeCenterOffset)
-                    .lineTo(adjNodeData[0]+nodeCenterOffset, adjNodeData[1]+nodeCenterOffset);
-    
-                //Redraw adjacent region if not already done.
-                let adjNodeRegionKey = mapData[adjNodeKey].AtlasRegionsKey;
-                if (boolRedrawAdjacent && regionsRedrawn[adjNodeRegionKey] === false) {
-                    regionsRedrawn[adjNodeRegionKey] = true;
-                    drawAtlasRegion(adjNodeRegionKey);
+        let existsAtThisTier = entryData[3]>0;
+        if (existsAtThisTier) {
+            //Draw Connecting Lines between nodes (PIXI.Graphics)
+            if (boolDrawLines) {
+                for (let i=0; i<entryAtlasNodeKeys.length; i++) {
+                    let adjNodeKey = entryAtlasNodeKeys[i];
+                    let adjNodeData = getTieredNodeDataByID(adjNodeKey);
+
+                    //Draw Lines
+                    regionLinesGraph.lineStyle(lineThickness, lineColor)
+                        .moveTo(entryX+nodeCenterOffset, entryY+nodeCenterOffset)
+                        .lineTo(adjNodeData[0]+nodeCenterOffset, adjNodeData[1]+nodeCenterOffset);
+
+                    //Redraw adjacent region if not already done.
+                    let adjNodeRegionKey = nodeData[adjNodeKey].regionID;
+                    if (boolRedrawAdjacent && regionsRedrawn[adjNodeRegionKey] === false) {
+                        regionsRedrawn[adjNodeRegionKey] = true;
+                        drawAtlasRegion(adjNodeRegionKey);
+                    }
                 }
             }
-        }
 
-        //Draw Nodes on 'regionNodesGraph'
-        if (boolDrawNodes) {
-            regionNodesGraph.drawCircle(
-                entryX+nodeCenterOffset,
-                entryY+nodeCenterOffset,
-                nodeRadius);
-        }
-        //Add node label text sprites to 'regionNodesGraph' 
-        if (boolDrawNames) {
-            let textSprite = new PIXI.Text(entry, textDisplayOptions);
-            textSprite.x = entryX;
-            textSprite.y = entryY;
-            regionNodesGraph.addChild(textSprite);
+            //Draw Nodes on 'regionNodesGraph'
+            if (boolDrawNodes) {
+                regionNodesGraph.drawCircle(
+                    entryX+nodeCenterOffset,
+                    entryY+nodeCenterOffset,
+                    nodeRadius);
+            }
+            //Add node label text sprites to 'regionNodesGraph' 
+            if (boolDrawNames) {
+                let nameSprite = new PIXI.Text(nodeData[entryID].name, textDisplayOptions);
+                nameSprite.x = entryX+nodeCenterOffset;
+                nameSprite.y = entryY;
+                nameSprite.anchor.set(0.5,1)
+                regionNodesGraph.addChild(nameSprite);
+            }
+            //Add node label text sprites to 'regionNodesGraph' 
+            if (boolDrawTiers) {
+                let nameSprite = new PIXI.Text(entryData[3], textDisplayOptions);
+                nameSprite.x = entryX+nodeCenterOffset;
+                nameSprite.y = entryY+nodeRadius;
+                nameSprite.anchor.set(0.5,0)
+                regionNodesGraph.addChild(nameSprite);
+            }
         }
         
     }
 
     //Force immediate stage render
     //TODO see if something like this helps at ALL, or if its actually a hindrance.
-    app.renderer.render(app.stage);
+    app.renderer.render(stage);
 }
 
 // Returns an array of length 3 based on the supplied region tier.
 // Format: [node_x_pos, node_y_pos, [list_of_neighbor_node_ids]]
 function getTieredNodeDataByID(nodeID) {
 
-    let entry = mapData[nodeID];
+    /*let entry = mapData[nodeID];
     let tier = regionTiers[entry.AtlasRegionsKey];
     //Defualt entryX and entryY (offscreen)
     let entryX = -100;
@@ -285,24 +320,24 @@ function getTieredNodeDataByID(nodeID) {
         break;
     }
 
-    return [entryX, entryY, atlasNodeKeys];
+    return [entryX, entryY, atlasNodeKeys];*/
+    let node = nodeData[nodeID];
+    let res = node.tieredData[regionTiers[node.regionID]];
+    let out = [0,0,res[2], res[3]];
+    out[0] = res[0]*mapScaleFactor;
+    out[1] = res[1]*mapScaleFactor;
+    return out;
 }
 
 function cycleAllAtlasRegionTiers() {
     
-    for(let i=0; i<regionTiers.length; i++) {
-        if (regionTiers[i] < 4) {
-            regionTiers[i] += 1;
-        } else {
-            regionTiers[i] = 0;
-        }
-        let btn = document.getElementsByClassName("watchstone "+i);
-        btn[0].innerHTML = "Tier "+regionTiers[i];
+    for(let i=0; i<NUM_REGIONS; i++) {
+        cycleAtlasRegionTier(i, false);
     }
     drawAllAtlasRegions();
 }
 
-function cycleAtlasRegionTier(regionID) {
+function cycleAtlasRegionTier(regionID, boolDrawRegion=true) {
     if (regionTiers[regionID] < 4) {
         regionTiers[regionID] += 1;
     } else {
@@ -313,7 +348,9 @@ function cycleAtlasRegionTier(regionID) {
         = "Tier "+regionTiers[regionID];
     
     //Redraw this region & adjacent regions
-    drawAtlasRegion(regionID, true);
+    if (boolDrawRegion) {
+        drawAtlasRegion(regionID, true);
+    }
 }
 
 //Place Atlas tier buttons, set their click function, and...
@@ -428,7 +465,7 @@ function clearPixiViews() {
 let directionMult = 1;
 function animationLoop(delta) {
     
-    // let lib = app.stage.getChildAt(1);
+    // let lib = stage.getChildAt(1);
     
     // if (lib.y < 0 || lib.y > 100) {
     //     directionMult *= -1;

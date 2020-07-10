@@ -104,10 +104,11 @@ function getAtlasSpriteScale() {
     };
 }
 function getAtlasSpritePosition() {
-    return {
-        x: app.screen.width/2,
-        y: app.screen.height/2
-    };
+    return getAtlasContainerPositions();
+    // return {
+    //     x: app.screen.width/2,
+    //     y: app.screen.height/2
+    // };
 }
 
 function initPixiDisplayObjects(loader, resources) {
@@ -116,7 +117,7 @@ function initPixiDisplayObjects(loader, resources) {
     
     //Add Atlas sprite to stage
     stage.addChildAt(atlasSprite, 0);
-    atlasSprite.anchor.set(0.5);
+    // atlasSprite.anchor.set(0.5);
     initPixiContainers();
 }
 function initPixiContainers() {

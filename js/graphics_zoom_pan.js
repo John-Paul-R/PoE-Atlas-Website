@@ -3,10 +3,14 @@
  * !Source: https://github.com/anvaka/ngraph/blob/master/examples/pixi.js/03%20-%20Zoom%20And%20Pan/globalInput.js
 */
 
+//The first object that is added to this should be the background
+//(Must have defined bounds, like a sprite)
+//(this ^^^ is for constraining the zoom/pan to the screen)
 var displayObjs = []
 
 function initZoomPanInput(pixiApp) {
 
+    var mainObj = displayObjs[0];
     //---------------------
     // Add Event Listeners
     //---------------------
@@ -20,7 +24,13 @@ function initZoomPanInput(pixiApp) {
     addDragNDrop(pixiApp);
 
     //Reset zoom & position of DisplayObjects on Double-Click
-    app.view.addEventListener('dblclick', function(e) {
+    app.view.addEventListener('dblclick', resetPositions);
+
+
+    //-------------------
+    // Private Functions
+    //-------------------
+    function resetPositions() {
         for (let i=0; i<displayObjs.length; i++) {
             let dispObj = displayObjs[i];
             //reset positions of bound objects to their starting positions
@@ -29,13 +39,9 @@ function initZoomPanInput(pixiApp) {
             //reset zoom/scale of bound objects to starting values
             let scale = dispObj.scaleFunc();
             dispObj.obj.scale.set(scale.x, scale.y);
-        };
-    });
+        }
+    }
 
-
-    //-------------------
-    // Private Functions
-    //-------------------
     function addDragNDrop(pixiApp) {
         var stage = pixiApp.stage;
         stage.interactive = true;
@@ -54,21 +60,40 @@ function initZoomPanInput(pixiApp) {
             return;
             }
             var pos = interactEvent.data.global;
-            var dx = pos.x - prevX;
-            var dy = pos.y - prevY;
-
+            //dx, dy
+            let delta = limitMoveToRange(pos.x-prevX, pos.y-prevY);
+                        
             opOnDisplayObjs(function(obj) {
-                obj.position.x += dx;
-                obj.position.y += dy;
+                obj.position.x += delta.x;
+                obj.position.y += delta.y;
                 prevX = pos.x; prevY = pos.y;
             });
             //limit positions to Atlas sprite display bounds
         };
 
-        stage.mouseup = function (moveDate) {
+        window.addEventListener('mouseup', function (e) {
             isDragging = false;
-        };
+        });
     }
+    function limitMoveToRange(dx, dy) {
+        let mainObjO = mainObj.obj;
+        let screen = pixiApp.screen;
+        dx = limit2dMoveToRange(mainObjO.x, mainObjO.width, dx, screen.x, screen.x+screen.width);
+        dy = limit2dMoveToRange(mainObjO.y, mainObjO.height, dy, screen.y, screen.y+screen.height);
+        return {x: dx, y: dy}
+    }
+
+    function limit2dMoveToRange(moverPos, moverLength, delta, min, max) {
+        
+        if (moverPos+delta > min) {
+            delta = min-moverPos;
+        } else if (moverPos+moverLength+delta < max) {
+            delta = max-(moverPos+moverLength);
+        }
+        return delta;
+    }
+
+    //TODO Note: when you zoom in, then resize the window, the containers don't resize/reposition correctly.
 
     var getGraphCoordinates = (function () {
         var ctx = {
@@ -89,21 +114,34 @@ function initZoomPanInput(pixiApp) {
         // -- We could also do it relative to the average of the elements...? idk, will see
         direction = isZoomIn ? 1 : -1;
         var factor = (1 + direction * 0.1);
-        opOnDisplayObjs(function(obj) {
-            obj.scale.x *= factor;
-            obj.scale.y *= factor;
+        let minScale = mainObj.scaleFunc();
+        let cScale = mainObj.obj.scale;
+        let baseScale = mainObj.scaleFunc();
+        if (cScale.x*factor > minScale.x && cScale.y*factor > minScale.y) {
+           
+            opOnDisplayObjs(function(obj) {
+                obj.scale.x *= factor;
+                obj.scale.y *= factor;
+            });
 
-            // Technically code below is not required, but helps to zoom on mouse
-            // cursor, instead center of graphGraphics coordinates
-            var mainDisplayObj = obj;
+            var mainDisplayObj = mainObj.obj;
             var beforeTransform = getGraphCoordinates(mainDisplayObj, x, y);
             mainDisplayObj.updateTransform();//TODO figure out what this does. Remove & run. See if all DisplayObjects need to have this done
             var afterTransform = getGraphCoordinates(mainDisplayObj, x, y);
-        
-            obj.position.x += (afterTransform.x - beforeTransform.x) * obj.scale.x;
-            obj.position.y += (afterTransform.y - beforeTransform.y) * obj.scale.y;
-            obj.updateTransform();
-        });
+            let dx = (afterTransform.x - beforeTransform.x) * mainDisplayObj.scale.x;
+            let dy = (afterTransform.y - beforeTransform.y) * mainDisplayObj.scale.y;
+            let delta = limitMoveToRange(dx, dy);
+
+            opOnDisplayObjs(function (obj) {
+                // Technically code below is not required, but helps to zoom on mouse
+                // cursor, instead center of graphGraphics coordinates
+                obj.position.x += delta.x;
+                obj.position.y += delta.y;
+                obj.updateTransform();
+            });
+        } else {
+            resetPositions();
+        }
     }
 
     function opOnDisplayObjs(func) {

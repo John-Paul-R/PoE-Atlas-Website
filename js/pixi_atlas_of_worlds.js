@@ -20,10 +20,10 @@ let maxW = 4096;
 let pixiH = 2304;
 let pixiW = 4096;
 
-let app =  new PIXI.Application({
+var app =  new PIXI.Application({
     width: pixiW,
     height: pixiH,
-    autoStart: false,
+    autoStart: true,
     autoResize:true,
     antialias: true,
     sharedLoader: true,
@@ -81,13 +81,19 @@ function resizePixiView() {
     atlasSprite.scale.set(pixiW/maxW, pixiH/maxH);
     let windowMidX = app.screen.width/2;
     let windowMidY = app.screen.height/2;
-    let xOffset = (app.screen.width-pixiW)/2;
-    let yOffset = (app.screen.height-pixiH)/2;
+    
     atlasSprite.position.set(windowMidX, windowMidY);
-    linesContainer.x = xOffset;
-    linesContainer.y = yOffset;
-    nodesContainer.x = xOffset;
-    nodesContainer.y = yOffset;
+    let cPos = getAtlasContainerPositions();
+    linesContainer.x = cPos.x;
+    linesContainer.y = cPos.y;
+    nodesContainer.x = cPos.x;
+    nodesContainer.y = cPos.y;
+}
+function getAtlasContainerPositions() {
+    return {
+        x: (app.screen.width-pixiW)/2,
+        y: (app.screen.height-pixiH)/2
+    };
 }
 
 function initPixiDisplayObjects(loader, resources) {
@@ -110,8 +116,13 @@ function initPixiContainers() {
 
     // linesContainer.anchor.set(0.5);
     // nodesContainer.anchor.set(0.5);
-}
 
+    //Bind input to graphics containers
+    bindZoomPanInput(linesContainer);
+    bindZoomPanInput(nodesContainer);
+
+    initZoomPanInput(app);
+}
 //Factor by which to multiply node positions from the data file when drawing
 var mapScaleFactor = pixiW/maxW*4;//4.05; //TODO: Make sure that pixi's text rendering is not the cause of misalignments.
 const NUM_REGIONS = 8;
@@ -191,12 +202,40 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
     //init region nodes Graphics object (Nodes)
     let regionNodesGraph = new PIXI.Graphics();
     regionNodesGraph.lineStyle(2, '0x0', 1, 0.5, false);
-    regionNodesGraph.beginFill(0,1)
+    regionNodesGraph.beginFill('0x555555',1)
     const nodeCenterOffset = 25*mapScaleFactor/4;
     const nodeRadius = 30*mapScaleFactor/4;
-
+    const tierFontSize = 24*mapScaleFactor/4;
+    const tierFontFamily = 'Arial';
+    const tierFontStyle = '';
+    const nameFontStyle = 'bold';
     //Set text display options
-    let textDisplayOptions = {fontFamily : 'Arial', fontSize: 24*mapScaleFactor/4, fill : 0xff1010, align : 'right'};
+    let tierTextStyleRed = {
+        fontFamily : tierFontFamily,
+        fontSize: tierFontSize,
+        fontStyle: tierFontStyle,
+        // fill : 0xcc1010,
+        fill : 0xdd0000,
+    };
+    let tierTextStyleYellow = {
+        fontFamily : tierFontFamily,
+        fontSize: tierFontSize,
+        fontStyle: tierFontStyle,
+        fill : 0xdddd00,
+    };
+    let tierTextStyleWhite = {
+        fontFamily : tierFontFamily,
+        fontSize: tierFontSize,
+        fontStyle: tierFontStyle,
+        fill : 0xffffff,
+    };
+
+    let nameTextStyleBlack = {
+        fontFamily : tierFontFamily,
+        fontSize: tierFontSize,
+        fontStyle: nameFontStyle,
+        fill : 0x000000,
+    };
 
     //Add Nodes and Lines to their respective containers and renderedRegion list
     linesContainer.addChildAt(regionLinesGraph, regionID);
@@ -204,7 +243,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
 
     //'region' stores the IDs of the nodes in this region.
     let region = regionNodes[regionID];
-    let regionTier = regionTiers[regionID];
+
     //Do not redraw the region that is currently being drawn.
     regionsRedrawn[regionID] = true;
 
@@ -248,19 +287,27 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
             }
             //Add node label text sprites to 'regionNodesGraph' 
             if (boolDrawNames) {
-                let nameSprite = new PIXI.Text(nodeData[entryID].name, textDisplayOptions);
+                let nameSprite = new PIXI.Text(nodeData[entryID].name, nameTextStyleBlack);
+                nameSprite.resolution = 2;
                 nameSprite.x = entryX+nodeCenterOffset;
-                nameSprite.y = entryY;
+                nameSprite.y = entryY-nodeCenterOffset/4;
                 nameSprite.anchor.set(0.5,1)
                 regionNodesGraph.addChild(nameSprite);
             }
             //Add node label text sprites to 'regionNodesGraph' 
             if (boolDrawTiers) {
-                let nameSprite = new PIXI.Text(entryData[3], textDisplayOptions);
-                nameSprite.x = entryX+nodeCenterOffset;
-                nameSprite.y = entryY+nodeRadius;
-                nameSprite.anchor.set(0.5,0)
-                regionNodesGraph.addChild(nameSprite);
+                let tierSprite = new PIXI.Text(entryData[3]);
+                if (entryData[3] > 9) {
+                    tierSprite.style = tierTextStyleRed;
+                } else if (entryData[3] > 5) {
+                    tierSprite.style = tierTextStyleYellow;
+                } else {
+                    tierSprite.style = tierTextStyleWhite;
+                }
+                tierSprite.x = entryX+nodeCenterOffset;
+                tierSprite.y = entryY+nodeCenterOffset;
+                tierSprite.anchor.set(0.5,0.5)
+                regionNodesGraph.addChild(tierSprite);
             }
         }
         
@@ -371,13 +418,17 @@ function initAtlasTierButtons() {
 
 //Place atlas tier buttons in center, stacked vertically
 function placeAtlasTierButtons() {
-    let elements = document.getElementsByClassName("watchstone centered");
+    let elements = document.getElementsByClassName("watchstone");
     let btnHeight = elements[0].offsetHeight;
-    let y0 = (elements.length*btnHeight)/2;
+    // let y0 = (elements.length*btnHeight)/2;
 
-    for(let i=0; i<elements.length; i++){
-        placeElement(elements[i], midx, midy-y0+i*btnHeight);
-    }
+    // for(let i=0; i<elements.length; i++){
+    //     placeElement(elements[i], midx, midy-y0+i*btnHeight);
+    // }
+    let buttonsBox = document.getElementById("watchstone_btn_container");
+    //buttonsBox.style.width = '100px';
+    buttonsBox.style.height = elements.length*btnHeight+'px';
+    placeElement(buttonsBox, midx, midy);
 }
 
 function placeElementByID(elementID, x_pos, y_pos) {

@@ -8,6 +8,7 @@
         if(!PIXI.utils.isWebGLSupported()){type="canvas"}
         PIXI.utils.sayHello(type)
     </script>
+    <script src='js/graphics_zoom_pan.js'></script>
     <title>PoE Atlas</title>
 </head>
 
@@ -18,15 +19,18 @@
     <section id="page_container">
         <div id="content_main" class="filled">
             <div id="atlas_of_worlds">
-                <button id="master_tier_button" class="watchstone master centered">Cycle All</button>
-                <button id="atlas_tier_button_r0" class="watchstone 0 centered">Tier 0</button>
-                <button id="atlas_tier_button_r1" class="watchstone 1 centered">Tier 0</button>
-                <button id="atlas_tier_button_r2" class="watchstone 2 centered">Tier 0</button>
-                <button id="atlas_tier_button_r3" class="watchstone 3 centered">Tier 0</button>
-                <button id="atlas_tier_button_r4" class="watchstone 4 centered">Tier 0</button>
-                <button id="atlas_tier_button_r5" class="watchstone 5 centered">Tier 0</button>
-                <button id="atlas_tier_button_r6" class="watchstone 6 centered">Tier 0</button>
-                <button id="atlas_tier_button_r7" class="watchstone 7 centered">Tier 0</button>
+                <div id="watchstone_btn_container", class="centered">
+                    <button id="master_tier_button" class="watchstone master">Cycle All</button>
+                    <button id="atlas_tier_button_r0" class="watchstone 0">Tier 0</button>
+                    <button id="atlas_tier_button_r1" class="watchstone 1">Tier 0</button>
+                    <button id="atlas_tier_button_r2" class="watchstone 2">Tier 0</button>
+                    <button id="atlas_tier_button_r3" class="watchstone 3">Tier 0</button>
+                    <button id="atlas_tier_button_r4" class="watchstone 4">Tier 0</button>
+                    <button id="atlas_tier_button_r5" class="watchstone 5">Tier 0</button>
+                    <button id="atlas_tier_button_r6" class="watchstone 6">Tier 0</button>
+                    <button id="atlas_tier_button_r7" class="watchstone 7">Tier 0</button>
+                </div>
+            
             </div>
             <div id="atlas_overlay" class="overlay">
                 <div id="overlay_top">

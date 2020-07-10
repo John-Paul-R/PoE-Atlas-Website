@@ -1,6 +1,6 @@
 /*
- * !Note: this is NOT my code. I just made small adjustments.
- * !Source: https://github.com/anvaka/ngraph/blob/master/examples/pixi.js/03%20-%20Zoom%20And%20Pan/globalInput.js
+ * !Note: Much of this file is NOT my code.
+ * !Original Source: https://github.com/anvaka/ngraph/blob/master/examples/pixi.js/03%20-%20Zoom%20And%20Pan/globalInput.js
 */
 
 //The first object that is added to this should be the background
@@ -11,6 +11,7 @@ var displayObjs = []
 function initZoomPanInput(pixiApp) {
 
     var mainObj = displayObjs[0];
+    var mainObjO = mainObj.obj;
     //---------------------
     // Add Event Listeners
     //---------------------
@@ -63,11 +64,10 @@ function initZoomPanInput(pixiApp) {
             //dx, dy
             let delta = limitMoveToRange(pos.x-prevX, pos.y-prevY);
                         
-            opOnDisplayObjs(function(obj) {
-                obj.position.x += delta.x;
-                obj.position.y += delta.y;
-                prevX = pos.x; prevY = pos.y;
-            });
+            mainObjO.position.x += delta.x;
+            mainObjO.position.y += delta.y;
+            prevX = pos.x; prevY = pos.y;
+            
             //limit positions to Atlas sprite display bounds
         };
 
@@ -75,8 +75,8 @@ function initZoomPanInput(pixiApp) {
             isDragging = false;
         });
     }
+
     function limitMoveToRange(dx, dy) {
-        let mainObjO = mainObj.obj;
         let screen = pixiApp.screen;
         dx = limit2dMoveToRange(mainObjO.x, mainObjO.width, dx, screen.x, screen.x+screen.width);
         dy = limit2dMoveToRange(mainObjO.y, mainObjO.height, dy, screen.y, screen.y+screen.height);
@@ -116,29 +116,21 @@ function initZoomPanInput(pixiApp) {
         var factor = (1 + direction * 0.1);
         let minScale = mainObj.scaleFunc();
         let cScale = mainObj.obj.scale;
-        let baseScale = mainObj.scaleFunc();
         if (cScale.x*factor > minScale.x && cScale.y*factor > minScale.y) {
-           
-            opOnDisplayObjs(function(obj) {
-                obj.scale.x *= factor;
-                obj.scale.y *= factor;
-            });
+            //Scale Atlas
+            mainObjO.scale.x *= factor;
+            mainObjO.scale.y *= factor;
 
-            var mainDisplayObj = mainObj.obj;
-            var beforeTransform = getGraphCoordinates(mainDisplayObj, x, y);
-            mainDisplayObj.updateTransform();//TODO figure out what this does. Remove & run. See if all DisplayObjects need to have this done
-            var afterTransform = getGraphCoordinates(mainDisplayObj, x, y);
-            let dx = (afterTransform.x - beforeTransform.x) * mainDisplayObj.scale.x;
-            let dy = (afterTransform.y - beforeTransform.y) * mainDisplayObj.scale.y;
-            let delta = limitMoveToRange(dx, dy);
+            let beforeTransform = getGraphCoordinates(mainObjO, x, y);
+            mainObjO.updateTransform();
+            let afterTransform = getGraphCoordinates(mainObjO, x, y);
+            let delta = limitMoveToRange(
+                (afterTransform.x - beforeTransform.x) * mainObjO.scale.x,
+                (afterTransform.y - beforeTransform.y) * mainObjO.scale.y);
+            mainObjO.position.x += delta.x;
+            mainObjO.position.y += delta.y;
+            mainObjO.updateTransform();
 
-            opOnDisplayObjs(function (obj) {
-                // Technically code below is not required, but helps to zoom on mouse
-                // cursor, instead center of graphGraphics coordinates
-                obj.position.x += delta.x;
-                obj.position.y += delta.y;
-                obj.updateTransform();
-            });
         } else {
             resetPositions();
         }

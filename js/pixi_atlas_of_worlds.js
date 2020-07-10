@@ -82,19 +82,20 @@ function resizePixiView() {
     let atlasPos = getAtlasSpritePosition();
     atlasSprite.position.set(atlasPos.x, atlasPos.y);
 
-    let cPos = getAtlasContainerPositions();
-    linesContainer.x = cPos.x;
-    linesContainer.y = cPos.y;
-    nodesContainer.x = cPos.x;
-    nodesContainer.y = cPos.y;
+    let containerScale = getAtlasContainerScales()
+    linesContainer.scale.set(containerScale.x, containerScale.y);
+    nodesContainer.scale.set(containerScale.x, containerScale.y);
+    let containerPos = getAtlasContainerPositions();
+    linesContainer.position.set(containerPos.x, containerPos.y);
+    nodesContainer.position.set(containerPos.x, containerPos.y);
 }
 function getAtlasContainerScales() {
-    return {x:1, y:1};
+    return {x:maxW/pixiW, y:maxH/pixiH};
 }
 function getAtlasContainerPositions() {
     return {
-        x: (app.screen.width-pixiW)/2,
-        y: (app.screen.height-pixiH)/2
+        x: 0,
+        y: 0
     };
 }
 function getAtlasSpriteScale() {
@@ -104,11 +105,10 @@ function getAtlasSpriteScale() {
     };
 }
 function getAtlasSpritePosition() {
-    return getAtlasContainerPositions();
-    // return {
-    //     x: app.screen.width/2,
-    //     y: app.screen.height/2
-    // };
+    return {
+        x: (app.screen.width-pixiW)/2,
+        y: (app.screen.height-pixiH)/2
+    };
 }
 
 function initPixiDisplayObjects(loader, resources) {
@@ -125,9 +125,10 @@ function initPixiContainers() {
     linesContainer = new PIXI.Container();
     nodesContainer = new PIXI.Container();
 
+    
     //Add Lines and Nodes containers to stage. (Lines 1st, so that they are in back.)
-    stage.addChild(linesContainer);
-    stage.addChild(nodesContainer);
+    atlasSprite.addChild(linesContainer);
+    atlasSprite.addChild(nodesContainer);
 
     // linesContainer.anchor.set(0.5);
     // nodesContainer.anchor.set(0.5);
@@ -304,7 +305,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
             //Add node label text sprites to 'regionNodesGraph' 
             if (boolDrawNames) {
                 let nameSprite = new PIXI.Text(nodeData[entryID].name, nameTextStyleBlack);
-                nameSprite.resolution = 2;
+                nameSprite.resolution = 3;
                 nameSprite.x = entryX+nodeCenterOffset;
                 nameSprite.y = entryY-nodeCenterOffset/4;
                 nameSprite.anchor.set(0.5,1)
@@ -313,6 +314,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
             //Add node label text sprites to 'regionNodesGraph' 
             if (boolDrawTiers) {
                 let tierSprite = new PIXI.Text(entryData[3]);
+                tierSprite.resolution = 3;
                 if (entryData[3] > 9) {
                     tierSprite.style = tierTextStyleRed;
                 } else if (entryData[3] > 5) {

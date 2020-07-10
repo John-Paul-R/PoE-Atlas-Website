@@ -21,13 +21,15 @@ function initZoomPanInput(pixiApp) {
 
     //Reset zoom & position of DisplayObjects on Double-Click
     app.view.addEventListener('dblclick', function(e) {
-        opOnDisplayObjs(function(obj) {
-            pos = getAtlasContainerPositions();
+        for (let i=0; i<displayObjs.length; i++) {
+            let dispObj = displayObjs[i];
             //reset positions of bound objects to their starting positions
-            obj.position.set(pos.x, pos.y);
+            let pos = dispObj.posFunc();
+            dispObj.obj.position.set(pos.x, pos.y);
             //reset zoom/scale of bound objects to starting values
-            obj.scale.set(1,1);
-        });
+            let scale = dispObj.scaleFunc();
+            dispObj.obj.scale.set(scale.x, scale.y);
+        };
     });
 
 
@@ -60,7 +62,7 @@ function initZoomPanInput(pixiApp) {
                 obj.position.y += dy;
                 prevX = pos.x; prevY = pos.y;
             });
-            
+            //limit positions to Atlas sprite display bounds
         };
 
         stage.mouseup = function (moveDate) {
@@ -90,16 +92,14 @@ function initZoomPanInput(pixiApp) {
         opOnDisplayObjs(function(obj) {
             obj.scale.x *= factor;
             obj.scale.y *= factor;
-        });
 
-        // Technically code below is not required, but helps to zoom on mouse
-        // cursor, instead center of graphGraphics coordinates
-        var mainDisplayObj = displayObjs[0];
-        var beforeTransform = getGraphCoordinates(mainDisplayObj, x, y);
-        mainDisplayObj.updateTransform();//TODO figure out what this does. Remove & run. See if all DisplayObjects need to have this done
-        var afterTransform = getGraphCoordinates(mainDisplayObj, x, y);
+            // Technically code below is not required, but helps to zoom on mouse
+            // cursor, instead center of graphGraphics coordinates
+            var mainDisplayObj = obj;
+            var beforeTransform = getGraphCoordinates(mainDisplayObj, x, y);
+            mainDisplayObj.updateTransform();//TODO figure out what this does. Remove & run. See if all DisplayObjects need to have this done
+            var afterTransform = getGraphCoordinates(mainDisplayObj, x, y);
         
-        opOnDisplayObjs(function(obj) {
             obj.position.x += (afterTransform.x - beforeTransform.x) * obj.scale.x;
             obj.position.y += (afterTransform.y - beforeTransform.y) * obj.scale.y;
             obj.updateTransform();
@@ -108,12 +108,16 @@ function initZoomPanInput(pixiApp) {
 
     function opOnDisplayObjs(func) {
         for (let i=0; i<displayObjs.length; i++) {
-            func(displayObjs[i]);
+            func(displayObjs[i].obj);
         }
     }
 }
 
-function bindZoomPanInput(displayObj) {
+function bindZoomPanInput(displayObj, defaultScaleFunc, defaultPositionFunc) {
     //Add the DisplayObject to the list of objects to be affected by mouse/wheel input events
-    displayObjs.push(displayObj);
+    displayObjs.push({
+        obj: displayObj,
+        scaleFunc: defaultScaleFunc,
+        posFunc: defaultPositionFunc
+    });
 }

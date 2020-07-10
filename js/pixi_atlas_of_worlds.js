@@ -64,7 +64,6 @@ function setup(loader, resources) {
     loadMapsData();
     initAtlasTierButtons();
     
-
     //60fps (more?) Animation Ticker (is this fps capped?)
     // app.ticker.add(delta => animationLoop(delta));
 }
@@ -78,21 +77,36 @@ function createPixiView() {
 
 function resizePixiView() {
     // app.renderer.resize(pixiW, pixiH);
-    atlasSprite.scale.set(pixiW/maxW, pixiH/maxH);
-    let windowMidX = app.screen.width/2;
-    let windowMidY = app.screen.height/2;
-    
-    atlasSprite.position.set(windowMidX, windowMidY);
+    let atlasScale = getAtlasSpriteScale();
+    atlasSprite.scale.set(atlasScale.x, atlasScale.y);
+    let atlasPos = getAtlasSpritePosition();
+    atlasSprite.position.set(atlasPos.x, atlasPos.y);
+
     let cPos = getAtlasContainerPositions();
     linesContainer.x = cPos.x;
     linesContainer.y = cPos.y;
     nodesContainer.x = cPos.x;
     nodesContainer.y = cPos.y;
 }
+function getAtlasContainerScales() {
+    return {x:1, y:1};
+}
 function getAtlasContainerPositions() {
     return {
         x: (app.screen.width-pixiW)/2,
         y: (app.screen.height-pixiH)/2
+    };
+}
+function getAtlasSpriteScale() {
+    return {
+        x: pixiW/maxW,
+        y: pixiH/maxH
+    };
+}
+function getAtlasSpritePosition() {
+    return {
+        x: app.screen.width/2,
+        y: app.screen.height/2
     };
 }
 
@@ -118,8 +132,9 @@ function initPixiContainers() {
     // nodesContainer.anchor.set(0.5);
 
     //Bind input to graphics containers
-    bindZoomPanInput(linesContainer);
-    bindZoomPanInput(nodesContainer);
+    bindZoomPanInput(atlasSprite, getAtlasSpriteScale, getAtlasSpritePosition);
+    bindZoomPanInput(linesContainer, getAtlasContainerScales, getAtlasContainerPositions);
+    bindZoomPanInput(nodesContainer, getAtlasContainerScales, getAtlasContainerPositions);
 
     initZoomPanInput(app);
 }

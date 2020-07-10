@@ -3,3 +3,7 @@
 .VSCodeCounter
 
 *.log
+
+(ign)*
+
+pixi/*.js

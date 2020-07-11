@@ -38,6 +38,8 @@ loader.onProgress.add(loadProgressHandler);
 loader.onComplete.add(createPixiView);
 loader
     .add("img/Atlas.jpg")
+    .add("img/line.png")
+    .add("img/line_backgroundfill.png")
     .load(setup);
 
 //The center position of the PIXI canvas. Updates automatically when resized.
@@ -148,10 +150,11 @@ var regionTiers = [0,0,0,0,0,0,0,0]; //Tiers of each region (array index = regio
 var regionNodes = [[], [], [], [], [], [], [], []]; //lists of nodes(IDs) in each region
 var nodeData = [];
 class NodeData {
-    constructor(ID, name, regionID, tieredData) {
+    constructor(ID, name, regionID, isUnique, tieredData) {
         this.ID = ID;
         this.name = name;
         this.regionID = regionID;
+        this.isUnique = isUnique;
         this.tieredData = tieredData;
     }
 }
@@ -169,7 +172,11 @@ function loadMapsData(loader, resources, atlasSprite) {
             for (let i=0; i<mapData.length; i++) {
                 let entry = mapData[i];
                 regionNodes[entry.AtlasRegionsKey].push(entry.RowID);
-                nodeData.push(new NodeData(entry.RowID, entry.Name, entry.AtlasRegionsKey, [
+                nodeData.push(new NodeData(
+                    entry.RowID,
+                    entry.Name,
+                    entry.AtlasRegionsKey,
+                    entry.IsUniqueMapArea, [
                     [entry.X0, entry.Y0, entry.AtlasNodeKeys0, entry.Tier0],
                     [entry.X1, entry.Y1, entry.AtlasNodeKeys1, entry.Tier1],
                     [entry.X2, entry.Y2, entry.AtlasNodeKeys2, entry.Tier2],
@@ -211,6 +218,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
     } else {
         //init region lines Graphics object (Lines)
         regionLinesGraph = new PIXI.Graphics();
+        
     }
 
     //This bit keeps track of whether adjacent regions have been redrawn w/in this func call
@@ -218,8 +226,10 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
 
     //init region nodes Graphics object (Nodes)
     let regionNodesGraph = new PIXI.Graphics();
+    regionNodesGraph.interactive = true;
+    regionNodesGraph.buttonMode = true;
     regionNodesGraph.lineStyle(2, '0x0', 1, 0.5, false);
-    regionNodesGraph.beginFill('0x555555',1)
+    regionNodesGraph.beginFill('0x555555',1);
     const nodeCenterOffset = 25*mapScaleFactor/4;
     const nodeRadius = 30*mapScaleFactor/4;
     const tierFontSize = 24*mapScaleFactor/4;
@@ -232,7 +242,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
         fontSize: tierFontSize,
         fontStyle: tierFontStyle,
         // fill : 0xcc1010,
-        fill : 0xdd0000,
+        fill : 0xee0000,
     };
     let tierTextStyleYellow = {
         fontFamily : tierFontFamily,
@@ -282,9 +292,24 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
                     let adjNodeData = getTieredNodeDataByID(adjNodeKey);
 
                     //Draw Lines
-                    regionLinesGraph.lineStyle(lineThickness, lineColor)
-                        .moveTo(entryX+nodeCenterOffset, entryY+nodeCenterOffset)
-                        .lineTo(adjNodeData[0]+nodeCenterOffset, adjNodeData[1]+nodeCenterOffset);
+                    let startX =entryX+nodeCenterOffset,
+                    startY = entryY+nodeCenterOffset
+                    endX = adjNodeData[0]+nodeCenterOffset,
+                    endY = adjNodeData[1]+nodeCenterOffset;
+                    let dX = endX-startX;
+                    let dY = endY-startY;
+                    let angle = Math.atan2(dY, dX);
+
+
+                    let lineTexStyle = {
+                        width: 1,
+                        texture: app.loader.resources["img/line.png"].texture,
+                        alignment: 1,
+                        matrix: new PIXI.Matrix(.5,0, 0,.5, 0,0).rotate(angle),//.translate(dX/4,dY/4)
+                    }
+                    regionLinesGraph.lineTextureStyle(lineTexStyle)
+                        .moveTo(startX, startY)
+                        .lineTo(endX, endY);
 
                     //Redraw adjacent region if not already done.
                     let adjNodeRegionKey = nodeData[adjNodeKey].regionID;
@@ -297,6 +322,11 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
 
             //Draw Nodes on 'regionNodesGraph'
             if (boolDrawNodes) {
+                if (nodeData[entryID].isUnique) {
+                    regionNodesGraph.beginFill('0x554411',1);
+                } else {
+                    regionNodesGraph.beginFill('0x555555',1);
+                }
                 regionNodesGraph.drawCircle(
                     entryX+nodeCenterOffset,
                     entryY+nodeCenterOffset,

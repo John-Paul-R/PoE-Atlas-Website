@@ -115,21 +115,24 @@ function initZoomPanInput(pixiApp) {
         direction = isZoomIn ? 1 : -1;
         var factor = (1 + direction * 0.1);
         let minScale = mainObj.scaleFunc();
+        let maxScale = minScale.x*5
         let cScale = mainObj.obj.scale;
         if (cScale.x*factor > minScale.x && cScale.y*factor > minScale.y) {
-            //Scale Atlas
-            mainObjO.scale.x *= factor;
-            mainObjO.scale.y *= factor;
+            if (cScale.x*factor <= maxScale) {
+                //Scale Atlas
+                mainObjO.scale.x *= factor;
+                mainObjO.scale.y *= factor;
 
-            let beforeTransform = getGraphCoordinates(mainObjO, x, y);
-            mainObjO.updateTransform();
-            let afterTransform = getGraphCoordinates(mainObjO, x, y);
-            let delta = limitMoveToRange(
-                (afterTransform.x - beforeTransform.x) * mainObjO.scale.x,
-                (afterTransform.y - beforeTransform.y) * mainObjO.scale.y);
-            mainObjO.position.x += delta.x;
-            mainObjO.position.y += delta.y;
-            mainObjO.updateTransform();
+                let beforeTransform = getGraphCoordinates(mainObjO, x, y);
+                mainObjO.updateTransform();
+                let afterTransform = getGraphCoordinates(mainObjO, x, y);
+                let delta = limitMoveToRange(
+                    (afterTransform.x - beforeTransform.x) * mainObjO.scale.x,
+                    (afterTransform.y - beforeTransform.y) * mainObjO.scale.y);
+                mainObjO.position.x += delta.x;
+                mainObjO.position.y += delta.y;
+                mainObjO.updateTransform();
+            }
 
         } else {
             resetPositions();

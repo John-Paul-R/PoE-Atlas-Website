@@ -78,21 +78,49 @@ function initZoomPanInput(pixiApp) {
 
     function limitMoveToRange(dx, dy) {
         let screen = pixiApp.screen;
-        dx = limit2dMoveToRange(mainObjO.x, mainObjO.width, dx, screen.x, screen.x+screen.width);
-        dy = limit2dMoveToRange(mainObjO.y, mainObjO.height, dy, screen.y, screen.y+screen.height);
+
+        if (mainObjO.width >= screen.width)
+            dx = confine2dViewportToObj(mainObjO.x, mainObjO.width, dx, screen.x, screen.x+screen.width);
+        else
+            dx = confine2dObjToViewport(mainObjO.x, mainObjO.width, dx, screen.x, screen.x+screen.width);
+
+        if (mainObjO.height >= screen.height)
+            dy = confine2dViewportToObj(mainObjO.y, mainObjO.height, dy, screen.y, screen.y+screen.height);
+        else
+            dy = confine2dObjToViewport(mainObjO.y, mainObjO.height, dy, screen.y, screen.y+screen.height);
+        
         return {x: dx, y: dy}
     }
 
-    function limit2dMoveToRange(moverPos, moverLength, delta, min, max) {
+    function confine2dViewportToObj(moverPos, moverLength, delta, min, max) {
         
-        if (moverPos+delta > min) {
+        if (delta>0 && moverPos+delta > min) {
             delta = min-moverPos;
-        } else if (moverPos+moverLength+delta < max) {
+        } else if (delta<0 && moverPos+moverLength+delta < max) {
             delta = max-(moverPos+moverLength);
         }
         return delta;
     }
 
+    function confine2dObjToViewport(moverPos, moverLength, delta, min, max) {
+        
+        if (moverPos+delta < min) {
+            delta = min-moverPos;
+        } else if (moverPos+moverLength+delta > max) {
+            delta = max-(moverPos+moverLength);
+        }
+        return delta;
+    }
+
+
+    // function limitZoom(dx, dy) {
+    //     let screen = pixiApp.screen;
+    //     if (mainObjO.width >= screen.width)
+    //         dx = confine2dViewportToObj(mainObjO.x, mainObjO.width, dx, screen.x, screen.x+screen.width);
+    //     if (mainObjO.height >= screen.height)
+    //         dy = confine2dViewportToObj(mainObjO.y, mainObjO.height, dy, screen.y, screen.y+screen.height);
+    //     return {x: dx, y: dy}
+    // }
     //TODO Note: when you zoom in, then resize the window, the containers don't resize/reposition correctly.
 
     var getGraphCoordinates = (function () {

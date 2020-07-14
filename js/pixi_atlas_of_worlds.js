@@ -145,7 +145,7 @@ const NUM_REGIONS = 8;
 const NUM_TIERS = 5;
 var regionTiers = [0,0,0,0,0,0,0,0]; //Tiers of each region (array index = regionID)
 var regionNodes = [[], [], [], [], [], [], [], []]; //lists of nodes(IDs) in each region
-var nodeData = [];
+var nodeData;
 class NodeData {
     constructor(ID, name, regionID, isUnique, tieredData) {
         this.ID = ID;
@@ -155,33 +155,48 @@ class NodeData {
         this.tieredData = tieredData;
     }
 }
+var nodeNameSprites;
+var nodeTierTextures;
+// var nodeCircleTexture;
+var nodeCircleSprites;
+var nodePixiObjects;
+class NodePixiObject {
+    constructor(nodeContainer, circleSprite, nameSprite, tierSprite) {
+        this.container = nodeContainer;
+        this.circleSprite = circleSprite;
+        this.nameSprite = nameSprite;
+        this.tierSprite = tierSprite;
+    }
+}
 //Request map data, parse it, and draw all Atlas regions for the 1st time.
 function loadMapsData(loader, resources, atlasSprite) {
     
     let request = new XMLHttpRequest();
-    request.open("GET", "data/AtlasNode+WorldAreas_Itemized-1594337404.json", true);
+    request.open("GET", "data/AtlasNode+WorldAreas_Itemized-1594755436.json", true);
     request.send(null);
     request.onreadystatechange = function() {
         if ( request.readyState === 4 && request.status === 200 ) {
-            let mapData = JSON.parse(request.responseText);
+            nodeData = JSON.parse(request.responseText);
             // console.log(mapData);
             // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
-            for (let i=0; i<mapData.length; i++) {
-                let entry = mapData[i];
+
+            for (let i=0; i<nodeData.length; i++) {
+                let entry = nodeData[i];
                 regionNodes[entry.AtlasRegionsKey].push(entry.RowID);
-                nodeData.push(new NodeData(
-                    entry.RowID,
-                    entry.Name,
-                    entry.AtlasRegionsKey,
-                    entry.IsUniqueMapArea, [
-                    [entry.X0, entry.Y0, entry.AtlasNodeKeys0, entry.Tier0],
-                    [entry.X1, entry.Y1, entry.AtlasNodeKeys1, entry.Tier1],
-                    [entry.X2, entry.Y2, entry.AtlasNodeKeys2, entry.Tier2],
-                    [entry.X3, entry.Y3, entry.AtlasNodeKeys3, entry.Tier3],
-                    [entry.X4, entry.Y4, entry.AtlasNodeKeys4, entry.Tier4]
-                ]));
+                // nodeData.push(new NodeData(
+                //     entry.RowID,
+                //     entry.Name,
+                //     entry.AtlasRegionsKey,
+                //     entry.IsUniqueMapArea, [
+                //     [entry.X0, entry.Y0, entry.AtlasNodeKeys0, entry.Tier0],
+                //     [entry.X1, entry.Y1, entry.AtlasNodeKeys1, entry.Tier1],
+                //     [entry.X2, entry.Y2, entry.AtlasNodeKeys2, entry.Tier2],
+                //     [entry.X3, entry.Y3, entry.AtlasNodeKeys3, entry.Tier3],
+                //     [entry.X4, entry.Y4, entry.AtlasNodeKeys4, entry.Tier4]
+                // ]));
                 
             }
+            preloadStaticGraphics();
             //Draw Atlas Nodes & Lines
             drawAllAtlasRegions();
             //(This ^^^ must be in here, instead of after the call to loadMapsData, because the...
@@ -190,6 +205,149 @@ function loadMapsData(loader, resources, atlasSprite) {
         }
     }
 }
+function preloadStaticGraphics() {
+
+    //Init main container object
+    nodePixiObjects = [];
+    //Set text display options
+    const fontSize = 18;//*mapScaleFactor/4
+    const fontFamily = 'Arial';
+    const tierFontStyle = 'bold';
+    const nameFontStyle = 'bold';
+    const textResolution = 8*mapScaleFactor/4;
+    const nameTextStyleBlack = {
+        fontFamily : fontFamily,
+        fontSize: fontSize-4,
+        fontStyle: nameFontStyle,
+        fill : 0x000000,
+    };
+
+    let nodeTextures = preloadNodeCircleGraphics();
+    let tierTextures = preloadTierTextures(fontSize, fontFamily, tierFontStyle, textResolution);
+
+    for (let i=0; i<nodeData.length; i++) {
+        let cNodeData = nodeData[i];
+        let cPixiNode = new NodePixiObject();
+        cPixiNode.container = new PIXI.Container();
+        
+        //Load Node Circle Sprites
+        if (cNodeData.IsUniqueMapArea) {
+            cPixiNode.circleSprite = nodeTextures.unique.clone();
+        } else {
+            cPixiNode.circleSprite = nodeTextures.normal.clone();
+        }
+
+        //Load Name Sprites
+        let nameSprite = new PIXI.Text(cNodeData.Name, nameTextStyleBlack);
+        nameSprite.resolution = textResolution;
+        nameSprite.anchor.set(0.5,1);
+        cPixiNode.nameSprite = nameSprite;
+
+        //Init Node Tier Sprite
+        cPixiNode.tierSprite = new PIXI.Sprite.from(
+            tierTextures[cNodeData.TieredData[0].Tier]
+        );
+
+        nodePixiObjects.push(cPixiNode);
+    }
+    // preloadNodeCircleSprites(nodeTextures);
+    // preloadNameSprites(fontSize, fontFamily, nameFontStyle, textResolution);
+     
+    
+}
+function preloadNodeCircleGraphics() {
+    let nodeGraph = new PIXI.Graphics();
+    nodeGraph.lineStyle(lineThickness, '0x0', 1, 0.5, false)
+        .beginFill('0x555555',1)
+        .drawCircle(0, 0, nodeRadius);
+
+    let uniqueNodeGraph = new PIXI.Graphics();
+    uniqueNodeGraph.lineStyle(lineThickness, '0x0', 1, 0.5, false)
+        .beginFill('0x554411',1)
+        .drawCircle(0, 0, nodeRadius);
+
+    // const renderSize = 128;
+    // const scaleMode = PIXI.SCALE_MODES.LINEAR;
+    // const res = 1;
+    let nodeCircleGraphics = {
+        normal: nodeGraph,//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res),
+        unique: uniqueNodeGraph//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res)
+    };
+    // app.renderer.render(nodeGraph, nodeCircleTexture.normal);
+    // app.renderer.render(uniqueNodeGraph, nodeCircleTexture.unique);
+
+    return nodeCircleGraphics;
+}
+function preloadNodeCircleSprites(nodeTextures) {
+    nodeCircleSprites = [];
+    for (let i=0; i<nodeData.length; i++) {
+        if (nodeData[i].IsUniqueMapArea) {
+            nodeCircleSprites.push(nodeTextures.unique.clone());
+        } else {
+            nodeCircleSprites.push(nodeTextures.normal.clone());
+        }
+    }
+}
+function preloadNameSprites(fontSize, fontFamily, fontStyle, textResolution) {
+    const nameTextStyleBlack = {
+        fontFamily : fontFamily,
+        fontSize: fontSize-4,
+        fontStyle: fontStyle,
+        fill : 0x000000,
+    };
+    
+    nodeNameSprites = [];
+    for (let i=0; i<nodeData.length; i++) {
+        let nameSprite = new PIXI.Text(nodeData[i].Name, nameTextStyleBlack);
+        nameSprite.resolution = textResolution;
+        nameSprite.anchor.set(0.5,1)
+        nodeNameSprites.push(nameSprite)
+    }
+    
+}
+function preloadTierTextures(fontSize, fontFamily, fontStyle, textResolution) {
+    const textStyleRed = {
+        fontFamily: fontFamily,
+        fontSize: fontSize*textResolution,
+        fontStyle: fontStyle,
+        // fill : 0xcc1010,
+        fill : 0xee0000,
+    };
+    const textStyleYellow = {
+        fontFamily: fontFamily,
+        fontSize: fontSize*textResolution,
+        fontStyle: fontStyle,
+        fill: 0xdddd00,
+    };
+    const textStyleWhite = {
+        fontFamily: fontFamily,
+        fontSize: fontSize*textResolution,
+        fontStyle: fontStyle,
+        fill: 0xffffff,
+    };
+
+    nodeTierTextures = [];
+    const textureSize = 64;
+    for (let i=1; i<=16; i++) {
+        let tierSprite = new PIXI.Text(i);
+        tierSprite.resolution = 1//textResolution;
+        if (i > 9) {
+            tierSprite.style = textStyleRed;
+        } else if (i > 5) {
+            tierSprite.style = textStyleYellow;
+        } else {
+            tierSprite.style = textStyleWhite;
+        }
+        tierSprite.anchor.set(0.5,0.5);
+        tierSprite.position.set(textureSize/2, textureSize/2);
+        let renderTexture = PIXI.RenderTexture.create({width:textureSize, height:textureSize});
+        renderTexture.resolution = 1//textResolution;
+        app.renderer.render(tierSprite, renderTexture);
+
+        nodeTierTextures.push(renderTexture);
+    }
+    return nodeTierTextures;
+}
 
 function drawAllAtlasRegions() {
     for(let i=0; i<NUM_REGIONS; i++) {
@@ -197,11 +355,14 @@ function drawAllAtlasRegions() {
     }
 }
 
+// Globals
+var nodeCenterOffset = 25*mapScaleFactor/4;
+var nodeRadius = 30*mapScaleFactor/4;
+var lineThickness = 3*mapScaleFactor/4;
+const lineColor = 0xffffff;
 function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
-    
     let regionLinesGraph;
-    let lineThickness = 3*mapScaleFactor/4;
-    let lineColor = 0xffffff;
+    let regionNodesContainer;
     //Remove previous nodes and lines for this region.
     if (nodesContainer.children.length > regionID) {
         // linesContainer.removeChildAt(regionID);
@@ -211,59 +372,21 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
         //  container.removeChildAt does not do this
         regionLinesGraph = linesContainer.getChildAt(regionID).clear();//destroy(true, false, false);
         //The nodesContainer can be cached
-        nodesContainer.getChildAt(regionID).destroy(true, false, false);
+        regionNodesContainer = nodesContainer.getChildAt(regionID);
+        regionNodesContainer.removeChildren();//.destroy(true, false, false);
     } else {
         //init region lines Graphics object (Lines)
         regionLinesGraph = new PIXI.Graphics();
-        
+        //init region nodes Graphics object (Nodes)
+        regionNodesContainer = new PIXI.Container();
+        regionNodesContainer.sortableChildren = true;
+        //Add Nodes and Lines to their respective containers and renderedRegion list
+        linesContainer.addChildAt(regionLinesGraph, regionID);
+        nodesContainer.addChildAt(regionNodesContainer, regionID);
     }
-
+    
     //This bit keeps track of whether adjacent regions have been redrawn w/in this func call
     let regionsRedrawn = [false, false, false, false, false, false, false, false];
-
-    //init region nodes Graphics object (Nodes)
-    let regionNodesContainer = new PIXI.Container();// new PIXI.Graphics();
-    regionNodesContainer.sortableChildren = true;
-    //regionNodesGraph.interactive = true;
-    //regionNodesGraph.buttonMode = true;
-    const nodeCenterOffset = 25*mapScaleFactor/4;
-    const nodeRadius = 30*mapScaleFactor/4;
-    const tierFontSize = 24*mapScaleFactor/4;
-    const tierFontFamily = 'Arial';
-    const tierFontStyle = '';
-    const nameFontStyle = 'bold';
-    const textResolution = 3;
-    //Set text display options
-    let tierTextStyleRed = {
-        fontFamily : tierFontFamily,
-        fontSize: tierFontSize,
-        fontStyle: tierFontStyle,
-        // fill : 0xcc1010,
-        fill : 0xee0000,
-    };
-    let tierTextStyleYellow = {
-        fontFamily : tierFontFamily,
-        fontSize: tierFontSize,
-        fontStyle: tierFontStyle,
-        fill : 0xdddd00,
-    };
-    let tierTextStyleWhite = {
-        fontFamily : tierFontFamily,
-        fontSize: tierFontSize,
-        fontStyle: tierFontStyle,
-        fill : 0xffffff,
-    };
-
-    let nameTextStyleBlack = {
-        fontFamily : tierFontFamily,
-        fontSize: tierFontSize,
-        fontStyle: nameFontStyle,
-        fill : 0x000000,
-    };
-
-    //Add Nodes and Lines to their respective containers and renderedRegion list
-    linesContainer.addChildAt(regionLinesGraph, regionID);
-    nodesContainer.addChildAt(regionNodesContainer, regionID);
 
     //'region' stores the IDs of the nodes in this region.
     let region = regionNodes[regionID];
@@ -276,41 +399,40 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
         let entryID = region[i];
 
         //Node location and neighbor IDs
-        let entryData = getTieredNodeDataByID(entryID);
-        let entryX = entryData[0];
-        let entryY = entryData[1];
-        let entryAtlasNodeKeys = entryData[2];
-        let existsAtThisTier = entryData[3]>0;
-        if (existsAtThisTier) {
+        let cNode = getNodeByID(entryID);
+        let tieredEntryData = getTieredNodeData(cNode);
+
+        //if node exists at this tier
+        if (tieredEntryData.tier>0) {
             //Draw Connecting Lines between nodes (PIXI.Graphics)
             if (boolDrawLines) {
-                for (let i=0; i<entryAtlasNodeKeys.length; i++) {
-                    let adjNodeKey = entryAtlasNodeKeys[i];
-                    let adjNodeData = getTieredNodeDataByID(adjNodeKey);
+                for (let i=0; i<tieredEntryData.atlasNodeKeys.length; i++) {
+                    let adjNodeKey = tieredEntryData.atlasNodeKeys[i];
+                    let adjNodeData = getTieredNodeData(getNodeByID(adjNodeKey));
 
                     //Draw Lines
-                    let startX =entryX+nodeCenterOffset,
-                    startY = entryY+nodeCenterOffset
-                    endX = adjNodeData[0]+nodeCenterOffset,
-                    endY = adjNodeData[1]+nodeCenterOffset;
-                    let dX = endX-startX;
-                    let dY = endY-startY;
-                    let angle = Math.atan2(dY, dX);
+                    let startX = tieredEntryData.x+nodeCenterOffset,
+                        startY = tieredEntryData.y+nodeCenterOffset
+                        endX = adjNodeData.x+nodeCenterOffset,
+                        endY = adjNodeData.y+nodeCenterOffset;
+                    // let dX = endX-startX,
+                    //     dY = endY-startY;
+                    // let angle = Math.atan2(dY, dX);
 
+                    // let lineTexStyle = {
+                    //     width: lineThickness*0.8,
+                    //     texture: app.loader.resources["img/line.png"].texture,
+                    //     alignment: 1,
+                    //     matrix: new PIXI.Matrix(.5,0, 0,.5, 0,0).rotate(angle),//.translate(dX/4,dY/4)
+                    // }
 
-                    const lineTexStyle = {
-                        width: lineThickness*0.8,
-                        texture: app.loader.resources["img/line.png"].texture,
-                        alignment: 1,
-                        matrix: new PIXI.Matrix(.5,0, 0,.5, 0,0).rotate(angle),//.translate(dX/4,dY/4)
-                    }
                     // regionLinesGraph.lineTextureStyle(lineTexStyle)
                     regionLinesGraph.lineStyle(lineThickness, lineColor)
                         .moveTo(startX, startY)
                         .lineTo(endX, endY);
 
                     //Redraw adjacent region if not already done.
-                    let adjNodeRegionKey = nodeData[adjNodeKey].regionID;
+                    let adjNodeRegionKey = getNodeByID(adjNodeKey).AtlasRegionsKey;
                     if (boolRedrawAdjacent && regionsRedrawn[adjNodeRegionKey] === false) {
                         regionsRedrawn[adjNodeRegionKey] = true;
                         drawAtlasRegion(adjNodeRegionKey);
@@ -320,67 +442,45 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
 
             //Draw Nodes on 'regionNodesGraph'
             if (boolDrawNodes) {
-                let nodeContainer = new PIXI.Container();
-                nodeContainer.position.set(entryX+nodeCenterOffset, entryY+nodeCenterOffset)
-                
-                let nodeGraph = new PIXI.Graphics();
-                nodeGraph.lineStyle(lineThickness, '0x0', 1, 0.5, false);
-                if (nodeData[entryID].isUnique) {
-                    nodeGraph.beginFill('0x554411',1);
-                } else {
-                    nodeGraph.beginFill('0x555555',1);
-                }
-                nodeGraph.drawCircle(0, 0, nodeRadius);
+
+                let nodePixiObj = nodePixiObjects[entryID];
+                let nodeContainer = nodePixiObj.container;
+                nodeContainer.position.set(tieredEntryData.x+nodeCenterOffset, tieredEntryData.y+nodeCenterOffset)
+                let circleSprite = nodePixiObj.circleSprite;
                 if (boolNodeHover) {
-                    nodeGraph.interactive = true;
-                    nodeGraph.buttonMode = true;
-                    const scaleMult = 1.3;
-                    nodeGraph.mouseover = function() {
-                        // nodeGraph.lineStyle(2, '0xccc', 2, 0.5, false);
-                        // nodeGraph.beginFill(0,0);
-                        // nodeGraph.drawCircle(
-                        //     entryX+nodeCenterOffset,
-                        //     entryY+nodeCenterOffset,
-                        //     nodeRadius*1.15);
-                        
+                    circleSprite.interactive = true;
+                    circleSprite.buttonMode = true;
+                    const scaleMult = 1.5;
+                    circleSprite.mouseover = function() {
                         nodeContainer.scale.x *=scaleMult;
                         nodeContainer.scale.y *=scaleMult;
                         nodeContainer.zIndex = 1;
                     };
-                    nodeGraph.mouseout = function(mouseData) {
+                    circleSprite.mouseout = function(mouseData) {
                         nodeContainer.scale.x /=scaleMult;
                         nodeContainer.scale.y /=scaleMult;
                         nodeContainer.zIndex = 0;
                     }
                 }
-                nodeContainer.addChild(nodeGraph);
+                nodeContainer.addChild(circleSprite);
 
                 //Add node label text sprites to 'nodeContainer' 
                 if (boolDrawNames) {
-                    let nameSprite = new PIXI.Text(nodeData[entryID].name, nameTextStyleBlack);
-                    nameSprite.resolution = textResolution;
-                    nameSprite.y -= nodeRadius+nodeCenterOffset/4;
-                    nameSprite.anchor.set(0.5,1)
+                    let nameSprite = nodePixiObj.nameSprite;
+                    nameSprite.y = 0-(nodeRadius+nodeCenterOffset/4);
                     nodeContainer.addChild(nameSprite);
                 }
 
                 //Add node tier text sprites to 'nodeContainer' 
                 if (boolDrawTiers) {
-                    let tierSprite = new PIXI.Text(entryData[3]);
-                    tierSprite.resolution = textResolution;
-                    if (entryData[3] > 9) {
-                        tierSprite.style = tierTextStyleRed;
-                    } else if (entryData[3] > 5) {
-                        tierSprite.style = tierTextStyleYellow;
-                    } else {
-                        tierSprite.style = tierTextStyleWhite;
-                    }
-                    // tierSprite.x = entryX+nodeCenterOffset;
-                    // tierSprite.y = entryY+nodeCenterOffset;
+                    let tierSprite = nodePixiObj.tierSprite;
+                    tierSprite.texture = nodeTierTextures[tieredEntryData.tier-1];
+                    var scale = 0.15*mapScaleFactor;
+                    tierSprite.scale.set(scale, scale)
                     tierSprite.anchor.set(0.5,0.5)
                     nodeContainer.addChild(tierSprite);
                 }
-                
+
                 regionNodesContainer.addChild(nodeContainer);
             }
         }
@@ -394,13 +494,30 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
 
 // Returns an array of length 3 based on the supplied region tier.
 // Format: [node_x_pos, node_y_pos, [list_of_neighbor_node_ids]]
-function getTieredNodeDataByID(nodeID) {
-    let node = nodeData[nodeID];
-    let res = node.tieredData[regionTiers[node.regionID]];
-    let out = [0,0,res[2], res[3]];
-    out[0] = res[0]*mapScaleFactor;
-    out[1] = res[1]*mapScaleFactor;
-    return out;
+function getNodeByID(nodeID) {
+    return nodeData[nodeID];
+}
+function getNodeRegionTier(nodeObject) {
+    return regionTiers[nodeObject.AtlasRegionsKey];
+}
+class TieredNodeData {
+    constructor(tier, atlasNodeKeys, x, y) {
+        this.tier = tier;
+        this.atlasNodeKeys = atlasNodeKeys;
+        this.x = x;
+        this.y = y;
+    }
+}
+function getTieredNodeData(node) {
+    
+    let tData = node.TieredData[regionTiers[node.AtlasRegionsKey]];
+
+    return new TieredNodeData(
+        tData.Tier,
+        tData.AtlasNodeKeys,
+        tData.X*mapScaleFactor,
+        tData.Y*mapScaleFactor
+    );
 }
 
 function cycleAllAtlasRegionTiers() {
@@ -458,6 +575,10 @@ function onWindowResize() {
     midy = app.screen.height/2;
     mapScaleFactor = pixiW/maxW*4;
 
+    nodeCenterOffset = 25*mapScaleFactor/4;
+    nodeRadius = 30*mapScaleFactor/4;
+    lineThickness = 3*mapScaleFactor/4;
+    
     placeAtlasTierButtons();
     resizePixiView();
     drawAllAtlasRegions();

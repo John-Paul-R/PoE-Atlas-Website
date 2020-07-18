@@ -577,7 +577,7 @@ function cycleAtlasRegionTier(regionID, boolDrawRegion=true) {
 function initAtlasTierButtons() {
     
     //init "master" tier button (cycle all nodes) click function
-    document.getElementById("master_tier_button")
+    document.getElementsByClassName("watchstone master")[0]
         .addEventListener("click", cycleAllAtlasRegionTiers);
 
     //init region ("watchstone") tier buttons click functions
@@ -671,7 +671,7 @@ function placeAtlasTierButtons() {
     placeElement(buttonsBox, midx, midy);
 }
 function placeAtlasTierButtonsCircle() {
-    const radius = 100;
+    const radius = 75;
     const anglePerItem = Math.PI/4
     let buttonsBox = document.getElementById("watchstone_btn_container");
     //buttonsBox.style.width = '100px';
@@ -679,17 +679,22 @@ function placeAtlasTierButtonsCircle() {
     buttonsBox.style.width = '100%';
 
     let elements = document.getElementsByClassName("watchstone");
-    let btnHeight = elements[0].offsetHeight;
-    let btnWidth = elements[0].offsetWidth;
+    let btnHeight = elements[1].offsetHeight;
+    let btnWidth = elements[1].offsetWidth;
 
     // let y0 = (elements.length*btnHeight)/2;
-    for(let i=0; i<elements.length; i++){
+    for(let i=1; i<elements.length; i++){
         placeElement(
             elements[i],
             midx+Math.cos(anglePerItem*i)*radius-btnWidth/2,
             midy+Math.sin(anglePerItem*i)*radius-btnHeight/2
         );
     }
+    placeElement(
+        elements[0],
+        midx-elements[0].offsetWidth/2,
+        midy-elements[0].offsetHeight/2
+    );
     // let buttonsBox = document.getElementById("watchstone_btn_container");
     // //buttonsBox.style.width = '100px';
     // buttonsBox.style.height = elements.length*btnHeight+'px';

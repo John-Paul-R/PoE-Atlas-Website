@@ -6,10 +6,10 @@
     --color-base: #fafafa;
     --color-background: #f0f0f0;
     --color-element-1: #e0e0e0;
-    --color-accent-1: #aaaaaa;
+    --color-accent-1: #ea5555;
     --color-accent-2: #888888;
     --color-inverse: #333333;
-    --color-text: #606060;
+    --color-text: #404040/*#606060;*/
     --color-text-inverse: #d0d0d0;
     
     --shadow:0 0px 8px rgba(0, 0, 0, 0.15);
@@ -33,9 +33,16 @@ button.watchstone {
     padding: 2px 2px;
     border: none;
     margin: 1px 1px;
-    width: 100px;
-    height: 30px;
+    width: 60px;
+    height: 20px;
     pointer-events: all;
+    border-radius: 2px;
+}
+button.watchstone.master {
+    background-color: var(--color-accent-1);
+    color: #222222;
+    width: 80px;
+    height: 26px;
 }
 body {
     width: 100vw;
@@ -237,7 +244,7 @@ header > #navbar {
 
 .searchField {
     padding-left:0px;
-    width:100%
+    width:100%;
 }
 input.searchField::placeholder {
     color:var(--color-text);

@@ -88,10 +88,12 @@ function resizePixiDisplayObjects() {
     let containerScale = getAtlasContainersScale();
     linesContainer.scale.copyFrom(containerScale);
     nodesContainer.scale.copyFrom(containerScale);
+    searchGraphics.scale.copyFrom(containerScale);
 
     let containerPos = getAtlasContainersPosition();
     linesContainer.position.copyFrom(containerPos);
     nodesContainer.position.copyFrom(containerPos);
+    searchGraphics.scale.copyFrom(containerPos)
 }
 function getAtlasContainersScale() {
     return {
@@ -136,6 +138,8 @@ function initPixiDisplayObjects(loader, resources) {
     initZoomPanInput(app);
 
     initPixiContainers();
+
+    initSearchDisplay(atlasSprite);
 }
 function initPixiContainers() {
     //Create main containers for Lines and Nodes
@@ -461,14 +465,10 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
                     circleSprite.buttonMode = true;
                     const scaleMult = 1.325;
                     circleSprite.mouseover = function() {
-                        nodeContainer.scale.x *=scaleMult;
-                        nodeContainer.scale.y *=scaleMult;
-                        nodeContainer.zIndex = 1;
+                        nodeGainLightFocus(nodePixiObj, scaleMult);
                     };
                     circleSprite.mouseout = function(mouseData) {
-                        nodeContainer.scale.x /=scaleMult;
-                        nodeContainer.scale.y /=scaleMult;
-                        nodeContainer.zIndex = 0;
+                        nodeLoseLightFocus(nodePixiObj, scaleMult);
                     }
                 }
                 nodeContainer.addChild(circleSprite);
@@ -499,6 +499,26 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
     //Force immediate stage render
     //TODO see if something like this helps at ALL, or if its actually a hindrance.
     app.renderer.render(stage);
+}
+
+function nodeGainLightFocus(nodePixiObj, scaleMult, hoverGraphic) {
+    nodePixiObj.container.scale.x *=scaleMult;
+    nodePixiObj.container.scale.y *=scaleMult;
+    nodePixiObj.container.zIndex = 1;
+    if (hoverGraphic) {
+        nodePixiObj.circleSprite.addChild(hoverGraphic);
+    }
+}
+function nodeLoseLightFocus(nodePixiObj, scaleMult, clearHoverGraphic, forceBaseScale) {
+    nodePixiObj.container.scale.x /=scaleMult;
+    nodePixiObj.container.scale.y /=scaleMult;
+    nodePixiObj.container.zIndex = 0;
+    if (clearHoverGraphic) {
+        nodePixiObj.circleSprite.removeChildren();
+    }
+    if (forceBaseScale) {
+        nodePixiObj.container.scale.set(1, 1);
+    }
 }
 
 // Returns an array of length 3 based on the supplied region tier.

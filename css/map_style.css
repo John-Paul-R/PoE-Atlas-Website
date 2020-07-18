@@ -54,6 +54,8 @@ footer {
 #page_container {
     display:grid;
     grid-template-rows: [header-start]32px[header-end mid-start]1fr[mid-end footer-start]16px[footer-end];
+    width: 100vw;
+    height: 100vh;
 }
 
 
@@ -165,11 +167,11 @@ header > #navbar {
     align-content:baseline;
 } */
 
-#pixi_atlas, .pixi_atlas_of_worlds {
-    /* width:150%; */
-    /* height:100%; */
-    /* z-index: -1; */
-}
+/* #pixi_atlas, .pixi_atlas_of_worlds {
+    width:150%;
+    height:100%;
+    z-index: -1;
+} */
 
 #atlas_tier_button {
     transform-origin: center;

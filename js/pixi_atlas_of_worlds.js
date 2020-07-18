@@ -565,7 +565,7 @@ function initAtlasTierButtons() {
     for(let i=1; i<watchstoneButtons.length; i++){
         watchstoneButtons[i].addEventListener("click", function() {cycleAtlasRegionTier(i-1);} );
     }
-    placeAtlasTierButtons();
+    placeAtlasTierButtonsCircle();
 }
 
 //Stores the position of the center of the PIXI canvas, not the window.
@@ -611,8 +611,8 @@ function onWindowResize() {
         +"\nRatio: " + (containersScale.x)/(containersScale.y));
     
 
-    midx = pixiScreenW/2+app.view.x;
-    midy = pixiScreenH/2+app.view.y;
+    midx = pixiScreenW/2;//+app.view.x;
+    midy = pixiScreenH/2;//+app.view.y;
 
     mapScaleFactor = {
         x: pixiAtlasW/maxW*4,
@@ -624,7 +624,7 @@ function onWindowResize() {
     nodeRadius = 30*mapScaleFactor.avg/4;
     lineThickness = 3*mapScaleFactor.avg/4;
     
-    placeAtlasTierButtons();
+    placeAtlasTierButtonsCircle();
     resizePixiDisplayObjects();
     drawAllAtlasRegions();
 }
@@ -649,6 +649,31 @@ function placeAtlasTierButtons() {
     //buttonsBox.style.width = '100px';
     buttonsBox.style.height = elements.length*btnHeight+'px';
     placeElement(buttonsBox, midx, midy);
+}
+function placeAtlasTierButtonsCircle() {
+    const radius = 100;
+    const anglePerItem = Math.PI/4
+    let buttonsBox = document.getElementById("watchstone_btn_container");
+    //buttonsBox.style.width = '100px';
+    buttonsBox.style.height = '100%';
+    buttonsBox.style.width = '100%';
+
+    let elements = document.getElementsByClassName("watchstone");
+    let btnHeight = elements[0].offsetHeight;
+    let btnWidth = elements[0].offsetWidth;
+
+    // let y0 = (elements.length*btnHeight)/2;
+    for(let i=0; i<elements.length; i++){
+        placeElement(
+            elements[i],
+            midx+Math.cos(anglePerItem*i)*radius-btnWidth/2,
+            midy+Math.sin(anglePerItem*i)*radius-btnHeight/2
+        );
+    }
+    // let buttonsBox = document.getElementById("watchstone_btn_container");
+    // //buttonsBox.style.width = '100px';
+    // buttonsBox.style.height = elements.length*btnHeight+'px';
+    // placeElement(buttonsBox, midx, midy);
 }
 
 function placeElementByID(elementID, x_pos, y_pos) {

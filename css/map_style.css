@@ -1,3 +1,119 @@
+:root{
+    --header-height: 0;
+    --spacing-amount: 2vMin;
+    
+    --current-palette: 0;
+    --color-base: #fafafa;
+    --color-background: #f0f0f0;
+    --color-element-1: #e0e0e0;
+    --color-accent-1: #aaaaaa;
+    --color-accent-2: #888888;
+    --color-inverse: #333333;
+    --color-text: #606060;
+    --color-text-inverse: #d0d0d0;
+    
+    --shadow:0 0px 8px rgba(0, 0, 0, 0.15);
+
+    --TEMPLATING-COLOR: none; /* #ff00ff */ /* #e0e0e0 */
+    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-background);
+}
+*{
+    /* box-sizing: border-box; */
+    padding: 0;
+    margin: 0;
+    color: var(--color-text);
+    /*border: 1px solid red;*/
+    max-width:100%;
+}
+* {padding: 0; margin: 0}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: hidden;
+    /*overflow:hidden;*/
+}
+.header {
+    grid-row: header-start / header-end;
+    background-color:var(--color-base);
+}
+.footer {
+    grid-row: footer-start / footer-end;
+    background-color: var(--color-base);
+}
+#page_container {
+    display:grid;
+    grid-template-rows: [header-start]32px[header-end mid-start]1fr[mid-end footer-start]16px[footer-end];
+}
+
+
+#content_main {
+    grid-row: mid-start / mid-end;
+    width:100%;
+    height:100%;
+    position: relative;
+    /* pointer-events:none; */
+}
+#atlas_of_worlds {
+    display: grid;
+    grid-template-rows: [vstart]96px [vmid-start]1fr[vmid-end] 64px[vend];
+    grid-template-columns: [hstart]256px [hmid-start]1fr[hmid-end] 256px[hend];
+    
+    /* position: absolute;
+    top:0;
+    left:0; */
+    /* z-index: 10; */
+
+    width: 100%;
+    height: 100%;
+    /* opacity:50%; */
+    
+}
+.pixi_atlas_of_worlds {
+    grid-column: hstart / hend;
+    grid-row: vstart / vend;
+    pointer-events:all;
+    margin-left:auto;
+    margin-right:auto;
+}
+.overlay {
+    background-color: maroon;
+    z-index: 10;
+    pointer-events:none;
+    opacity:75%;
+}
+.overlay.top {
+    grid-column: hstart / hend;
+    grid-row: vstart / vmid-start;
+    background-color:aquamarine;
+}
+.overlay.bottom {
+    grid-column: hmid-start / hmid-end;
+    grid-row: vmid-end / vend;
+}
+.overlay.left {
+    grid-column: hstart / hmid-start;
+    grid-row: vmid-start / vend;
+    background-color: beige;
+}
+.overlay.right {
+    grid-column: hmid-end / hend;
+    grid-row: vmid-start / vend;
+    background-color: beige;
+}
+.filled {
+    background-color: var(--color-background);
+    /*background-color: none;*/
+    /* border: 1px solid var(--TEMPLATING-COLOR); */
+
+    /*border-color: var(--color-accent-2);
+    border-width: 2px;
+    border-style: solid;*/
+    /* border-radius: 4px; */
+    /*box-shadow: 3px 3px 3px #999999;*/
+}
 /* .flex.row {
     display:flex;
     flex-direction:row;
@@ -5,9 +121,10 @@
     align-content:baseline;
 } */
 
-.pixi_atlas_of_worlds {
+#pixi_atlas, .pixi_atlas_of_worlds {
     /* width:150%; */
-    height:100vh;
+    /* height:100%; */
+    /* z-index: -1; */
 }
 
 #atlas_tier_button {
@@ -20,12 +137,11 @@
     transform: translate(-50%, -50%); 
     position: absolute;
 }
-
-* {padding: 0; margin: 0}
-
-body {
-    overflow-y: hidden;
-    /*overflow:hidden;*/
+.centerh {
+    left: 50%;
+    -webkit-transform: translate(-50%, 0%);
+    transform: translate(-50%, 0%); 
+    position: absolute;
 }
 
 #watchstone_btn_container {
@@ -33,4 +149,64 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.searchbar {
+    background-color: var(--color-base);
+    /*opacity:0.6;*/
+    box-shadow: var(--shadow);/*0 3px 4px rgba(0, 0, 0, 0.2);*/
+    margin:8px;
+    height:auto;
+    width:66%;
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items:stretch;
+    
+    /*Does not work in js retrieval for some reason*/
+    --default-scale:0.95;
+    scale:var(--default-scale);
+}
+.searchbar {
+    top:10px;
+}
+.searchbar * {
+    pointer-events:all;
+    background-color:inherit;
+    border:none;
+    border-radius:4px;
+    outline:none;
+    
+    font-size:1.2em;
+    padding-top:1%;
+    padding-bottom:.75%;
+}
+.searchbar .dropdown {
+    justify-self:flex-end;
+}
+.searchbar .element {
+    margin-right:4px;
+}
+
+.searchField {
+    padding-left:0px;
+    width:100%
+}
+input.searchField::placeholder {
+    color:var(--color-text);
+    opacity:0.6;
+}
+.material-icons {
+    margin:4px;
+}
+
+.flex.row {
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-start;
+    align-content:baseline;
+}
+
+#eof_scripts {
+    display:none;
 }

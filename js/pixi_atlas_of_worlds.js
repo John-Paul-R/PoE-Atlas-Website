@@ -19,14 +19,16 @@ let boolDrawTiers = true;
 //Create the Pixi Application
 let maxH = 2304;
 let maxW = 4096;
-let pixiH = 2304;
-let pixiW = 4096;
+let pixiScreenW = 2304;
+let pixiScreenH = 4096;
+let pixiAtlasH = 2304;
+let pixiAtlasW = 4096;
+var CONTAINER;
 
 var app =  new PIXI.Application({
-    width: pixiW,
-    height: pixiH,
+    width: pixiAtlasW,
+    height: pixiAtlasH,
     autoStart: true,
-    autoResize:true,
     antialias: true,
     sharedLoader: true,
     sharedTicker: true,
@@ -58,12 +60,12 @@ function setup(loader, resources) {
     //==================
     //  Initialization
     //==================
-    createPixiView();
     initPixiDisplayObjects(loader, resources);
     //TODO break this ^^^ up again and put "initialization" outside of "setup," and into the main thread.
     //TODO make it so that loadMapsData doesn't need to wait for Atlas.jpg to load. (a part of the above)
     //TODO have a "initWindowSizeDependants" and an "onWindowSize", the former not affecting "atlasSprite", so it can run in main thread, not having to wait for "setup" to finish
     onWindowResize();
+    createPixiView();
     window.addEventListener('resize', onWindowResize);
     loadMapsData();
     initAtlasTierButtons();
@@ -73,13 +75,13 @@ function setup(loader, resources) {
 }
 function createPixiView() {
     //Add the canvas that Pixi automatically created for you to the HTML document
-    domTarget = document.getElementById("atlas_of_worlds");
-    domTarget.appendChild(app.view);
-    domTarget.lastChild.className = "pixi_atlas_of_worlds";
+    CONTAINER = document.getElementById("atlas_of_worlds")
+    CONTAINER.appendChild(app.view);
+    CONTAINER.lastChild.className = "pixi_atlas_of_worlds";
     
 }
 
-function resizePixiView() {
+function resizePixiDisplayObjects() {
     atlasSprite.scale.copyFrom(getAtlasSpriteScale());
     atlasSprite.position.copyFrom(getAtlasSpritePosition());
 
@@ -93,8 +95,8 @@ function resizePixiView() {
 }
 function getAtlasContainersScale() {
     return {
-        x: maxW/pixiW,
-        y: maxH/pixiH
+        x: maxW/pixiAtlasW,
+        y: maxH/pixiAtlasH
     };
 }
 function getAtlasContainersPosition() {
@@ -104,15 +106,21 @@ function getAtlasContainersPosition() {
     };
 }
 function getAtlasSpriteScale() {
+    let scaleFactorToAdjustForPixiScreenAspectRatio;
+    if (pixiScreenH > pixiScreenW) {
+        scaleFactorToAdjustForPixiScreenAspectRatio=(pixiScreenW/pixiAtlasW);
+    } else {
+        scaleFactorToAdjustForPixiScreenAspectRatio=(pixiScreenH/pixiAtlasH)
+    }
     return {
-        x: pixiW/maxW,
-        y: pixiH/maxH
+        x: (pixiAtlasW/maxW)/scaleFactorToAdjustForPixiScreenAspectRatio,
+        y: (pixiAtlasH/maxH)/scaleFactorToAdjustForPixiScreenAspectRatio
     };
 }
 function getAtlasSpritePosition() {
     return {
-        x: (app.screen.width-pixiW)/2,
-        y: (app.screen.height-pixiH)/2
+        x: (app.screen.width-pixiAtlasW)/2,
+        y: (app.screen.height-pixiAtlasH)/2
     };
 }
 
@@ -140,7 +148,7 @@ function initPixiContainers() {
 }
 
 //Factor by which to multiply node positions from the data file when drawing
-var mapScaleFactor = pixiW/maxW*4;//4.05;
+var mapScaleFactor;// = pixiAtlasW/maxW*4;//4.05;
 const NUM_REGIONS = 8;
 const NUM_TIERS = 5;
 var regionTiers = [0,0,0,0,0,0,0,0]; //Tiers of each region (array index = regionID)
@@ -214,7 +222,7 @@ function preloadStaticGraphics() {
     const fontFamily = 'Arial';
     const tierFontStyle = 'bold';
     const nameFontStyle = 'bold';
-    const textResolution = 8*mapScaleFactor/4;
+    const textResolution = 3;
     const nameTextStyleBlack = {
         fontFamily : fontFamily,
         fontSize: fontSize-4,
@@ -222,7 +230,7 @@ function preloadStaticGraphics() {
         fill : 0x000000,
     };
 
-    let nodeTextures = preloadNodeCircleGraphics();
+    let nodeCircleGraphs = preloadNodeCircleGraphics();
     let tierTextures = preloadTierTextures(fontSize, fontFamily, tierFontStyle, textResolution);
 
     for (let i=0; i<nodeData.length; i++) {
@@ -232,9 +240,9 @@ function preloadStaticGraphics() {
         
         //Load Node Circle Sprites
         if (cNodeData.IsUniqueMapArea) {
-            cPixiNode.circleSprite = nodeTextures.unique.clone();
+            cPixiNode.circleSprite = nodeCircleGraphs.unique.clone();
         } else {
-            cPixiNode.circleSprite = nodeTextures.normal.clone();
+            cPixiNode.circleSprite = nodeCircleGraphs.normal.clone();
         }
 
         //Load Name Sprites
@@ -259,12 +267,12 @@ function preloadNodeCircleGraphics() {
     let nodeGraph = new PIXI.Graphics();
     nodeGraph.lineStyle(lineThickness, '0x0', 1, 0.5, false)
         .beginFill('0x555555',1)
-        .drawCircle(0, 0, nodeRadius);
+        .drawCircle(0, 0, 10);
 
     let uniqueNodeGraph = new PIXI.Graphics();
     uniqueNodeGraph.lineStyle(lineThickness, '0x0', 1, 0.5, false)
         .beginFill('0x554411',1)
-        .drawCircle(0, 0, nodeRadius);
+        .drawCircle(0, 0, 10);
 
     // const renderSize = 128;
     // const scaleMode = PIXI.SCALE_MODES.LINEAR;
@@ -356,9 +364,9 @@ function drawAllAtlasRegions() {
 }
 
 // Globals
-var nodeCenterOffset = 25*mapScaleFactor/4;
-var nodeRadius = 30*mapScaleFactor/4;
-var lineThickness = 3*mapScaleFactor/4;
+var nodeCenterOffset;// = 25*mapScaleFactor/4;
+var nodeRadius;// = 30*mapScaleFactor/4;
+var lineThickness;// = 3*mapScaleFactor/4;
 const lineColor = 0xffffff;
 function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
     let regionLinesGraph;
@@ -447,10 +455,11 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
                 let nodeContainer = nodePixiObj.container;
                 nodeContainer.position.set(tieredEntryData.x+nodeCenterOffset, tieredEntryData.y+nodeCenterOffset)
                 let circleSprite = nodePixiObj.circleSprite;
+                circleSprite.scale.set(mapScaleFactor.avg, mapScaleFactor.avg);
                 if (boolNodeHover) {
                     circleSprite.interactive = true;
                     circleSprite.buttonMode = true;
-                    const scaleMult = 1.5;
+                    const scaleMult = 1.325;
                     circleSprite.mouseover = function() {
                         nodeContainer.scale.x *=scaleMult;
                         nodeContainer.scale.y *=scaleMult;
@@ -475,8 +484,8 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
                 if (boolDrawTiers) {
                     let tierSprite = nodePixiObj.tierSprite;
                     tierSprite.texture = nodeTierTextures[tieredEntryData.tier-1];
-                    var scale = 0.15*mapScaleFactor;
-                    tierSprite.scale.set(scale, scale)
+                    var scaleFac = 0.15;
+                    tierSprite.scale.set(mapScaleFactor.x*scaleFac, mapScaleFactor.y*scaleFac);
                     tierSprite.anchor.set(0.5,0.5)
                     nodeContainer.addChild(tierSprite);
                 }
@@ -515,8 +524,8 @@ function getTieredNodeData(node) {
     return new TieredNodeData(
         tData.Tier,
         tData.AtlasNodeKeys,
-        tData.X*mapScaleFactor,
-        tData.Y*mapScaleFactor
+        tData.X*mapScaleFactor.x,
+        tData.Y*mapScaleFactor.y
     );
 }
 
@@ -561,26 +570,62 @@ function initAtlasTierButtons() {
 
 //Stores the position of the center of the PIXI canvas, not the window.
 function onWindowResize() {
-    let innerHeight = window.innerHeight;
-    let innerWidth = window.innerWidth;
-    if (innerHeight > innerWidth) {
-        pixiW = innerWidth;
-        pixiH = innerWidth*(maxH/maxW);
+    // let innerHeight = CONTAINER.clientHeight;
+    // let innerWidth = CONTAINER.clientWidth;
+    let nonAtlasContentHeightSum = document.getElementsByTagName("header")[0].offsetHeight
+        + document.getElementsByTagName("footer")[0].offsetHeight;
+    let nonAtlasContentWidthSum = 0;
+    pixiScreenH = window.innerHeight-nonAtlasContentHeightSum;
+    pixiScreenW = window.innerWidth-nonAtlasContentWidthSum;
+
+    if (pixiScreenH > pixiScreenW) {
+        pixiAtlasW = pixiScreenW;
+        pixiAtlasH = pixiScreenW*(maxH/maxW);
     } else {
-        pixiH = innerHeight;
-        pixiW = innerHeight*(maxW/maxH);
+        pixiAtlasH = pixiScreenH;
+        pixiAtlasW = pixiScreenH*(maxW/maxH);
+    }
+    
+    CONTAINER.style.height = pixiScreenH+'px';
+    CONTAINER.style.width = pixiScreenW+'px';
+    app.view.style.height = pixiScreenH+'px';
+    app.view.style.width = pixiScreenW+'px';
+    app.height = pixiScreenH+'px';
+    app.width = pixiScreenW+'px';
+    app.resize();
+
+    console.log("16/9 = "+ 16/9);
+    console.log("max w, h: " + maxW + ", " + maxH
+        +"\nRatio: " + maxW/maxH);
+    console.log("pixiScreen w, h: " + pixiScreenW + ", " + pixiScreenH
+        +"\nRatio: " + pixiScreenW/pixiScreenH);
+    console.log("app.screen. w, h: " + app.screen.width + ", " + app.screen.height
+        +"\nRatio: " + app.screen.width/app.screen.height);
+    console.log("pixiAtlas w, h: " + pixiAtlasW + ", " + pixiAtlasH
+        +"\nRatio: " + pixiAtlasW/pixiAtlasH);
+    let atlasScale = getAtlasSpriteScale();
+    console.log("Atlas size (in theory) x, y: " + atlasScale.x*maxW + ", " +atlasScale.y*maxH 
+        +"\nRatio: " + (atlasScale.x*maxW)/(atlasScale.y*maxH));
+    let containersScale = getAtlasContainersScale();
+    console.log("Containers scale x, y: " + containersScale.x + ", " +containersScale.y 
+        +"\nRatio: " + (containersScale.x)/(containersScale.y));
+    
+
+    midx = pixiScreenW/2+app.view.x;
+    midy = pixiScreenH/2+app.view.y;
+
+    mapScaleFactor = {
+        x: pixiAtlasW/maxW*4,
+        y: pixiAtlasH/maxH*4,
+        avg: (pixiAtlasW + pixiAtlasH)/(maxH+maxW)*4
     }
 
-    midx = app.screen.width/2;
-    midy = app.screen.height/2;
-    mapScaleFactor = pixiW/maxW*4;
-
-    nodeCenterOffset = 25*mapScaleFactor/4;
-    nodeRadius = 30*mapScaleFactor/4;
-    lineThickness = 3*mapScaleFactor/4;
+    nodeCenterOffset =  25*mapScaleFactor.avg/4;
+    nodeRadius = 30*mapScaleFactor.avg/4;
+    lineThickness = 3*mapScaleFactor.avg/4;
     
     placeAtlasTierButtons();
-    resizePixiView();
+    resizePixiDisplayObjects();
     drawAllAtlasRegions();
 }
 

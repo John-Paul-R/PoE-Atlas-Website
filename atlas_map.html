@@ -9,14 +9,20 @@
         PIXI.utils.sayHello(type)
     </script>
     <script src='js/graphics_zoom_pan.js'></script>
+    <script src='js/searchbar_focus.js'></script>
+    <script src="js/gsap.min.js"></script>
+
     <title>PoE Atlas</title>
 </head>
 
 <body>
-    <header>
-        <div id="navbar"></div>
-    </header>
-    <section id="page_container">
+    <div id="page_container">
+        <header>
+            <div id="navbar">
+                PoE Atlas by <a href="https://github.com/John-Paul-R">JP</a>
+            </div>
+        </header>
+        <!-- <div class="sidebar left"></div> -->
         <div id="content_main" class="filled">
             <div id="atlas_of_worlds">
                 <div id="watchstone_btn_container", class="centered">
@@ -30,18 +36,36 @@
                     <button id="atlas_tier_button_r6" class="watchstone 6">Tier 0</button>
                     <button id="atlas_tier_button_r7" class="watchstone 7">Tier 0</button>
                 </div>
-            </div>
-            <div id="atlas_overlay" class="overlay">
-                <div id="overlay_top">
-                    <div class="search"></div>
+                <div class="overlay top">
+                    <div class="searchbar filled centerh" onfocusin="searchbarFocus('in')" onfocusout="searchbarFocus('out')">
+                        <!-- display option show all -->
+                        <i class="material-icons">search</i>
+                        <input type="text" class="searchField" placeholder="Search Fabric Mods" tabindex="1" autofocus>
+                        <select id="dropdown_1" name="dropdown_1" class="dropdown">
+                            <option value="fabric">Fabric</option>
+                            <option value="forge">Forge</option>
+                            <option value="all">All</option>
+                        </select>
+                        <select id="gVers" name="Game Version" class="dropdown">
+                            <option value="1.14">1.14</option>
+                            <option value="1.13">1.13</option>
+                            <option value="1.12">1.12</option>
+                            <option value="OLD">Older...</option>
+                        </select>
+                        <!--<button class="primary_action_button element" onclick="modSearch">Search</button>-->
+                    </div>
                 </div>
-                <div id="overlay_left"></div>
-                <div id="overlay_right"></div>
-                <div id="overlay_bot"></div>
+                <div class="overlay left"></div>
+                <div class="overlay right"></div>
+                <div class="overlay bottom"></div>
             </div>
+            <!-- <div id="atlas_overlay" class="overlay">
+                
+            </div> -->
         </div>
-    </section>
-    <footer></footer>
+        <!-- <div class="sidebar right"></div> -->
+        <footer></footer>
+    </div>
 </body>
 
 <div id="eof_scripts">

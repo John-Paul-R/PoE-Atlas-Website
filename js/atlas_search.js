@@ -63,6 +63,7 @@ function searchAtlas(query) {
         console.log("No query data was found.")
         clearSearchDisplayMods(nodePixiObjects);
     }
+    renderStageThrottled();
 }
 
 function initSearchDisplay() {

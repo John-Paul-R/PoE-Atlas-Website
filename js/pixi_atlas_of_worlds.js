@@ -1,6 +1,7 @@
 //===========
 //  Globals
 //===========
+const minFrameTime = 16;
 //Parsed json data file w/ map positions & other node data
 // let mapData;
 //The main sprite for the Atlas. (background image)
@@ -28,10 +29,10 @@ var CONTAINER;
 var app =  new PIXI.Application({
     width: pixiAtlasW,
     height: pixiAtlasH,
-    autoStart: true,
+    autoStart: false,
     antialias: true,
     sharedLoader: true,
-    sharedTicker: true,
+    sharedTicker: false,
     // resizeTo: window,
     resolution: devicePixelRatio 
 });
@@ -221,30 +222,50 @@ function preloadStaticGraphics() {
 
     for (let i=0; i<nodeData.length; i++) {
         let cNodeData = nodeData[i];
-        let cPixiNode = new NodePixiObject();
-        cPixiNode.container = new PIXI.Container();
+        let nodePixiObj = new NodePixiObject();
+        let container = new PIXI.Container();
+        nodePixiObj.container = container;
         
         //Load Node Circle Sprites
+        let circleSprite;
         if (cNodeData.IsUniqueMapArea) {
-            cPixiNode.circleSprite = nodeCircleGraphs.unique.clone();
+            circleSprite = nodeCircleGraphs.unique.clone();
         } else {
-            cPixiNode.circleSprite = nodeCircleGraphs.normal.clone();
+            circleSprite = nodeCircleGraphs.normal.clone();
         }
+        
+        if (boolNodeHover) {
+            circleSprite.interactive = true;
+            circleSprite.buttonMode = true;
+            const scaleMult = 1.325;
+            circleSprite.mouseover = function() {
+                nodeGainLightFocus(nodePixiObj, scaleMult);
+                app.renderer.render(stage);
+            };
+            circleSprite.mouseout = function(mouseData) {
+                nodeLoseLightFocus(nodePixiObj, scaleMult);
+                app.renderer.render(stage);
+            };
+        }
+        nodePixiObj.circleSprite = circleSprite;
+        container.addChild(nodePixiObj.circleSprite);
 
         //Load Name Sprites
         let nameSprite = new PIXI.Text(cNodeData.Name, nameTextStyleBlack);
         nameSprite.resolution = textResolution;
         nameSprite.anchor.set(0.5,1);
-        cPixiNode.nameSprite = nameSprite;
+        nodePixiObj.nameSprite = nameSprite;
+        container.addChild(nameSprite);
 
         //Init Node Tier Sprite
-        cPixiNode.tierSprite = new PIXI.Sprite.from(
+        nodePixiObj.tierSprite = new PIXI.Sprite.from(
             tierTextures[cNodeData.TieredData[0].Tier]
         );
+        container.addChild(nodePixiObj.tierSprite);
 
-        nodePixiObjects.push(cPixiNode);
+        nodePixiObjects.push(nodePixiObj);
     }
-     
+    
     //===========
     // FUNCTIONS
     //===========
@@ -411,37 +432,25 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
 
             //Draw Nodes on 'regionNodesGraph'
             if (boolDrawNodes) {
-
                 let nodePixiObj = nodePixiObjects[entryID];
                 let nodeContainer = nodePixiObj.container;
                 nodeContainer.position.set(tieredEntryData.x+nodeCenterOffset, tieredEntryData.y+nodeCenterOffset)
-                let circleSprite = nodePixiObj.circleSprite;
-                circleSprite.scale.set(mapScaleFactor.avg, mapScaleFactor.avg);
-                if (boolNodeHover) {
-                    circleSprite.interactive = true;
-                    circleSprite.buttonMode = true;
-                    const scaleMult = 1.325;
-                    circleSprite.mouseover = function() {
-                        nodeGainLightFocus(nodePixiObj, scaleMult);
-                    };
-                    circleSprite.mouseout = function(mouseData) {
-                        nodeLoseLightFocus(nodePixiObj, scaleMult);
-                    }
-                }
-                nodeContainer.addChild(circleSprite);
+                
+                // Circle Sprite
+                nodePixiObj.circleSprite.scale.set(mapScaleFactor.avg, mapScaleFactor.avg);
 
                 //Add node label text sprites to 'nodeContainer' 
                 if (boolDrawNames) {
-                    let nameSprite = nodePixiObj.nameSprite;
-                    nameSprite.y = 0-(nodeRadius+nodeCenterOffset/4);
-                    nodeContainer.addChild(nameSprite);
+                    nodePixiObj.nameSprite.y = 0-(nodeRadius+nodeCenterOffset/4);
+                    const scaleFac = 2/3;
+                    nodePixiObj.nameSprite.scale.set(mapScaleFactor.x*scaleFac, mapScaleFactor.y*scaleFac);
                 }
 
                 //Add node tier text sprites to 'nodeContainer' 
                 if (boolDrawTiers) {
                     let tierSprite = nodePixiObj.tierSprite;
                     tierSprite.texture = nodeTierTextures[tieredEntryData.tier-1];
-                    var scaleFac = 0.15;
+                    const scaleFac = 0.15;
                     tierSprite.scale.set(mapScaleFactor.x*scaleFac, mapScaleFactor.y*scaleFac);
                     tierSprite.anchor.set(0.5,0.5)
                     nodeContainer.addChild(tierSprite);
@@ -642,7 +651,23 @@ function placeElement(element, x_pos, y_pos) {
     element.style.left = x_pos+'px';
     element.style.top = y_pos+'px';
 }
-
+//=========
+// Utility
+//=========
+function throttle(func, timeInterval) {
+    var lastTime = 0;
+    return function () {
+        var now = Date.now();
+        if (now - lastTime >= timeInterval) {
+            func();
+            lastTime = now;
+        } else {
+            setTimeout(func, lastTime+timeInterval);
+        }
+    };
+  }
+var renderStageThrottled = throttle(() => app.renderer.render(stage), minFrameTime);
+var renderStage = ()=>app.renderer.render(stage);
 
 // ===============================
 // Notes and currently unused

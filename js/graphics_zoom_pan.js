@@ -69,6 +69,9 @@ function initZoomPanInput(pixiApp) {
             prevX = pos.x; prevY = pos.y;
             
             //limit positions to Atlas sprite display bounds
+
+            //Render frames while dragging
+            renderStageThrottled();
         };
 
         window.addEventListener('mouseup', function (e) {
@@ -165,6 +168,7 @@ function initZoomPanInput(pixiApp) {
         } else {
             resetPositions();
         }
+        renderStageThrottled();
     }
 
     function opOnDisplayObjs(func) {

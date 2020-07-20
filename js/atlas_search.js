@@ -9,7 +9,7 @@ for (let i=0; i<searchElements.length; i++) {
 }
 function searchAtlas(query) {
     console.log("running searchAtlas... "+query)
-    if (query.data != undefined && query.target.value.length>0){
+    if (query.target.value){
         console.log("Query: " + query.target.value)
         let objects = nodeData.map(el => { return {
             name: el.Name,
@@ -59,8 +59,7 @@ function searchAtlas(query) {
         // premade collections of all nodes at each tier
         // collections of nodes by region (we have this)
         console.log(bestResult?(bestResult.obj.name + " - Score: " + bestResult.score):"NO-MATCH-FOUND")
-    }
-    else {
+    } else {
         console.log("No query data was found.")
         clearSearchDisplayMods(nodePixiObjects);
     }

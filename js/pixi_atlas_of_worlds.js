@@ -32,7 +32,8 @@ var app =  new PIXI.Application({
     antialias: true,
     sharedLoader: true,
     sharedTicker: true,
-    resizeTo: window
+    // resizeTo: window,
+    resolution: devicePixelRatio 
 });
 let stage = app.stage;
 
@@ -108,15 +109,9 @@ function getAtlasContainersPosition() {
     };
 }
 function getAtlasSpriteScale() {
-    let scaleFactorToAdjustForPixiScreenAspectRatio;
-    if (pixiScreenH > pixiScreenW) {
-        scaleFactorToAdjustForPixiScreenAspectRatio=(pixiScreenW/pixiAtlasW);
-    } else {
-        scaleFactorToAdjustForPixiScreenAspectRatio=(pixiScreenH/pixiAtlasH)
-    }
-    return {
-        x: (pixiAtlasW/maxW)/scaleFactorToAdjustForPixiScreenAspectRatio,
-        y: (pixiAtlasH/maxH)/scaleFactorToAdjustForPixiScreenAspectRatio
+    return {//Adjust for Atlas img size being large
+        x: pixiAtlasW/maxW,
+        y: pixiAtlasH/maxH
     };
 }
 function getAtlasSpritePosition() {
@@ -194,19 +189,7 @@ function loadMapsData(loader, resources, atlasSprite) {
 
             for (let i=0; i<nodeData.length; i++) {
                 let entry = nodeData[i];
-                regionNodes[entry.AtlasRegionsKey].push(entry.RowID);
-                // nodeData.push(new NodeData(
-                //     entry.RowID,
-                //     entry.Name,
-                //     entry.AtlasRegionsKey,
-                //     entry.IsUniqueMapArea, [
-                //     [entry.X0, entry.Y0, entry.AtlasNodeKeys0, entry.Tier0],
-                //     [entry.X1, entry.Y1, entry.AtlasNodeKeys1, entry.Tier1],
-                //     [entry.X2, entry.Y2, entry.AtlasNodeKeys2, entry.Tier2],
-                //     [entry.X3, entry.Y3, entry.AtlasNodeKeys3, entry.Tier3],
-                //     [entry.X4, entry.Y4, entry.AtlasNodeKeys4, entry.Tier4]
-                // ]));
-                
+                regionNodes[entry.AtlasRegionsKey].push(entry.RowID);                
             }
             preloadStaticGraphics();
             //Draw Atlas Nodes & Lines
@@ -218,7 +201,6 @@ function loadMapsData(loader, resources, atlasSprite) {
     }
 }
 function preloadStaticGraphics() {
-
     //Init main container object
     nodePixiObjects = [];
     //Set text display options
@@ -262,104 +244,79 @@ function preloadStaticGraphics() {
 
         nodePixiObjects.push(cPixiNode);
     }
-    // preloadNodeCircleSprites(nodeTextures);
-    // preloadNameSprites(fontSize, fontFamily, nameFontStyle, textResolution);
      
+    //===========
+    // FUNCTIONS
+    //===========
+    function preloadNodeCircleGraphics() {
+        let nodeGraph = new PIXI.Graphics();
+        nodeGraph.lineStyle(lineThickness, '0x0', 1, 0.5, false)
+            .beginFill('0x555555',1)
+            .drawCircle(0, 0, 10);
     
-}
-function preloadNodeCircleGraphics() {
-    let nodeGraph = new PIXI.Graphics();
-    nodeGraph.lineStyle(lineThickness, '0x0', 1, 0.5, false)
-        .beginFill('0x555555',1)
-        .drawCircle(0, 0, 10);
+        let uniqueNodeGraph = new PIXI.Graphics();
+        uniqueNodeGraph.lineStyle(lineThickness, '0x0', 1, 0.5, false)
+            .beginFill('0x554411',1)
+            .drawCircle(0, 0, 10);
+    
+        // const renderSize = 128;
+        // const scaleMode = PIXI.SCALE_MODES.LINEAR;
+        // const res = 1;
+        let nodeCircleGraphics = {
+            normal: nodeGraph,//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res),
+            unique: uniqueNodeGraph//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res)
+        };
+        // app.renderer.render(nodeGraph, nodeCircleTexture.normal);
+        // app.renderer.render(uniqueNodeGraph, nodeCircleTexture.unique);
+    
+        return nodeCircleGraphics;
+    }
 
-    let uniqueNodeGraph = new PIXI.Graphics();
-    uniqueNodeGraph.lineStyle(lineThickness, '0x0', 1, 0.5, false)
-        .beginFill('0x554411',1)
-        .drawCircle(0, 0, 10);
-
-    // const renderSize = 128;
-    // const scaleMode = PIXI.SCALE_MODES.LINEAR;
-    // const res = 1;
-    let nodeCircleGraphics = {
-        normal: nodeGraph,//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res),
-        unique: uniqueNodeGraph//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res)
-    };
-    // app.renderer.render(nodeGraph, nodeCircleTexture.normal);
-    // app.renderer.render(uniqueNodeGraph, nodeCircleTexture.unique);
-
-    return nodeCircleGraphics;
-}
-function preloadNodeCircleSprites(nodeTextures) {
-    nodeCircleSprites = [];
-    for (let i=0; i<nodeData.length; i++) {
-        if (nodeData[i].IsUniqueMapArea) {
-            nodeCircleSprites.push(nodeTextures.unique.clone());
-        } else {
-            nodeCircleSprites.push(nodeTextures.normal.clone());
+    function preloadTierTextures(fontSize, fontFamily, fontStyle, textResolution) {
+        const textStyleRed = {
+            fontFamily: fontFamily,
+            fontSize: fontSize*textResolution,
+            fontStyle: fontStyle,
+            // fill : 0xcc1010,
+            fill : 0xee0000,
+        };
+        const textStyleYellow = {
+            fontFamily: fontFamily,
+            fontSize: fontSize*textResolution,
+            fontStyle: fontStyle,
+            fill: 0xdddd00,
+        };
+        const textStyleWhite = {
+            fontFamily: fontFamily,
+            fontSize: fontSize*textResolution,
+            fontStyle: fontStyle,
+            fill: 0xffffff,
+        };
+    
+        nodeTierTextures = [];
+        const textureSize = 64;
+        for (let i=1; i<=16; i++) {
+            let tierSprite = new PIXI.Text(i);
+            tierSprite.resolution = 1//textResolution;
+            if (i > 9) {
+                tierSprite.style = textStyleRed;
+            } else if (i > 5) {
+                tierSprite.style = textStyleYellow;
+            } else {
+                tierSprite.style = textStyleWhite;
+            }
+            tierSprite.anchor.set(0.5,0.5);
+            tierSprite.position.set(textureSize/2, textureSize/2);
+            let renderTexture = PIXI.RenderTexture.create({width:textureSize, height:textureSize});
+            renderTexture.resolution = 1//textResolution;
+            app.renderer.render(tierSprite, renderTexture);
+    
+            nodeTierTextures.push(renderTexture);
         }
+        return nodeTierTextures;
     }
 }
-function preloadNameSprites(fontSize, fontFamily, fontStyle, textResolution) {
-    const nameTextStyleBlack = {
-        fontFamily : fontFamily,
-        fontSize: fontSize-4,
-        fontStyle: fontStyle,
-        fill : 0x000000,
-    };
-    
-    nodeNameSprites = [];
-    for (let i=0; i<nodeData.length; i++) {
-        let nameSprite = new PIXI.Text(nodeData[i].Name, nameTextStyleBlack);
-        nameSprite.resolution = textResolution;
-        nameSprite.anchor.set(0.5,1)
-        nodeNameSprites.push(nameSprite)
-    }
-    
-}
-function preloadTierTextures(fontSize, fontFamily, fontStyle, textResolution) {
-    const textStyleRed = {
-        fontFamily: fontFamily,
-        fontSize: fontSize*textResolution,
-        fontStyle: fontStyle,
-        // fill : 0xcc1010,
-        fill : 0xee0000,
-    };
-    const textStyleYellow = {
-        fontFamily: fontFamily,
-        fontSize: fontSize*textResolution,
-        fontStyle: fontStyle,
-        fill: 0xdddd00,
-    };
-    const textStyleWhite = {
-        fontFamily: fontFamily,
-        fontSize: fontSize*textResolution,
-        fontStyle: fontStyle,
-        fill: 0xffffff,
-    };
 
-    nodeTierTextures = [];
-    const textureSize = 64;
-    for (let i=1; i<=16; i++) {
-        let tierSprite = new PIXI.Text(i);
-        tierSprite.resolution = 1//textResolution;
-        if (i > 9) {
-            tierSprite.style = textStyleRed;
-        } else if (i > 5) {
-            tierSprite.style = textStyleYellow;
-        } else {
-            tierSprite.style = textStyleWhite;
-        }
-        tierSprite.anchor.set(0.5,0.5);
-        tierSprite.position.set(textureSize/2, textureSize/2);
-        let renderTexture = PIXI.RenderTexture.create({width:textureSize, height:textureSize});
-        renderTexture.resolution = 1//textResolution;
-        app.renderer.render(tierSprite, renderTexture);
-
-        nodeTierTextures.push(renderTexture);
-    }
-    return nodeTierTextures;
-}
 
 function drawAllAtlasRegions() {
     for(let i=0; i<NUM_REGIONS; i++) {
@@ -538,9 +495,7 @@ class TieredNodeData {
     }
 }
 function getTieredNodeData(node) {
-    
     let tData = node.TieredData[regionTiers[node.AtlasRegionsKey]];
-
     return new TieredNodeData(
         tData.Tier,
         tData.AtlasNodeKeys,
@@ -606,33 +561,10 @@ function onWindowResize() {
         pixiAtlasW = pixiScreenH*(maxW/maxH);
     }
     
-    CONTAINER.style.height = pixiScreenH+'px';
-    CONTAINER.style.width = pixiScreenW+'px';
-    app.view.style.height = pixiScreenH+'px';
-    app.view.style.width = pixiScreenW+'px';
-    app.height = pixiScreenH+'px';
-    app.width = pixiScreenW+'px';
-    app.resize();
+    app.renderer.resize(pixiScreenW, pixiScreenH);
 
-    console.log("16/9 = "+ 16/9);
-    console.log("max w, h: " + maxW + ", " + maxH
-        +"\nRatio: " + maxW/maxH);
-    console.log("pixiScreen w, h: " + pixiScreenW + ", " + pixiScreenH
-        +"\nRatio: " + pixiScreenW/pixiScreenH);
-    console.log("app.screen. w, h: " + app.screen.width + ", " + app.screen.height
-        +"\nRatio: " + app.screen.width/app.screen.height);
-    console.log("pixiAtlas w, h: " + pixiAtlasW + ", " + pixiAtlasH
-        +"\nRatio: " + pixiAtlasW/pixiAtlasH);
-    let atlasScale = getAtlasSpriteScale();
-    console.log("Atlas size (in theory) x, y: " + atlasScale.x*maxW + ", " +atlasScale.y*maxH 
-        +"\nRatio: " + (atlasScale.x*maxW)/(atlasScale.y*maxH));
-    let containersScale = getAtlasContainersScale();
-    console.log("Containers scale x, y: " + containersScale.x + ", " +containersScale.y 
-        +"\nRatio: " + (containersScale.x)/(containersScale.y));
-    
-
-    midx = pixiScreenW/2;//+app.view.x;
-    midy = pixiScreenH/2;//+app.view.y;
+    midx = pixiScreenW/2+app.screen.x;
+    midy = pixiScreenH/2+app.screen.y;
 
     mapScaleFactor = {
         x: pixiAtlasW/maxW*4,

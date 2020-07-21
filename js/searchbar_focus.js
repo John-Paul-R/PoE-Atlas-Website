@@ -1,6 +1,18 @@
+bindSearchbarFocus();
+
+function bindSearchbarFocus(searchbarElements) {
+    if (!searchbarElements) {
+        searchbarElements = document.getElementsByClassName('searchbar');
+    }
+    for (let i=0; i<searchbarElements.length; i++) {
+        searchbarElements[i].addEventListener('focusin', ()=>searchbarFocus('in'));
+        searchbarElements[i].addEventListener('focusout', ()=>searchbarFocus('out'));
+    }
+}
+
 function searchbarFocus(val) {
-    parent = event.target.parentElement
-    newOpacity = 1;
+    let parent = event.target.parentElement
+    let newOpacity = 1;
     if (val == 'in') {
         gsap.to(parent, .15, { scale:1, opacity: newOpacity });
         parent.style.setProperty("box-shadow", "var(--shadow)");
@@ -16,5 +28,4 @@ function searchbarFocus(val) {
 
     }
     //parent.style.setProperty('opacity', newOpacity);
-    
 }

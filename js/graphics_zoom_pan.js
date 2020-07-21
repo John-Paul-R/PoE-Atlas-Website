@@ -3,12 +3,13 @@
  * !Original Source: https://github.com/anvaka/ngraph/blob/master/examples/pixi.js/03%20-%20Zoom%20And%20Pan/globalInput.js
 */
 
+export { initZoomPanInput, bindZoomPanInput };
 //The first object that is added to this should be the background
 //(Must have defined bounds, like a sprite)
 //(this ^^^ is for constraining the zoom/pan to the screen)
 var displayObjs = []
 
-function initZoomPanInput(pixiApp) {
+function initZoomPanInput(pixiApp, renderStageThrottled) {
 
     var mainObj = displayObjs[0];
     var mainObjO = mainObj.obj;
@@ -25,7 +26,7 @@ function initZoomPanInput(pixiApp) {
     addDragNDrop(pixiApp);
 
     //Reset zoom & position of DisplayObjects on Double-Click
-    app.view.addEventListener('dblclick', resetPositions);
+    pixiApp.view.addEventListener('dblclick', resetPositions);
 
 
     //-------------------
@@ -143,7 +144,7 @@ function initZoomPanInput(pixiApp) {
         //NOTE: We want the nodes and lines to move together, so we will do the...
         // math relateive to one of them, then apply the resultant (same) tranformation to both
         // -- We could also do it relative to the average of the elements...? idk, will see
-        direction = isZoomIn ? 1 : -1;
+        let direction = isZoomIn ? 1 : -1;
         var factor = (1 + direction * 0.1);
         let minScale = mainObj.scaleFunc();
         let maxScale = minScale.x*5

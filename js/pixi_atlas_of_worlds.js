@@ -1,3 +1,10 @@
+//================
+// Module Imports
+//================
+import { initSearch } from './atlas_search.js';
+import { initZoomPanInput, bindZoomPanInput } from './graphics_zoom_pan.js';
+// import { searchbarFocus } from './js/searchbar_focus.js';
+
 //===========
 //  Globals
 //===========
@@ -90,12 +97,10 @@ function resizePixiDisplayObjects() {
     let containerScale = getAtlasContainersScale();
     linesContainer.scale.copyFrom(containerScale);
     nodesContainer.scale.copyFrom(containerScale);
-    searchGraphics.scale.copyFrom(containerScale);
 
     let containerPos = getAtlasContainersPosition();
     linesContainer.position.copyFrom(containerPos);
     nodesContainer.position.copyFrom(containerPos);
-    searchGraphics.scale.copyFrom(containerPos)
 }
 function getAtlasContainersScale() {
     return {
@@ -131,11 +136,9 @@ function initPixiDisplayObjects(loader, resources) {
 
     //Bind input to Atlas
     bindZoomPanInput(atlasSprite, getAtlasSpriteScale, getAtlasSpritePosition);
-    initZoomPanInput(app);
+    initZoomPanInput(app, renderStageThrottled);
 
     initPixiContainers();
-
-    initSearchDisplay(atlasSprite);
 }
 function initPixiContainers() {
     //Create main containers for Lines and Nodes
@@ -153,7 +156,7 @@ const NUM_REGIONS = 8;
 const NUM_TIERS = 5;
 var regionTiers = [0,0,0,0,0,0,0,0]; //Tiers of each region (array index = regionID)
 var regionNodes = [[], [], [], [], [], [], [], []]; //lists of nodes(IDs) in each region
-var nodeData;
+export var nodeData;
 class NodeData {
     constructor(ID, name, regionID, isUnique, tieredData) {
         this.ID = ID;
@@ -167,13 +170,34 @@ var nodeNameSprites;
 var nodeTierTextures;
 // var nodeCircleTexture;
 var nodeCircleSprites;
-var nodePixiObjects;
+export var nodePixiObjects;
 class NodePixiObject {
     constructor(nodeContainer, circleSprite, nameSprite, tierSprite) {
         this.container = nodeContainer;
         this.circleSprite = circleSprite;
         this.nameSprite = nameSprite;
         this.tierSprite = tierSprite;
+    }
+
+    gainLightFocus(scaleMult, hoverGraphic) {
+        this.container.scale.x *=scaleMult;
+        this.container.scale.y *=scaleMult;
+        this.container.zIndex = 1;
+        if (hoverGraphic) {
+            this.circleSprite.addChild(hoverGraphic);
+        }
+    }
+
+    loseLightFocus(scaleMult, clearHoverGraphic, forceBaseScale) {
+        this.container.scale.x /=scaleMult;
+        this.container.scale.y /=scaleMult;
+        this.container.zIndex = 0;
+        if (clearHoverGraphic) {
+            this.circleSprite.removeChildren();
+        }
+        if (forceBaseScale) {
+            this.container.scale.set(1, 1);
+        }
     }
 }
 //Request map data, parse it, and draw all Atlas regions for the 1st time.
@@ -192,6 +216,7 @@ function loadMapsData(loader, resources, atlasSprite) {
                 let entry = nodeData[i];
                 regionNodes[entry.AtlasRegionsKey].push(entry.RowID);                
             }
+            initSearch(nodeData);
             preloadStaticGraphics();
             //Draw Atlas Nodes & Lines
             drawAllAtlasRegions();
@@ -239,11 +264,11 @@ function preloadStaticGraphics() {
             circleSprite.buttonMode = true;
             const scaleMult = 1.325;
             circleSprite.mouseover = function() {
-                nodeGainLightFocus(nodePixiObj, scaleMult);
+                nodePixiObj.gainLightFocus(scaleMult);
                 app.renderer.render(stage);
             };
             circleSprite.mouseout = function(mouseData) {
-                nodeLoseLightFocus(nodePixiObj, scaleMult);
+                nodePixiObj.loseLightFocus(scaleMult);
                 app.renderer.render(stage);
             };
         }
@@ -329,7 +354,7 @@ function preloadStaticGraphics() {
             tierSprite.anchor.set(0.5,0.5);
             tierSprite.position.set(textureSize/2, textureSize/2);
             let renderTexture = PIXI.RenderTexture.create({width:textureSize, height:textureSize});
-            renderTexture.resolution = 1//textResolution;
+            // renderTexture.resolution = 1//textResolution;
             app.renderer.render(tierSprite, renderTexture);
     
             nodeTierTextures.push(renderTexture);
@@ -402,7 +427,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
 
                     //Draw Lines
                     let startX = tieredEntryData.x+nodeCenterOffset,
-                        startY = tieredEntryData.y+nodeCenterOffset
+                        startY = tieredEntryData.y+nodeCenterOffset,
                         endX = adjNodeData.x+nodeCenterOffset,
                         endY = adjNodeData.y+nodeCenterOffset;
                     // let dX = endX-startX,
@@ -467,32 +492,13 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
     app.renderer.render(stage);
 }
 
-function nodeGainLightFocus(nodePixiObj, scaleMult, hoverGraphic) {
-    nodePixiObj.container.scale.x *=scaleMult;
-    nodePixiObj.container.scale.y *=scaleMult;
-    nodePixiObj.container.zIndex = 1;
-    if (hoverGraphic) {
-        nodePixiObj.circleSprite.addChild(hoverGraphic);
-    }
-}
-function nodeLoseLightFocus(nodePixiObj, scaleMult, clearHoverGraphic, forceBaseScale) {
-    nodePixiObj.container.scale.x /=scaleMult;
-    nodePixiObj.container.scale.y /=scaleMult;
-    nodePixiObj.container.zIndex = 0;
-    if (clearHoverGraphic) {
-        nodePixiObj.circleSprite.removeChildren();
-    }
-    if (forceBaseScale) {
-        nodePixiObj.container.scale.set(1, 1);
-    }
-}
 
 // Returns an array of length 3 based on the supplied region tier.
 // Format: [node_x_pos, node_y_pos, [list_of_neighbor_node_ids]]
 function getNodeByID(nodeID) {
     return nodeData[nodeID];
 }
-function getNodeRegionTier(nodeObject) {
+export function getNodeRegionTier(nodeObject) {
     return regionTiers[nodeObject.AtlasRegionsKey];
 }
 class TieredNodeData {
@@ -666,8 +672,8 @@ function throttle(func, timeInterval) {
         }
     };
   }
-var renderStageThrottled = throttle(() => app.renderer.render(stage), minFrameTime);
-var renderStage = ()=>app.renderer.render(stage);
+export var renderStageThrottled = throttle(() => app.renderer.render(stage), minFrameTime);
+export var renderStage = ()=>app.renderer.render(stage);
 
 // ===============================
 // Notes and currently unused

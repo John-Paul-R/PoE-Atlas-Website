@@ -8,11 +8,13 @@
         if(!PIXI.utils.isWebGLSupported()){type="canvas"}
         PIXI.utils.sayHello(type)
     </script>
-    <script src='js/graphics_zoom_pan.js'></script>
-    <script src='js/searchbar_focus.js'></script>
+    <script src='js/graphics_zoom_pan.js'   type="module"></script>
+    <script src='js/searchbar_focus.js'     type="module"></script>
     <script src="js/gsap.min.js"></script>
-    <script src="js/palette_light_dark.js"></script>
-
+    <script src="js/fuzzysort.js"></script>
+    <script src="js/palette_light_dark.js"  type="module"></script>
+    <script src="js/atlas_search.js"        type="module"></script>
+    <!-- <script>import { searchbarFocus } from './js/searchbar_focus.js';</script> -->
     <title>PoE Atlas</title>
 </head>
 
@@ -39,7 +41,7 @@
                     <button class="watchstone 7">Tier 0</button>
                 </div>
                 <div class="overlay top">
-                    <div class="searchbar filled centerh" onfocusin="searchbarFocus('in')" onfocusout="searchbarFocus('out')">
+                    <div class="searchbar filled centerh">
                         <!-- display option show all -->
                         <i class="material-icons first">search</i>
                         <input type="text" class="searchField" placeholder="Search for a map, region, tier, item drop, etc." tabindex="1" autofocus>
@@ -68,9 +70,7 @@
 </body>
 
 <div id="eof_scripts">
-    <script src="js/pixi_atlas_of_worlds.js"></script>
-    <script src="js/fuzzysort.js"></script>
-    <script src="js/atlas_search.js"></script>
+    <script src="js/pixi_atlas_of_worlds.js" type="module"></script>
 </div>
     
 </html>

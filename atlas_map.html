@@ -1,20 +1,23 @@
 <!DOCTYPE html><html>
 <head>
-    <script src="pixi/pixi.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/map_style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="pixi/pixi.min.js"></script>
     <script type="text/javascript">
-        let type="WebGL"
+        let type="WebGL";
         if(!PIXI.utils.isWebGLSupported()){type="canvas"}
-        PIXI.utils.sayHello(type)
+        PIXI.utils.sayHello(type);
     </script>
+    <script src="js/fuzzysort.js"></script>
+    <script src="js/gsap.min.js"></script>
+
+    <script src="js/logger.js"              type="module"></script>
     <script src='js/graphics_zoom_pan.js'   type="module"></script>
     <script src='js/searchbar_focus.js'     type="module"></script>
-    <script src="js/gsap.min.js"></script>
-    <script src="js/fuzzysort.js"></script>
     <script src="js/palette_light_dark.js"  type="module"></script>
     <script src="js/atlas_search.js"        type="module"></script>
-    <!-- <script>import { searchbarFocus } from './js/searchbar_focus.js';</script> -->
+
     <title>PoE Atlas</title>
 </head>
 

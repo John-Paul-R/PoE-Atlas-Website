@@ -1,14 +1,15 @@
 
 import { getNodeRegionTier, nodeData, nodePixiObjects, renderStageThrottled } from './pixi_atlas_of_worlds.js';
+import { logger } from './logger.js';
 export { initSearch };
 
 let searchElements = document.getElementsByClassName("searchField");
 const scale = 1.2;
 
 function searchAtlas(query) {
-    console.log("running searchAtlas... "+query)
+    logger.info("running searchAtlas... "+query)
     if (query.target.value){
-        console.log("Query: " + query.target.value)
+        logger.info("Query: " + query.target.value)
         let objects = nodeData.map(el => { return {
             name: el.Name,
             id: el.RowID.toString(),
@@ -26,9 +27,8 @@ function searchAtlas(query) {
             )
         });
         
-        var bestResult = results[0]
+        let bestResult = results[0]
 
-        
         clearSearchDisplayMods(nodePixiObjects);
 
         if (bestResult) {
@@ -55,9 +55,9 @@ function searchAtlas(query) {
         // have alphabatized collection with all of the nodes by name
         // premade collections of all nodes at each tier
         // collections of nodes by region (we have this)
-        console.log(bestResult?(bestResult.obj.name + " - Score: " + bestResult.score):"NO-MATCH-FOUND")
+        logger.info(bestResult?(bestResult.obj.name + " - Score: " + bestResult.score):"NO-MATCH-FOUND")
     } else {
-        console.log("No query data was found.")
+        // console.log("No query data was found.")
         clearSearchDisplayMods(nodePixiObjects);
     }
     renderStageThrottled();
@@ -66,16 +66,13 @@ function searchAtlas(query) {
 function initSearch() {
     for (let i=0; i<searchElements.length; i++) {
         searchElements[i].addEventListener('input', searchAtlas);
-        console.log(searchElements[i] + " will now listen for input events and trigger searchAtlas.");
+        logger.info(searchElements[i] + " will now listen for input events and trigger searchAtlas.");
     }
-    console.log("atlas_search.js initialized!");
+    logger.info("atlas_search.js initialization complete!");
 }
 
 function clearSearchDisplayMods(pixiObjList) {
     for(let i=0; i<pixiObjList.length; i++) {
-        // let pixiObj = pixiObjList[i];
-        // pixiObj.container.scale.set(1, 1);
-        // pixiObj.circleSprite.removeChildren();
         pixiObjList[i].loseLightFocus(scale, true, true);
     }
 }

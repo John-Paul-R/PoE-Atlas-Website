@@ -1,49 +1,74 @@
+/*
+    *! Copyright (c) 2020 John Paul Rutigliano
+    *
+    * 
+    * This Source Code Form is subject to the terms of the Mozilla Public
+    * License, v. 2.0. If a copy of the MPL was not distributed with this
+    * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+    * 
+    * Source: https://github.com/John-Paul-R/PoE-Atlas-Website
+*/
+
 //================
 // Module Imports
 //================
 import { initSearch } from './atlas_search.js';
 import { initZoomPanInput, bindZoomPanInput } from './graphics_zoom_pan.js';
-// import { searchbarFocus } from './js/searchbar_focus.js';
+import { logger } from './logger.js';
+import { throttle, debounce } from './util.js';
 
 //===========
 //  Globals
 //===========
-const minFrameTime = 16;
+//Render Toggles
+var options = {
+    drawLines: true,
+    drawNodes: true,
+    nodeHover: true,
+    drawNames: true,
+    drawTiers: true
+}
+//The minimum allowable time between stage renders. (Calls made while the function is on cooldown are ignored.)
+const MIN_FRAME_TIME = 1000/60;//(60fps)
+
 //Parsed json data file w/ map positions & other node data
-// let mapData;
+export var nodeData;
 //The main sprite for the Atlas. (background image)
 let atlasSprite;
 //Self explanatory.
 let linesContainer;
 let nodesContainer;
-//Render Toggles
-let boolDrawLines = true;
-let boolDrawNodes = true;
-let boolNodeHover = true;
-let boolDrawNames = true;
-let boolDrawTiers = true;
 
-
-//Create the Pixi Application
-let maxH = 2304;
-let maxW = 4096;
+//Dimensions of the Atlas image (the largest sprite, which all other sprites are children of)
+const maxH = 2304;
+const maxW = 4096;
+//The calculated dimensions of the pixi screen (updates on resize and on init)
 let pixiScreenW = 2304;
 let pixiScreenH = 4096;
+//The calculated dimensions of the scaled Atlas image (If working as intended...
+// this should represent the actual visual size of the Atlas image.) (updates on resize and on init)
 let pixiAtlasH = 2304;
 let pixiAtlasW = 4096;
 var CONTAINER;
+//The center position of the PIXI canvas. Updates automatically when resized.
+let midx = 0;
+let midy = 0;
 
-var app =  new PIXI.Application({
+//Create the Pixi Application
+const app =  new PIXI.Application({
     width: pixiAtlasW,
     height: pixiAtlasH,
     autoStart: false,
     antialias: true,
     sharedLoader: true,
     sharedTicker: false,
-    // resizeTo: window,
     resolution: devicePixelRatio 
 });
-let stage = app.stage;
+app.ticker.autoStart = false;
+app.ticker.stop();
+PIXI.Ticker.shared.autoStart = false;
+PIXI.Ticker.shared.stop();
+const stage = app.stage;
 
 //Load Pixi resources
 const loader = PIXI.Loader.shared;
@@ -54,10 +79,6 @@ loader
     .add("img/line.png")
     .add("img/line_backgroundfill.png")
     .load(setup);
-
-//The center position of the PIXI canvas. Updates automatically when resized.
-let midx = 0;
-let midy = 0;
 
 //===========
 // Functions
@@ -153,24 +174,19 @@ function initPixiContainers() {
 //Factor by which to multiply node positions from the data file when drawing
 var mapScaleFactor;// = pixiAtlasW/maxW*4;//4.05;
 const NUM_REGIONS = 8;
-const NUM_TIERS = 5;
 window.addEventListener('DOMContentLoaded', loadRegionTiers);
 var regionTiers = []; //Tiers of each region (array index = regionID)
 var regionNodes = [[], [], [], [], [], [], [], []]; //lists of nodes(IDs) in each region
-export var nodeData;
-class NodeData {
-    constructor(ID, name, regionID, isUnique, tieredData) {
-        this.ID = ID;
-        this.name = name;
-        this.regionID = regionID;
-        this.isUnique = isUnique;
-        this.tieredData = tieredData;
-    }
-}
-var nodeNameSprites;
+// class NodeData {
+//     constructor(ID, name, regionID, isUnique, tieredData) {
+//         this.ID = ID;
+//         this.name = name;
+//         this.regionID = regionID;
+//         this.isUnique = isUnique;
+//         this.tieredData = tieredData;
+//     }
+// }
 var nodeTierTextures;
-// var nodeCircleTexture;
-var nodeCircleSprites;
 export var nodePixiObjects;
 class NodePixiObject {
     constructor(nodeContainer, circleSprite, nameSprite, tierSprite) {
@@ -210,7 +226,7 @@ function loadMapsData(loader, resources, atlasSprite) {
     request.onreadystatechange = function() {
         if ( request.readyState === 4 && request.status === 200 ) {
             nodeData = JSON.parse(request.responseText);
-            // console.log(mapData);
+            // logger.log(mapData);
             // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
 
             for (let i=0; i<nodeData.length; i++) {
@@ -259,8 +275,7 @@ function preloadStaticGraphics() {
         } else {
             circleSprite = nodeCircleGraphs.normal.clone();
         }
-        
-        if (boolNodeHover) {
+        if (options.nodeHover) {
             circleSprite.interactive = true;
             circleSprite.buttonMode = true;
             const scaleMult = 1.325;
@@ -283,12 +298,13 @@ function preloadStaticGraphics() {
         nodePixiObj.nameSprite = nameSprite;
         container.addChild(nameSprite);
 
-        //Init Node Tier Sprite
+        //Preload Node Tier Sprites
         nodePixiObj.tierSprite = new PIXI.Sprite.from(
             tierTextures[cNodeData.TieredData[0].Tier]
         );
         container.addChild(nodePixiObj.tierSprite);
 
+        //Add the constructed Node object to the global list.
         nodePixiObjects.push(nodePixiObj);
     }
     
@@ -371,23 +387,19 @@ function drawAllAtlasRegions() {
     }
 }
 
-// Globals
-var nodeCenterOffset;// = 25*mapScaleFactor/4;
-var nodeRadius;// = 30*mapScaleFactor/4;
-var lineThickness;// = 3*mapScaleFactor/4;
+// Globals (Display properties)
+var nodeCenterOffset;//If I figure out how to scale the source data correctly, 'nodeCenterOffset' probably becomes 0 (and therefore unneeded)
+var nodeRadius;
+var lineThickness;
 const lineColor = 0xffffff;
 function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
     let regionLinesGraph;
     let regionNodesContainer;
     //Remove previous nodes and lines for this region.
     if (nodesContainer.children.length > regionID) {
-        // linesContainer.removeChildAt(regionID);
-        // nodesContainer.removeChildAt(regionID);
-        //This removes all references to the container AND child DisplayObjects, allowing...
-        //  the garbage collector to remove them from memory. Simply doing...
-        //  container.removeChildAt does not do this
+        // Clear the lines graphics
         regionLinesGraph = linesContainer.getChildAt(regionID).clear();//destroy(true, false, false);
-        //The nodesContainer can be cached
+        // The nodesContainer can be cached...
         regionNodesContainer = nodesContainer.getChildAt(regionID);
         regionNodesContainer.removeChildren();//.destroy(true, false, false);
     } else {
@@ -395,6 +407,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
         regionLinesGraph = new PIXI.Graphics();
         //init region nodes Graphics object (Nodes)
         regionNodesContainer = new PIXI.Container();
+        //Enable 'sortableChildren' so we can bring focused nodes to front.
         regionNodesContainer.sortableChildren = true;
         //Add Nodes and Lines to their respective containers and renderedRegion list
         linesContainer.addChildAt(regionLinesGraph, regionID);
@@ -421,7 +434,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
         //if node exists at this tier
         if (tieredEntryData.tier>0) {
             //Draw Connecting Lines between nodes (PIXI.Graphics)
-            if (boolDrawLines) {
+            if (options.drawLines) {
                 for (let i=0; i<tieredEntryData.atlasNodeKeys.length; i++) {
                     let adjNodeKey = tieredEntryData.atlasNodeKeys[i];
                     let adjNodeData = getTieredNodeData(getNodeByID(adjNodeKey));
@@ -457,7 +470,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
             }
 
             //Draw Nodes on 'regionNodesGraph'
-            if (boolDrawNodes) {
+            if (options.drawNodes) {
                 let nodePixiObj = nodePixiObjects[entryID];
                 let nodeContainer = nodePixiObj.container;
                 nodeContainer.position.set(tieredEntryData.x+nodeCenterOffset, tieredEntryData.y+nodeCenterOffset)
@@ -466,14 +479,14 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
                 nodePixiObj.circleSprite.scale.set(mapScaleFactor.avg, mapScaleFactor.avg);
 
                 //Add node label text sprites to 'nodeContainer' 
-                if (boolDrawNames) {
+                if (options.drawNames) {
                     nodePixiObj.nameSprite.y = 0-(nodeRadius+nodeCenterOffset/4);
                     const scaleFac = 2/3;
                     nodePixiObj.nameSprite.scale.set(mapScaleFactor.x*scaleFac, mapScaleFactor.y*scaleFac);
                 }
 
                 //Add node tier text sprites to 'nodeContainer' 
-                if (boolDrawTiers) {
+                if (options.drawTiers) {
                     let tierSprite = nodePixiObj.tierSprite;
                     tierSprite.texture = nodeTierTextures[tieredEntryData.tier-1];
                     const scaleFac = 0.15;
@@ -492,7 +505,6 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
     //TODO see if something like this helps at ALL, or if its actually a hindrance.
     app.renderer.render(stage);
 }
-
 
 // Returns an array of length 3 based on the supplied region tier.
 // Format: [node_x_pos, node_y_pos, [list_of_neighbor_node_ids]]
@@ -601,13 +613,6 @@ function onWindowResize() {
     drawAllAtlasRegions();
 }
 
-function removeElementsByClass(className){
-    let elements = document.getElementsByClassName(className);
-    while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]);
-    }
-}
-
 //Place atlas tier buttons in center, stacked vertically
 function placeAtlasTierButtons() {
     let elements = document.getElementsByClassName("watchstone");
@@ -647,12 +652,17 @@ function placeAtlasTierButtonsCircle() {
         midx-elements[0].offsetWidth/2,
         midy-elements[0].offsetHeight/2
     );
-    // let buttonsBox = document.getElementById("watchstone_btn_container");
-    // //buttonsBox.style.width = '100px';
-    // buttonsBox.style.height = elements.length*btnHeight+'px';
-    // placeElement(buttonsBox, midx, midy);
 }
 
+//=========
+// Utility
+//=========
+function removeElementsByClass(className){
+    let elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}
 function placeElementByID(elementID, x_pos, y_pos) {
     placeElement(document.getElementById(elementID), x_pos, y_pos);
 }
@@ -662,40 +672,14 @@ function placeElement(element, x_pos, y_pos) {
     element.style.left = x_pos+'px';
     element.style.top = y_pos+'px';
 }
-//=========
-// Utility
-//=========
-const throttle = (func, timeInterval) => {
-    var lastTime = 0;
-    return function () {
-        var now = Date.now();
-        if (now - lastTime >= timeInterval) {
-            func();
-            lastTime = now;
-        } else {
-            setTimeout(func, lastTime+timeInterval);
-        }
-    };
-}
-const debounce = (func, delay) => { 
-    let debounceTimer 
-    return function() { 
-        const context = this
-        const args = arguments 
-            clearTimeout(debounceTimer) 
-                debounceTimer 
-            = setTimeout(() => func.apply(context, args), delay) 
-    } 
-}
-
-export var renderStageThrottled = throttle(() => app.renderer.render(stage), minFrameTime);
+export var renderStageThrottled = throttle(() => app.renderer.render(stage), MIN_FRAME_TIME);
 export var renderStage = ()=>app.renderer.render(stage);
 
 const REGION_TIER_STORAGE_KEY = 'regionTiers';
-var storeRegionTiers = debounce(() => {
-    window.localStorage.setItem(REGION_TIER_STORAGE_KEY, JSON.stringify(regionTiers));
-
-}, 1500);
+var storeRegionTiers = debounce(
+    () => {window.localStorage.setItem(REGION_TIER_STORAGE_KEY, JSON.stringify(regionTiers));}
+    , 1500
+);
 
 function loadRegionTiers() {
     let stored = JSON.parse(window.localStorage.getItem(REGION_TIER_STORAGE_KEY));
@@ -705,24 +689,4 @@ function loadRegionTiers() {
         regionTiers = [0,0,0,0,0,0,0,0];
         storeRegionTiers();
     }
-}
-
-// ===============================
-// Notes and currently unused
-// ===============================
-// function clearPixiViews() {
-//     removeElementsByClass("pixi_atlas_of_worlds");
-// }
-
-let directionMult = 1;
-function animationLoop(delta) {
-    
-    // let lib = stage.getChildAt(1);
-    
-    // if (lib.y < 0 || lib.y > 100) {
-    //     directionMult *= -1;
-    // }
-    
-    // lib.y += 1*directionMult;
-
 }

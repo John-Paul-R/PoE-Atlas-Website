@@ -151,7 +151,7 @@ header > #navbar {
     margin-left: 8px;
 }
 .header_element {
-    margin-right: var(--spacing-amount);
+    margin-right: 12px;
     margin-top:auto;
     margin-bottom:auto;
     /*border: solid black 2px;*/

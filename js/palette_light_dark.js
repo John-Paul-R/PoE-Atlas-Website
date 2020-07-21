@@ -1,4 +1,23 @@
 var buttonElements;
+var paletteIndex = 0;
+class ColorPalette {
+    constructor (paletteName, base, background, element1, accent1, accent2, inverse, text, textInverse) {
+        this.paletteName = paletteName;
+        this.base = base;
+        this.background = background;
+        this.element1 = element1;
+        this.accent1 = accent1;
+        this.accent2 = accent2;
+        this.inverse = inverse;
+        this.text = text;
+        this.textInverse = textInverse;
+    }
+}
+var colorPalettes = [
+    new ColorPalette('Light'   , '#fafafa', '#f0f0f0', '#e0e0e0', '#aaaaaa', '#888888', '#333333', '#454545', '#d0d0d0')
+    ,new ColorPalette ('Dark'    , '#252525', '#353535', '#252525', '#af0404', '#888888', '#f0f0f0', '#f0f0f0', '#414141')
+]; //todo load this from external file? or from online library of available palettes?
+
 function bindPaletteSwapButtons(btnElements) {
     if (!btnElements) {
         buttonElements = document.getElementsByClassName('swap_palette');
@@ -13,34 +32,22 @@ function bindPaletteSwapButtons(btnElements) {
 bindPaletteSwapButtons();
 
 export function swapPalette() {
-    const root = document.documentElement;
-    let cPalette = root.style.getPropertyValue('--current-palette');
-    
-    if (cPalette == 0) {
-        root.style.setProperty('--color-base', '#252525');
-        root.style.setProperty('--color-background', '#353535');
-        root.style.setProperty('--color-element-1', '#252525');//'#ff0000');
-        root.style.setProperty('--color-accent-1', '#af0404');
-        root.style.setProperty('--color-accent-2', '#888888');
-        root.style.setProperty('--color-inverse', '#f0f0f0');
-        root.style.setProperty('--color-text', '#f0f0f0');
-        root.style.setProperty('--color-text-inverse', '#414141');
-        root.style.setProperty('--current-palette', 1);
-        for (let i=0; i<buttonElements.length; i++) {
-            buttonElements[i].textContent = "Light";
-        }
-    } else if (cPalette == 1) {
-        root.style.setProperty('--color-base', '#fafafa');
-        root.style.setProperty('--color-background', '#f0f0f0');
-        root.style.setProperty('--color-element-1', '#e0e0e0');
-        root.style.setProperty('--color-accent-1', '#aaaaaa');
-        root.style.setProperty('--color-accent-2', '#888888');
-        root.style.setProperty('--color-inverse', '#333333');
-        root.style.setProperty('--color-text', '#454545');
-        root.style.setProperty('--color-text-inverse', '#d0d0d0');
-        root.style.setProperty('--current-palette', 0);
-        for (let i=0; i<buttonElements.length; i++) {
-            buttonElements[i].textContent = "Dark";
-        }
+    const style = document.documentElement.style;
+    paletteIndex +=1;
+    if (paletteIndex >= colorPalettes.length) {
+        paletteIndex = 0;
+    }
+
+    let p = colorPalettes[paletteIndex];
+    style.setProperty('--color-base',           p.base);
+    style.setProperty('--color-background',     p.background);
+    style.setProperty('--color-element-1',      p.element1);
+    style.setProperty('--color-accent-1',       p.accent1);
+    style.setProperty('--color-accent-2',       p.accent2);
+    style.setProperty('--color-inverse',        p.inverse);
+    style.setProperty('--color-text',           p.text);
+    style.setProperty('--color-text-inverse',   p.textInverse);
+    for (let i=0; i<buttonElements.length; i++) {
+        buttonElements[i].textContent = p.paletteName;
     }
 }

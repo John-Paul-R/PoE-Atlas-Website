@@ -14,7 +14,7 @@ function searchAtlas(query) {
             id: el.RowID.toString(),
             tier: el.TieredData[getNodeRegionTier(el)].Tier.toString() 
         }; });
-        let results = fuzzysort.go(query.target.value, objects, {
+        let results = fuzzysort.go(query.target.value.trim(), objects, {
             keys: ['name', 'id', 'tier'],
             allowTypo: true,
             threshold: -500,

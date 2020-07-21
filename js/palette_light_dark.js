@@ -25,7 +25,6 @@ function bindPaletteSwapButtons(btnElements) {
     } else {
         buttonElements = btnElements;
     }
-    console.log(buttonElements);
     for (let i=0; i<buttonElements.length; i++) {
         buttonElements[i].addEventListener('click', swapPalette);
     }

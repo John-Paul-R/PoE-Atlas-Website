@@ -1,15 +1,15 @@
 
 import { getNodeRegionTier, nodeData, nodePixiObjects, renderStageThrottled } from './pixi_atlas_of_worlds.js';
-import { logger } from './logger.js';
+// import { logger } from './logger.js';
 export { initSearch };
 
 let searchElements = document.getElementsByClassName("searchField");
 const scale = 1.2;
 
 function searchAtlas(query) {
-    logger.info("running searchAtlas... "+query)
+    console.info("running searchAtlas... "+query)
     if (query.target.value){
-        logger.info("Query: " + query.target.value)
+        console.info("Query: " + query.target.value)
         let objects = nodeData.map(el => { return {
             name: el.Name,
             id: el.RowID.toString(),
@@ -55,7 +55,7 @@ function searchAtlas(query) {
         // have alphabatized collection with all of the nodes by name
         // premade collections of all nodes at each tier
         // collections of nodes by region (we have this)
-        logger.info(bestResult?(bestResult.obj.name + " - Score: " + bestResult.score):"NO-MATCH-FOUND")
+        console.info(bestResult?(bestResult.obj.name + " - Score: " + bestResult.score):"NO-MATCH-FOUND")
     } else {
         // console.log("No query data was found.")
         clearSearchDisplayMods(nodePixiObjects);
@@ -66,9 +66,9 @@ function searchAtlas(query) {
 function initSearch() {
     for (let i=0; i<searchElements.length; i++) {
         searchElements[i].addEventListener('input', searchAtlas);
-        logger.info(searchElements[i] + " will now listen for input events and trigger searchAtlas.");
+        console.info(searchElements[i] + " will now listen for input events and trigger searchAtlas.");
     }
-    logger.info("atlas_search.js initialization complete!");
+    console.info("atlas_search.js initialization complete!");
 }
 
 function clearSearchDisplayMods(pixiObjList) {

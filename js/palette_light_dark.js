@@ -2,21 +2,23 @@ var buttonElements;
 var paletteIndex;
 const STORAGE_KEY = 'selectedPaletteIndex';
 class ColorPalette {
-    constructor (paletteName, base, background, element1, accent1, accent2, inverse, text, textInverse) {
+    constructor (paletteName, base, element1, accent1, accent2, text, textInverse) {
         this.paletteName = paletteName;
         this.base = base;
-        this.background = background;
+        this.background = base;
+        // this.background = background;
         this.element1 = element1;
         this.accent1 = accent1;
         this.accent2 = accent2;
-        this.inverse = inverse;
+        // this.inverse = inverse;
         this.text = text;
         this.textInverse = textInverse;
     }
 }
 var colorPalettes = [
-     new ColorPalette('Light'   , '#fafafa', '#f0f0f0', '#e0e0e0', '#aaaaaa', '#888888', '#333333', '#454545', '#d0d0d0')
-    ,new ColorPalette('Dark'    , '#252525', '#353535', '#252525', '#af0404', '#888888', '#f0f0f0', '#f0f0f0', '#414141')
+     new ColorPalette('Light'   , '#fafafa', /*'#f0f0f0',*/ '#e0e0e0', '#aaaaaa', '#888888', /*'#333333',*/ '#353535', '#d0d0d0')
+    ,new ColorPalette('Dark'    , '#252525', /*'#353535',*/ '#252525', '#af0404', '#888888', /*'#f0f0f0',*/ '#f0f0f0', '#414141')
+    ,new ColorPalette('Color1'  , '#000000', '#14213d', '#fca311', '#e5e5e5', '#ffffff', '#000000')
 ]; //todo load this from external file? or from online library of available palettes?
 
 function bindPaletteSwapButtons(btnElements) {

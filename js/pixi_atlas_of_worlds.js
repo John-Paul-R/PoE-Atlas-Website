@@ -14,20 +14,18 @@
 //================
 import { initSearch } from './atlas_search.js';
 import { initZoomPanInput, bindZoomPanInput } from './graphics_zoom_pan.js';
-import { logger } from './logger.js';
+// import { logger } from './logger.js';
 import { throttle, debounce } from './util.js';
 
 //===========
 //  Globals
 //===========
 //Render Toggles
-var options = {
-    drawLines: true,
-    drawNodes: true,
-    nodeHover: true,
-    drawNames: true,
-    drawTiers: true
-}
+var options;
+window.addEventListener('DOMContentLoaded', ()=>{
+    loadDisplayOptions();
+    displayOptions();
+});
 //The minimum allowable time between stage renders. (Calls made while the function is on cooldown are ignored.)
 const MIN_FRAME_TIME = 1000/60;//(60fps)
 
@@ -210,7 +208,7 @@ class NodePixiObject {
         this.container.scale.y /=scaleMult;
         this.container.zIndex = 0;
         if (clearHoverGraphic) {
-            this.circleSprite.removeChildren();
+            this.circleSprite.children.forEach((el)=>el.destroy());
         }
         if (forceBaseScale) {
             this.container.scale.set(1, 1);
@@ -226,7 +224,7 @@ function loadMapsData(loader, resources, atlasSprite) {
     request.onreadystatechange = function() {
         if ( request.readyState === 4 && request.status === 200 ) {
             nodeData = JSON.parse(request.responseText);
-            // logger.log(mapData);
+            // console.log(mapData);
             // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
 
             for (let i=0; i<nodeData.length; i++) {
@@ -470,22 +468,25 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
             }
 
             //Draw Nodes on 'regionNodesGraph'
+            let nodePixiObj = nodePixiObjects[entryID];
+            nodePixiObj.container.visible = options.drawNodes;
             if (options.drawNodes) {
-                let nodePixiObj = nodePixiObjects[entryID];
                 let nodeContainer = nodePixiObj.container;
                 nodeContainer.position.set(tieredEntryData.x+nodeCenterOffset, tieredEntryData.y+nodeCenterOffset)
-                
+                nodeContainer.scale.set(options.nodeScaleFactor, options.nodeScaleFactor);
                 // Circle Sprite
                 nodePixiObj.circleSprite.scale.set(mapScaleFactor.avg, mapScaleFactor.avg);
 
                 //Add node label text sprites to 'nodeContainer' 
+                nodePixiObj.nameSprite.visible = options.drawNames;
                 if (options.drawNames) {
                     nodePixiObj.nameSprite.y = 0-(nodeRadius+nodeCenterOffset/4);
                     const scaleFac = 2/3;
                     nodePixiObj.nameSprite.scale.set(mapScaleFactor.x*scaleFac, mapScaleFactor.y*scaleFac);
                 }
 
-                //Add node tier text sprites to 'nodeContainer' 
+                //Add node tier text sprites to 'nodeContainer'
+                nodePixiObj.tierSprite.visible = options.drawTiers;
                 if (options.drawTiers) {
                     let tierSprite = nodePixiObj.tierSprite;
                     tierSprite.texture = nodeTierTextures[tieredEntryData.tier-1];
@@ -606,7 +607,7 @@ function onWindowResize() {
 
     nodeCenterOffset =  25*mapScaleFactor.avg/4;
     nodeRadius = 30*mapScaleFactor.avg/4;
-    lineThickness = 3*mapScaleFactor.avg/4;
+    lineThickness = 2.5*mapScaleFactor.avg/4;
     
     placeAtlasTierButtonsCircle();
     resizePixiDisplayObjects();
@@ -653,6 +654,124 @@ function placeAtlasTierButtonsCircle() {
         midy-elements[0].offsetHeight/2
     );
 }
+
+//==============
+// User Options
+//==============
+class HTMLElement{
+    constructor(tag, id="", className="", options="", innerHTML="") {
+        this.tag = tag;
+        this.id = id;
+        this.className = className;
+        this.options = options;
+        this.innerHTML = innerHTML;
+    }
+    asString() {
+        let tagString = "<"+this.tag;
+        if (this.id) {
+            tagString += " id="+this.id;
+        }
+        if (this.className) {
+            tagString += " class="+this.className;
+        }
+        if (this.options) {
+            tagString += " "+this.options;
+        }
+        tagString += ">"+this.innerHTML+"</"+this.tag+">";
+        return tagString;
+    }
+}
+const DISPLAY_OPTIONS_STORAGE_KEY = 'displayOptions';
+var storeDisplayOptions = debounce(
+    () => {window.localStorage.setItem(DISPLAY_OPTIONS_STORAGE_KEY, JSON.stringify(options));}
+    , 1500
+);
+
+function loadDisplayOptions() {
+    let stored = JSON.parse(window.localStorage.getItem(DISPLAY_OPTIONS_STORAGE_KEY));
+    if (stored) {
+        options = stored;
+    } else {
+        options = {
+            drawLines: true,
+            drawNodes: true,
+            nodeHover: true,
+            drawNames: true,
+            drawTiers: true,
+            nodeScaleFactor: 1
+        };
+        storeDisplayOptions();
+    }
+}
+
+
+function displayOptions() {
+    
+    // function buildToggles() {
+        const toggleOn = 
+            '<label class="switch">'
+            +'  <input type="checkbox" checked>'
+            +'  <span class="slider round"></span>'
+            +'</label>';
+        const toggleOff = 
+            '<label class="switch">'
+            +'  <input type="checkbox">'
+            +'  <span class="slider round"></span>'
+            +'</label>';
+        const textInput = '<input type="text" placeholder="">'
+        
+        const optionsList = document.createElement('ul');
+        optionsList.className = "options_list";
+        for (const [key, elem] of Object.entries(options)) {
+            let div = document.createElement('div');
+            let lstElement = new HTMLElement('li');
+            lstElement.innerHTML = "<p>"+key+"</p>\n";
+            if (typeof(elem)=="boolean") {
+                if (elem) {
+                    lstElement.innerHTML += toggleOn;
+                } else {
+                    lstElement.innerHTML += toggleOff;
+                }
+            } else {
+                lstElement.innerHTML += '<input type="text" value="' + elem + '">';
+            }
+            div.innerHTML = (lstElement.asString());
+            
+            let domElement = div.firstChild;
+            domElement.addEventListener('click', (e)=>{
+                let checkbox = domElement.getElementsByTagName('input')[0];
+                // console.log("test: " +checkbox.checked);
+                if (checkbox.type=="checkbox"){
+                    checkbox.checked = !checkbox.checked;
+                    options[key] = checkbox.checked;
+                    storeDisplayOptions();
+                    drawAllAtlasRegions();
+                    // console.log(checkbox.checked);
+                }
+            });
+            optionsList.appendChild(domElement);
+        }
+    
+        function addOptionsClickAction() {
+            document.getElementById("options_container").appendChild(optionsList);
+            document.getElementById("options_button").addEventListener('click', (e)=>{
+                const div = document.getElementById("options_container");
+                if (div.style.display=="flex")
+                    div.style.display = "none";
+                else
+                    div.style.display = "flex";
+            })
+        }
+        if (document.readyState==='interactive' || document.readyState==='complete'){
+            addOptionsClickAction();
+        } else {
+            document.addEventListener("DOMContentLoaded", addOptionsClickAction);
+        }
+    
+    // }
+}
+
+// function loadDisplayOptions = 
 
 //=========
 // Utility

@@ -12,7 +12,7 @@
     <script src="js/fuzzysort.js"></script>
     <script src="js/gsap.min.js"></script>
 
-    <script src="js/logger.js"              type="module"></script>
+    <!-- <script src="js/logger.js"              type="module"></script> -->
     <script src='js/graphics_zoom_pan.js'   type="module"></script>
     <script src='js/searchbar_focus.js'     type="module"></script>
     <script src="js/palette_light_dark.js"  type="module"></script>
@@ -25,10 +25,22 @@
     <div id="page_container">
         <header>
             <div id="navbar" class="shadow">
-                <div id="title" class="header_element">PoE Atlas by <a href="https://github.com/John-Paul-R">JP</a></div>
-                <button class="swap_palette header_element">Theme</button>
+                <div id="title">PoE Atlas by <a href="https://github.com/John-Paul-R">JP</a></div>
+                <div class="end flex row">
+                    <input type="checkbox" id="unchecked" class="cbx hidden"/>
+                    <label for="unchecked" class="lbl"></label>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                    <button class="swap_palette">Theme</button>
+                    <button id="options_button">Options</button>
+                </div>
             </div>
         </header>
+        <div class="popover_body options">
+            <div id="options_container" style="display: none;"></div>
+        </div>
         <!-- <div class="sidebar left"></div> -->
         <div id="content_main" class="filled">
             <div id="atlas_of_worlds">
@@ -41,7 +53,7 @@
                     <button class="watchstone 4">Tier --</button>
                     <button class="watchstone 5">Tier --</button>
                     <button class="watchstone 6">Tier --</button>
-                    <button class="watchstone 7">Tier --/button>
+                    <button class="watchstone 7">Tier --</button>
                 </div>
                 <div class="overlay top">
                     <div class="searchbar filled centerh">

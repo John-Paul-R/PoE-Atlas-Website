@@ -1,5 +1,6 @@
 var buttonElements;
-var paletteIndex = 0;
+var paletteIndex;
+const STORAGE_KEY = 'selectedPaletteIndex';
 class ColorPalette {
     constructor (paletteName, base, background, element1, accent1, accent2, inverse, text, textInverse) {
         this.paletteName = paletteName;
@@ -14,8 +15,8 @@ class ColorPalette {
     }
 }
 var colorPalettes = [
-    new ColorPalette('Light'   , '#fafafa', '#f0f0f0', '#e0e0e0', '#aaaaaa', '#888888', '#333333', '#454545', '#d0d0d0')
-    ,new ColorPalette ('Dark'    , '#252525', '#353535', '#252525', '#af0404', '#888888', '#f0f0f0', '#f0f0f0', '#414141')
+     new ColorPalette('Light'   , '#fafafa', '#f0f0f0', '#e0e0e0', '#aaaaaa', '#888888', '#333333', '#454545', '#d0d0d0')
+    ,new ColorPalette('Dark'    , '#252525', '#353535', '#252525', '#af0404', '#888888', '#f0f0f0', '#f0f0f0', '#414141')
 ]; //todo load this from external file? or from online library of available palettes?
 
 function bindPaletteSwapButtons(btnElements) {
@@ -30,15 +31,30 @@ function bindPaletteSwapButtons(btnElements) {
     }
 }
 bindPaletteSwapButtons();
+loadStoredPalette();
+function loadStoredPalette() {
+    let stored = window.localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+        paletteIndex = parseInt(stored, 10);
+    } else {
+        paletteIndex = 0;
+        window.localStorage.setItem(STORAGE_KEY, '0');
+    }
+    displayPalette(paletteIndex);
+}
 
 export function swapPalette() {
-    const style = document.documentElement.style;
     paletteIndex +=1;
     if (paletteIndex >= colorPalettes.length) {
         paletteIndex = 0;
     }
+    displayPalette(paletteIndex);
+    window.localStorage.setItem(STORAGE_KEY, paletteIndex);
+}
 
-    let p = colorPalettes[paletteIndex];
+export function displayPalette(paletteID) {
+    const style = document.documentElement.style;
+    let p = colorPalettes[paletteID];
     style.setProperty('--color-base',           p.base);
     style.setProperty('--color-background',     p.background);
     style.setProperty('--color-element-1',      p.element1);
@@ -47,7 +63,7 @@ export function swapPalette() {
     style.setProperty('--color-inverse',        p.inverse);
     style.setProperty('--color-text',           p.text);
     style.setProperty('--color-text-inverse',   p.textInverse);
-    for (let i=0; i<buttonElements.length; i++) {
-        buttonElements[i].textContent = p.paletteName;
-    }
+    // for (let i=0; i<buttonElements.length; i++) {
+    //     buttonElements[i].textContent = p.paletteName;
+    // }
 }

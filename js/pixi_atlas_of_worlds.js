@@ -154,7 +154,8 @@ function initPixiContainers() {
 var mapScaleFactor;// = pixiAtlasW/maxW*4;//4.05;
 const NUM_REGIONS = 8;
 const NUM_TIERS = 5;
-var regionTiers = [0,0,0,0,0,0,0,0]; //Tiers of each region (array index = regionID)
+window.addEventListener('DOMContentLoaded', loadRegionTiers);
+var regionTiers = []; //Tiers of each region (array index = regionID)
 var regionNodes = [[], [], [], [], [], [], [], []]; //lists of nodes(IDs) in each region
 export var nodeData;
 class NodeData {
@@ -540,6 +541,9 @@ function cycleAtlasRegionTier(regionID, boolDrawRegion=true) {
     if (boolDrawRegion) {
         drawAtlasRegion(regionID, true);
     }
+
+    //Store the current region tiers on the client
+    storeRegionTiers();
 }
 
 //Place Atlas tier buttons, set their click function, and...
@@ -554,6 +558,7 @@ function initAtlasTierButtons() {
     let watchstoneButtons = document.getElementsByClassName("watchstone");
     for(let i=1; i<watchstoneButtons.length; i++){
         watchstoneButtons[i].addEventListener("click", function() {cycleAtlasRegionTier(i-1);} );
+        watchstoneButtons[i].textContent = "Tier "+regionTiers[i-1];
     }
     placeAtlasTierButtonsCircle();
 }
@@ -660,7 +665,7 @@ function placeElement(element, x_pos, y_pos) {
 //=========
 // Utility
 //=========
-function throttle(func, timeInterval) {
+const throttle = (func, timeInterval) => {
     var lastTime = 0;
     return function () {
         var now = Date.now();
@@ -671,9 +676,36 @@ function throttle(func, timeInterval) {
             setTimeout(func, lastTime+timeInterval);
         }
     };
-  }
+}
+const debounce = (func, delay) => { 
+    let debounceTimer 
+    return function() { 
+        const context = this
+        const args = arguments 
+            clearTimeout(debounceTimer) 
+                debounceTimer 
+            = setTimeout(() => func.apply(context, args), delay) 
+    } 
+}
+
 export var renderStageThrottled = throttle(() => app.renderer.render(stage), minFrameTime);
 export var renderStage = ()=>app.renderer.render(stage);
+
+const REGION_TIER_STORAGE_KEY = 'regionTiers';
+var storeRegionTiers = debounce(() => {
+    window.localStorage.setItem(REGION_TIER_STORAGE_KEY, JSON.stringify(regionTiers));
+
+}, 1500);
+
+function loadRegionTiers() {
+    let stored = JSON.parse(window.localStorage.getItem(REGION_TIER_STORAGE_KEY));
+    if (stored) {
+        regionTiers = stored;
+    } else {
+        regionTiers = [0,0,0,0,0,0,0,0];
+        storeRegionTiers();
+    }
+}
 
 // ===============================
 // Notes and currently unused

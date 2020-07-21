@@ -1,8 +1,20 @@
-function swapPalette() {
-    root = document.documentElement;
-    cPalette = root.style.getPropertyValue('--current-palette');
-    console.log(cPalette);
-    console.log("test");
+var buttonElements;
+function bindPaletteSwapButtons(btnElements) {
+    if (!btnElements) {
+        buttonElements = document.getElementsByClassName('swap_palette');
+    } else {
+        buttonElements = btnElements;
+    }
+    console.log(buttonElements);
+    for (let i=0; i<buttonElements.length; i++) {
+        buttonElements[i].addEventListener('click', swapPalette);
+    }
+}
+bindPaletteSwapButtons();
+
+export function swapPalette() {
+    const root = document.documentElement;
+    let cPalette = root.style.getPropertyValue('--current-palette');
     
     if (cPalette == 0) {
         root.style.setProperty('--color-base', '#252525');
@@ -14,7 +26,9 @@ function swapPalette() {
         root.style.setProperty('--color-text', '#f0f0f0');
         root.style.setProperty('--color-text-inverse', '#414141');
         root.style.setProperty('--current-palette', 1);
-        document.getElementById("palette_swap").textContent = "Light"
+        for (let i=0; i<buttonElements.length; i++) {
+            buttonElements[i].textContent = "Light";
+        }
     } else if (cPalette == 1) {
         root.style.setProperty('--color-base', '#fafafa');
         root.style.setProperty('--color-background', '#f0f0f0');
@@ -25,6 +39,8 @@ function swapPalette() {
         root.style.setProperty('--color-text', '#454545');
         root.style.setProperty('--color-text-inverse', '#d0d0d0');
         root.style.setProperty('--current-palette', 0);
-        document.getElementById("palette_swap").textContent = "Dark"
+        for (let i=0; i<buttonElements.length; i++) {
+            buttonElements[i].textContent = "Dark";
+        }
     }
 }

@@ -156,7 +156,7 @@ header > #navbar {
     margin-bottom:auto;
     /*border: solid black 2px;*/
 }
-#palette_swap.header_element {
+.swap_palette.header_element {
     background-color: var(--color-inverse);
     color: var(--color-text-inverse);
     /* margin-top:0;

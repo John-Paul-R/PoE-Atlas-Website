@@ -24,7 +24,7 @@ import { throttle, debounce } from './util.js';
 var options;
 window.addEventListener('DOMContentLoaded', ()=>{
     loadDisplayOptions();
-    displayOptions();
+    createOptionsMenu();
 });
 //The minimum allowable time between stage renders. (Calls made while the function is on cooldown are ignored.)
 const MIN_FRAME_TIME = 1000/60;//(60fps)
@@ -704,85 +704,82 @@ function loadDisplayOptions() {
     }
 }
 
-
-function displayOptions() {
+function createOptionsMenu() {
+    const toggleOn = 
+        '<label class="switch">'
+        +'  <input type="checkbox" checked>'
+        +'  <span class="slider round"></span>'
+        +'</label>';
+    const toggleOff = 
+        '<label class="switch">'
+        +'  <input type="checkbox">'
+        +'  <span class="slider round"></span>'
+        +'</label>';
     
-    // function buildToggles() {
-        const toggleOn = 
-            '<label class="switch">'
-            +'  <input type="checkbox" checked>'
-            +'  <span class="slider round"></span>'
-            +'</label>';
-        const toggleOff = 
-            '<label class="switch">'
-            +'  <input type="checkbox">'
-            +'  <span class="slider round"></span>'
-            +'</label>';
-        const textInput = '<input type="text" placeholder="">'
-        
-        const optionsList = document.createElement('ul');
-        optionsList.className = "options_list";
-        for (const [key, elem] of Object.entries(options)) {
-            let div = document.createElement('div');
-            let lstElement = new HTMLElement('li');
-            lstElement.innerHTML = "<p>"+key+"</p>\n";
-            if (typeof(elem)=="boolean") {
-                if (elem) {
-                    lstElement.innerHTML += toggleOn;
-                } else {
-                    lstElement.innerHTML += toggleOff;
-                }
+    const optionsList = document.createElement('ul');
+    optionsList.id = "options_list";
+    for (const [key, elem] of Object.entries(options)) {
+        let div = document.createElement('div');
+        let lstElement = new HTMLElement('li');
+        lstElement.innerHTML = "<p>"+key+"</p>\n";
+        if (typeof(elem)=="boolean") {
+            if (elem) {
+                lstElement.innerHTML += toggleOn;
             } else {
-                lstElement.innerHTML += '<input type="text" value="' + elem + '">';
+                lstElement.innerHTML += toggleOff;
             }
-            div.innerHTML = (lstElement.asString());
-            
-            let domElement = div.firstChild;
-            let input = domElement.getElementsByTagName('input')[0];
-            if (input.type==="checkbox"){
-                domElement.addEventListener('click', (e)=>{
-                    // console.log("test: " +checkbox.checked);
-                    input.checked = !input.checked;
-                    options[key] = input.checked;
+        } else {
+            lstElement.innerHTML += '<input type="text" value="' + elem + '">';
+        }
+        div.innerHTML = (lstElement.asString());
+        
+        let domElement = div.firstChild;
+        let input = domElement.getElementsByTagName('input')[0];
+        if (input.type==="checkbox"){
+            domElement.addEventListener('click', (e)=>{
+                // console.log("test: " +checkbox.checked);
+                input.checked = !input.checked;
+                options[key] = input.checked;
+                storeDisplayOptions();
+                drawAllAtlasRegions();
+                // console.log(checkbox.checked);
+            });
+        } else if (input.type==='text') {
+            domElement.addEventListener('input', (e)=>{
+                if (e.target.value) {
+                    options[key] = e.target.value;
                     storeDisplayOptions();
                     drawAllAtlasRegions();
-                    // console.log(checkbox.checked);
-                });
-            } else if (input.type==='text') {
-                domElement.addEventListener('input', (e)=>{
-                    if (e.target.value) {
-                        // console.log("test: " +checkbox.checked);
-                        // input.value = e.target.value;
-                        options[key] = e.target.value;
-                        storeDisplayOptions();
-                        drawAllAtlasRegions();
-                        // console.log(checkbox.checked);
-                    }
-                });
+                }
+            });
+        }
+        optionsList.appendChild(domElement);
+    }
+
+    function addContentToDOM() {
+        document.getElementById("options_container").appendChild(optionsList);
+        const options_dropdown_container = document.getElementById("options_dropdown_container");
+        const div = document.getElementById("options_container");
+        document.getElementById("options_button").addEventListener('click', (e)=>{
+            if (div.className.includes("hidden"))
+                div.className = div.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
+            else
+                div.className = div.className +" hidden";
+        });
+        document.addEventListener('click', (e)=>{
+            if (!options_dropdown_container.contains(e.target)) {
+                if (!div.className.includes("hidden"))
+                    div.className = div.className +" hidden";
             }
-            optionsList.appendChild(domElement);
-        }
-    
-        function addOptionsClickAction() {
-            document.getElementById("options_container").appendChild(optionsList);
-            document.getElementById("options_button").addEventListener('click', (e)=>{
-                const div = document.getElementById("options_container");
-                if (div.style.display=="flex")
-                    div.style.display = "none";
-                else
-                    div.style.display = "flex";
-            })
-        }
-        if (document.readyState==='interactive' || document.readyState==='complete'){
-            addOptionsClickAction();
-        } else {
-            document.addEventListener("DOMContentLoaded", addOptionsClickAction);
-        }
-    
-    // }
+        });
+    }
+    if (document.readyState==='interactive' || document.readyState==='complete'){
+        addContentToDOM();
+    } else {
+        document.addEventListener("DOMContentLoaded", addContentToDOM);
+    }
 }
 
-// function loadDisplayOptions = 
 
 //=========
 // Utility

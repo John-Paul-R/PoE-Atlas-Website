@@ -25,22 +25,17 @@
     <div id="page_container">
         <header>
             <div id="navbar" class="shadow">
-                <div id="title">PoE Atlas by <a href="https://github.com/John-Paul-R">JP</a></div>
+                <div id="title"><h4>PoE Atlas by <a href="https://github.com/John-Paul-R">JP</a></h4></div>
                 <div class="end flex row">
-                    <input type="checkbox" id="unchecked" class="cbx hidden"/>
-                    <label for="unchecked" class="lbl"></label>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                    </label>
-                    <button class="swap_palette">Theme</button>
-                    <button id="options_button">Options</button>
+                    <button class="swap_palette"><p>Theme</p><i class="material-icons">style</i></button>
+                    <div id="options_dropdown_container" class='dropdown menu'>
+                        <button id="options_button" class='dropdown button'><p>Options</p><i class="material-icons">tune</i></button>
+                        <div id="options_container" class="dropdown content hidden"></div>
+                    </div>
+                    
                 </div>
             </div>
         </header>
-        <div class="popover_body options">
-            <div id="options_container" style="display: none;"></div>
-        </div>
         <!-- <div class="sidebar left"></div> -->
         <div id="content_main" class="filled">
             <div id="atlas_of_worlds">
@@ -60,7 +55,7 @@
                         <!-- display option show all -->
                         <i class="material-icons first">search</i>
                         <input type="text" class="searchField" placeholder="Search for a map, region, tier, item drop, etc." tabindex="1" autofocus>
-                        <select id="dropdown_1" name="dropdown_1" class="dropdown">
+                        <!-- <select id="dropdown_1" name="dropdown_1" class="dropdown">
                             <option value="fabric">Fabric</option>
                             <option value="forge">Forge</option>
                             <option value="all">All</option>
@@ -70,7 +65,7 @@
                             <option value="1.13">1.13</option>
                             <option value="1.12">1.12</option>
                             <option value="OLD">Older...</option>
-                        </select>
+                        </select> -->
                         <!--<button class="primary_action_button element" onclick="modSearch">Search</button>-->
                     </div>
                 </div>

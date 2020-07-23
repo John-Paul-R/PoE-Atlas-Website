@@ -211,7 +211,7 @@ class NodePixiObject {
             this.circleSprite.children.forEach((el)=>el.destroy());
         }
         if (forceBaseScale) {
-            this.container.scale.set(1, 1);
+            this.container.scale.set(options.nodeScaleFactor, options.nodeScaleFactor);
         }
     }
 }
@@ -738,17 +738,28 @@ function displayOptions() {
             div.innerHTML = (lstElement.asString());
             
             let domElement = div.firstChild;
-            domElement.addEventListener('click', (e)=>{
-                let checkbox = domElement.getElementsByTagName('input')[0];
-                // console.log("test: " +checkbox.checked);
-                if (checkbox.type=="checkbox"){
-                    checkbox.checked = !checkbox.checked;
-                    options[key] = checkbox.checked;
+            let input = domElement.getElementsByTagName('input')[0];
+            if (input.type==="checkbox"){
+                domElement.addEventListener('click', (e)=>{
+                    // console.log("test: " +checkbox.checked);
+                    input.checked = !input.checked;
+                    options[key] = input.checked;
                     storeDisplayOptions();
                     drawAllAtlasRegions();
                     // console.log(checkbox.checked);
-                }
-            });
+                });
+            } else if (input.type==='text') {
+                domElement.addEventListener('input', (e)=>{
+                    if (e.target.value) {
+                        // console.log("test: " +checkbox.checked);
+                        // input.value = e.target.value;
+                        options[key] = e.target.value;
+                        storeDisplayOptions();
+                        drawAllAtlasRegions();
+                        // console.log(checkbox.checked);
+                    }
+                });
+            }
             optionsList.appendChild(domElement);
         }
     

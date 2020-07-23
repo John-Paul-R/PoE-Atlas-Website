@@ -78,6 +78,9 @@ button {
     border: none;
     padding: 3px;
 }
+button:hover {
+    filter: brightness(125%);
+}
 #page_container {
     display:grid;
     grid-template-rows: [header-start]32px[header-end mid-start]1fr[mid-end footer-start]16px[footer-end];
@@ -306,6 +309,7 @@ input.searchField::placeholder {
     display: inline-block;
     width: 50px;
     height: 12px;
+    margin: 2px;
   }
   
   .switch input { 
@@ -386,9 +390,14 @@ div#options_container > ul > li {
     flex-direction: row;
     align-items: center;
     width:100%;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    border-bottom: 1px solid var(--color-accent-2);
+    /* padding-top: 4px;
+    padding-bottom: 4px; */
+    padding: 4px;
+    /* border-bottom: 1px solid var(--color-accent-2); */
+}
+div#options_container > ul > li:hover {
+    background-color: var(--color-accent-2);
+    /* border-bottom: 1px solid var(--color-accent-2); */
 }
 div#options_container > ul > li > .switch {
     margin-left: auto;

@@ -1,22 +1,12 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html><html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="Description" content="A tool for navigating Path of Exile's Atlas of Worlds from the web!">
+    <link rel="stylesheet" type="text/css" href="css/core_style.css">
     <link rel="stylesheet" type="text/css" href="css/map_style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
 
-    <script src="pixi/pixi.min.js"></script>
-    <script type="text/javascript">
-        let type="WebGL";
-        if(!PIXI.utils.isWebGLSupported()){type="canvas"}
-        PIXI.utils.sayHello(type);
-    </script>
-    <script src="js/fuzzysort.js"></script>
-    <script src="js/gsap.min.js"></script>
-
-    <!-- <script src="js/logger.js"              type="module"></script> -->
-    <script src='js/graphics_zoom_pan.js'   type="module"></script>
-    <script src='js/searchbar_focus.js'     type="module"></script>
     <script src="js/palette_light_dark.js"  type="module"></script>
-    <script src="js/atlas_search.js"        type="module"></script>
 
     <title>PoE Atlas</title>
 </head>
@@ -30,7 +20,7 @@
                     <button class="swap_palette"><p>Theme</p><i class="material-icons">style</i></button>
                     <div id="options_dropdown_container" class='dropdown menu'>
                         <button id="options_button" class='dropdown button'><p>Options</p><i class="material-icons">tune</i></button>
-                        <div id="options_container" class="dropdown content hidden"></div>
+                        <div id="options_container" class="dropdown options content hidden"></div>
                     </div>
                     
                 </div>
@@ -89,6 +79,24 @@
 </body>
 
 <div id="eof_scripts">
+    <link rel="preload" as="script" href="js/util.js">
+
+    <script src="js/fuzzysort.js"></script>
+    <script src="js/gsap.min.js"></script>
+
+    <!-- <script src="js/logger.js"              type="module"></script> -->
+    <script src='data/datajstest.js'></script>
+    <script src='js/graphics_zoom_pan.js'   type="module"></script>
+    <script src='js/searchbar_focus.js'     type="module"></script>
+    <script src="js/atlas_search.js"        type="module"></script>
+
+
+    <script src="pixi/pixi.min.js"></script>
+    <script type="text/javascript">
+        let type="WebGL";
+        if(!PIXI.utils.isWebGLSupported()){type="canvas"}
+        PIXI.utils.sayHello(type);
+    </script>
     <script src="js/pixi_atlas_of_worlds.js" type="module"></script>
 </div>
     

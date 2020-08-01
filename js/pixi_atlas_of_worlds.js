@@ -74,8 +74,8 @@ loader.onProgress.add(loadProgressHandler);
 loader.onComplete.add(createPixiView);
 loader
     .add("img/Atlas.jpg")
-    .add("img/line.png")
-    .add("img/line_backgroundfill.png")
+    // .add("img/line.png")
+    // .add("img/line_backgroundfill.png")
     .load(setup);
 
 //===========
@@ -88,10 +88,12 @@ function setup(loader, resources) {
     //==================
     //  Initialization
     //==================
-    initPixiDisplayObjects(loader, resources);
+    
     //TODO break this ^^^ up again and put "initialization" outside of "setup," and into the main thread.
     //TODO make it so that loadMapsData doesn't need to wait for Atlas.jpg to load. (a part of the above)
     //TODO have a "initWindowSizeDependants" and an "onWindowSize", the former not affecting "atlasSprite", so it can run in main thread, not having to wait for "setup" to finish
+    // setTimeout(()=>atlasSprite.texture = app.loader.resources["img/Atlas.jpg"].texture, 0);
+    initPixiDisplayObjects();
     onWindowResize();
     createPixiView();
     window.addEventListener('resize', onWindowResize);
@@ -146,10 +148,10 @@ function getAtlasSpritePosition() {
     };
 }
 
-function initPixiDisplayObjects(loader, resources) {
+function initPixiDisplayObjects() {
     //Create main Atlas sprite
-    atlasSprite = new PIXI.Sprite(resources["img/Atlas.jpg"].texture);
-    
+    atlasSprite = new PIXI.Sprite(app.loader.resources["img/Atlas.jpg"].texture);
+    // atlasSprite = new PIXI.Sprite();
     //Add Atlas sprite to stage
     stage.addChildAt(atlasSprite, 0);
 
@@ -218,28 +220,36 @@ class NodePixiObject {
 //Request map data, parse it, and draw all Atlas regions for the 1st time.
 function loadMapsData(loader, resources, atlasSprite) {
     
-    let request = new XMLHttpRequest();
-    request.open("GET", "data/AtlasNode+WorldAreas_Itemized-1594755436.json", true);
-    request.send(null);
-    request.onreadystatechange = function() {
-        if ( request.readyState === 4 && request.status === 200 ) {
-            nodeData = JSON.parse(request.responseText);
-            // console.log(mapData);
-            // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
+    // let request = new XMLHttpRequest();
+    // request.open("GET", "data/AtlasNode+WorldAreas_Itemized-1594755436.json", true);
+    // request.send(null);
+    // request.onreadystatechange = function() {
+    //     if ( request.readyState === 4 && request.status === 200 ) {
+    //         nodeData = NODE_DATA_OBJ;//JSON.parse(request.responseText);
+    //         // console.log(mapData);
+    //         // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
 
-            for (let i=0; i<nodeData.length; i++) {
-                let entry = nodeData[i];
-                regionNodes[entry.AtlasRegionsKey].push(entry.RowID);                
-            }
-            initSearch(nodeData);
-            preloadStaticGraphics();
-            //Draw Atlas Nodes & Lines
-            drawAllAtlasRegions();
-            //(This ^^^ must be in here, instead of after the call to loadMapsData, because the...
-            //  http request is async. The resources wouldn't necessarily be loaded when the...
-            //  drawAllAtlasRegions function is called.)
-        }
+    //         for (let i=0; i<nodeData.length; i++) {
+    //             let entry = nodeData[i];
+    //             regionNodes[entry.AtlasRegionsKey].push(entry.RowID);                
+    //         }
+    //         initSearch(nodeData);
+    //         preloadStaticGraphics();
+    //         //Draw Atlas Nodes & Lines
+    //         drawAllAtlasRegions();
+    //         //(This ^^^ must be in here, instead of after the call to loadMapsData, because the...
+    //         //  http request is async. The resources wouldn't necessarily be loaded when the...
+    //         //  drawAllAtlasRegions function is called.)
+    //     }
+    // }
+    nodeData = NODE_DATA_OBJ;
+    for (let i=0; i<nodeData.length; i++) {
+        let entry = nodeData[i];
+        regionNodes[entry.AtlasRegionsKey].push(entry.RowID);                
     }
+    initSearch(nodeData);
+    preloadStaticGraphics();
+    drawAllAtlasRegions();
 }
 function preloadStaticGraphics() {
     //Init main container object

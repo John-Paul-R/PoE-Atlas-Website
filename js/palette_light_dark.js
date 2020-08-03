@@ -44,7 +44,7 @@ function loadStoredPalette() {
     displayPalette(paletteIndex);
 }
 
-export function swapPalette() {
+function swapPalette() {
     paletteIndex +=1;
     if (paletteIndex >= colorPalettes.length) {
         paletteIndex = 0;
@@ -53,7 +53,7 @@ export function swapPalette() {
     window.localStorage.setItem(STORAGE_KEY, paletteIndex);
 }
 
-export function displayPalette(paletteID) {
+function displayPalette(paletteID) {
     const style = document.documentElement.style;
     let p = colorPalettes[paletteID];
     style.setProperty('--color-base',           p.base);

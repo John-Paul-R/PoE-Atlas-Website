@@ -7,3 +7,9 @@
 (ign)*
 
 pixi/*.js
+
+*.key
+*.crt
+*.csr
+
+node_modules

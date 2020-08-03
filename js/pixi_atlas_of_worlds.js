@@ -73,7 +73,7 @@ const loader = PIXI.Loader.shared;
 loader.onProgress.add(loadProgressHandler);
 loader.onComplete.add(createPixiView);
 loader
-    .add("img/Atlas.jpg")
+    .add("img/Atlas47kb.webp")
     // .add("img/line.png")
     // .add("img/line_backgroundfill.png")
     .load(setup);
@@ -150,7 +150,11 @@ function getAtlasSpritePosition() {
 
 function initPixiDisplayObjects() {
     //Create main Atlas sprite
-    atlasSprite = new PIXI.Sprite(app.loader.resources["img/Atlas.jpg"].texture);
+    atlasSprite = new PIXI.Sprite(app.loader.resources["img/Atlas47kb.webp"].texture);
+    app.loader.add("img/Atlas90.webp").load(()=>{
+        atlasSprite.texture = app.loader.resources["img/Atlas90.webp"].texture;
+        renderStage();
+    });
     // atlasSprite = new PIXI.Sprite();
     //Add Atlas sprite to stage
     stage.addChildAt(atlasSprite, 0);

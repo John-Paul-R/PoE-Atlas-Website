@@ -42,6 +42,7 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
             let scale = dispObj.scaleFunc();
             dispObj.obj.scale.set(scale.x, scale.y);
         }
+        renderStageThrottled();
     }
 
     function addDragNDrop(pixiApp) {

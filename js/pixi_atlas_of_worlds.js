@@ -96,7 +96,7 @@ function setup(loader, resources) {
     initPixiDisplayObjects();
     onWindowResize();
     createPixiView();
-    window.addEventListener('resize', onWindowResize);
+    window.addEventListener('resize', onWindowResizeDebounced);
     loadMapsData();
     initAtlasTierButtons();
     
@@ -591,7 +591,7 @@ function initAtlasTierButtons() {
 }
 
 //Stores the position of the center of the PIXI canvas, not the window.
-function onWindowResize() {
+const onWindowResize = ()=>{
     // let innerHeight = CONTAINER.clientHeight;
     // let innerWidth = CONTAINER.clientWidth;
     let nonAtlasContentHeightSum = document.getElementsByTagName("header")[0].offsetHeight
@@ -627,6 +627,7 @@ function onWindowResize() {
     resizePixiDisplayObjects();
     drawAllAtlasRegions();
 }
+const onWindowResizeDebounced = debounce(onWindowResize, MIN_FRAME_TIME);
 
 //Place atlas tier buttons in center, stacked vertically
 function placeAtlasTierButtons() {

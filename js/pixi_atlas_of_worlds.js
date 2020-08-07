@@ -22,6 +22,7 @@ import { throttle, debounce } from './util.js';
 //===========
 //Render Toggles
 var options;
+var optionsElements;
 window.addEventListener('DOMContentLoaded', ()=>{
     loadDisplayOptions();
     createOptionsMenu();
@@ -291,11 +292,11 @@ function preloadStaticGraphics() {
             circleSprite.interactive = true;
             circleSprite.buttonMode = true;
             const scaleMult = 1.325;
-            circleSprite.mouseover = function() {
+            circleSprite.mouseover = ()=>{
                 nodePixiObj.gainLightFocus(scaleMult);
                 app.renderer.render(stage);
             };
-            circleSprite.mouseout = function(mouseData) {
+            circleSprite.mouseout = (mouseData)=>{
                 nodePixiObj.loseLightFocus(scaleMult);
                 app.renderer.render(stage);
             };
@@ -702,19 +703,41 @@ var storeDisplayOptions = debounce(
     , 1500
 );
 
+const DEFAULT_OPTIONS = {
+    drawLines: true,
+    drawNodes: true,
+    nodeHover: true,
+    drawNames: true,
+    drawTiers: true,
+    nodeScaleFactor: 1
+};
+function setOption(optionKey, value) {
+    options[optionKey] = value;
+    storeDisplayOptions();
+    drawAllAtlasRegions();
+    // console.log(optionsElements[optionKey]);
+    let input = optionsElements[optionKey].input;
+    if (input.type==="checkbox") {
+        input.checked = value;
+    } else if (input.type==="text") {
+        input.value = value;
+    }
+}
+function resetOption(optionKey) {
+    setOption(optionKey, DEFAULT_OPTIONS[optionKey]);
+}
+function resetAllOptions() {
+    for (const [key, elem] of Object.entries(options)) {
+        resetOption(key);
+    }
+}
+
 function loadDisplayOptions() {
     let stored = JSON.parse(window.localStorage.getItem(DISPLAY_OPTIONS_STORAGE_KEY));
     if (stored) {
         options = stored;
     } else {
-        options = {
-            drawLines: true,
-            drawNodes: true,
-            nodeHover: true,
-            drawNames: true,
-            drawTiers: true,
-            nodeScaleFactor: 1
-        };
+        options = DEFAULT_OPTIONS;
         storeDisplayOptions();
     }
 }
@@ -731,6 +754,8 @@ function createOptionsMenu() {
         +'  <span class="slider round"></span>'
         +'</label>';
     
+    optionsElements = {};
+
     const optionsList = document.createElement('ul');
     optionsList.id = "options_list";
     for (const [key, elem] of Object.entries(options)) {
@@ -746,30 +771,38 @@ function createOptionsMenu() {
         } else {
             lstElement.innerHTML += '<input type="text" value="' + elem + '">';
         }
-        div.innerHTML = (lstElement.asString());
+        div.innerHTML = lstElement.asString();
         
         let domElement = div.firstChild;
         let input = domElement.getElementsByTagName('input')[0];
-        if (input.type==="checkbox"){
+        if (input.type==="checkbox") {
             domElement.addEventListener('click', (e)=>{
-                // console.log("test: " +checkbox.checked);
-                input.checked = !input.checked;
-                options[key] = input.checked;
-                storeDisplayOptions();
-                drawAllAtlasRegions();
-                // console.log(checkbox.checked);
+                // input.checked = !input.checked;
+                e.stopPropagation();
+                if (e.detail>0){
+                    setOption(key, !options[key]);
+                } else { //This somehow fixes a visual bug that caused checkbox display to be inverted when you click the slider. IDK - JP
+                    input.checked = !input.checked;
+                }
+                
             });
         } else if (input.type==='text') {
             domElement.addEventListener('input', (e)=>{
                 if (e.target.value) {
-                    options[key] = e.target.value;
-                    storeDisplayOptions();
-                    drawAllAtlasRegions();
+                    setOption(key, e.target.value);
                 }
             });
         }
+        optionsElements[key] = {
+            element: domElement,
+            input: input
+        };
         optionsList.appendChild(domElement);
     }
+    let resetAll = document.createElement('li');
+    resetAll.innerHTML = `<button id="reset_options_btn">Reset All</button>`;
+    resetAll.getElementsByTagName('button')[0].addEventListener('click', resetAllOptions);
+    optionsList.appendChild(resetAll);
 
     function addContentToDOM() {
         document.getElementById("options_container").appendChild(optionsList);

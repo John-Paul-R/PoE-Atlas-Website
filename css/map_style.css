@@ -22,6 +22,7 @@ button.watchstone.master {
     width:100%;
     height:100%;
     position: relative;
+    z-index:0;
     /* pointer-events:none; */
 }
 #atlas_of_worlds {
@@ -68,7 +69,7 @@ button.watchstone.master {
 }
 .overlay.right {
     grid-column: hmid-end / hend;
-    grid-row: vmid-start / vend;
+    grid-row: vmid-start / vmid-end/*vend*/;
     /* background-color: beige; */
 }
 .filled {
@@ -123,18 +124,23 @@ header .swap_palette:hover {
     pointer-events: none;
 }
 
+.marginLRauto {
+    margin-left:auto;
+    margin-right:auto;
+}
 .searchbar {
     background-color: var(--color-base);
     /*opacity:0.6;*/
     box-shadow: 0 0px 8px rgba(0, 0, 0, 0.15);/*var(--shadow);/*0 3px 4px rgba(0, 0, 0, 0.2);*/
-    margin:8px;
+    margin-top:12px;
+    margin-bottom:12px;
     height:auto;
     width: 650px;/*512px;/*66%;*/
     display:flex;
     flex-direction:row;
     justify-content:flex-start;
     align-items:stretch;
-    
+
     /*Does not work in js retrieval for some reason*/
     --default-scale:0.95;
     scale:var(--default-scale);
@@ -244,12 +250,11 @@ border-radius: 50%;
 
 
 .dropdown.menu {
-    position: relative;
     display: flex;
     flex-direction: column;
     height:100%;
 }
-.dropdown.button {
+#options_button {
     background-color: var(--color-base);
 }
 div#options_container.dropdown.content {
@@ -304,7 +309,56 @@ div#options_container.dropdown.content {
 #options_button > .material-icons {
     font-size: 24px;
 }
+#reset_options_button { 
+    padding: 4px;
+}
 
+ul {
+    list-style: none;
+    list-style-position: inside;
+}
+.expand {
+    height:100%;
+    width:100%;
+}
+#node_info {
+    position:relative;
+    border-radius: 4px 0 0 4px;
+    align-items:stretch;
+    box-sizing: border-box;
+    padding:16px;
+    opacity:80%;
+    pointer-events: visibleFill;
+}
+h2#node_name {
+    max-width:80%;
+}
+button#node_exit {
+    align-self: flex-start;
+    min-width:28px;
+    min-height:28px;
+    width:28px;
+    height:28px;
+    border-radius: 4px;
+    font-size: large;
+    text-align: center;
+    background-color: #be1537;
+}
+button#node_exit:hover {
+    background-color: #dc143c;
+    filter:none;
+}
+#node_info > * {
+    margin-bottom:12px;
+    width:100%;
+}
+#node_info > #links > * * {
+    display:inline;
+    /* word-wrap: normal; */
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
 #eof_scripts {
     display:none;
 }

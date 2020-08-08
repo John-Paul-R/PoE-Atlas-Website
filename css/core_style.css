@@ -93,6 +93,7 @@ button {
 }
 button:hover {
     filter: brightness(125%);
+    cursor: pointer;
 }
 button > p {
     margin-top: auto;
@@ -102,6 +103,9 @@ button > p {
     font-weight: 600;
 }
 
+header * {
+    z-index: 100 !important;
+}
 header button {
     display: flex;
     padding: 0;
@@ -137,7 +141,11 @@ header /*> /*#navbar*/ * {
     /*border: solid black 2px;*/
 }
 header > #navbar > .end {
-    align-items:center;
+    margin-left:auto;
+    margin-right:0;
+    height:100%
+}
+.end {
     margin-left:auto;
     margin-right:0;
     height:100%
@@ -155,6 +163,12 @@ header > #navbar > .end {
 .flex.col {
     flex-direction:column;
 }
+.flex.justifycenter {
+    justify-content: center;
+}
+.spacechildh > * {
+    margin-right:8px;
+}
 
 .text.small {
     font-size: x-small;
@@ -165,4 +179,22 @@ header > #navbar > .end {
 
 .hidden {
     display: none !important;
+}
+
+.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    
+    text-decoration: none;
+    text-align: center;
+
+    cursor: pointer;
+
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: var(--color-accent-1);
+}
+.button:hover {
+    background-color: var(--color-accent-1-1);
 }

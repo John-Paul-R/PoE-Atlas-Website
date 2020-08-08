@@ -23,10 +23,7 @@ import { throttle, debounce } from './util.js';
 //Render Toggles
 var options;
 var optionsElements;
-window.addEventListener('DOMContentLoaded', ()=>{
-    loadDisplayOptions();
-    createOptionsMenu();
-});
+
 //The minimum allowable time between stage renders. (Calls made while the function is on cooldown are ignored.)
 const MIN_FRAME_TIME = 1000/60;//(60fps)
 
@@ -53,8 +50,17 @@ var CONTAINER;
 let midx = 0;
 let midy = 0;
 
+window.addEventListener('DOMContentLoaded', ()=>{
+    //// Load Pixi App
+    
+    //Load User Options
+    loadDisplayOptions();
+    createOptionsMenu();
+});
 //Create the Pixi Application
-const app =  new PIXI.Application({
+var app, stage, loader;
+console.log("Creating PIXI Atlas app.");
+app = new PIXI.Application({
     width: pixiAtlasW,
     height: pixiAtlasH,
     autoStart: false,
@@ -63,14 +69,16 @@ const app =  new PIXI.Application({
     sharedTicker: false,
     resolution: devicePixelRatio 
 });
-app.ticker.autoStart = false;
-app.ticker.stop();
-PIXI.Ticker.shared.autoStart = false;
-PIXI.Ticker.shared.stop();
-const stage = app.stage;
+stage = app.stage;
 
 //Load Pixi resources
-const loader = PIXI.Loader.shared;
+// let loadGraphics = new PIXI.Graphics();
+// app.ticker.add(()=>{
+//     loadGraphics.lineStyle(4, 0xffff55);
+//     loadGraphics.drawCircle(app.screen.width/2, app.screen.height/2, 60);
+// });
+// stage.addChild(loadGraphics);
+loader = PIXI.Loader.shared;
 loader.onProgress.add(loadProgressHandler);
 loader.onComplete.add(createPixiView);
 loader
@@ -78,7 +86,6 @@ loader
     // .add("img/line.png")
     // .add("img/line_backgroundfill.png")
     .load(setup);
-
 //===========
 // Functions
 //===========
@@ -89,7 +96,11 @@ function setup(loader, resources) {
     //==================
     //  Initialization
     //==================
-    
+    app.ticker.stop();
+    PIXI.Ticker.shared.autoStart = false;
+    PIXI.Ticker.shared.stop();
+    // stage.removeChild(loadGraphics);
+
     //TODO break this ^^^ up again and put "initialization" outside of "setup," and into the main thread.
     //TODO make it so that loadMapsData doesn't need to wait for Atlas.jpg to load. (a part of the above)
     //TODO have a "initWindowSizeDependants" and an "onWindowSize", the former not affecting "atlasSprite", so it can run in main thread, not having to wait for "setup" to finish
@@ -194,11 +205,12 @@ var regionNodes = [[], [], [], [], [], [], [], []]; //lists of nodes(IDs) in eac
 var nodeTierTextures;
 export var nodePixiObjects;
 class NodePixiObject {
-    constructor(nodeContainer, circleSprite, nameSprite, tierSprite) {
+    constructor(nodeContainer, circleSprite, nameSprite, tierSprite, data) {
         this.container = nodeContainer;
         this.circleSprite = circleSprite;
         this.nameSprite = nameSprite;
         this.tierSprite = tierSprite;
+        this.data = data;
     }
 
     gainLightFocus(scaleMult, hoverGraphic) {
@@ -274,19 +286,34 @@ function preloadStaticGraphics() {
 
     let nodeCircleGraphs = preloadNodeCircleGraphics();
     let tierTextures = preloadTierTextures(fontSize, fontFamily, tierFontStyle, textResolution);
-
+    const regionCode = 'us'
+    const infoContainer = document.getElementById("node_info");
+    // Info sidebar close button
+    document.getElementById("node_exit").addEventListener('click', (e)=>{
+        if (!infoContainer.className.includes("hidden"))
+            infoContainer.className = infoContainer.className +" hidden";
+    });
+    const infoNameElem = document.getElementById("node_name");
+    const poeDBValueElem = document.getElementById("node_poedb");
+    const poeWikiValueElem = document.getElementById("node_poewiki");
     for (let i=0; i<nodeData.length; i++) {
         let cNodeData = nodeData[i];
         let nodePixiObj = new NodePixiObject();
         let container = new PIXI.Container();
         nodePixiObj.container = container;
-        
+        nodePixiObj.data = cNodeData;
         //Load Node Circle Sprites
         let circleSprite;
+        let poeDBLink;
+        let poeWikiLink;
         if (cNodeData.IsUniqueMapArea) {
             circleSprite = nodeCircleGraphs.unique.clone();
+            poeDBLink = `http://www.poedb.tw/${regionCode}/unique.php?n=${encodeURI(cNodeData.Name.replace(/ /g,"+"))}`;
+            poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(cNodeData.Name.replace(/ /g,"_"))}`;
         } else {
             circleSprite = nodeCircleGraphs.normal.clone();
+            poeDBLink = `http://www.poedb.tw/${regionCode}/${cNodeData.Name.replace(/ /g,"_")}_Map`;
+            poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(cNodeData.Name.replace(/ /g,"_"))}_Map`;
         }
         if (options.nodeHover) {
             circleSprite.interactive = true;
@@ -300,6 +327,18 @@ function preloadStaticGraphics() {
                 nodePixiObj.loseLightFocus(scaleMult);
                 app.renderer.render(stage);
             };
+            circleSprite.click = (mouseData)=>{
+                console.log(nodePixiObj.data);
+                console.log(poeDBLink);
+                // Show info sidebar if it is hidden
+                infoContainer.className = infoContainer.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
+                
+                infoNameElem.innerText = cNodeData.Name;
+                // poeDBValueElem.innerText = poeDBLink;
+                poeDBValueElem.href = poeDBLink;
+                // poeWikiValueElem.innerText = poeWikiLink;
+                poeWikiValueElem.href = poeWikiLink;
+            }
         }
         nodePixiObj.circleSprite = circleSprite;
         container.addChild(nodePixiObj.circleSprite);
@@ -800,8 +839,8 @@ function createOptionsMenu() {
         optionsList.appendChild(domElement);
     }
     let resetAll = document.createElement('li');
-    resetAll.innerHTML = `<button id="reset_options_btn">Reset All</button>`;
-    resetAll.getElementsByTagName('button')[0].addEventListener('click', resetAllOptions);
+    resetAll.innerHTML = `<div id="reset_options_btn" class="button expand">Reset All</button>`;
+    resetAll.firstChild.addEventListener('click', resetAllOptions);
     optionsList.appendChild(resetAll);
 
     function addContentToDOM() {

@@ -29,17 +29,17 @@
             <div id="navbar" class="shadow">
                 <div id="title"><h4>PoE Atlas by <a href="https://github.com/John-Paul-R">JP</a></h4></div>
                 <div class="end flex row">
-                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                         <input type="hidden" name="cmd" value="_donations" />
                         <input type="hidden" name="business" value="JKTX9WBJQLJRQ" />
                         <input type="hidden" name="currency_code" value="USD" />
                         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-                    </form>                        
+                    </form> -->
                     <button class="swap_palette"><p>Theme</p><i class="material-icons">style</i></button>
                     <script src="js/palette_light_dark.js"></script>
                     <div id="options_dropdown_container" class='dropdown menu'>
-                        <button id="options_button" class='dropdown button'><p>Options</p><i class="material-icons">tune</i></button>
+                        <button id="options_button" class='dropdown'><p>Options</p><i class="material-icons">tune</i></button>
                         <div id="options_container" class="dropdown options content hidden"></div>
                     </div>
                     
@@ -61,7 +61,7 @@
                     <button class="watchstone 7">Tier --</button>
                 </div>
                 <div class="overlay top">
-                    <div class="searchbar filled centerh">
+                    <div class="searchbar filled marginLRauto">
                         <!-- display option show all -->
                         <i class="material-icons first">search</i>
                         <input type="text" class="searchField" placeholder="Search for a map, region, tier, item drop, etc." tabindex="1" autofocus>
@@ -80,7 +80,20 @@
                     </div>
                 </div>
                 <div class="overlay left"></div>
-                <div class="overlay right"></div>
+                <div class="overlay right">
+                    <div id="node_info" class="flex col filled expand hidden">
+                        <div id="node_head" class="head flex row">
+                            <h2 id="node_name">Node Name</h2>
+                            <button id="node_exit" class="end">&times;</button>
+                        </div>
+                        
+                        <hr>
+                        <div id="links" class="flex row justifycenter spacechildh">
+                            <a id="node_poedb" class="button" target="_blank" rel="noopener noreferrer">PoEDB</a>
+                            <a id="node_poewiki"class="button" target="_blank" rel="noopener noreferrer">Wiki</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="overlay bottom"></div>
             </div>
         </div>
@@ -111,7 +124,7 @@
     <script src="js/atlas_search.js"        type="module"></script>
 
 
-    <script src="pixi/pixi.min.js"></script>
+    <script id="PIXI" src="pixi/pixi.min.js"></script>
     <script type="text/javascript">
         let type="WebGL";
         if(!PIXI.utils.isWebGLSupported()){type="canvas"}

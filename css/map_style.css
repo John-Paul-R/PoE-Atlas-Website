@@ -359,6 +359,10 @@ button#node_exit:hover {
     overflow:hidden;
     text-overflow: ellipsis;
 }
+#node_image {
+    width:64px;
+    height:64px;
+}
 #eof_scripts {
     display:none;
 }

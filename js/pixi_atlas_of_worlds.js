@@ -296,6 +296,7 @@ function preloadStaticGraphics() {
     const infoNameElem = document.getElementById("node_name");
     const poeDBValueElem = document.getElementById("node_poedb");
     const poeWikiValueElem = document.getElementById("node_poewiki");
+    const nodeImageElem = document.getElementById("node_image");
     for (let i=0; i<nodeData.length; i++) {
         let cNodeData = nodeData[i];
         let nodePixiObj = new NodePixiObject();
@@ -306,14 +307,17 @@ function preloadStaticGraphics() {
         let circleSprite;
         let poeDBLink;
         let poeWikiLink;
+        let imgLink;
+        let nodeNameU = cNodeData.Name.replace(/ /g,"_");
         if (cNodeData.IsUniqueMapArea) {
             circleSprite = nodeCircleGraphs.unique.clone();
             poeDBLink = `http://www.poedb.tw/${regionCode}/unique.php?n=${encodeURI(cNodeData.Name.replace(/ /g,"+"))}`;
-            poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(cNodeData.Name.replace(/ /g,"_"))}`;
+            poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}`;
         } else {
             circleSprite = nodeCircleGraphs.normal.clone();
-            poeDBLink = `http://www.poedb.tw/${regionCode}/${cNodeData.Name.replace(/ /g,"_")}_Map`;
-            poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(cNodeData.Name.replace(/ /g,"_"))}_Map`;
+            poeDBLink = `http://www.poedb.tw/${regionCode}/${nodeNameU}_Map`;
+            poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}_Map`;
+            imgLink = `http://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/${nodeNameU.replace(/_/,'')}.png?&scale=0&mn=8&mt=16`
         }
         if (options.nodeHover) {
             circleSprite.interactive = true;
@@ -339,6 +343,7 @@ function preloadStaticGraphics() {
             poeDBValueElem.href = poeDBLink;
             // poeWikiValueElem.innerText = poeWikiLink;
             poeWikiValueElem.href = poeWikiLink;
+            nodeImageElem.src = imgLink;
         }
         circleSprite.click = nodePixiObj.onSelect;
         nodePixiObj.circleSprite = circleSprite;

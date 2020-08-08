@@ -327,19 +327,20 @@ function preloadStaticGraphics() {
                 nodePixiObj.loseLightFocus(scaleMult);
                 app.renderer.render(stage);
             };
-            circleSprite.click = (mouseData)=>{
-                console.log(nodePixiObj.data);
-                console.log(poeDBLink);
-                // Show info sidebar if it is hidden
-                infoContainer.className = infoContainer.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
-                
-                infoNameElem.innerText = cNodeData.Name;
-                // poeDBValueElem.innerText = poeDBLink;
-                poeDBValueElem.href = poeDBLink;
-                // poeWikiValueElem.innerText = poeWikiLink;
-                poeWikiValueElem.href = poeWikiLink;
-            }
         }
+        nodePixiObj.onSelect = ()=>{
+            console.log(nodePixiObj.data);
+            console.log(poeDBLink);
+            // Show info sidebar if it is hidden
+            infoContainer.className = infoContainer.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
+            
+            infoNameElem.innerText = cNodeData.Name;
+            // poeDBValueElem.innerText = poeDBLink;
+            poeDBValueElem.href = poeDBLink;
+            // poeWikiValueElem.innerText = poeWikiLink;
+            poeWikiValueElem.href = poeWikiLink;
+        }
+        circleSprite.click = nodePixiObj.onSelect;
         nodePixiObj.circleSprite = circleSprite;
         container.addChild(nodePixiObj.circleSprite);
 

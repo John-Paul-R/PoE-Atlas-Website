@@ -233,40 +233,131 @@ class NodePixiObject {
             this.container.scale.set(options.nodeScaleFactor, options.nodeScaleFactor);
         }
     }
+
+    onSelect() {
+        const infoNameElem = document.getElementById("node_name");
+        const poeDBValueElem = document.getElementById("node_poedb");
+        const poeWikiValueElem = document.getElementById("node_poewiki");
+        const nodeImageElem = document.getElementById("node_image");
+        const infoContainer = document.getElementById("node_info");
+        // Info sidebar close button
+        document.getElementById("node_exit").addEventListener('click', (e)=>{
+            if (!infoContainer.className.includes("hidden"))
+                infoContainer.className = infoContainer.className +" hidden";
+        });
+
+        console.log(this.data);
+        console.log(this.data.poeDBLink);
+        // Show info sidebar if it is hidden
+        infoContainer.className = infoContainer.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
+        
+        infoNameElem.innerText = this.data.Name;
+        poeDBValueElem.href = this.data.poeDBLink;
+        poeWikiValueElem.href = this.data.poeWikiLink;
+        nodeImageElem.src = buildCDNNodeImageLink(this.data, 0, 8, getTieredNodeData(this.data).tier);
+    }
+}
+
+const cdnBaseNormalLink = "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/"
+const cdnBaseUniqueLink = "https://web.poecdn.com/gen/image/"
+function buildCDNNodeImageLink(nodeData, scale=0, league=0, tier=0) {
+    const cdnScale = "scale=";
+    const cdnLeague = "mn="
+    const cdnTier = "mt="
+    let out;
+    if (nodeData.IsUniqueMapArea) {
+        out =   cdnBaseUniqueLink + nodeData.cdnKey
+                +'?'+cdnScale + scale;
+    } else {
+        out =   cdnBaseNormalLink + nodeData.cdnKey
+                +'?'+cdnScale + scale
+                +'&'+cdnLeague + league
+                +'&'+cdnTier + tier;
+    }
+    return out;
+}
+function getCDNKeyFromLink(link) {
+    let out = link.includes(cdnBaseNormalLink) ? link.replace(cdnBaseNormalLink, '') : link.replace(cdnBaseUniqueLink, '');
+    return out.replace(/\?scale.*/g, "");
 }
 //Request map data, parse it, and draw all Atlas regions for the 1st time.
 function loadMapsData(loader, resources, atlasSprite) {
     
-    // let request = new XMLHttpRequest();
-    // request.open("GET", "data/AtlasNode+WorldAreas_Itemized-1594755436.json", true);
-    // request.send(null);
-    // request.onreadystatechange = function() {
-    //     if ( request.readyState === 4 && request.status === 200 ) {
-    //         nodeData = NODE_DATA_OBJ;//JSON.parse(request.responseText);
-    //         // console.log(mapData);
-    //         // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
+    let nodeDataRequest = new XMLHttpRequest();
+    nodeDataRequest.open("GET", "data/AtlasNode+WorldAreas_Itemized-1594755436.json", true);
+    nodeDataRequest.send(null);
+    nodeDataRequest.onreadystatechange = function() {
+        if ( nodeDataRequest.readyState === 4 && nodeDataRequest.status === 200 ) {
+            nodeData = JSON.parse(nodeDataRequest.responseText);
+            // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
 
-    //         for (let i=0; i<nodeData.length; i++) {
-    //             let entry = nodeData[i];
-    //             regionNodes[entry.AtlasRegionsKey].push(entry.RowID);                
-    //         }
-    //         initSearch(nodeData);
-    //         preloadStaticGraphics();
-    //         //Draw Atlas Nodes & Lines
-    //         drawAllAtlasRegions();
-    //         //(This ^^^ must be in here, instead of after the call to loadMapsData, because the...
-    //         //  http request is async. The resources wouldn't necessarily be loaded when the...
-    //         //  drawAllAtlasRegions function is called.)
-    //     }
-    // }
-    nodeData = NODE_DATA_OBJ;
-    for (let i=0; i<nodeData.length; i++) {
-        let entry = nodeData[i];
-        regionNodes[entry.AtlasRegionsKey].push(entry.RowID);                
+            for (let i=0; i<nodeData.length; i++) {
+                let entry = nodeData[i];
+                regionNodes[entry.AtlasRegionsKey].push(entry.RowID);
+                
+                const regionCode = 'us'
+                let nodeNameU = entry.Name.replace(/ /g,"_");
+                nodeNameU = (nodeNameU === "The_Hall_of_Grandmasters") ? "Hall_of_Grandmasters" : nodeNameU;
+                if (entry.IsUniqueMapArea) {
+                    entry.poeDBLink = `http://www.poedb.tw/${regionCode}/unique.php?n=${encodeURI(nodeNameU.replace(/_/g,"+"))}`;
+                    entry.poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}`;
+                } else {
+                    entry.poeDBLink = `http://www.poedb.tw/${regionCode}/${nodeNameU}_Map`;
+                    entry.poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}_Map`;
+                }
+            }
+            initSearch(nodeData);
+            preloadStaticGraphics();
+            //Draw Atlas Nodes & Lines
+            drawAllAtlasRegions();
+            //(This ^^^ must be in here, instead of after the call to loadMapsData, because the...
+            //  http request is async. The resources wouldn't necessarily be loaded when the...
+            //  drawAllAtlasRegions function is called.)
+            
+            function toPoEDBName(strName, isUnique=false) {
+                return isUnique ? `${strName}` : `${strName} Map`;
+            }
+            function toBaseName(strName, isUnique=false) {
+                return strName.replace(/\sMap/g, '');
+            }
+            //TODO make sure this waits for the other request, OR combine with base data file in backend
+            let nodeImagesRequest = new XMLHttpRequest();
+            nodeImagesRequest.open("GET", "data/Maps155-DICT-.json", true);
+            nodeImagesRequest.send(null);
+            nodeImagesRequest.onreadystatechange = function() {
+                if ( nodeImagesRequest.readyState === 4 && nodeImagesRequest.status === 200 ) {
+                    let nodeImages = JSON.parse(nodeImagesRequest.responseText);
+        
+                    // for (const [key, elem] of Object.entries(nodeImages)) {
+                    //     resetOption(key);
+                    // }
+                    console.log(nodeImages);
+                    for (let i=0; i<nodeData.length; i++) {
+                        let entry = nodeData[i];
+                        try {
+                            entry.cdnKey = getCDNKeyFromLink(nodeImages[toPoEDBName(entry.Name, entry.IsUniqueMapArea)].Icon);
+                            console.log(`${entry.Name}: ${entry.cdnKey}`);
+
+                        } catch (error) {
+                            console.log(`Error finding matching icon for ${entry.Name}.`)
+                        }
+                    }
+                }
+                
+
+            }
+        }
     }
-    initSearch(nodeData);
-    preloadStaticGraphics();
-    drawAllAtlasRegions();
+    
+
+    // nodeData = NODE_DATA_OBJ;
+    // for (let i=0; i<nodeData.length; i++) {
+    //     let entry = nodeData[i];
+    //     regionNodes[entry.AtlasRegionsKey].push(entry.RowID);                
+    // }
+    // initSearch(nodeData);
+    // preloadStaticGraphics();
+    // drawAllAtlasRegions();
 }
 function preloadStaticGraphics() {
     //Init main container object
@@ -286,17 +377,6 @@ function preloadStaticGraphics() {
 
     let nodeCircleGraphs = preloadNodeCircleGraphics();
     let tierTextures = preloadTierTextures(fontSize, fontFamily, tierFontStyle, textResolution);
-    const regionCode = 'us'
-    const infoContainer = document.getElementById("node_info");
-    // Info sidebar close button
-    document.getElementById("node_exit").addEventListener('click', (e)=>{
-        if (!infoContainer.className.includes("hidden"))
-            infoContainer.className = infoContainer.className +" hidden";
-    });
-    const infoNameElem = document.getElementById("node_name");
-    const poeDBValueElem = document.getElementById("node_poedb");
-    const poeWikiValueElem = document.getElementById("node_poewiki");
-    const nodeImageElem = document.getElementById("node_image");
     for (let i=0; i<nodeData.length; i++) {
         let cNodeData = nodeData[i];
         let nodePixiObj = new NodePixiObject();
@@ -305,19 +385,11 @@ function preloadStaticGraphics() {
         nodePixiObj.data = cNodeData;
         //Load Node Circle Sprites
         let circleSprite;
-        let poeDBLink;
-        let poeWikiLink;
-        let imgLink;
         let nodeNameU = cNodeData.Name.replace(/ /g,"_");
         if (cNodeData.IsUniqueMapArea) {
             circleSprite = nodeCircleGraphs.unique.clone();
-            poeDBLink = `http://www.poedb.tw/${regionCode}/unique.php?n=${encodeURI(cNodeData.Name.replace(/ /g,"+"))}`;
-            poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}`;
         } else {
             circleSprite = nodeCircleGraphs.normal.clone();
-            poeDBLink = `http://www.poedb.tw/${regionCode}/${nodeNameU}_Map`;
-            poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}_Map`;
-            imgLink = `http://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/${nodeNameU.replace(/_/,'')}.png?&scale=0&mn=8&mt=16`
         }
         if (options.nodeHover) {
             circleSprite.interactive = true;
@@ -332,20 +404,8 @@ function preloadStaticGraphics() {
                 app.renderer.render(stage);
             };
         }
-        nodePixiObj.onSelect = ()=>{
-            console.log(nodePixiObj.data);
-            console.log(poeDBLink);
-            // Show info sidebar if it is hidden
-            infoContainer.className = infoContainer.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
-            
-            infoNameElem.innerText = cNodeData.Name;
-            // poeDBValueElem.innerText = poeDBLink;
-            poeDBValueElem.href = poeDBLink;
-            // poeWikiValueElem.innerText = poeWikiLink;
-            poeWikiValueElem.href = poeWikiLink;
-            nodeImageElem.src = imgLink;
-        }
-        circleSprite.click = nodePixiObj.onSelect;
+        
+        circleSprite.click = ()=>nodePixiObj.onSelect();
         nodePixiObj.circleSprite = circleSprite;
         container.addChild(nodePixiObj.circleSprite);
 

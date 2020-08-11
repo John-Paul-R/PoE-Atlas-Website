@@ -168,9 +168,9 @@ function initPixiDisplayObjects() {
     app.loader.add("img/Atlas90.webp").load(()=>{
         atlasSprite.texture = app.loader.resources["img/Atlas90.webp"].texture;
         renderStage();
-        app.loader.add("pixi/node_spritesheet-1.json").load(()=>{
+        app.loader.add("pixi/node_spritesheet-2.json").load(()=>{
             //TODO make sure this waits for nodeData to exist...
-            sheet = app.loader.resources["pixi/node_spritesheet-1.json"];
+            sheet = app.loader.resources["pixi/node_spritesheet-2.json"];
             spritesheetLoaded = true;
             drawAllAtlasRegions();
         });
@@ -268,12 +268,17 @@ class NodePixiObject {
     }
     getSpriteImg(tier=0) {
         let strTier;
-        if (tier < 6)
-            strTier = "-t0"
-        else if (tier < 11)
-            strTier = "-t1"
-        else
-            strTier = "-t2"
+        if (this.data.IsUniqueMapArea) {
+            strTier = "";
+        } else {
+            if (tier < 6)
+                strTier = "-t0";
+            else if (tier < 11)
+                strTier = "-t1";
+            else
+                strTier = "-t2";
+        }
+        
         let out = this.data.interalName+strTier+".png"
         console.log(out);
         return sheet.textures[out];

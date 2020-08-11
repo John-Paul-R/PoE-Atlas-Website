@@ -213,6 +213,18 @@ var regionNodes = [[], [], [], [], [], [], [], []]; //lists of nodes(IDs) in eac
 // }
 var nodeTierTextures;
 export var nodePixiObjects;
+var nodeInfoSidebar;
+document.addEventListener('DOMContentLoaded', ()=>nodeInfoSidebar={
+    container: document.getElementById("node_info"),
+    name: document.getElementById("node_name"),
+    poedb: document.getElementById("node_poedb"),
+    poewiki: document.getElementById("node_poewiki"),
+    region: document.getElementById("node_region"),
+    icon: document.getElementById("node_image"),
+    tiers: document.getElementById("node_tiers_list"),
+    connections: document.getElementById("node_connections_list"),
+    pantheon: document.getElementById("node_pantheon_desc"),
+}); 
 class NodePixiObject {
     constructor(nodeContainer, circleSprite, imgSprite, nameSprite, tierSprite, data) {
         this.container = nodeContainer;
@@ -245,26 +257,39 @@ class NodePixiObject {
     }
 
     onSelect() {
-        const infoNameElem = document.getElementById("node_name");
-        const poeDBValueElem = document.getElementById("node_poedb");
-        const poeWikiValueElem = document.getElementById("node_poewiki");
-        const nodeImageElem = document.getElementById("node_image");
-        const infoContainer = document.getElementById("node_info");
+        // Info sidebar
+        const sidebar = nodeInfoSidebar;
         // Info sidebar close button
         document.getElementById("node_exit").addEventListener('click', (e)=>{
-            if (!infoContainer.className.includes("hidden"))
-                infoContainer.className = infoContainer.className +" hidden";
+            if (!sidebar.container.className.includes("hidden"))
+                sidebar.container.className = sidebar.container.className +" hidden";
         });
 
         console.log(this.data);
         console.log(this.data.poeDBLink);
         // Show info sidebar if it is hidden
-        infoContainer.className = infoContainer.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
+        sidebar.container.className = sidebar.container.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
         
-        infoNameElem.innerText = this.data.Name;
-        poeDBValueElem.href = this.data.poeDBLink;
-        poeWikiValueElem.href = this.data.poeWikiLink;
-        nodeImageElem.src = buildCDNNodeImageLink(this.data, 0, 8, getTieredNodeData(this.data).tier);
+        sidebar.name.innerText = this.data.Name;
+        sidebar.poedb.href = this.data.poeDBLink;
+        sidebar.poewiki.href = this.data.poeWikiLink;
+        sidebar.region.innerText = this.data.AtlasRegionsKey;
+        sidebar.icon.src = buildCDNNodeImageLink(this.data, 0, 8, getTieredNodeData(this.data).tier);
+        const tds = sidebar.tiers.getElementsByTagName('td');
+        for (let i=0; i < tds.length; i++) {
+            let tier = this.data.TieredData[i].Tier;
+            tds[i].innerText = tier <= 0 ? "-" : tier;
+        }
+        let connectionsData = this.data.TieredData[4].AtlasNodeKeys;
+        let connectionsText = "";
+        for (let i=0; i < connectionsData.length; i++) {
+            connectionsText += getNodeByID(connectionsData[i]).Name;
+            if (i < connectionsData.length-1) {
+                connectionsText += ", ";
+            }
+        }
+        sidebar.connections.innerText = connectionsText;
+
     }
     getSpriteImg(tier=0) {
         let strTier;
@@ -323,17 +348,14 @@ function loadMapsData(loader, resources, atlasSprite) {
                 regionNodes[entry.AtlasRegionsKey].push(entry.RowID);
                 
                 const regionCode = 'us'
-                let nodeNameU = entry.Name.replace(/ /g,"_");
-                nodeNameU = (nodeNameU === "The_Hall_of_Grandmasters") ? "Hall_of_Grandmasters" : nodeNameU;
-                
+                let nodeNameU = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
+                entry.interalName = nodeNameU;
                 if (entry.IsUniqueMapArea) {
                     entry.poeDBLink = `http://www.poedb.tw/${regionCode}/unique.php?n=${encodeURI(nodeNameU.replace(/_/g,"+"))}`;
                     entry.poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}`;
-                    entry.interalName = nodeNameU;
                 } else {
-                    entry.poeDBLink = `http://www.poedb.tw/${regionCode}/${nodeNameU}_Map`;
-                    entry.poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}_Map`;
-                    entry.interalName = nodeNameU+"_Map";
+                    entry.poeDBLink = `http://www.poedb.tw/${regionCode}/${nodeNameU}`;
+                    entry.poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}`; 
                 }
             }
             initSearch(nodeData);
@@ -345,7 +367,13 @@ function loadMapsData(loader, resources, atlasSprite) {
             //  drawAllAtlasRegions function is called.)
             
             function toPoEDBName(strName, isUnique=false) {
-                return isUnique ? `${strName}` : `${strName} Map`;
+                if (isUnique) {
+                    strName = (strName === "The Hall of Grandmasters") ? "Hall of Grandmasters" : strName;
+                    strName = (strName === "Perandus Manor") ? "The Perandus Manor" : strName;
+                } else {
+                    strName = `${strName} Map`;
+                }
+                return strName;
             }
             function toBaseName(strName, isUnique=false) {
                 return strName.replace(/\sMap/g, '');

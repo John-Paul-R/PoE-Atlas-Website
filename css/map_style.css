@@ -115,6 +115,14 @@ header .swap_palette:hover {
     transform: translate(-50%, 0%); 
     position: absolute;
 }
+.centermv {
+    margin-top:auto;
+    margin-bottom:auto;
+}
+.centermh {
+    margin-left:auto;
+    margin-right:auto;
+}
 
 #watchstone_btn_container {
     display: flex;
@@ -130,7 +138,6 @@ header .swap_palette:hover {
 }
 .searchbar {
     background-color: var(--color-base);
-    /*opacity:0.6;*/
     box-shadow: 0 0px 8px rgba(0, 0, 0, 0.15);/*var(--shadow);/*0 3px 4px rgba(0, 0, 0, 0.2);*/
     margin-top:12px;
     margin-bottom:12px;
@@ -140,6 +147,7 @@ header .swap_palette:hover {
     flex-direction:row;
     justify-content:flex-start;
     align-items:stretch;
+    border-radius:4px;
 
     /*Does not work in js retrieval for some reason*/
     --default-scale:0.95;
@@ -151,7 +159,7 @@ header .swap_palette:hover {
     pointer-events:all;
     background-color:inherit;
     border:none;
-    border-radius:4px;
+
     outline:none;
     
     
@@ -314,9 +322,15 @@ div#options_container.dropdown.content {
 }
 
 ul {
-    list-style: none;
     list-style-position: inside;
 }
+ul.nobullet {
+    list-style: none;
+}
+ul.inline > * {
+    display:inline
+}
+
 .expand {
     height:100%;
     width:100%;
@@ -363,6 +377,19 @@ button#node_exit:hover {
     width:64px;
     height:64px;
 }
+#node_info table {
+    width: fit-content;
+}
+#node_info td {
+    height: 32px;
+    width: 36px;
+}
+#node_info table, td {
+    border: 1px solid var(--color-text);
+    border-collapse: collapse;
+    text-align: center;
+}
+
 #eof_scripts {
     display:none;
 }

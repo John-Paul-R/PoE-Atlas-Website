@@ -19,14 +19,14 @@ function searchbarFocus(val) {
     if (val == 'in') {
         gsap.to(parent, .15, { scale:1, opacity: newOpacity });
         parent.style.setProperty("box-shadow", "var(--shadow)");
-        parent.style.setProperty("border", "1px var(--color-base) solid");
+        // parent.style.setProperty("border", "1px var(--color-base) solid");
     } else {
         if (!parent.isHovered && (true || event.target.parentElement.querySelector(".searchField").value == "")) {
             newOpacity = 0.8
             //var default_scale = parseInt(parent.style.getPropertyValue('--default-scale'));
             gsap.to(parent, .15, { scale: .99, opacity: newOpacity});
             parent.style.setProperty("box-shadow", "none");
-            parent.style.setProperty("border", "1px var(--color-element-1) solid");
+            // parent.style.setProperty("border", "1px var(--color-element-1) solid");
         }
 
     }
@@ -49,6 +49,6 @@ function searchbarMouseLeave(e) {
         //var default_scale = parseInt(parent.style.getPropertyValue('--default-scale'));
         gsap.to(target, .15, { scale: .99, opacity: newOpacity});
         target.style.setProperty("box-shadow", "none");
-        target.style.setProperty("border", "1px var(--color-element-1) solid");
+        // target.style.setProperty("border", "1px var(--color-element-1) solid");
     }
 }

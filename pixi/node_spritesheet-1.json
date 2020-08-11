@@ -1,0 +1,4326 @@
+{"frames": {
+
+"Academy_Map-t0.png":
+{
+	"frame": {"x":658,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Academy_Map-t1.png":
+{
+	"frame": {"x":736,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Academy_Map-t2.png":
+{
+	"frame": {"x":814,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Acid_Caverns_Map-t0.png":
+{
+	"frame": {"x":892,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Acid_Caverns_Map-t1.png":
+{
+	"frame": {"x":970,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Acid_Caverns_Map-t2.png":
+{
+	"frame": {"x":1048,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Acton's_Nightmare-t0.png":
+{
+	"frame": {"x":0,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Acton's_Nightmare-t1.png":
+{
+	"frame": {"x":47,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Acton's_Nightmare-t2.png":
+{
+	"frame": {"x":94,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Alleyways_Map-t0.png":
+{
+	"frame": {"x":1126,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Alleyways_Map-t1.png":
+{
+	"frame": {"x":1204,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Alleyways_Map-t2.png":
+{
+	"frame": {"x":1282,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ancient_City_Map-t0.png":
+{
+	"frame": {"x":1360,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ancient_City_Map-t1.png":
+{
+	"frame": {"x":1438,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ancient_City_Map-t2.png":
+{
+	"frame": {"x":1516,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arachnid_Nest_Map-t0.png":
+{
+	"frame": {"x":1594,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arachnid_Nest_Map-t1.png":
+{
+	"frame": {"x":1672,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arachnid_Nest_Map-t2.png":
+{
+	"frame": {"x":1750,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arachnid_Tomb_Map-t0.png":
+{
+	"frame": {"x":1828,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arachnid_Tomb_Map-t1.png":
+{
+	"frame": {"x":1906,"y":47,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arachnid_Tomb_Map-t2.png":
+{
+	"frame": {"x":0,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arcade_Map-t0.png":
+{
+	"frame": {"x":78,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arcade_Map-t1.png":
+{
+	"frame": {"x":156,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arcade_Map-t2.png":
+{
+	"frame": {"x":234,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arena_Map-t0.png":
+{
+	"frame": {"x":312,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arena_Map-t1.png":
+{
+	"frame": {"x":390,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arena_Map-t2.png":
+{
+	"frame": {"x":468,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arid_Lake_Map-t0.png":
+{
+	"frame": {"x":546,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arid_Lake_Map-t1.png":
+{
+	"frame": {"x":624,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arid_Lake_Map-t2.png":
+{
+	"frame": {"x":702,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Armoury_Map-t0.png":
+{
+	"frame": {"x":780,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Armoury_Map-t1.png":
+{
+	"frame": {"x":858,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Armoury_Map-t2.png":
+{
+	"frame": {"x":936,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arsenal_Map-t0.png":
+{
+	"frame": {"x":1014,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arsenal_Map-t1.png":
+{
+	"frame": {"x":1092,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Arsenal_Map-t2.png":
+{
+	"frame": {"x":1170,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ashen_Wood_Map-t0.png":
+{
+	"frame": {"x":1248,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ashen_Wood_Map-t1.png":
+{
+	"frame": {"x":1326,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ashen_Wood_Map-t2.png":
+{
+	"frame": {"x":1404,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atoll_Map-t0.png":
+{
+	"frame": {"x":1482,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atoll_Map-t1.png":
+{
+	"frame": {"x":1560,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atoll_Map-t2.png":
+{
+	"frame": {"x":1638,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Barrows_Map-t0.png":
+{
+	"frame": {"x":1716,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Barrows_Map-t1.png":
+{
+	"frame": {"x":1794,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Barrows_Map-t2.png":
+{
+	"frame": {"x":1872,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Basilica_Map-t0.png":
+{
+	"frame": {"x":1950,"y":125,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Basilica_Map-t1.png":
+{
+	"frame": {"x":0,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Basilica_Map-t2.png":
+{
+	"frame": {"x":78,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Bazaar_Map-t0.png":
+{
+	"frame": {"x":156,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Bazaar_Map-t1.png":
+{
+	"frame": {"x":234,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Bazaar_Map-t2.png":
+{
+	"frame": {"x":312,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Beach_Map-t0.png":
+{
+	"frame": {"x":390,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Beach_Map-t1.png":
+{
+	"frame": {"x":468,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Beach_Map-t2.png":
+{
+	"frame": {"x":546,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Belfry_Map-t0.png":
+{
+	"frame": {"x":624,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Belfry_Map-t1.png":
+{
+	"frame": {"x":702,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Belfry_Map-t2.png":
+{
+	"frame": {"x":780,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Bog_Map-t0.png":
+{
+	"frame": {"x":858,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Bog_Map-t1.png":
+{
+	"frame": {"x":936,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Bog_Map-t2.png":
+{
+	"frame": {"x":1014,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Bone_Crypt_Map-t0.png":
+{
+	"frame": {"x":1092,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Bone_Crypt_Map-t1.png":
+{
+	"frame": {"x":1170,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Bone_Crypt_Map-t2.png":
+{
+	"frame": {"x":1248,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Burial_Chambers_Map-t0.png":
+{
+	"frame": {"x":1326,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Burial_Chambers_Map-t1.png":
+{
+	"frame": {"x":1404,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Burial_Chambers_Map-t2.png":
+{
+	"frame": {"x":1482,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Caer_Blaidd,_Wolfpack's_Den-t0.png":
+{
+	"frame": {"x":141,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Caer_Blaidd,_Wolfpack's_Den-t1.png":
+{
+	"frame": {"x":188,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Caer_Blaidd,_Wolfpack's_Den-t2.png":
+{
+	"frame": {"x":235,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Cage_Map-t0.png":
+{
+	"frame": {"x":1560,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Cage_Map-t1.png":
+{
+	"frame": {"x":1638,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Cage_Map-t2.png":
+{
+	"frame": {"x":1716,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Caldera_Map-t0.png":
+{
+	"frame": {"x":1794,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Caldera_Map-t1.png":
+{
+	"frame": {"x":1872,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Caldera_Map-t2.png":
+{
+	"frame": {"x":1950,"y":203,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Canyon_Map-t0.png":
+{
+	"frame": {"x":0,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Canyon_Map-t1.png":
+{
+	"frame": {"x":78,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Canyon_Map-t2.png":
+{
+	"frame": {"x":156,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Carcass_Map-t0.png":
+{
+	"frame": {"x":234,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Carcass_Map-t1.png":
+{
+	"frame": {"x":312,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Carcass_Map-t2.png":
+{
+	"frame": {"x":390,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Castle_Ruins_Map-t0.png":
+{
+	"frame": {"x":468,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Castle_Ruins_Map-t1.png":
+{
+	"frame": {"x":546,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Castle_Ruins_Map-t2.png":
+{
+	"frame": {"x":624,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Cells_Map-t0.png":
+{
+	"frame": {"x":702,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Cells_Map-t1.png":
+{
+	"frame": {"x":780,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Cells_Map-t2.png":
+{
+	"frame": {"x":858,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Cemetery_Map-t0.png":
+{
+	"frame": {"x":936,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Cemetery_Map-t1.png":
+{
+	"frame": {"x":1014,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Cemetery_Map-t2.png":
+{
+	"frame": {"x":1092,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Channel_Map-t0.png":
+{
+	"frame": {"x":1170,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Channel_Map-t1.png":
+{
+	"frame": {"x":1248,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Channel_Map-t2.png":
+{
+	"frame": {"x":1326,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Chateau_Map-t0.png":
+{
+	"frame": {"x":1404,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Chateau_Map-t1.png":
+{
+	"frame": {"x":1482,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Chateau_Map-t2.png":
+{
+	"frame": {"x":1560,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"City_Square_Map-t0.png":
+{
+	"frame": {"x":1638,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"City_Square_Map-t1.png":
+{
+	"frame": {"x":1716,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"City_Square_Map-t2.png":
+{
+	"frame": {"x":1794,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Colonnade_Map-t0.png":
+{
+	"frame": {"x":1872,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Colonnade_Map-t1.png":
+{
+	"frame": {"x":1950,"y":281,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Colonnade_Map-t2.png":
+{
+	"frame": {"x":0,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Colosseum_Map-t0.png":
+{
+	"frame": {"x":78,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Colosseum_Map-t1.png":
+{
+	"frame": {"x":156,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Colosseum_Map-t2.png":
+{
+	"frame": {"x":234,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Conservatory_Map-t0.png":
+{
+	"frame": {"x":312,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Conservatory_Map-t1.png":
+{
+	"frame": {"x":390,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Conservatory_Map-t2.png":
+{
+	"frame": {"x":468,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Coral_Ruins_Map-t0.png":
+{
+	"frame": {"x":546,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Coral_Ruins_Map-t1.png":
+{
+	"frame": {"x":624,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Coral_Ruins_Map-t2.png":
+{
+	"frame": {"x":702,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Core_Map-t0.png":
+{
+	"frame": {"x":780,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Core_Map-t1.png":
+{
+	"frame": {"x":858,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Core_Map-t2.png":
+{
+	"frame": {"x":936,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Courthouse_Map-t0.png":
+{
+	"frame": {"x":1014,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Courthouse_Map-t1.png":
+{
+	"frame": {"x":1092,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Courthouse_Map-t2.png":
+{
+	"frame": {"x":1170,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Courtyard_Map-t0.png":
+{
+	"frame": {"x":1248,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Courtyard_Map-t1.png":
+{
+	"frame": {"x":1326,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Courtyard_Map-t2.png":
+{
+	"frame": {"x":1404,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Coves_Map-t0.png":
+{
+	"frame": {"x":1482,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Coves_Map-t1.png":
+{
+	"frame": {"x":1560,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Coves_Map-t2.png":
+{
+	"frame": {"x":1638,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Crater_Map-t0.png":
+{
+	"frame": {"x":1716,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Crater_Map-t1.png":
+{
+	"frame": {"x":1794,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Crater_Map-t2.png":
+{
+	"frame": {"x":1872,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Crimson_Temple_Map-t0.png":
+{
+	"frame": {"x":1950,"y":359,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Crimson_Temple_Map-t1.png":
+{
+	"frame": {"x":0,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Crimson_Temple_Map-t2.png":
+{
+	"frame": {"x":78,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Crystal_Ore_Map-t0.png":
+{
+	"frame": {"x":156,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Crystal_Ore_Map-t1.png":
+{
+	"frame": {"x":234,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Crystal_Ore_Map-t2.png":
+{
+	"frame": {"x":312,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Cursed_Crypt_Map-t0.png":
+{
+	"frame": {"x":390,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Cursed_Crypt_Map-t1.png":
+{
+	"frame": {"x":468,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Cursed_Crypt_Map-t2.png":
+{
+	"frame": {"x":546,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Dark_Forest_Map-t0.png":
+{
+	"frame": {"x":624,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Dark_Forest_Map-t1.png":
+{
+	"frame": {"x":702,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Dark_Forest_Map-t2.png":
+{
+	"frame": {"x":780,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Death_and_Taxes-t0.png":
+{
+	"frame": {"x":282,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Death_and_Taxes-t1.png":
+{
+	"frame": {"x":329,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Death_and_Taxes-t2.png":
+{
+	"frame": {"x":376,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Defiled_Cathedral_Map-t0.png":
+{
+	"frame": {"x":858,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Defiled_Cathedral_Map-t1.png":
+{
+	"frame": {"x":936,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Defiled_Cathedral_Map-t2.png":
+{
+	"frame": {"x":1014,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Desert_Map-t0.png":
+{
+	"frame": {"x":1092,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Desert_Map-t1.png":
+{
+	"frame": {"x":1170,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Desert_Map-t2.png":
+{
+	"frame": {"x":1248,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Desert_Spring_Map-t0.png":
+{
+	"frame": {"x":1326,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Desert_Spring_Map-t1.png":
+{
+	"frame": {"x":1404,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Desert_Spring_Map-t2.png":
+{
+	"frame": {"x":1482,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Dig_Map-t0.png":
+{
+	"frame": {"x":1560,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Dig_Map-t1.png":
+{
+	"frame": {"x":1638,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Dig_Map-t2.png":
+{
+	"frame": {"x":1716,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Doryani's_Machinarium-t0.png":
+{
+	"frame": {"x":423,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Doryani's_Machinarium-t1.png":
+{
+	"frame": {"x":470,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Doryani's_Machinarium-t2.png":
+{
+	"frame": {"x":517,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Dunes_Map-t0.png":
+{
+	"frame": {"x":1794,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Dunes_Map-t1.png":
+{
+	"frame": {"x":1872,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Dunes_Map-t2.png":
+{
+	"frame": {"x":1950,"y":437,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Dungeon_Map-t0.png":
+{
+	"frame": {"x":0,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Dungeon_Map-t1.png":
+{
+	"frame": {"x":78,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Dungeon_Map-t2.png":
+{
+	"frame": {"x":156,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Estuary_Map-t0.png":
+{
+	"frame": {"x":234,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Estuary_Map-t1.png":
+{
+	"frame": {"x":312,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Estuary_Map-t2.png":
+{
+	"frame": {"x":390,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Excavation_Map-t0.png":
+{
+	"frame": {"x":468,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Excavation_Map-t1.png":
+{
+	"frame": {"x":546,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Excavation_Map-t2.png":
+{
+	"frame": {"x":624,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Factory_Map-t0.png":
+{
+	"frame": {"x":702,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Factory_Map-t1.png":
+{
+	"frame": {"x":780,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Factory_Map-t2.png":
+{
+	"frame": {"x":858,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Fields_Map-t0.png":
+{
+	"frame": {"x":936,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Fields_Map-t1.png":
+{
+	"frame": {"x":1014,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Fields_Map-t2.png":
+{
+	"frame": {"x":1092,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Flooded_Mine_Map-t0.png":
+{
+	"frame": {"x":1170,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Flooded_Mine_Map-t1.png":
+{
+	"frame": {"x":1248,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Flooded_Mine_Map-t2.png":
+{
+	"frame": {"x":1326,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Fungal_Hollow_Map-t0.png":
+{
+	"frame": {"x":1404,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Fungal_Hollow_Map-t1.png":
+{
+	"frame": {"x":1482,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Fungal_Hollow_Map-t2.png":
+{
+	"frame": {"x":1560,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Gardens_Map-t0.png":
+{
+	"frame": {"x":1638,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Gardens_Map-t1.png":
+{
+	"frame": {"x":1716,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Gardens_Map-t2.png":
+{
+	"frame": {"x":1794,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Geode_Map-t0.png":
+{
+	"frame": {"x":1872,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Geode_Map-t1.png":
+{
+	"frame": {"x":1950,"y":515,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Geode_Map-t2.png":
+{
+	"frame": {"x":0,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ghetto_Map-t0.png":
+{
+	"frame": {"x":78,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ghetto_Map-t1.png":
+{
+	"frame": {"x":156,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ghetto_Map-t2.png":
+{
+	"frame": {"x":234,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Glacier_Map-t0.png":
+{
+	"frame": {"x":312,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Glacier_Map-t1.png":
+{
+	"frame": {"x":390,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Glacier_Map-t2.png":
+{
+	"frame": {"x":468,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Graveyard_Map-t0.png":
+{
+	"frame": {"x":546,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Graveyard_Map-t1.png":
+{
+	"frame": {"x":624,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Graveyard_Map-t2.png":
+{
+	"frame": {"x":702,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Grotto_Map-t0.png":
+{
+	"frame": {"x":780,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Grotto_Map-t1.png":
+{
+	"frame": {"x":858,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Grotto_Map-t2.png":
+{
+	"frame": {"x":936,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Hall_of_Grandmasters-t0.png":
+{
+	"frame": {"x":564,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Hall_of_Grandmasters-t1.png":
+{
+	"frame": {"x":611,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Hall_of_Grandmasters-t2.png":
+{
+	"frame": {"x":658,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Hallowed_Ground-t0.png":
+{
+	"frame": {"x":705,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Hallowed_Ground-t1.png":
+{
+	"frame": {"x":752,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Hallowed_Ground-t2.png":
+{
+	"frame": {"x":799,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Haunted_Mansion_Map-t0.png":
+{
+	"frame": {"x":1014,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Haunted_Mansion_Map-t1.png":
+{
+	"frame": {"x":1092,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Haunted_Mansion_Map-t2.png":
+{
+	"frame": {"x":1170,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Iceberg_Map-t0.png":
+{
+	"frame": {"x":1248,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Iceberg_Map-t1.png":
+{
+	"frame": {"x":1326,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Iceberg_Map-t2.png":
+{
+	"frame": {"x":1404,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Infested_Valley_Map-t0.png":
+{
+	"frame": {"x":1482,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Infested_Valley_Map-t1.png":
+{
+	"frame": {"x":1560,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Infested_Valley_Map-t2.png":
+{
+	"frame": {"x":1638,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ivory_Temple_Map-t0.png":
+{
+	"frame": {"x":1716,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ivory_Temple_Map-t1.png":
+{
+	"frame": {"x":1794,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ivory_Temple_Map-t2.png":
+{
+	"frame": {"x":1872,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Jungle_Valley_Map-t0.png":
+{
+	"frame": {"x":1950,"y":593,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Jungle_Valley_Map-t1.png":
+{
+	"frame": {"x":0,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Jungle_Valley_Map-t2.png":
+{
+	"frame": {"x":78,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Laboratory_Map-t0.png":
+{
+	"frame": {"x":156,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Laboratory_Map-t1.png":
+{
+	"frame": {"x":234,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Laboratory_Map-t2.png":
+{
+	"frame": {"x":312,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lair_Map-t0.png":
+{
+	"frame": {"x":390,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lair_Map-t1.png":
+{
+	"frame": {"x":468,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lair_Map-t2.png":
+{
+	"frame": {"x":546,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lava_Chamber_Map-t0.png":
+{
+	"frame": {"x":624,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lava_Chamber_Map-t1.png":
+{
+	"frame": {"x":702,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lava_Chamber_Map-t2.png":
+{
+	"frame": {"x":780,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lava_Lake_Map-t0.png":
+{
+	"frame": {"x":858,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lava_Lake_Map-t1.png":
+{
+	"frame": {"x":936,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lava_Lake_Map-t2.png":
+{
+	"frame": {"x":1014,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Leyline_Map-t0.png":
+{
+	"frame": {"x":1092,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Leyline_Map-t1.png":
+{
+	"frame": {"x":1170,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Leyline_Map-t2.png":
+{
+	"frame": {"x":1248,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lighthouse_Map-t0.png":
+{
+	"frame": {"x":1326,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lighthouse_Map-t1.png":
+{
+	"frame": {"x":1404,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lighthouse_Map-t2.png":
+{
+	"frame": {"x":1482,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lookout_Map-t0.png":
+{
+	"frame": {"x":1560,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lookout_Map-t1.png":
+{
+	"frame": {"x":1638,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Lookout_Map-t2.png":
+{
+	"frame": {"x":1716,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Maelström_of_Chaos-t0.png":
+{
+	"frame": {"x":846,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Maelström_of_Chaos-t1.png":
+{
+	"frame": {"x":893,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Maelström_of_Chaos-t2.png":
+{
+	"frame": {"x":940,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Malformation_Map-t0.png":
+{
+	"frame": {"x":1794,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Malformation_Map-t1.png":
+{
+	"frame": {"x":1872,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Malformation_Map-t2.png":
+{
+	"frame": {"x":1950,"y":671,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mao_Kun-t0.png":
+{
+	"frame": {"x":987,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mao_Kun-t1.png":
+{
+	"frame": {"x":1034,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mao_Kun-t2.png":
+{
+	"frame": {"x":1081,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Marshes_Map-t0.png":
+{
+	"frame": {"x":0,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Marshes_Map-t1.png":
+{
+	"frame": {"x":78,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Marshes_Map-t2.png":
+{
+	"frame": {"x":156,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mausoleum_Map-t0.png":
+{
+	"frame": {"x":234,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mausoleum_Map-t1.png":
+{
+	"frame": {"x":312,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mausoleum_Map-t2.png":
+{
+	"frame": {"x":390,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Maze_Map-t0.png":
+{
+	"frame": {"x":468,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Maze_Map-t1.png":
+{
+	"frame": {"x":546,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Maze_Map-t2.png":
+{
+	"frame": {"x":624,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mesa_Map-t0.png":
+{
+	"frame": {"x":702,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mesa_Map-t1.png":
+{
+	"frame": {"x":780,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mesa_Map-t2.png":
+{
+	"frame": {"x":858,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mineral_Pools_Map-t0.png":
+{
+	"frame": {"x":936,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mineral_Pools_Map-t1.png":
+{
+	"frame": {"x":1014,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mineral_Pools_Map-t2.png":
+{
+	"frame": {"x":1092,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Moon_Temple_Map-t0.png":
+{
+	"frame": {"x":1170,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Moon_Temple_Map-t1.png":
+{
+	"frame": {"x":1248,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Moon_Temple_Map-t2.png":
+{
+	"frame": {"x":1326,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mud_Geyser_Map-t0.png":
+{
+	"frame": {"x":1404,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mud_Geyser_Map-t1.png":
+{
+	"frame": {"x":1482,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Mud_Geyser_Map-t2.png":
+{
+	"frame": {"x":1560,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Museum_Map-t0.png":
+{
+	"frame": {"x":1638,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Museum_Map-t1.png":
+{
+	"frame": {"x":1716,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Museum_Map-t2.png":
+{
+	"frame": {"x":1794,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Necropolis_Map-t0.png":
+{
+	"frame": {"x":1872,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Necropolis_Map-t1.png":
+{
+	"frame": {"x":1950,"y":749,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Necropolis_Map-t2.png":
+{
+	"frame": {"x":0,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Oba's_Cursed_Trove-t0.png":
+{
+	"frame": {"x":1128,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Oba's_Cursed_Trove-t1.png":
+{
+	"frame": {"x":1175,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Oba's_Cursed_Trove-t2.png":
+{
+	"frame": {"x":1222,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Olmec's_Sanctum-t0.png":
+{
+	"frame": {"x":1269,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Olmec's_Sanctum-t1.png":
+{
+	"frame": {"x":1316,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Olmec's_Sanctum-t2.png":
+{
+	"frame": {"x":1363,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Orchard_Map-t0.png":
+{
+	"frame": {"x":78,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Orchard_Map-t1.png":
+{
+	"frame": {"x":156,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Orchard_Map-t2.png":
+{
+	"frame": {"x":234,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Overgrown_Ruin_Map-t0.png":
+{
+	"frame": {"x":312,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Overgrown_Ruin_Map-t1.png":
+{
+	"frame": {"x":390,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Overgrown_Ruin_Map-t2.png":
+{
+	"frame": {"x":468,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Overgrown_Shrine_Map-t0.png":
+{
+	"frame": {"x":546,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Overgrown_Shrine_Map-t1.png":
+{
+	"frame": {"x":624,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Overgrown_Shrine_Map-t2.png":
+{
+	"frame": {"x":702,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Palace_Map-t0.png":
+{
+	"frame": {"x":780,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Palace_Map-t1.png":
+{
+	"frame": {"x":858,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Palace_Map-t2.png":
+{
+	"frame": {"x":936,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Park_Map-t0.png":
+{
+	"frame": {"x":1014,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Park_Map-t1.png":
+{
+	"frame": {"x":1092,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Park_Map-t2.png":
+{
+	"frame": {"x":1170,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Pen_Map-t0.png":
+{
+	"frame": {"x":1248,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Pen_Map-t1.png":
+{
+	"frame": {"x":1326,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Pen_Map-t2.png":
+{
+	"frame": {"x":1404,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Peninsula_Map-t0.png":
+{
+	"frame": {"x":1482,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Peninsula_Map-t1.png":
+{
+	"frame": {"x":1560,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Peninsula_Map-t2.png":
+{
+	"frame": {"x":1638,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Phantasmagoria_Map-t0.png":
+{
+	"frame": {"x":1716,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Phantasmagoria_Map-t1.png":
+{
+	"frame": {"x":1794,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Phantasmagoria_Map-t2.png":
+{
+	"frame": {"x":1872,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Pier_Map-t0.png":
+{
+	"frame": {"x":1950,"y":827,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Pier_Map-t1.png":
+{
+	"frame": {"x":0,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Pier_Map-t2.png":
+{
+	"frame": {"x":78,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Pillars_of_Arun-t0.png":
+{
+	"frame": {"x":1410,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Pillars_of_Arun-t1.png":
+{
+	"frame": {"x":1457,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Pillars_of_Arun-t2.png":
+{
+	"frame": {"x":1504,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Pit_Map-t0.png":
+{
+	"frame": {"x":156,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Pit_Map-t1.png":
+{
+	"frame": {"x":234,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Pit_Map-t2.png":
+{
+	"frame": {"x":312,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Plateau_Map-t0.png":
+{
+	"frame": {"x":390,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Plateau_Map-t1.png":
+{
+	"frame": {"x":468,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Plateau_Map-t2.png":
+{
+	"frame": {"x":546,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Plaza_Map-t0.png":
+{
+	"frame": {"x":624,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Plaza_Map-t1.png":
+{
+	"frame": {"x":702,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Plaza_Map-t2.png":
+{
+	"frame": {"x":780,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Poorjoy's_Asylum-t0.png":
+{
+	"frame": {"x":1551,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Poorjoy's_Asylum-t1.png":
+{
+	"frame": {"x":1598,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Poorjoy's_Asylum-t2.png":
+{
+	"frame": {"x":1645,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Port_Map-t0.png":
+{
+	"frame": {"x":858,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Port_Map-t1.png":
+{
+	"frame": {"x":936,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Port_Map-t2.png":
+{
+	"frame": {"x":1014,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Precinct_Map-t0.png":
+{
+	"frame": {"x":1092,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Precinct_Map-t1.png":
+{
+	"frame": {"x":1170,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Precinct_Map-t2.png":
+{
+	"frame": {"x":1248,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Primordial_Blocks_Map-t0.png":
+{
+	"frame": {"x":1326,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Primordial_Blocks_Map-t1.png":
+{
+	"frame": {"x":1404,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Primordial_Blocks_Map-t2.png":
+{
+	"frame": {"x":1482,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Primordial_Pool_Map-t0.png":
+{
+	"frame": {"x":1560,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Primordial_Pool_Map-t1.png":
+{
+	"frame": {"x":1638,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Primordial_Pool_Map-t2.png":
+{
+	"frame": {"x":1716,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Promenade_Map-t0.png":
+{
+	"frame": {"x":1794,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Promenade_Map-t1.png":
+{
+	"frame": {"x":1872,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Promenade_Map-t2.png":
+{
+	"frame": {"x":1950,"y":905,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Racecourse_Map-t0.png":
+{
+	"frame": {"x":0,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Racecourse_Map-t1.png":
+{
+	"frame": {"x":78,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Racecourse_Map-t2.png":
+{
+	"frame": {"x":156,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ramparts_Map-t0.png":
+{
+	"frame": {"x":234,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ramparts_Map-t1.png":
+{
+	"frame": {"x":312,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Ramparts_Map-t2.png":
+{
+	"frame": {"x":390,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Reef_Map-t0.png":
+{
+	"frame": {"x":468,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Reef_Map-t1.png":
+{
+	"frame": {"x":546,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Reef_Map-t2.png":
+{
+	"frame": {"x":624,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Relic_Chambers_Map-t0.png":
+{
+	"frame": {"x":702,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Relic_Chambers_Map-t1.png":
+{
+	"frame": {"x":780,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Relic_Chambers_Map-t2.png":
+{
+	"frame": {"x":858,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Residence_Map-t0.png":
+{
+	"frame": {"x":936,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Residence_Map-t1.png":
+{
+	"frame": {"x":1014,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Residence_Map-t2.png":
+{
+	"frame": {"x":1092,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Scriptorium_Map-t0.png":
+{
+	"frame": {"x":1170,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Scriptorium_Map-t1.png":
+{
+	"frame": {"x":1248,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Scriptorium_Map-t2.png":
+{
+	"frame": {"x":1326,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Sepulchre_Map-t0.png":
+{
+	"frame": {"x":1404,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Sepulchre_Map-t1.png":
+{
+	"frame": {"x":1482,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Sepulchre_Map-t2.png":
+{
+	"frame": {"x":1560,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Shipyard_Map-t0.png":
+{
+	"frame": {"x":1638,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Shipyard_Map-t1.png":
+{
+	"frame": {"x":1716,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Shipyard_Map-t2.png":
+{
+	"frame": {"x":1794,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Shore_Map-t0.png":
+{
+	"frame": {"x":1872,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Shore_Map-t1.png":
+{
+	"frame": {"x":1950,"y":983,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Shore_Map-t2.png":
+{
+	"frame": {"x":0,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Shrine_Map-t0.png":
+{
+	"frame": {"x":78,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Shrine_Map-t1.png":
+{
+	"frame": {"x":156,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Shrine_Map-t2.png":
+{
+	"frame": {"x":234,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Siege_Map-t0.png":
+{
+	"frame": {"x":312,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Siege_Map-t1.png":
+{
+	"frame": {"x":390,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Siege_Map-t2.png":
+{
+	"frame": {"x":468,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Spider_Forest_Map-t0.png":
+{
+	"frame": {"x":546,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Spider_Forest_Map-t1.png":
+{
+	"frame": {"x":624,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Spider_Forest_Map-t2.png":
+{
+	"frame": {"x":702,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Spider_Lair_Map-t0.png":
+{
+	"frame": {"x":780,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Spider_Lair_Map-t1.png":
+{
+	"frame": {"x":858,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Spider_Lair_Map-t2.png":
+{
+	"frame": {"x":936,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Strand_Map-t0.png":
+{
+	"frame": {"x":1014,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Strand_Map-t1.png":
+{
+	"frame": {"x":1092,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Strand_Map-t2.png":
+{
+	"frame": {"x":1170,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Sulphur_Vents_Map-t0.png":
+{
+	"frame": {"x":1248,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Sulphur_Vents_Map-t1.png":
+{
+	"frame": {"x":1326,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Sulphur_Vents_Map-t2.png":
+{
+	"frame": {"x":1404,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Summit_Map-t0.png":
+{
+	"frame": {"x":1482,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Summit_Map-t1.png":
+{
+	"frame": {"x":1560,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Summit_Map-t2.png":
+{
+	"frame": {"x":1638,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Sunken_City_Map-t0.png":
+{
+	"frame": {"x":1716,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Sunken_City_Map-t1.png":
+{
+	"frame": {"x":1794,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Sunken_City_Map-t2.png":
+{
+	"frame": {"x":1872,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Temple_Map-t0.png":
+{
+	"frame": {"x":1950,"y":1061,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Temple_Map-t1.png":
+{
+	"frame": {"x":0,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Temple_Map-t2.png":
+{
+	"frame": {"x":78,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Terrace_Map-t0.png":
+{
+	"frame": {"x":156,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Terrace_Map-t1.png":
+{
+	"frame": {"x":234,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Terrace_Map-t2.png":
+{
+	"frame": {"x":312,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Coward's_Trial-t0.png":
+{
+	"frame": {"x":1692,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Coward's_Trial-t1.png":
+{
+	"frame": {"x":1739,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Coward's_Trial-t2.png":
+{
+	"frame": {"x":1786,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Perandus_Manor-t0.png":
+{
+	"frame": {"x":1833,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Perandus_Manor-t1.png":
+{
+	"frame": {"x":1880,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Perandus_Manor-t2.png":
+{
+	"frame": {"x":1927,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Putrid_Cloister-t0.png":
+{
+	"frame": {"x":1974,"y":0,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Putrid_Cloister-t1.png":
+{
+	"frame": {"x":0,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Putrid_Cloister-t2.png":
+{
+	"frame": {"x":47,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Twilight_Temple-t0.png":
+{
+	"frame": {"x":94,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Twilight_Temple-t1.png":
+{
+	"frame": {"x":141,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Twilight_Temple-t2.png":
+{
+	"frame": {"x":188,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Vinktar_Square-t0.png":
+{
+	"frame": {"x":235,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Vinktar_Square-t1.png":
+{
+	"frame": {"x":282,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"The_Vinktar_Square-t2.png":
+{
+	"frame": {"x":329,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Thicket_Map-t0.png":
+{
+	"frame": {"x":390,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Thicket_Map-t1.png":
+{
+	"frame": {"x":468,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Thicket_Map-t2.png":
+{
+	"frame": {"x":546,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Tower_Map-t0.png":
+{
+	"frame": {"x":624,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Tower_Map-t1.png":
+{
+	"frame": {"x":702,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Tower_Map-t2.png":
+{
+	"frame": {"x":780,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Toxic_Sewer_Map-t0.png":
+{
+	"frame": {"x":858,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Toxic_Sewer_Map-t1.png":
+{
+	"frame": {"x":936,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Toxic_Sewer_Map-t2.png":
+{
+	"frame": {"x":1014,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Tropical_Island_Map-t0.png":
+{
+	"frame": {"x":1092,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Tropical_Island_Map-t1.png":
+{
+	"frame": {"x":1170,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Tropical_Island_Map-t2.png":
+{
+	"frame": {"x":1248,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Underground_River_Map-t0.png":
+{
+	"frame": {"x":1326,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Underground_River_Map-t1.png":
+{
+	"frame": {"x":1404,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Underground_River_Map-t2.png":
+{
+	"frame": {"x":1482,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Underground_Sea_Map-t0.png":
+{
+	"frame": {"x":1560,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Underground_Sea_Map-t1.png":
+{
+	"frame": {"x":1638,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Underground_Sea_Map-t2.png":
+{
+	"frame": {"x":1716,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Vaal_Pyramid_Map-t0.png":
+{
+	"frame": {"x":1794,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Vaal_Pyramid_Map-t1.png":
+{
+	"frame": {"x":1872,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Vaal_Pyramid_Map-t2.png":
+{
+	"frame": {"x":1950,"y":1139,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Vaal_Temple_Map-t0.png":
+{
+	"frame": {"x":0,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Vaal_Temple_Map-t1.png":
+{
+	"frame": {"x":78,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Vaal_Temple_Map-t2.png":
+{
+	"frame": {"x":156,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Vault_Map-t0.png":
+{
+	"frame": {"x":234,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Vault_Map-t1.png":
+{
+	"frame": {"x":312,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Vault_Map-t2.png":
+{
+	"frame": {"x":390,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Vaults_of_Atziri-t0.png":
+{
+	"frame": {"x":376,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Vaults_of_Atziri-t1.png":
+{
+	"frame": {"x":423,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Vaults_of_Atziri-t2.png":
+{
+	"frame": {"x":470,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Villa_Map-t0.png":
+{
+	"frame": {"x":468,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Villa_Map-t1.png":
+{
+	"frame": {"x":546,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Villa_Map-t2.png":
+{
+	"frame": {"x":624,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Volcano_Map-t0.png":
+{
+	"frame": {"x":702,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Volcano_Map-t1.png":
+{
+	"frame": {"x":780,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Volcano_Map-t2.png":
+{
+	"frame": {"x":858,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Waste_Pool_Map-t0.png":
+{
+	"frame": {"x":936,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Waste_Pool_Map-t1.png":
+{
+	"frame": {"x":1014,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Waste_Pool_Map-t2.png":
+{
+	"frame": {"x":1092,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Wasteland_Map-t0.png":
+{
+	"frame": {"x":1170,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Wasteland_Map-t1.png":
+{
+	"frame": {"x":1248,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Wasteland_Map-t2.png":
+{
+	"frame": {"x":1326,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Waterways_Map-t0.png":
+{
+	"frame": {"x":1404,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Waterways_Map-t1.png":
+{
+	"frame": {"x":1482,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Waterways_Map-t2.png":
+{
+	"frame": {"x":1560,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Whakawairua_Tuahu-t0.png":
+{
+	"frame": {"x":517,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Whakawairua_Tuahu-t1.png":
+{
+	"frame": {"x":564,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Whakawairua_Tuahu-t2.png":
+{
+	"frame": {"x":611,"y":47,"w":47,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":47},
+	"sourceSize": {"w":47,"h":47},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Wharf_Map-t0.png":
+{
+	"frame": {"x":1638,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Wharf_Map-t1.png":
+{
+	"frame": {"x":1716,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Wharf_Map-t2.png":
+{
+	"frame": {"x":1794,"y":1217,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+}},
+"animations": {
+	"Academy_Map-t": ["Academy_Map-t0.png","Academy_Map-t1.png","Academy_Map-t2.png"],
+	"Acid_Caverns_Map-t": ["Acid_Caverns_Map-t0.png","Acid_Caverns_Map-t1.png","Acid_Caverns_Map-t2.png"],
+	"Acton's_Nightmare-t": ["Acton's_Nightmare-t0.png","Acton's_Nightmare-t1.png","Acton's_Nightmare-t2.png"],
+	"Alleyways_Map-t": ["Alleyways_Map-t0.png","Alleyways_Map-t1.png","Alleyways_Map-t2.png"],
+	"Ancient_City_Map-t": ["Ancient_City_Map-t0.png","Ancient_City_Map-t1.png","Ancient_City_Map-t2.png"],
+	"Arachnid_Nest_Map-t": ["Arachnid_Nest_Map-t0.png","Arachnid_Nest_Map-t1.png","Arachnid_Nest_Map-t2.png"],
+	"Arachnid_Tomb_Map-t": ["Arachnid_Tomb_Map-t0.png","Arachnid_Tomb_Map-t1.png","Arachnid_Tomb_Map-t2.png"],
+	"Arcade_Map-t": ["Arcade_Map-t0.png","Arcade_Map-t1.png","Arcade_Map-t2.png"],
+	"Arena_Map-t": ["Arena_Map-t0.png","Arena_Map-t1.png","Arena_Map-t2.png"],
+	"Arid_Lake_Map-t": ["Arid_Lake_Map-t0.png","Arid_Lake_Map-t1.png","Arid_Lake_Map-t2.png"],
+	"Armoury_Map-t": ["Armoury_Map-t0.png","Armoury_Map-t1.png","Armoury_Map-t2.png"],
+	"Arsenal_Map-t": ["Arsenal_Map-t0.png","Arsenal_Map-t1.png","Arsenal_Map-t2.png"],
+	"Ashen_Wood_Map-t": ["Ashen_Wood_Map-t0.png","Ashen_Wood_Map-t1.png","Ashen_Wood_Map-t2.png"],
+	"Atoll_Map-t": ["Atoll_Map-t0.png","Atoll_Map-t1.png","Atoll_Map-t2.png"],
+	"Barrows_Map-t": ["Barrows_Map-t0.png","Barrows_Map-t1.png","Barrows_Map-t2.png"],
+	"Basilica_Map-t": ["Basilica_Map-t0.png","Basilica_Map-t1.png","Basilica_Map-t2.png"],
+	"Bazaar_Map-t": ["Bazaar_Map-t0.png","Bazaar_Map-t1.png","Bazaar_Map-t2.png"],
+	"Beach_Map-t": ["Beach_Map-t0.png","Beach_Map-t1.png","Beach_Map-t2.png"],
+	"Belfry_Map-t": ["Belfry_Map-t0.png","Belfry_Map-t1.png","Belfry_Map-t2.png"],
+	"Bog_Map-t": ["Bog_Map-t0.png","Bog_Map-t1.png","Bog_Map-t2.png"],
+	"Bone_Crypt_Map-t": ["Bone_Crypt_Map-t0.png","Bone_Crypt_Map-t1.png","Bone_Crypt_Map-t2.png"],
+	"Burial_Chambers_Map-t": ["Burial_Chambers_Map-t0.png","Burial_Chambers_Map-t1.png","Burial_Chambers_Map-t2.png"],
+	"Caer_Blaidd,_Wolfpack's_Den-t": ["Caer_Blaidd,_Wolfpack's_Den-t0.png","Caer_Blaidd,_Wolfpack's_Den-t1.png","Caer_Blaidd,_Wolfpack's_Den-t2.png"],
+	"Cage_Map-t": ["Cage_Map-t0.png","Cage_Map-t1.png","Cage_Map-t2.png"],
+	"Caldera_Map-t": ["Caldera_Map-t0.png","Caldera_Map-t1.png","Caldera_Map-t2.png"],
+	"Canyon_Map-t": ["Canyon_Map-t0.png","Canyon_Map-t1.png","Canyon_Map-t2.png"],
+	"Carcass_Map-t": ["Carcass_Map-t0.png","Carcass_Map-t1.png","Carcass_Map-t2.png"],
+	"Castle_Ruins_Map-t": ["Castle_Ruins_Map-t0.png","Castle_Ruins_Map-t1.png","Castle_Ruins_Map-t2.png"],
+	"Cells_Map-t": ["Cells_Map-t0.png","Cells_Map-t1.png","Cells_Map-t2.png"],
+	"Cemetery_Map-t": ["Cemetery_Map-t0.png","Cemetery_Map-t1.png","Cemetery_Map-t2.png"],
+	"Channel_Map-t": ["Channel_Map-t0.png","Channel_Map-t1.png","Channel_Map-t2.png"],
+	"Chateau_Map-t": ["Chateau_Map-t0.png","Chateau_Map-t1.png","Chateau_Map-t2.png"],
+	"City_Square_Map-t": ["City_Square_Map-t0.png","City_Square_Map-t1.png","City_Square_Map-t2.png"],
+	"Colonnade_Map-t": ["Colonnade_Map-t0.png","Colonnade_Map-t1.png","Colonnade_Map-t2.png"],
+	"Colosseum_Map-t": ["Colosseum_Map-t0.png","Colosseum_Map-t1.png","Colosseum_Map-t2.png"],
+	"Conservatory_Map-t": ["Conservatory_Map-t0.png","Conservatory_Map-t1.png","Conservatory_Map-t2.png"],
+	"Coral_Ruins_Map-t": ["Coral_Ruins_Map-t0.png","Coral_Ruins_Map-t1.png","Coral_Ruins_Map-t2.png"],
+	"Core_Map-t": ["Core_Map-t0.png","Core_Map-t1.png","Core_Map-t2.png"],
+	"Courthouse_Map-t": ["Courthouse_Map-t0.png","Courthouse_Map-t1.png","Courthouse_Map-t2.png"],
+	"Courtyard_Map-t": ["Courtyard_Map-t0.png","Courtyard_Map-t1.png","Courtyard_Map-t2.png"],
+	"Coves_Map-t": ["Coves_Map-t0.png","Coves_Map-t1.png","Coves_Map-t2.png"],
+	"Crater_Map-t": ["Crater_Map-t0.png","Crater_Map-t1.png","Crater_Map-t2.png"],
+	"Crimson_Temple_Map-t": ["Crimson_Temple_Map-t0.png","Crimson_Temple_Map-t1.png","Crimson_Temple_Map-t2.png"],
+	"Crystal_Ore_Map-t": ["Crystal_Ore_Map-t0.png","Crystal_Ore_Map-t1.png","Crystal_Ore_Map-t2.png"],
+	"Cursed_Crypt_Map-t": ["Cursed_Crypt_Map-t0.png","Cursed_Crypt_Map-t1.png","Cursed_Crypt_Map-t2.png"],
+	"Dark_Forest_Map-t": ["Dark_Forest_Map-t0.png","Dark_Forest_Map-t1.png","Dark_Forest_Map-t2.png"],
+	"Death_and_Taxes-t": ["Death_and_Taxes-t0.png","Death_and_Taxes-t1.png","Death_and_Taxes-t2.png"],
+	"Defiled_Cathedral_Map-t": ["Defiled_Cathedral_Map-t0.png","Defiled_Cathedral_Map-t1.png","Defiled_Cathedral_Map-t2.png"],
+	"Desert_Map-t": ["Desert_Map-t0.png","Desert_Map-t1.png","Desert_Map-t2.png"],
+	"Desert_Spring_Map-t": ["Desert_Spring_Map-t0.png","Desert_Spring_Map-t1.png","Desert_Spring_Map-t2.png"],
+	"Dig_Map-t": ["Dig_Map-t0.png","Dig_Map-t1.png","Dig_Map-t2.png"],
+	"Doryani's_Machinarium-t": ["Doryani's_Machinarium-t0.png","Doryani's_Machinarium-t1.png","Doryani's_Machinarium-t2.png"],
+	"Dunes_Map-t": ["Dunes_Map-t0.png","Dunes_Map-t1.png","Dunes_Map-t2.png"],
+	"Dungeon_Map-t": ["Dungeon_Map-t0.png","Dungeon_Map-t1.png","Dungeon_Map-t2.png"],
+	"Estuary_Map-t": ["Estuary_Map-t0.png","Estuary_Map-t1.png","Estuary_Map-t2.png"],
+	"Excavation_Map-t": ["Excavation_Map-t0.png","Excavation_Map-t1.png","Excavation_Map-t2.png"],
+	"Factory_Map-t": ["Factory_Map-t0.png","Factory_Map-t1.png","Factory_Map-t2.png"],
+	"Fields_Map-t": ["Fields_Map-t0.png","Fields_Map-t1.png","Fields_Map-t2.png"],
+	"Flooded_Mine_Map-t": ["Flooded_Mine_Map-t0.png","Flooded_Mine_Map-t1.png","Flooded_Mine_Map-t2.png"],
+	"Fungal_Hollow_Map-t": ["Fungal_Hollow_Map-t0.png","Fungal_Hollow_Map-t1.png","Fungal_Hollow_Map-t2.png"],
+	"Gardens_Map-t": ["Gardens_Map-t0.png","Gardens_Map-t1.png","Gardens_Map-t2.png"],
+	"Geode_Map-t": ["Geode_Map-t0.png","Geode_Map-t1.png","Geode_Map-t2.png"],
+	"Ghetto_Map-t": ["Ghetto_Map-t0.png","Ghetto_Map-t1.png","Ghetto_Map-t2.png"],
+	"Glacier_Map-t": ["Glacier_Map-t0.png","Glacier_Map-t1.png","Glacier_Map-t2.png"],
+	"Graveyard_Map-t": ["Graveyard_Map-t0.png","Graveyard_Map-t1.png","Graveyard_Map-t2.png"],
+	"Grotto_Map-t": ["Grotto_Map-t0.png","Grotto_Map-t1.png","Grotto_Map-t2.png"],
+	"Hall_of_Grandmasters-t": ["Hall_of_Grandmasters-t0.png","Hall_of_Grandmasters-t1.png","Hall_of_Grandmasters-t2.png"],
+	"Hallowed_Ground-t": ["Hallowed_Ground-t0.png","Hallowed_Ground-t1.png","Hallowed_Ground-t2.png"],
+	"Haunted_Mansion_Map-t": ["Haunted_Mansion_Map-t0.png","Haunted_Mansion_Map-t1.png","Haunted_Mansion_Map-t2.png"],
+	"Iceberg_Map-t": ["Iceberg_Map-t0.png","Iceberg_Map-t1.png","Iceberg_Map-t2.png"],
+	"Infested_Valley_Map-t": ["Infested_Valley_Map-t0.png","Infested_Valley_Map-t1.png","Infested_Valley_Map-t2.png"],
+	"Ivory_Temple_Map-t": ["Ivory_Temple_Map-t0.png","Ivory_Temple_Map-t1.png","Ivory_Temple_Map-t2.png"],
+	"Jungle_Valley_Map-t": ["Jungle_Valley_Map-t0.png","Jungle_Valley_Map-t1.png","Jungle_Valley_Map-t2.png"],
+	"Laboratory_Map-t": ["Laboratory_Map-t0.png","Laboratory_Map-t1.png","Laboratory_Map-t2.png"],
+	"Lair_Map-t": ["Lair_Map-t0.png","Lair_Map-t1.png","Lair_Map-t2.png"],
+	"Lava_Chamber_Map-t": ["Lava_Chamber_Map-t0.png","Lava_Chamber_Map-t1.png","Lava_Chamber_Map-t2.png"],
+	"Lava_Lake_Map-t": ["Lava_Lake_Map-t0.png","Lava_Lake_Map-t1.png","Lava_Lake_Map-t2.png"],
+	"Leyline_Map-t": ["Leyline_Map-t0.png","Leyline_Map-t1.png","Leyline_Map-t2.png"],
+	"Lighthouse_Map-t": ["Lighthouse_Map-t0.png","Lighthouse_Map-t1.png","Lighthouse_Map-t2.png"],
+	"Lookout_Map-t": ["Lookout_Map-t0.png","Lookout_Map-t1.png","Lookout_Map-t2.png"],
+	"Maelström_of_Chaos-t": ["Maelström_of_Chaos-t0.png","Maelström_of_Chaos-t1.png","Maelström_of_Chaos-t2.png"],
+	"Malformation_Map-t": ["Malformation_Map-t0.png","Malformation_Map-t1.png","Malformation_Map-t2.png"],
+	"Mao_Kun-t": ["Mao_Kun-t0.png","Mao_Kun-t1.png","Mao_Kun-t2.png"],
+	"Marshes_Map-t": ["Marshes_Map-t0.png","Marshes_Map-t1.png","Marshes_Map-t2.png"],
+	"Mausoleum_Map-t": ["Mausoleum_Map-t0.png","Mausoleum_Map-t1.png","Mausoleum_Map-t2.png"],
+	"Maze_Map-t": ["Maze_Map-t0.png","Maze_Map-t1.png","Maze_Map-t2.png"],
+	"Mesa_Map-t": ["Mesa_Map-t0.png","Mesa_Map-t1.png","Mesa_Map-t2.png"],
+	"Mineral_Pools_Map-t": ["Mineral_Pools_Map-t0.png","Mineral_Pools_Map-t1.png","Mineral_Pools_Map-t2.png"],
+	"Moon_Temple_Map-t": ["Moon_Temple_Map-t0.png","Moon_Temple_Map-t1.png","Moon_Temple_Map-t2.png"],
+	"Mud_Geyser_Map-t": ["Mud_Geyser_Map-t0.png","Mud_Geyser_Map-t1.png","Mud_Geyser_Map-t2.png"],
+	"Museum_Map-t": ["Museum_Map-t0.png","Museum_Map-t1.png","Museum_Map-t2.png"],
+	"Necropolis_Map-t": ["Necropolis_Map-t0.png","Necropolis_Map-t1.png","Necropolis_Map-t2.png"],
+	"Oba's_Cursed_Trove-t": ["Oba's_Cursed_Trove-t0.png","Oba's_Cursed_Trove-t1.png","Oba's_Cursed_Trove-t2.png"],
+	"Olmec's_Sanctum-t": ["Olmec's_Sanctum-t0.png","Olmec's_Sanctum-t1.png","Olmec's_Sanctum-t2.png"],
+	"Orchard_Map-t": ["Orchard_Map-t0.png","Orchard_Map-t1.png","Orchard_Map-t2.png"],
+	"Overgrown_Ruin_Map-t": ["Overgrown_Ruin_Map-t0.png","Overgrown_Ruin_Map-t1.png","Overgrown_Ruin_Map-t2.png"],
+	"Overgrown_Shrine_Map-t": ["Overgrown_Shrine_Map-t0.png","Overgrown_Shrine_Map-t1.png","Overgrown_Shrine_Map-t2.png"],
+	"Palace_Map-t": ["Palace_Map-t0.png","Palace_Map-t1.png","Palace_Map-t2.png"],
+	"Park_Map-t": ["Park_Map-t0.png","Park_Map-t1.png","Park_Map-t2.png"],
+	"Pen_Map-t": ["Pen_Map-t0.png","Pen_Map-t1.png","Pen_Map-t2.png"],
+	"Peninsula_Map-t": ["Peninsula_Map-t0.png","Peninsula_Map-t1.png","Peninsula_Map-t2.png"],
+	"Phantasmagoria_Map-t": ["Phantasmagoria_Map-t0.png","Phantasmagoria_Map-t1.png","Phantasmagoria_Map-t2.png"],
+	"Pier_Map-t": ["Pier_Map-t0.png","Pier_Map-t1.png","Pier_Map-t2.png"],
+	"Pillars_of_Arun-t": ["Pillars_of_Arun-t0.png","Pillars_of_Arun-t1.png","Pillars_of_Arun-t2.png"],
+	"Pit_Map-t": ["Pit_Map-t0.png","Pit_Map-t1.png","Pit_Map-t2.png"],
+	"Plateau_Map-t": ["Plateau_Map-t0.png","Plateau_Map-t1.png","Plateau_Map-t2.png"],
+	"Plaza_Map-t": ["Plaza_Map-t0.png","Plaza_Map-t1.png","Plaza_Map-t2.png"],
+	"Poorjoy's_Asylum-t": ["Poorjoy's_Asylum-t0.png","Poorjoy's_Asylum-t1.png","Poorjoy's_Asylum-t2.png"],
+	"Port_Map-t": ["Port_Map-t0.png","Port_Map-t1.png","Port_Map-t2.png"],
+	"Precinct_Map-t": ["Precinct_Map-t0.png","Precinct_Map-t1.png","Precinct_Map-t2.png"],
+	"Primordial_Blocks_Map-t": ["Primordial_Blocks_Map-t0.png","Primordial_Blocks_Map-t1.png","Primordial_Blocks_Map-t2.png"],
+	"Primordial_Pool_Map-t": ["Primordial_Pool_Map-t0.png","Primordial_Pool_Map-t1.png","Primordial_Pool_Map-t2.png"],
+	"Promenade_Map-t": ["Promenade_Map-t0.png","Promenade_Map-t1.png","Promenade_Map-t2.png"],
+	"Racecourse_Map-t": ["Racecourse_Map-t0.png","Racecourse_Map-t1.png","Racecourse_Map-t2.png"],
+	"Ramparts_Map-t": ["Ramparts_Map-t0.png","Ramparts_Map-t1.png","Ramparts_Map-t2.png"],
+	"Reef_Map-t": ["Reef_Map-t0.png","Reef_Map-t1.png","Reef_Map-t2.png"],
+	"Relic_Chambers_Map-t": ["Relic_Chambers_Map-t0.png","Relic_Chambers_Map-t1.png","Relic_Chambers_Map-t2.png"],
+	"Residence_Map-t": ["Residence_Map-t0.png","Residence_Map-t1.png","Residence_Map-t2.png"],
+	"Scriptorium_Map-t": ["Scriptorium_Map-t0.png","Scriptorium_Map-t1.png","Scriptorium_Map-t2.png"],
+	"Sepulchre_Map-t": ["Sepulchre_Map-t0.png","Sepulchre_Map-t1.png","Sepulchre_Map-t2.png"],
+	"Shipyard_Map-t": ["Shipyard_Map-t0.png","Shipyard_Map-t1.png","Shipyard_Map-t2.png"],
+	"Shore_Map-t": ["Shore_Map-t0.png","Shore_Map-t1.png","Shore_Map-t2.png"],
+	"Shrine_Map-t": ["Shrine_Map-t0.png","Shrine_Map-t1.png","Shrine_Map-t2.png"],
+	"Siege_Map-t": ["Siege_Map-t0.png","Siege_Map-t1.png","Siege_Map-t2.png"],
+	"Spider_Forest_Map-t": ["Spider_Forest_Map-t0.png","Spider_Forest_Map-t1.png","Spider_Forest_Map-t2.png"],
+	"Spider_Lair_Map-t": ["Spider_Lair_Map-t0.png","Spider_Lair_Map-t1.png","Spider_Lair_Map-t2.png"],
+	"Strand_Map-t": ["Strand_Map-t0.png","Strand_Map-t1.png","Strand_Map-t2.png"],
+	"Sulphur_Vents_Map-t": ["Sulphur_Vents_Map-t0.png","Sulphur_Vents_Map-t1.png","Sulphur_Vents_Map-t2.png"],
+	"Summit_Map-t": ["Summit_Map-t0.png","Summit_Map-t1.png","Summit_Map-t2.png"],
+	"Sunken_City_Map-t": ["Sunken_City_Map-t0.png","Sunken_City_Map-t1.png","Sunken_City_Map-t2.png"],
+	"Temple_Map-t": ["Temple_Map-t0.png","Temple_Map-t1.png","Temple_Map-t2.png"],
+	"Terrace_Map-t": ["Terrace_Map-t0.png","Terrace_Map-t1.png","Terrace_Map-t2.png"],
+	"The_Coward's_Trial-t": ["The_Coward's_Trial-t0.png","The_Coward's_Trial-t1.png","The_Coward's_Trial-t2.png"],
+	"The_Perandus_Manor-t": ["The_Perandus_Manor-t0.png","The_Perandus_Manor-t1.png","The_Perandus_Manor-t2.png"],
+	"The_Putrid_Cloister-t": ["The_Putrid_Cloister-t0.png","The_Putrid_Cloister-t1.png","The_Putrid_Cloister-t2.png"],
+	"The_Twilight_Temple-t": ["The_Twilight_Temple-t0.png","The_Twilight_Temple-t1.png","The_Twilight_Temple-t2.png"],
+	"The_Vinktar_Square-t": ["The_Vinktar_Square-t0.png","The_Vinktar_Square-t1.png","The_Vinktar_Square-t2.png"],
+	"Thicket_Map-t": ["Thicket_Map-t0.png","Thicket_Map-t1.png","Thicket_Map-t2.png"],
+	"Tower_Map-t": ["Tower_Map-t0.png","Tower_Map-t1.png","Tower_Map-t2.png"],
+	"Toxic_Sewer_Map-t": ["Toxic_Sewer_Map-t0.png","Toxic_Sewer_Map-t1.png","Toxic_Sewer_Map-t2.png"],
+	"Tropical_Island_Map-t": ["Tropical_Island_Map-t0.png","Tropical_Island_Map-t1.png","Tropical_Island_Map-t2.png"],
+	"Underground_River_Map-t": ["Underground_River_Map-t0.png","Underground_River_Map-t1.png","Underground_River_Map-t2.png"],
+	"Underground_Sea_Map-t": ["Underground_Sea_Map-t0.png","Underground_Sea_Map-t1.png","Underground_Sea_Map-t2.png"],
+	"Vaal_Pyramid_Map-t": ["Vaal_Pyramid_Map-t0.png","Vaal_Pyramid_Map-t1.png","Vaal_Pyramid_Map-t2.png"],
+	"Vaal_Temple_Map-t": ["Vaal_Temple_Map-t0.png","Vaal_Temple_Map-t1.png","Vaal_Temple_Map-t2.png"],
+	"Vault_Map-t": ["Vault_Map-t0.png","Vault_Map-t1.png","Vault_Map-t2.png"],
+	"Vaults_of_Atziri-t": ["Vaults_of_Atziri-t0.png","Vaults_of_Atziri-t1.png","Vaults_of_Atziri-t2.png"],
+	"Villa_Map-t": ["Villa_Map-t0.png","Villa_Map-t1.png","Villa_Map-t2.png"],
+	"Volcano_Map-t": ["Volcano_Map-t0.png","Volcano_Map-t1.png","Volcano_Map-t2.png"],
+	"Waste_Pool_Map-t": ["Waste_Pool_Map-t0.png","Waste_Pool_Map-t1.png","Waste_Pool_Map-t2.png"],
+	"Wasteland_Map-t": ["Wasteland_Map-t0.png","Wasteland_Map-t1.png","Wasteland_Map-t2.png"],
+	"Waterways_Map-t": ["Waterways_Map-t0.png","Waterways_Map-t1.png","Waterways_Map-t2.png"],
+	"Whakawairua_Tuahu-t": ["Whakawairua_Tuahu-t0.png","Whakawairua_Tuahu-t1.png","Whakawairua_Tuahu-t2.png"],
+	"Wharf_Map-t": ["Wharf_Map-t0.png","Wharf_Map-t1.png","Wharf_Map-t2.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "node_spritesheet-1.png",
+	"format": "RGBA8888",
+	"size": {"w":2028,"h":1295},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:f7b415ba2e67a1ce2de390536cd631d7:54466e1667547258d4494cf1ddbcee27:361174c0faf18b7aff88adae5ecf67c2$"
+}
+}

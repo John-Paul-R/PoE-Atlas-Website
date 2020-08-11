@@ -160,13 +160,22 @@ function getAtlasSpritePosition() {
     };
 }
 
+var spritesheetLoaded = false
+var sheet;
 function initPixiDisplayObjects() {
     //Create main Atlas sprite
     atlasSprite = new PIXI.Sprite(app.loader.resources["img/Atlas47kb.webp"].texture);
     app.loader.add("img/Atlas90.webp").load(()=>{
         atlasSprite.texture = app.loader.resources["img/Atlas90.webp"].texture;
         renderStage();
+        app.loader.add("pixi/node_spritesheet-1.json").load(()=>{
+            //TODO make sure this waits for nodeData to exist...
+            sheet = app.loader.resources["pixi/node_spritesheet-1.json"];
+            spritesheetLoaded = true;
+            drawAllAtlasRegions();
+        });
     });
+    
     // atlasSprite = new PIXI.Sprite();
     //Add Atlas sprite to stage
     stage.addChildAt(atlasSprite, 0);
@@ -205,9 +214,10 @@ var regionNodes = [[], [], [], [], [], [], [], []]; //lists of nodes(IDs) in eac
 var nodeTierTextures;
 export var nodePixiObjects;
 class NodePixiObject {
-    constructor(nodeContainer, circleSprite, nameSprite, tierSprite, data) {
+    constructor(nodeContainer, circleSprite, imgSprite, nameSprite, tierSprite, data) {
         this.container = nodeContainer;
         this.circleSprite = circleSprite;
+        this.imgSprite = imgSprite;
         this.nameSprite = nameSprite;
         this.tierSprite = tierSprite;
         this.data = data;
@@ -256,6 +266,18 @@ class NodePixiObject {
         poeWikiValueElem.href = this.data.poeWikiLink;
         nodeImageElem.src = buildCDNNodeImageLink(this.data, 0, 8, getTieredNodeData(this.data).tier);
     }
+    getSpriteImg(tier=0) {
+        let strTier;
+        if (tier < 6)
+            strTier = "-t0"
+        else if (tier < 11)
+            strTier = "-t1"
+        else
+            strTier = "-t2"
+        let out = this.data.interalName+strTier+".png"
+        console.log(out);
+        return sheet.textures[out];
+    }
 }
 
 const cdnBaseNormalLink = "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/"
@@ -298,12 +320,15 @@ function loadMapsData(loader, resources, atlasSprite) {
                 const regionCode = 'us'
                 let nodeNameU = entry.Name.replace(/ /g,"_");
                 nodeNameU = (nodeNameU === "The_Hall_of_Grandmasters") ? "Hall_of_Grandmasters" : nodeNameU;
+                
                 if (entry.IsUniqueMapArea) {
                     entry.poeDBLink = `http://www.poedb.tw/${regionCode}/unique.php?n=${encodeURI(nodeNameU.replace(/_/g,"+"))}`;
                     entry.poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}`;
+                    entry.interalName = nodeNameU;
                 } else {
                     entry.poeDBLink = `http://www.poedb.tw/${regionCode}/${nodeNameU}_Map`;
                     entry.poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}_Map`;
+                    entry.interalName = nodeNameU+"_Map";
                 }
             }
             initSearch(nodeData);
@@ -383,6 +408,13 @@ function preloadStaticGraphics() {
         let container = new PIXI.Container();
         nodePixiObj.container = container;
         nodePixiObj.data = cNodeData;
+
+        //Placeholder img sprites
+        nodePixiObj.imgSprite = new PIXI.Sprite();
+        nodePixiObj.imgSprite.anchor.set(0.5);
+        // container.addChild(nodePixiObj.imgSprite);
+
+
         //Load Node Circle Sprites
         let circleSprite;
         let nodeNameU = cNodeData.Name.replace(/ /g,"_");
@@ -391,6 +423,7 @@ function preloadStaticGraphics() {
         } else {
             circleSprite = nodeCircleGraphs.normal.clone();
         }
+        circleSprite = nodePixiObj.imgSprite;
         if (options.nodeHover) {
             circleSprite.interactive = true;
             circleSprite.buttonMode = true;
@@ -405,10 +438,13 @@ function preloadStaticGraphics() {
             };
         }
         
+
         circleSprite.click = ()=>nodePixiObj.onSelect();
         nodePixiObj.circleSprite = circleSprite;
+        
         container.addChild(nodePixiObj.circleSprite);
 
+        
         //Load Name Sprites
         let nameSprite = new PIXI.Text(cNodeData.Name, nameTextStyleBlack);
         nameSprite.resolution = textResolution;
@@ -603,6 +639,12 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
                     nodePixiObj.nameSprite.y = 0-(nodeRadius+nodeCenterOffset/4);
                     const scaleFac = 2/3;
                     nodePixiObj.nameSprite.scale.set(mapScaleFactor.x*scaleFac, mapScaleFactor.y*scaleFac);
+                }
+
+                if (true && spritesheetLoaded) {
+                    let spriteImg = nodePixiObj.getSpriteImg(tieredEntryData.tier);
+                    nodePixiObj.imgSprite.texture = spriteImg;
+                    nodePixiObj.imgSprite.scale.set(0.5,0.5);
                 }
 
                 //Add node tier text sprites to 'nodeContainer'

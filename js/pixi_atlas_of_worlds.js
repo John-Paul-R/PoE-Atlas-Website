@@ -165,12 +165,12 @@ var sheet;
 function initPixiDisplayObjects() {
     //Create main Atlas sprite
     atlasSprite = new PIXI.Sprite(app.loader.resources["img/Atlas47kb.webp"].texture);
-    app.loader.add("img/Atlas90.webp").load(()=>{
-        atlasSprite.texture = app.loader.resources["img/Atlas90.webp"].texture;
+    app.loader.add("img/Atlas80.webp").load(()=>{
+        atlasSprite.texture = app.loader.resources["img/Atlas80.webp"].texture;
         renderStage();
-        app.loader.add("pixi/node_spritesheet-2.json").load(()=>{
+        app.loader.add("pixi/node_spritesheet-4qLL2.json").load(()=>{
             //TODO make sure this waits for nodeData to exist...
-            sheet = app.loader.resources["pixi/node_spritesheet-2.json"];
+            sheet = app.loader.resources["pixi/node_spritesheet-4qLL2.json"];
             spritesheetLoaded = true;
             drawAllAtlasRegions();
         });
@@ -305,7 +305,7 @@ class NodePixiObject {
         }
         
         let out = this.data.interalName+strTier+".png"
-        console.log(out);
+        // console.log(out);
         return sheet.textures[out];
     }
 }
@@ -321,6 +321,10 @@ function buildCDNNodeImageLink(nodeData, scale=0, league=0, tier=0) {
         out =   cdnBaseUniqueLink + nodeData.cdnKey
                 +'?'+cdnScale + scale;
     } else {
+        // Handle Vaal Temple
+        if (nodeData.RowID === 8) {
+            tier=0;
+        }
         out =   cdnBaseNormalLink + nodeData.cdnKey
                 +'?'+cdnScale + scale
                 +'&'+cdnLeague + league

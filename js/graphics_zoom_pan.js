@@ -26,7 +26,8 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
     addDragNDrop(pixiApp);
 
     //Reset zoom & position of DisplayObjects on Double-Click
-    pixiApp.view.addEventListener('dblclick', resetPositions);
+    //TODO Reimplement? Or just put a button for it? idk
+    // pixiApp.view.addEventListener('dblclick', resetPositions);
 
 
     //-------------------
@@ -49,35 +50,50 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
         var stage = pixiApp.stage;
         stage.interactive = true;
 
-        var isDragging = false,
+        var isDragging = false, isMouseDown = false,
             prevX, prevY;
 
         stage.mousedown = function (interactEvent) {
             var pos = interactEvent.data.global;
-            prevX = pos.x; prevY = pos.y;
-            isDragging = true;
+            prevX = pos.x;
+            prevY = pos.y;
+            // isDragging = true;
+            isMouseDown = true;
         };
 
         stage.mousemove = function (interactEvent) {
-            if (!isDragging) {
-            return;
-            }
-            var pos = interactEvent.data.global;
-            //dx, dy
-            let delta = limitMoveToRange(pos.x-prevX, pos.y-prevY);
-                        
-            mainObjO.position.x += delta.x;
-            mainObjO.position.y += delta.y;
-            prevX = pos.x; prevY = pos.y;
-            
-            //limit positions to Atlas sprite display bounds
+            if (isMouseDown) { // If the mouse isn't down, we're not dragging
+                var pos = interactEvent.data.global;
+                let dx = pos.x-prevX;
+                let dy = pos.y-prevY;
+                // Don't start counting mousedown as 'dragging' immediately...
+                // Wait until the mouse has moved a certain distance.
+                if (!isDragging) {
+                    const minMove = 3;
+                    if (dx*dx > minMove*minMove || dy*dy > minMove*minMove) {
+                        isDragging = true;
+                    }
+                }
+                if (isDragging) {
+                    //limit positions to Atlas sprite display bounds
+                    let delta = limitMoveToRange(dx, dy);
+   
+                    mainObjO.position.x += delta.x;
+                    mainObjO.position.y += delta.y;
+                    prevX = pos.x;
+                    prevY = pos.y;
+                    
+                    //Render frames while dragging
+                    renderStageThrottled();    
+                }
+                // console.log(`${isDragging?"DRAGGING":"NOT_DRAGGING"}: (${pos.x}, ${pos.y}) - dx: ${dx}, dy: ${dy}`)
 
-            //Render frames while dragging
-            renderStageThrottled();
+            }
         };
 
         window.addEventListener('mouseup', function (e) {
             isDragging = false;
+            isMouseDown = false
         });
     }
 

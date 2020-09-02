@@ -15,18 +15,11 @@ function bindSearchbarFocus(searchbarElements) {
 
 function searchbarFocus(val) {
     let parent = event.target.parentElement;
-    let newOpacity = 1;
     if (val == 'in') {
-        gsap.to(parent, .15, { scale:1, opacity: newOpacity });
-        parent.style.setProperty("box-shadow", "var(--shadow)");
-        // parent.style.setProperty("border", "1px var(--color-base) solid");
+        gainFocus(parent)
     } else {
         if (!parent.isHovered && (true || event.target.parentElement.querySelector(".searchField").value == "")) {
-            newOpacity = 0.8
-            //var default_scale = parseInt(parent.style.getPropertyValue('--default-scale'));
-            gsap.to(parent, .15, { scale: .99, opacity: newOpacity});
-            parent.style.setProperty("box-shadow", "none");
-            // parent.style.setProperty("border", "1px var(--color-element-1) solid");
+            loseFocus(parent);
         }
 
     }
@@ -34,21 +27,26 @@ function searchbarFocus(val) {
 }
 
 function searchbarMouseEnter(e) {
-    let target = e.target;
-    let newOpacity = 1;
-    target.isHovered = true;
-    gsap.to(target, .15, { scale:1, opacity: newOpacity });
-        target.style.setProperty("box-shadow", "var(--shadow)");
+    gainFocus(e.target);
+    e.target.isHovered = true;
 }
 function searchbarMouseLeave(e) {
-    let target = e.target;
+    loseFocus(e.target);
+    e.target.isHovered = false;
+
+}
+function gainFocus(elem) {
     let newOpacity = 1;
-    target.isHovered = false;
-    if (!e.target.contains(document.activeElement) && (true || event.target.parentElement.querySelector(".searchField").value == "")) {
+    gsap.to(elem, .15, { scale:1, opacity: newOpacity });
+    elem.style.setProperty("box-shadow", "var(--shadow)");
+}
+function loseFocus(elem) {
+    let newOpacity = 1;
+    if (!elem.contains(document.activeElement) && (true || elem.parentElement.querySelector(".searchField").value == "")) {
         newOpacity = 0.8
         //var default_scale = parseInt(parent.style.getPropertyValue('--default-scale'));
-        gsap.to(target, .15, { scale: .99, opacity: newOpacity});
-        target.style.setProperty("box-shadow", "none");
-        // target.style.setProperty("border", "1px var(--color-element-1) solid");
+        gsap.to(elem, .15, { scale: .99, opacity: newOpacity});
+        elem.style.setProperty("box-shadow", "none");
+        // elem.style.setProperty("border", "1px var(--color-element-1) solid");
     }
 }

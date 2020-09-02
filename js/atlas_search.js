@@ -1,5 +1,5 @@
 
-import { getNodeRegionTier, nodeData, nodePixiObjects, renderStage, renderStageThrottled } from './pixi_atlas_of_worlds.js';
+import { getNodeRegionTier, nodeData, nodePixiObjects, renderStage, renderStageThrottled, getMapScaleFactor } from './pixi_atlas_of_worlds.js';
 // import { logger } from './logger.js';
 export { initSearch };
 
@@ -25,7 +25,7 @@ function searchAtlas(queryText, selectBest=false) {
         tier: el.TieredData[getNodeRegionTier(el)].Tier.toString() 
     }; });
     let results = fuzzysort.go(queryText.trim(), objects, {
-        keys: ['name', 'id', 'tier'],
+        keys: ['name', /*'id',*/ 'tier'],
         allowTypo: true,
         threshold: -500,
         // Create a custom combined score to sort by. -100 to the desc score makes it a worse match
@@ -35,7 +35,7 @@ function searchAtlas(queryText, selectBest=false) {
             a[2]?a[2].score-100:-1000
         )
     });
-    
+    // TODO Only change scale for name matches, not tier matches. (gets too cluttered atm)
     let bestResult = results[0]
 
     clearSearchDisplayMods(nodePixiObjects);
@@ -47,20 +47,25 @@ function searchAtlas(queryText, selectBest=false) {
             pixiObj.container.scale.x *= scale;
             pixiObj.container.scale.y *= scale;
             let test = new PIXI.Graphics();
-            test.lineStyle(2, '0xff8888', 1, 0.5, false)
+            let mapScaleFactor = getMapScaleFactor();
+            let lineThickness = 2*mapScaleFactor/1.5;
+            //TODO Resize these withh onResizeWindow, otherwise they don't scale right
+            // (Note: This ^^^ is low priority, as the current implementation fixes itself upon new search being executed)
+            test.lineStyle(lineThickness, '0xff8888', 1, 0.5, false)
                 .beginFill('0x555555',0)
-                .drawCircle(0, 0, 15);
+                .drawCircle(0, 0, 18*mapScaleFactor/1.5);
+            
             if (i==0 && selectBest) {
-                test.lineStyle(2, '0x77dddd', 1, 0.5, false)
+                test.lineStyle(lineThickness, '0x77dddd', 1, 0.5, false)
                 .beginFill('0x555555',0)
-                .drawCircle(0, 0, 18);
+                .drawCircle(0, 0, 21*mapScaleFactor/1.5);
 
                 pixiObj.onSelect();
             }
             
             pixiObj.gainLightFocus(scale, test);
-            if (results[i].score==0)
-                break;
+            // if (results[i].score==0)
+            //     break;
         }
     }
     // When using multiple `keys`, results are different. They're indexable to get each normal result
@@ -89,7 +94,7 @@ function initSearch() {
                 searchAtlas(e.target.value, true);
             renderStage();
         });
-        console.info(searchElements[i] + " will now listen for input events and trigger searchAtlas.");
+        console.info(searchElements[i], " will now listen for input events and trigger searchAtlas.");
     }
     console.info("atlas_search.js initialization complete!");
 }

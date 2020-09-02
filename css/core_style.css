@@ -1,18 +1,4 @@
-:root {
-    /* Default Theme */
-    --current-palette: 0;
-    --color-base: #fafafa;
-    --color-background: #f0f0f0;
-    --color-element-1: #e0e0e0;
-    --color-accent-1: #ea5555;
-    --color-accent-2: #888888;
-    --color-inverse: #333333;
-    --color-text: #404040;/*#606060;*/
-    --color-text-inverse: #d0d0d0;
-    
-    /* --shadow: 0 0px 8px rgba(0, 0, 0, 0.15); */
-    /*--TEMPLATING-COLOR: none; /* #ff00ff */ /* #e0e0e0 */
-    
+:root {    
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--color-background);
 }
@@ -165,6 +151,9 @@ header > #navbar > .end {
 }
 .flex.justifycenter {
     justify-content: center;
+}
+.flex.aligncenter {
+    align-items: center;
 }
 .spacechildh > * {
     margin-right:8px;

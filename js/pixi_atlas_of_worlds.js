@@ -254,7 +254,7 @@ function initWatchstones() {
         //init click functions & tier text
         button.interactive = true;
         button.buttonMode = true;    
-        button.on("click", ()=>{cycleAtlasRegionTier(i, button);} );
+        button.on("pointertap", ()=>{cycleAtlasRegionTier(i, button);} );
         button.textSprite.text = "Tier "+regionTiers[i];
 
         watchstoneButtons.push(button);
@@ -264,7 +264,7 @@ function initWatchstones() {
     //init "master" tier button (cycle all nodes) click function
     masterButton.interactive = true;
     masterButton.buttonMode = true;    
-    masterButton.on("click", cycleAllAtlasRegionTiers);
+    masterButton.on("pointertap", cycleAllAtlasRegionTiers);
     watchstonesContainer.addChild(masterButton);
     masterButton.position.set(0, 0);
 
@@ -513,6 +513,15 @@ function loadMapsData(loader, resources, atlasSprite) {
             nodeDataResponseReceived = true;
             //Parse response contents
             nodeData = JSON.parse(nodeDataRequest.responseText);
+
+            initSearch(nodeData);
+            preloadStaticGraphics();
+            //Draw Atlas Nodes & Lines
+            drawAllAtlasRegions();
+            //(This ^^^ must be in here, instead of after the call to loadMapsData, because the...
+            //  http request is async. The resources wouldn't necessarily be loaded when the...
+            //  drawAllAtlasRegions function is called.)
+
             // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
 
             for (let i=0; i<nodeData.length; i++) {
@@ -530,13 +539,6 @@ function loadMapsData(loader, resources, atlasSprite) {
                     entry.poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}`; 
                 }
             }
-            initSearch(nodeData);
-            preloadStaticGraphics();
-            //Draw Atlas Nodes & Lines
-            drawAllAtlasRegions();
-            //(This ^^^ must be in here, instead of after the call to loadMapsData, because the...
-            //  http request is async. The resources wouldn't necessarily be loaded when the...
-            //  drawAllAtlasRegions function is called.)
             
             function toBaseName(strName, isUnique=false) {
                 return strName.replace(/\sMap/g, '');
@@ -640,18 +642,18 @@ function preloadStaticGraphics() {
             circleSprite.interactive = true;
             circleSprite.buttonMode = true;
             const scaleMult = 1.325;
-            circleSprite.mouseover = ()=>{
+            circleSprite.pointerover = ()=>{
                 nodePixiObj.gainLightFocus(scaleMult);
                 app.renderer.render(stage);
             };
-            circleSprite.mouseout = (mouseData)=>{
+            circleSprite.pointerout = (mouseData)=>{
                 nodePixiObj.loseLightFocus(scaleMult);
                 app.renderer.render(stage);
             };
         }
         
 
-        circleSprite.click = ()=>nodePixiObj.onSelect();
+        circleSprite.pointertap = ()=>nodePixiObj.onSelect();
         nodePixiObj.circleSprite = circleSprite;
         
         container.addChild(nodePixiObj.circleSprite);
@@ -1010,7 +1012,7 @@ function resetOption(optionKey) {
     setOption(optionKey, DEFAULT_OPTIONS[optionKey]);
 }
 function resetAllOptions() {
-    for (const [key, elem] of Object.entries(options)) {
+    for (const key of Object.keys(options)) {
         resetOption(key);
     }
 }

@@ -11,17 +11,18 @@ var displayObjs = []
 
 function initZoomPanInput(pixiApp, renderStageThrottled) {
 
+    var stage = pixiApp.stage;
+    stage.interactive = true;
+
     var mainObj = displayObjs[0];
     var mainObjO = mainObj.obj;
+
     //---------------------
     // Add Event Listeners
     //---------------------
     
     //Mousewheel Zoom
-    pixiApp.view.addEventListener('wheel', function (e) {
-        zoom(e.clientX, e.clientY, e.deltaY < 0);
-    });//require('./lib/addWheelListener');
-  
+    addZoom(pixiApp);
     //Pan on Click & Drag
     addDragNDrop(pixiApp);
 
@@ -46,14 +47,65 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
         renderStageThrottled();
     }
 
-    function addDragNDrop(pixiApp) {
-        var stage = pixiApp.stage;
-        stage.interactive = true;
+    var isScaling = false;
+    function addZoom(pixiApp) {
+        pixiApp.view.addEventListener('wheel', function (e) {
+            zoom(e.clientX, e.clientY, -1*e.deltaY/1000);
+        });//require('./lib/addWheelListener');
+      
+        var pGestureData;
+        stage.touchstart = (e) => {
+            if (e.data.originalEvent.touches.length == 2) {
+                isScaling = true;
+                pinchStart(e.data.originalEvent);        
+            }
+        }
+        stage.touchmove = (e) => {
+            if (isScaling) {
+                pinchMove(e.data.originalEvent);
+            }
+        }
+        const touchEnd = (e) => {
+            if (isScaling) {
+                // pinchEnd(e);
+                isScaling = false;
+            }
+        }
+        stage.touchend = touchEnd;
+        stage.touchendoutside = touchEnd;
+        stage.touchcancel = touchEnd;
 
+        function calcGestureData(e) {
+            return {
+                dist: Math.hypot(
+                    e.touches[0].pageX - e.touches[1].pageX,
+                    e.touches[0].pageY - e.touches[1].pageY),
+                avgX: (e.touches[0].pageX + e.touches[1].pageX)/2,
+                avgY: (e.touches[0].pageY + e.touches[1].pageY)/2
+            }
+        }
+        function pinchStart(touchEvent) {
+            pGestureData = calcGestureData(touchEvent);
+        }
+        function pinchMove(touchEvent) {
+            let cGestureData = calcGestureData(touchEvent);
+            //This gives % increase/decrease in distance between touch points
+            let scaleFactor = (cGestureData.dist - pGestureData.dist) / pGestureData.dist;
+            let translation = {
+                x: cGestureData.avgX - pGestureData.avgX,
+                y: cGestureData.avg - pGestureData.avgY
+            }
+            zoom(cGestureData.avgX, cGestureData.avgY, scaleFactor);
+            pGestureData = cGestureData;
+        }
+
+    }
+
+    function addDragNDrop(pixiApp) {
         var isDragging = false, isMouseDown = false,
             prevX, prevY;
 
-        stage.mousedown = function (interactEvent) {
+        stage.pointerdown = function (interactEvent) {
             var pos = interactEvent.data.global;
             prevX = pos.x;
             prevY = pos.y;
@@ -61,8 +113,8 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
             isMouseDown = true;
         };
 
-        stage.mousemove = function (interactEvent) {
-            if (isMouseDown) { // If the mouse isn't down, we're not dragging
+        stage.pointermove = function (interactEvent) {
+            if (isMouseDown && !isScaling) { // If the mouse isn't down, we're not dragging
                 var pos = interactEvent.data.global;
                 let dx = pos.x-prevX;
                 let dy = pos.y-prevY;
@@ -91,10 +143,13 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
             }
         };
 
-        window.addEventListener('mouseup', function (e) {
+        const pointerUp = (interactEvent) => {
             isDragging = false;
             isMouseDown = false
-        });
+        };
+        stage.pointerup = pointerUp;
+        stage.pointerupoutside = pointerUp;
+        window.addEventListener('mouseup', pointerUp);
     }
 
     function limitMoveToRange(dx, dy) {
@@ -157,12 +212,12 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
         }
     }());
     
-    function zoom(x, y, isZoomIn) {
+    function zoom(x, y, zoomAmount) {//isZoomIn) {
         //NOTE: We want the nodes and lines to move together, so we will do the...
         // math relateive to one of them, then apply the resultant (same) tranformation to both
         // -- We could also do it relative to the average of the elements...? idk, will see
-        let direction = isZoomIn ? 1 : -1;
-        var factor = (1 + direction * 0.1);
+        // let direction = isZoomIn ? 1 : -1;
+        var factor = (1 + zoomAmount); //(1 + direction * 0.1);
         let minScale = mainObj.scaleFunc();
         let maxScale = minScale.x*5
         let cScale = mainObj.obj.scale;

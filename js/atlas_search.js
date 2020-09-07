@@ -43,7 +43,6 @@ function searchAtlas(queryText, selectBest=false) {
     if (bestResult) {
         for(let i=0; i<results.length; i++) {
             let pixiObj = nodePixiObjects[results[i].obj.id];
-            let sprite = pixiObj.circleSprite;
             pixiObj.container.scale.x *= scale;
             pixiObj.container.scale.y *= scale;
             let test = new PIXI.Graphics();
@@ -94,7 +93,7 @@ function initSearch() {
                 searchAtlas(e.target.value, true);
             renderStage();
         });
-        console.info(searchElements[i], " will now listen for input events and trigger searchAtlas.");
+        // console.info(searchElements[i], " will now listen for input events and trigger searchAtlas.");
     }
     console.info("atlas_search.js initialization complete!");
 }

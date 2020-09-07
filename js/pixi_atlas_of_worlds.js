@@ -395,10 +395,11 @@ class NodePixiObject {
         sidebar.container.className = sidebar.container.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
         
         sidebar.name.innerText = this.data.Name;
-        sidebar.poedb.href = this.data.poeDBLink;
-        sidebar.poewiki.href = this.data.poeWikiLink;
+        let nodeExternalLinks = getNodeExternalLinks(this.data);
+        sidebar.poedb.href = nodeExternalLinks.poeDBLink;
+        sidebar.poewiki.href = nodeExternalLinks.poeWikiLink;
         sidebar.region.innerText = this.data.AtlasRegionsKey;
-        sidebar.icon.src = buildCDNNodeImageLink(this.data, 0, 8, getTieredNodeData(this.data).tier);
+        sidebar.icon.src = this.getImgBase64(getTieredNodeData(this.data).tier);//buildCDNNodeImageLink(this.data, 0, 8, getTieredNodeData(this.data).tier);
         const tds = sidebar.tiers.getElementsByTagName('td');
         for (let i=0; i < tds.length; i++) {
             let tier = this.data.TieredData[i].Tier;
@@ -432,33 +433,76 @@ class NodePixiObject {
         // console.log(out);
         return sheet.textures[out];
     }
+    getImgBase64(tier=0) {
+        return app.renderer.extract.base64(
+            PIXI.Sprite.from(this.getSpriteImg(tier)),
+            'image/png',
+            1
+        );
+    }
 }
 
-const cdnBaseNormalLink = "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/"
-const cdnBaseUniqueLink = "https://web.poecdn.com/gen/image/"
-function buildCDNNodeImageLink(nodeData, scale=0, league=0, tier=0) {
-    const cdnScale = "scale=";
-    const cdnLeague = "mn="
-    const cdnTier = "mt="
-    let out;
-    if (nodeData.IsUniqueMapArea) {
-        out =   cdnBaseUniqueLink + nodeData.cdnKey
-                +'?'+cdnScale + scale;
-    } else {
-        // Handle Vaal Temple
-        if (nodeData.RowID === 8) {
-            tier=0;
-        }
-        out =   cdnBaseNormalLink + nodeData.cdnKey
-                +'?'+cdnScale + scale
-                +'&'+cdnLeague + league
-                +'&'+cdnTier + tier;
+class PoECDN {
+
+    constructor (defaultScale, defaultLeague, defaultTier) {
+        this.defaultScale = defaultScale;
+        this.defaultLeague = defaultLeague;
+        this.defaultTier = defaultTier;
+        this.cdnBaseNormalLink = "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/"
+        this.cdnBaseUniqueLink = "https://web.poecdn.com/gen/image/"
+    
     }
-    return out;
+
+    buildNodeImageLink(nodeData, scale=0, league=0, tier=0) {
+        const cdnScale = "scale=";
+        const cdnLeague = "mn="
+        const cdnTier = "mt="
+        let out;
+        if (nodeData.IsUniqueMapArea) {
+            out =   cdnBaseUniqueLink + nodeData.cdnKey
+                    +'?'+cdnScale + scale;
+        } else {
+            // Handle Vaal Temple
+            if (nodeData.RowID === 8) {
+                tier=0;
+            }
+            out =   cdnBaseNormalLink + nodeData.cdnKey
+                    +'?'+cdnScale + scale
+                    +'&'+cdnLeague + league
+                    +'&'+cdnTier + tier;
+        }
+        return out;
+    }
+
+    keyFromLink(link) {
+        let out = link.includes(cdnBaseNormalLink) ? link.replace(cdnBaseNormalLink, '') : link.replace(cdnBaseUniqueLink, '');
+        return out.replace(/\?scale.*/g, "");
+    }
 }
-function getCDNKeyFromLink(link) {
-    let out = link.includes(cdnBaseNormalLink) ? link.replace(cdnBaseNormalLink, '') : link.replace(cdnBaseUniqueLink, '');
-    return out.replace(/\?scale.*/g, "");
+var poecdnHelper = new PoECDN(0, 0, 0);
+
+
+function toPoEDBName(strName, isUnique=false) {
+    if (isUnique) {
+        strName = (strName === "The Hall of Grandmasters") ? "Hall of Grandmasters" : strName;
+        strName = (strName === "Perandus Manor") ? "The Perandus Manor" : strName;
+    } else {
+        strName = `${strName} Map`;
+    }
+    return strName;
+}
+function getNodeExternalLinks(node) {
+    // const regionCode = 'us'
+    let poeDBLink, poeWikiLink;
+    if (node.IsUniqueMapArea) {//${regionCode}
+        poeDBLink = `http://www.poedb.tw/unique.php?n=${encodeURI(node.interalName.replace(/_/g,"+"))}`;
+        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.interalName)}`;
+    } else {
+        poeDBLink = `http://www.poedb.tw/${node.interalName}`;
+        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.interalName)}`; 
+    }
+    
+    return { poeDBLink, poeWikiLink };
 }
 //Request map data, parse it, and draw all Atlas regions for the 1st time.
 function loadMapsData(loader, resources, atlasSprite) {
@@ -472,12 +516,12 @@ function loadMapsData(loader, resources, atlasSprite) {
         if (nodeImagesDictResponseReceived && nodeDataResponseReceived) {
             console.log(nodeImagesDict);
             let erroredNames = []
-            console.groupCollapsed("CDN Key Loading Log");
+            console.groupCollapsed("CDN Key Error Log");
             
             for (let i=0; i<nodeData.length; i++) {
                 let entry = nodeData[i];
                 try {
-                    entry.cdnKey = getCDNKeyFromLink(nodeImagesDict[toPoEDBName(entry.Name, entry.IsUniqueMapArea)].Icon);
+                    entry.cdnKey = poecdnHelper.keyFromLink(nodeImagesDict[toPoEDBName(entry.Name, entry.IsUniqueMapArea)].Icon);
                     // console.log(`${entry.Name}: ${entry.cdnKey}`);
     
                 } catch (error) {
@@ -495,15 +539,6 @@ function loadMapsData(loader, resources, atlasSprite) {
         }
     }
 
-    function toPoEDBName(strName, isUnique=false) {
-        if (isUnique) {
-            strName = (strName === "The Hall of Grandmasters") ? "Hall of Grandmasters" : strName;
-            strName = (strName === "Perandus Manor") ? "The Perandus Manor" : strName;
-        } else {
-            strName = `${strName} Map`;
-        }
-        return strName;
-    }
 
     let nodeDataRequest = new XMLHttpRequest();
     nodeDataRequest.open("GET", "data/AtlasNode+WorldAreas_Itemized-1599021672.json", true);
@@ -527,22 +562,10 @@ function loadMapsData(loader, resources, atlasSprite) {
             for (let i=0; i<nodeData.length; i++) {
                 let entry = nodeData[i];
                 regionNodes[entry.AtlasRegionsKey].push(entry.RowID);
+                entry.interalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
                 
-                const regionCode = 'us'
-                let nodeNameU = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
-                entry.interalName = nodeNameU;
-                if (entry.IsUniqueMapArea) {
-                    entry.poeDBLink = `http://www.poedb.tw/${regionCode}/unique.php?n=${encodeURI(nodeNameU.replace(/_/g,"+"))}`;
-                    entry.poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}`;
-                } else {
-                    entry.poeDBLink = `http://www.poedb.tw/${regionCode}/${nodeNameU}`;
-                    entry.poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(nodeNameU)}`; 
-                }
             }
-            
-            function toBaseName(strName, isUnique=false) {
-                return strName.replace(/\sMap/g, '');
-            }
+
             allResponsesReceivedOps(nodeImagesDict);
         }
     }
@@ -1112,7 +1135,6 @@ function createOptionsMenu() {
         document.addEventListener("DOMContentLoaded", addContentToDOM);
     }
 }
-
 
 //=========
 // Utility

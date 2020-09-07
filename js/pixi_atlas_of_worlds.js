@@ -238,12 +238,19 @@ function initWatchstones() {
     const baseButton = new PIXI.Graphics();
     baseButton.lineStyle(lineThickness, '0x0', 1, 0.5, false)
         .beginFill('0x6699cc',1)
-        .drawCircle(0, 0, 20);
+        .drawCircle(0, 0, 45);
 
     const masterButton = new PIXI.Graphics();
+    const mText = new PIXI.Text("Cycle All Region Tiers");
     masterButton.lineStyle(lineThickness, '0x0', 1, 0.5, false)
-        .beginFill('0xffffff',1)
-        .drawCircle(0, 0, 20);
+    mText.anchor.set(0.5, 0.5);
+    masterButton.addChild(mText);
+    const padding = 6;
+    let mH = (mText.height + padding),
+        mW = (mText.width + padding);
+    masterButton.beginFill('0xffffff',1)
+        .drawRect(-mW/2, -mH/2, mW, mH);
+
     let watchstoneButtons = []
     for (let i=0; i < NUM_REGIONS; i++) {
         let button = baseButton.clone();
@@ -254,7 +261,7 @@ function initWatchstones() {
         //init click functions & tier text
         button.interactive = true;
         button.buttonMode = true;    
-        button.on("pointertap", ()=>{cycleAtlasRegionTier(i, button);} );
+        button.on("pointertap", () => { cycleAtlasRegionTier(i, button); });
         button.textSprite.text = "Tier "+regionTiers[i];
 
         watchstoneButtons.push(button);
@@ -344,12 +351,47 @@ document.addEventListener('DOMContentLoaded', ()=>nodeInfoSidebar={
     pantheon: document.getElementById("node_pantheon_desc"),
 }); 
 class NodePixiObject {
-    constructor(nodeContainer, circleSprite, imgSprite, nameSprite, tierSprite, data) {
-        this.container = nodeContainer;
-        this.circleSprite = circleSprite;
-        this.imgSprite = imgSprite;
+    constructor(nameSprite, data) {
+        this.container = new PIXI.Container();
+
+        //Placeholder img sprite
+        this.imgSprite = new PIXI.Sprite();
+        this.imgSprite.anchor.set(0.5);
+
+        // Temp, until I figure out how to load placeholder circleSprite from graphics effieciently via RenderTexture
+        this.circleSprite = this.imgSprite;
+        
+        if (options.nodeHover) {
+            this.circleSprite.interactive = true;
+            this.circleSprite.buttonMode = true;
+            const scaleMult = 1.325;
+            this.circleSprite.pointerover = ()=>{
+                this.gainLightFocus(scaleMult);
+                app.renderer.render(stage);
+            };
+            this.circleSprite.pointerout = (mouseData)=>{
+                this.loseLightFocus(scaleMult);
+                app.renderer.render(stage);
+            };
+        }
+
+        this.circleSprite.pointertap = ()=>this.onSelect();
+        // this.circleSprite = circleSprite;
+        
+        this.container.addChild(this.circleSprite);
+
+        this.nameContainer = new PIXI.Container();
+        
         this.nameSprite = nameSprite;
-        this.tierSprite = tierSprite;
+        this.nameContainer.addChild(this.nameSprite);
+        this.container.addChild(this.nameContainer);
+
+        //Preload Node Tier Sprites
+        this.tierSprite = new PIXI.Sprite.from(
+            nodeTierTextures[data.TieredData[0].Tier]
+        );
+        this.container.addChild(this.tierSprite);
+
         this.data = data;
         this.additionalGraphics = new PIXI.Container();
         this.container.addChild(this.additionalGraphics);
@@ -359,7 +401,11 @@ class NodePixiObject {
         this.container.scale.x *=scaleMult;
         this.container.scale.y *=scaleMult;
         this.container.zIndex = 1;
-        this.nameSprite.visible = true;
+        this.nameContainer.visible = true;
+        let nameBG = new PIXI.Sprite(PIXI.Texture.WHITE);
+        nameBG.width = this.nameSprite.width, nameBG.height = this.nameSprite.height;
+        nameBG.anchor.set(0.5,1);
+        this.nameContainer.addChildAt(nameBG, 0);
         this.tierSprite.visible = true;
         if (hoverGraphic) {
             this.additionalGraphics.addChild(hoverGraphic);
@@ -367,10 +413,12 @@ class NodePixiObject {
     }
 
     loseLightFocus(scaleMult, clearHoverGraphic, forceBaseScale) {
-        this.container.scale.x /=scaleMult;
-        this.container.scale.y /=scaleMult;
+        this.container.scale.x /= scaleMult;
+        this.container.scale.y /= scaleMult;
         this.container.zIndex = 0;
-        this.nameSprite.visible = options.drawNames;
+        this.nameContainer.visible = options.drawNames;
+        if (this.nameContainer.children.length > 1)
+            this.nameContainer.removeChildAt(0);
         this.tierSprite.visible = options.drawTiers;
         if (clearHoverGraphic) {
             this.additionalGraphics.children.forEach((el)=>el.destroy());
@@ -448,8 +496,8 @@ class PoECDN {
         this.defaultScale = defaultScale;
         this.defaultLeague = defaultLeague;
         this.defaultTier = defaultTier;
-        this.cdnBaseNormalLink = "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/"
-        this.cdnBaseUniqueLink = "https://web.poecdn.com/gen/image/"
+        this.baseNormalLink = "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/"
+        this.baseUniqueLink = "https://web.poecdn.com/gen/image/"
     
     }
 
@@ -459,14 +507,14 @@ class PoECDN {
         const cdnTier = "mt="
         let out;
         if (nodeData.IsUniqueMapArea) {
-            out =   this.cdnBaseUniqueLink + nodeData.cdnKey
+            out =   this.baseUniqueLink + nodeData.cdnKey
                     +'?'+cdnScale + scale;
         } else {
             // Handle Vaal Temple
             if (nodeData.RowID === 8) {
                 tier=0;
             }
-            out =   this.cdnBaseNormalLink + nodeData.cdnKey
+            out =   this.baseNormalLink + nodeData.cdnKey
                     +'?'+cdnScale + scale
                     +'&'+cdnLeague + league
                     +'&'+cdnTier + tier;
@@ -475,7 +523,7 @@ class PoECDN {
     }
 
     keyFromLink(link) {
-        let out = link.includes(this.cdnBaseNormalLink) ? link.replace(this.cdnBaseNormalLink, '') : link.replace(this.cdnBaseUniqueLink, '');
+        let out = link.includes(this.baseNormalLink) ? link.replace(this.baseNormalLink, '') : link.replace(this.baseUniqueLink, '');
         return out.replace(/\?scale.*/g, "");
     }
 }
@@ -639,64 +687,28 @@ function preloadStaticGraphics() {
 
         }
 
-    let tierTextures = preloadTierTextures(fontSize, fontFamily, tierFontStyle, textResolution);
+    preloadTierTextures(fontSize, fontFamily, tierFontStyle, textResolution);
     for (let i=0; i<nodeData.length; i++) {
         let cNodeData = nodeData[i];
-        let container = new PIXI.Container();
-        let nodePixiObj = new NodePixiObject(container);
-        nodePixiObj.data = cNodeData;
+        let nameSprite, data;
+        data = cNodeData;
 
-        //Placeholder img sprites
-        nodePixiObj.imgSprite = new PIXI.Sprite();
-        nodePixiObj.imgSprite.anchor.set(0.5);
-        // container.addChild(nodePixiObj.imgSprite);
+        // //Load Node Circle Sprites
+        // let circleSprite;
+        // // let nodeNameU = cNodeData.Name.replace(/ /g,"_");
+        // if (cNodeData.IsUniqueMapArea) {
+        //     circleSprite = nodeCircleGraphs.unique.clone();
+        // } else {
+        //     circleSprite = nodeCircleGraphs.normal.clone();
+        // }
 
-
-        //Load Node Circle Sprites
-        let circleSprite;
-        // let nodeNameU = cNodeData.Name.replace(/ /g,"_");
-        if (cNodeData.IsUniqueMapArea) {
-            circleSprite = nodeCircleGraphs.unique.clone();
-        } else {
-            circleSprite = nodeCircleGraphs.normal.clone();
-        }
-        circleSprite = nodePixiObj.imgSprite;
-        if (options.nodeHover) {
-            circleSprite.interactive = true;
-            circleSprite.buttonMode = true;
-            const scaleMult = 1.325;
-            circleSprite.pointerover = ()=>{
-                nodePixiObj.gainLightFocus(scaleMult);
-                app.renderer.render(stage);
-            };
-            circleSprite.pointerout = (mouseData)=>{
-                nodePixiObj.loseLightFocus(scaleMult);
-                app.renderer.render(stage);
-            };
-        }
-        
-
-        circleSprite.pointertap = ()=>nodePixiObj.onSelect();
-        nodePixiObj.circleSprite = circleSprite;
-        
-        container.addChild(nodePixiObj.circleSprite);
-
-        
         //Load Name Sprites
-        let nameSprite = new PIXI.Text(cNodeData.Name, nameTextStyleBlack);
+        nameSprite = new PIXI.Text(cNodeData.Name, nameTextStyleBlack);
         nameSprite.resolution = textResolution;
         nameSprite.anchor.set(0.5,1);
-        nodePixiObj.nameSprite = nameSprite;
-        container.addChild(nameSprite);
-
-        //Preload Node Tier Sprites
-        nodePixiObj.tierSprite = new PIXI.Sprite.from(
-            tierTextures[cNodeData.TieredData[0].Tier]
-        );
-        container.addChild(nodePixiObj.tierSprite);
 
         //Add the constructed Node object to the global list.
-        nodePixiObjects.push(nodePixiObj);
+        nodePixiObjects.push(new NodePixiObject(nameSprite, data));
     }
     
     //===========
@@ -830,7 +842,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
         let tieredEntryData = getTieredNodeData(cNode);
 
         //if node exists at this tier
-        if (tieredEntryData.tier>0) {
+        if (tieredEntryData.tier > 0) {
             //Draw Connecting Lines between nodes (PIXI.Graphics)
             if (options.drawLines) {
                 for (let i=0; i<tieredEntryData.atlasNodeKeys.length; i++) {
@@ -877,11 +889,11 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false) {
                 // Circle Sprite
                 // nodePixiObj.circleSprite.scale.set(mapScaleFactor, mapScaleFactor);
                 //Add node label text sprites to 'nodeContainer' 
-                nodePixiObj.nameSprite.visible = options.drawNames;
+                nodePixiObj.nameContainer.visible = options.drawNames;
                 if (options.drawNames || options.nodeHover) {
-                    nodePixiObj.nameSprite.y = 0-(nodeRadius+nodeCenterOffset/4);
+                    nodePixiObj.nameContainer.y = 0-(nodeRadius+nodeCenterOffset/4);
                     const scaleFac = 2/3;
-                    nodePixiObj.nameSprite.scale.set(mapScaleFactor*scaleFac, mapScaleFactor*scaleFac);
+                    nodePixiObj.nameContainer.scale.set(mapScaleFactor*scaleFac, mapScaleFactor*scaleFac);
                 }
 
                 if (true && spritesheetLoaded) {

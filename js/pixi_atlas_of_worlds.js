@@ -459,14 +459,14 @@ class PoECDN {
         const cdnTier = "mt="
         let out;
         if (nodeData.IsUniqueMapArea) {
-            out =   cdnBaseUniqueLink + nodeData.cdnKey
+            out =   this.cdnBaseUniqueLink + nodeData.cdnKey
                     +'?'+cdnScale + scale;
         } else {
             // Handle Vaal Temple
             if (nodeData.RowID === 8) {
                 tier=0;
             }
-            out =   cdnBaseNormalLink + nodeData.cdnKey
+            out =   this.cdnBaseNormalLink + nodeData.cdnKey
                     +'?'+cdnScale + scale
                     +'&'+cdnLeague + league
                     +'&'+cdnTier + tier;
@@ -475,7 +475,7 @@ class PoECDN {
     }
 
     keyFromLink(link) {
-        let out = link.includes(cdnBaseNormalLink) ? link.replace(cdnBaseNormalLink, '') : link.replace(cdnBaseUniqueLink, '');
+        let out = link.includes(this.cdnBaseNormalLink) ? link.replace(this.cdnBaseNormalLink, '') : link.replace(this.cdnBaseUniqueLink, '');
         return out.replace(/\?scale.*/g, "");
     }
 }

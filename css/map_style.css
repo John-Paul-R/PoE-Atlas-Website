@@ -3,31 +3,51 @@
     grid-row: mid-start / mid-end;
     width:100%;
     height:100%;
+    max-width: inherit;
+    max-height: inherit;
     position: relative;
     z-index:0;
+    overflow-y: hidden;
     /* pointer-events:none; */
 }
 #atlas_of_worlds {
     display: grid;
-    grid-template-rows: [vstart]96px [vmid-start]1fr[vmid-end] 64px[vend];
-    grid-template-columns: [hstart]256px [hmid-start]1fr[hmid-end] 256px[hend];
-    
-    /* position: absolute;
-    top:0;
-    left:0; */
-    /* z-index: 10; */
-
     width: 100%;
     height: 100%;
-    /* opacity:50%; */
-    
 }
+@media only screen and (min-width: 512px) {
+    #atlas_of_worlds {
+        grid-template-rows: [vstart]96px [vmid-start]1fr[vmid-end] 64px[vend];
+        grid-template-columns: [hstart]256px [hmid-start]1fr[hmid-end] 256px[hend];
+
+        /* position: absolute;
+        top:0;
+        left:0; */
+        /* z-index: 10; */
+        /* opacity:50%; */
+        
+    }
+}
+@media only screen and (max-width: 512px) {
+    #atlas_of_worlds {
+        grid-template-rows: [vstart]1.333fr [vmid-start]2fr[vmid-end] 7fr[vend];
+        grid-template-columns: [hstart]4fr [hmid-start]8fr[hmid-end] 4fr[hend];
+
+        /* position: absolute;
+        top:0;
+        left:0; */
+        /* z-index: 10; */
+        /* opacity:50%; */
+        
+    }
+}
+
 .pixi_atlas_of_worlds {
     grid-column: hstart / hend;
     grid-row: vstart / vend;
     pointer-events:all;
-    margin-left:auto;
-    margin-right:auto;
+    /* margin-left:auto; */
+    /* margin-right:auto; */
     max-width: 100%;
     max-height: 100%;
 }
@@ -307,13 +327,32 @@ ul.inline > * {
     height:100%;
     width:100%;
 }
+@media only screen and (max-width: 512px) {
+    #node_info {
+        max-height: 80vh;
+        grid-column: hstart / hend;
+        grid-row: vmid-end / vend;
+    }
+    #node_body {
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+}
+@media only screen and (min-width: 512px) {
+    #node_info {
+        grid-column: hmid-end / hend;
+        grid-row: vmid-start / vmid-end/*vend*/;
+        height: fit-content;
+    }
+}
 #node_info {
     position:relative;
     border-radius: 4px 0 0 4px;
     align-items:stretch;
     box-sizing: border-box;
     padding:16px;
-    opacity:80%;
+    opacity:90%;
     pointer-events: visibleFill;
 }
 h2#node_name {
@@ -334,11 +373,12 @@ button#node_exit:hover {
     background-color: #dc143c;
     filter:none;
 }
-#node_info > * {
+#node_info > *, 
+#node_body > * {
     margin-bottom:12px;
     width:100%;
 }
-#node_info > #links > * * {
+#node_body > #links > * * {
     display:inline;
     /* word-wrap: normal; */
     white-space: nowrap;
@@ -349,10 +389,10 @@ button#node_exit:hover {
     width:64px;
     height:64px;
 }
-#node_info table {
+#node_body table {
     width: fit-content;
 }
-#node_info td {
+#node_body td {
     height: 32px;
     width: 36px;
 }

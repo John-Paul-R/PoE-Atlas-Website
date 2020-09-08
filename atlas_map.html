@@ -44,37 +44,38 @@
                     </div>
                 </div>
                 <div class="overlay left"></div>
-                <div class="overlay right flex col">
-                    <div id="node_info" class="flex col filled hidden">
+                <!-- <div class="overlay right flex col"> -->
+                    <div id="node_info" class="overlay flex col filled hidden">
                         <div id="node_head" class="head flex row">
                             <h2 id="node_name">Node Name</h2>
                             <button id="node_exit" class="end">&times;</button>
                         </div>
                         <hr>
-                        <div id="links" class="flex row justifycenter spacechildh">
-                            <a id="node_poedb" class="button" target="_blank" rel="noopener noreferrer">PoEDB</a>
-                            <a id="node_poewiki"class="button" target="_blank" rel="noopener noreferrer">Wiki</a>
+                        <div id="node_body" class="flex col">
+                            <div id="links" class="flex row justifycenter spacechildh">
+                                <a id="node_poedb" class="button" target="_blank" rel="noopener noreferrer">PoEDB</a>
+                                <a id="node_poewiki"class="button" target="_blank" rel="noopener noreferrer">Wiki</a>
+                            </div>
+                            <hr>
+                            <h3 id="node_region">Region</h3>
+                            <img id="node_image" src="" alt="Image of selected map node">
+                            <h3>Tiers</h3>
+                            <table id="node_tiers_list" class="nobullet inline">
+                                <tbody><tr>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                </tr></tbody>
+                            </table>
+                            <h3>Connections</h3>
+                            <ul id="node_connections_list" class="nobullet"></ul>
+                            <h3>Pantheon</h3>
+                            <p id="node_pantheon_desc">Lorem Ipsum</p>    
                         </div>
-                        <hr>
-                        <h3 id="node_region">Region</h3>
-                        <img id="node_image" src="" alt="Image of selected map node">
-                        <h3>Tiers</h3>
-                        <table id="node_tiers_list" class="nobullet inline">
-                            <tbody><tr>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr></tbody>
-                        </table>
-                        <h3>Connections</h3>
-                        <ul id="node_connections_list" class="nobullet"></ul>
-                        <h3>Pantheon</h3>
-                        <p id="node_pantheon_desc">Lorem Ipsum</p>
-
                     </div>
-                </div>
+                <!-- </div> -->
                 <div class="overlay bottom"></div>
             </div>
         </div>

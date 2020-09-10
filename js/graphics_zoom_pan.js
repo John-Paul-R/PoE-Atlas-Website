@@ -55,7 +55,7 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
       
         var pGestureData;
         stage.touchstart = (e) => {
-            if (e.data.originalEvent.touches.length == 2) {
+            if (e.data.originalEvent.touches && e.data.originalEvent.touches.length == 2) {
                 isScaling = true;
                 pinchStart(e.data.originalEvent);        
             }

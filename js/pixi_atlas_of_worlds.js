@@ -73,6 +73,7 @@ setTimeout(()=> {
         sharedTicker: false,
         resolution: devicePixelRatio 
     });
+    app.stage = new PIXI.display.Stage();
     stage = app.stage;
 });
 
@@ -210,6 +211,7 @@ var sheet;
 var DEBUG_CIRCLE;
 function initPixiDisplayObjects(resources) {
 
+    
     //Create main Atlas sprite
     atlasSprite = new PIXI.Sprite(resources["img/Atlas47kb.webp"].texture);
 
@@ -223,23 +225,31 @@ function initPixiDisplayObjects(resources) {
 
     initPixiContainers();
 }
+var unfocusedNodesContainer;
+var focusedNodesContainer;
 function initPixiContainers() {
     //Create main containers for Lines, Nodes, and Watchstones
     linesContainer = new PIXI.Container();
-    nodesContainer = new PIXI.Container();
     watchstonesContainer = new PIXI.Container()
+    nodesContainer = new PIXI.Container();
+    unfocusedNodesContainer = new PIXI.display.Group(0, false);
+    focusedNodesContainer = new PIXI.display.Group(1, false);
+
+    // nodesContainer.group.enableSort = true;
 
     //Add Lines, Nodes, and Watchstones containers to stage. (Lines 1st, so that they are in back.)
-    
     atlasSprite.addChild(linesContainer);
-    atlasSprite.addChild(watchstonesContainer);  
+    atlasSprite.addChild(watchstonesContainer);
     atlasSprite.addChild(nodesContainer);
+    atlasSprite.addChild(new PIXI.display.Layer(unfocusedNodesContainer));
+    atlasSprite.addChild(new PIXI.display.Layer(focusedNodesContainer));
 }
 const NUM_REGIONS = 8;
 
 var watchstoneButtons;
 var masterButton;
 function initWatchstones() {
+    const WATCHSTONE_TEXT_RESOLUTION = 3;
     // const baseButton = new PIXI.Graphics();
     // baseButton.lineStyle(lineThickness, '0x0', 1, 0.5, false)
         // .beginFill('0x6699cc',1)
@@ -252,8 +262,8 @@ function initWatchstones() {
         fontWeight: "bold",
         
     });
-    mText.resolution = 2*mapScaleFactor;
-    masterButton.lineStyle(lineThickness, '0x0', 1, 0.5, false)
+    mText.resolution = WATCHSTONE_TEXT_RESOLUTION;
+    masterButton.lineStyle(lineThickness/mapScaleFactor, '0x0', 1, 0.5, false)
     mText.anchor.set(0.5, 0.5);
     masterButton.addChild(mText);
     const padding = 6;
@@ -271,7 +281,7 @@ function initWatchstones() {
             fontWeight: "bold",
             
         });
-        bText.resolution = 2*mapScaleFactor;
+        bText.resolution = WATCHSTONE_TEXT_RESOLUTION;
 
         button.textSprite = bText;
         button.addChild(bText);
@@ -285,7 +295,7 @@ function initWatchstones() {
 
         let bW = (bText.width + padding),
             bH = (bText.height + padding);
-        button.lineStyle(lineThickness, '0x0', 1, 0.5, false)
+        button.lineStyle(lineThickness/mapScaleFactor, '0x0', 1, 0.5, false)
             .beginFill('0x997f87', 0.7)
             .drawRect(-bW/2, -bH/2, bW, bH);
 
@@ -411,7 +421,7 @@ document.addEventListener('DOMContentLoaded', ()=>nodeInfoSidebar={
 class NodePixiObject {
     constructor(nameSprite, data) {
         this.container = new PIXI.Container();
-
+        this.container.parentGroup = unfocusedNodesContainer;
         //Placeholder img sprite
         this.imgSprite = new PIXI.Sprite();
         this.imgSprite.anchor.set(0.5);
@@ -465,6 +475,7 @@ class NodePixiObject {
         nameBG.anchor.set(0.5,1);
         this.nameContainer.addChildAt(nameBG, 0);
         this.tierSprite.visible = true;
+        this.container.parentGroup = focusedNodesContainer;
         if (hoverGraphic) {
             this.additionalGraphics.addChild(hoverGraphic);
         }
@@ -478,6 +489,7 @@ class NodePixiObject {
         if (this.nameContainer.children.length > 1)
             this.nameContainer.removeChildAt(0);
         this.tierSprite.visible = options.drawTiers;
+        this.container.parentGroup = unfocusedNodesContainer;
         if (clearHoverGraphic) {
             this.additionalGraphics.children.forEach((el)=>el.destroy());
         }

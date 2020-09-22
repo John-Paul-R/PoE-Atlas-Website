@@ -322,6 +322,7 @@ function initWatchstones() {
     }
 
     positionWatchstones();
+    updateWatchstoneVisibility();
 }
 
 function positionWatchstones() {
@@ -791,6 +792,7 @@ function preloadStaticGraphics() {
         }
         return nodeTierTextures;
     }
+    updateNodesVisibility();
 }
 
 class Timer {

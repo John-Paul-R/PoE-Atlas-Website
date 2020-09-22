@@ -118,11 +118,11 @@ function setup(loader, resources) {
     initPixiDisplayObjects(resources);
 
     //Queue next resources for loading
-    loader.add("pixi/node_spritesheet-4qLL2.json")
+    loader.add("pixi/node_spritesheet-heist-1.json")
         .load(()=>{
             console.timeLog("load");
             //TODO make sure this waits for nodeData to exist...
-            sheet = loader.resources["pixi/node_spritesheet-4qLL2.json"];
+            sheet = loader.resources["pixi/node_spritesheet-heist-1.json"];
             spritesheetLoaded = true;
             drawAllAtlasRegions();
             loader.reset();
@@ -634,7 +634,7 @@ function loadMapsData(loader, resources, atlasSprite) {
 
 
     let nodeDataRequest = new XMLHttpRequest();
-    nodeDataRequest.open("GET", "data/AtlasDataCombined_Itemized-1599515864.json", true);
+    nodeDataRequest.open("GET", "data/AtlasDataCombined_Itemized-1600754911.json", true);
     nodeDataRequest.send(null);
     nodeDataRequest.onreadystatechange = function() {
         if ( nodeDataRequest.readyState === 4 && nodeDataRequest.status === 200 ) {
@@ -667,7 +667,7 @@ function loadMapsData(loader, resources, atlasSprite) {
     //send next request
     //TODO make sure this waits for the other request, OR combine with base data file in backend
     let nodeImagesDictRequest = new XMLHttpRequest();
-    nodeImagesDictRequest.open("GET", "data/Maps155-DICT-.json", true);
+    nodeImagesDictRequest.open("GET", "data/Maps155-DICT-heist-1.json", true);
     nodeImagesDictRequest.send(null);
     nodeImagesDictRequest.onreadystatechange = function() {
         if ( nodeImagesDictRequest.readyState === 4 && nodeImagesDictRequest.status === 200 ) {

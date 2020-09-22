@@ -2792,10 +2792,9 @@
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "node_spritesheet-heist-1.png",
+	"image": "node_spritesheet-heist-1qLL.webp",
 	"format": "RGBA8888",
 	"size": {"w":1997,"h":1014},
-	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:1caee0586b3572fd81246a68b81e8d84:6d3b705a542f28a7f3b055523667ae1b:494b73065c0e33836ab7803b59ad6a1b$"
+	"scale": "1"
 }
 }

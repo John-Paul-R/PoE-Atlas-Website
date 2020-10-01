@@ -1102,6 +1102,7 @@ function resetAllOptions() {
 }
 
 function loadDisplayOptions() {
+    //TODO IMPORTANT: The current version of this does allow adding of options if a client has already visited the site. They will have only the OLD options.
     let stored = JSON.parse(window.localStorage.getItem(DISPLAY_OPTIONS_STORAGE_KEY));
     if (stored) {
         options = stored;

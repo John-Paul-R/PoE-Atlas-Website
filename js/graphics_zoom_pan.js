@@ -49,8 +49,9 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
 
     var isScaling = false;
     function addZoom(pixiApp) {
+        // Mouse Wheel Zoom
         pixiApp.view.addEventListener('wheel', function (e) {
-            zoom(e.clientX, e.clientY, -1*e.deltaY/1000);
+            zoom(e.clientX, e.clientY, -0.25*Math.sign(e.deltaY));
         });//require('./lib/addWheelListener');
       
         var pGestureData;

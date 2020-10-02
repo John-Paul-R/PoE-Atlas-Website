@@ -1,5 +1,7 @@
 
-export const throttle = (func, timeInterval) => {
+export { throttle, debounce };
+
+function throttle(func, timeInterval) {
     var lastTime = 0;
     return function () {
         var now = Date.now();
@@ -11,7 +13,7 @@ export const throttle = (func, timeInterval) => {
         }
     };
 }
-export const debounce = (func, delay) => { 
+function debounce(func, delay) { 
     let debounceTimer 
     return function() { 
         const context = this

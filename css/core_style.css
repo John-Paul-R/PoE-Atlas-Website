@@ -33,8 +33,6 @@
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
-
-        margin:4px;
 }
 
 body {
@@ -55,7 +53,6 @@ header {
     grid-row: header-start / header-end;
     background-color:var(--color-base);
     position:relative;
-    z-index: 1;
     width:100%;
     height:100%;
 }
@@ -94,12 +91,18 @@ button > p {
 header * {
     z-index: 100 !important;
 }
-header button {
-    display: flex;
+header button,
+header button.material-icons {
+    background-color: var(--color-element-1);
+    margin-top: 0;
+    margin-bottom: 0;
     padding: 0;
-    padding-left: 8px;
-    padding-right: 8px;
-    /* border-radius:4px; */
+    padding-left: 4px;
+    padding-right: 4px;
+}
+header button.fl {
+    display: flex;
+    align-items: center;
 }
 header button * {
     margin-right:2px;
@@ -112,7 +115,7 @@ header > #navbar {
     display:flex;
     flex-direction: row;
     justify-content:flex-start;
-    align-items:center;
+    align-items: center;
     margin: 0px;
 
     height:100%;
@@ -124,13 +127,14 @@ header > #navbar > #title {
 }
 header /*> /*#navbar*/ * {
     margin-right: 12px;
-    margin-top:auto;
-    margin-bottom:auto;
+    /* margin-top:auto;
+    margin-bottom:auto; */
     /*border: solid black 2px;*/
 }
 header > #navbar > .end {
     margin-left:auto;
     margin-right:0;
+    align-items: stretch;
     height:100%
 }
 .end {
@@ -188,4 +192,8 @@ header > #navbar > .end {
 }
 .button:hover {
     background-color: var(--color-accent-1-1);
+}
+
+.bold {
+    font-weight: 550;
 }

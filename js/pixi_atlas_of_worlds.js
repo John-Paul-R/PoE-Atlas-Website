@@ -58,7 +58,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
     //// Load Pixi App
     //Load User Options
     loadDisplayOptions();
-    createOptionsMenu();
+    // Add runtime-generated HTML elements to DOM
+    addAllToDOM();
 });
 //Create the Pixi Application
 var app, stage, loader;
@@ -573,8 +574,8 @@ class PoECDN {
         return out.replace(/\?scale.*/g, "");
     }
 }
-var poecdnHelper = new PoECDN(0, 0, 0);
 
+var poecdnHelper = new PoECDN(0, 0, 0);
 
 function toPoEDBName(strName, isUnique=false) {
     if (isUnique) {
@@ -633,7 +634,6 @@ function loadMapsData(loader, resources, atlasSprite) {
         }
     }
 
-
     let nodeDataRequest = new XMLHttpRequest();
     nodeDataRequest.open("GET", "data/AtlasDataCombined_Itemized-1600754911.json", true);
     nodeDataRequest.send(null);
@@ -684,6 +684,7 @@ function preloadStaticGraphics() {
     nodePixiObjects = [];
     //Set text display options
     const fontSize = 18;//*mapScaleFactor/4
+    // TODO: Use the font that PoE Uses
     const fontFamily = 'Arial';
     const tierFontStyle = 'bold';
     const nameFontStyle = 'bold';
@@ -695,10 +696,12 @@ function preloadStaticGraphics() {
         fill : 0x000000,
     };
 
-    let nodeCircleGraphs = preloadNodeCircleGraphics();
+    // Static generic nodeCirleGraphics (In case images cannot be loaded)
+    //let nodeCircleGraphs = preloadNodeCircleGraphics();
 
-
+    // Preload Tier Textures
     preloadTierTextures(fontSize, fontFamily, tierFontStyle, textResolution);
+    // Init NodePixiObjects and Generate nameSprites for each node
     for (let i=0; i<nodeData.length; i++) {
         let cNodeData = nodeData[i];
         let nameSprite, data;
@@ -873,7 +876,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
         NAME_SCALE = new PIXI.Point(2/3 * mapScaleFactor, 2/3 * mapScaleFactor),
         IMG_SCALE = new PIXI.Point(1/4 * mapScaleFactor, 1/4 * mapScaleFactor),
         TIER_SCALE = new PIXI.Point(0.15 * mapScaleFactor, 0.15 * mapScaleFactor),
-        NAME_Y = 0-(nodeRadius+nodeCenterOffset/4),
+        NAME_Y = 0 - (nodeRadius+nodeCenterOffset/4),
         TIER_Y = nodeRadius + nodeCenterOffset/4;
 
     //loop over nodes in this region
@@ -975,7 +978,7 @@ function getTieredNodeData(node) {
 }
 
 //Stores the position of the center of the PIXI canvas, not the window.
-const onWindowResize = ()=>{
+function onWindowResize() {
     // let innerHeight = CONTAINER.clientHeight;
     // let innerWidth = CONTAINER.clientWidth;
     let nonAtlasContentHeightSum = document.getElementsByTagName("header")[0].offsetHeight
@@ -1012,7 +1015,7 @@ const onWindowResize = ()=>{
     positionWatchstones();
     drawAllAtlasRegions();
 }
-const onWindowResizeDebounced = debounce(onWindowResize, MIN_FRAME_TIME);
+var onWindowResizeDebounced = debounce(onWindowResize, MIN_FRAME_TIME);
 
 //==============
 // User Options
@@ -1041,10 +1044,16 @@ class HTMLElement{
     }
 }
 const DISPLAY_OPTIONS_STORAGE_KEY = 'displayOptions';
-var storeDisplayOptions = debounce(
-    () => {window.localStorage.setItem(DISPLAY_OPTIONS_STORAGE_KEY, JSON.stringify(options));}
+function storeDisplayOptions() { debounce(
+    () => { window.localStorage.setItem(DISPLAY_OPTIONS_STORAGE_KEY, JSON.stringify(options)); }
     , 1500
-);
+)};
+class Option {
+    constructor(name, key) {
+        this.name = name;
+        this.key = key;
+    }
+}
 
 const DEFAULT_OPTIONS = {
     drawLines: true,
@@ -1056,6 +1065,17 @@ const DEFAULT_OPTIONS = {
     MasterWatchstone: true,
     nodeScaleFactor: 1
 };
+const DEFAULT_OPTIONS_LIST = [
+    new Option("Show Lines", "drawLines"),
+    new Option("Show Nodes", "drawNodes"),
+    new Option("Show Names", "drawNames"),
+    new Option("Show Tiers", "drawTiers"),
+    new Option("Hover Effect", "nodeHover"),
+    new Option("Show Watchstones", "Watchstones"),
+    new Option("Show 'Cycle' Button", "MasterWatchstone"),
+    new Option("Node Size", "nodeScaleFactor")
+];
+
 function updateNodesVisibility() {
     //lines, nodes, hover, names, tiers, scaleFactor
     console.time("updateNodesVisibility");
@@ -1106,6 +1126,13 @@ function loadDisplayOptions() {
     let stored = JSON.parse(window.localStorage.getItem(DISPLAY_OPTIONS_STORAGE_KEY));
     if (stored) {
         options = stored;
+        for (let option in DEFAULT_OPTIONS) {
+            // If possible options does not exist in stored options, load from default
+            if (!(option in options)) {
+                options[option] = DEFAULT_OPTIONS[option];
+            }
+        }
+        storeDisplayOptions();
     } else {
         options = DEFAULT_OPTIONS;
         storeDisplayOptions();
@@ -1128,10 +1155,13 @@ function createOptionsMenu() {
 
     const optionsList = document.createElement('ul');
     optionsList.id = "options_list";
-    for (const [key, elem] of Object.entries(options)) {
+    // Generate dropdown elements for each option
+    for (let opt of DEFAULT_OPTIONS_LIST) {
+        const key = opt.key;
+        const elem = options[opt.key];
         let div = document.createElement('div');
         let lstElement = new HTMLElement('li');
-        lstElement.innerHTML = "<p>"+key+"</p>\n";
+        lstElement.innerHTML = "<p>"+opt.name+"</p>\n";
         if (typeof(elem)=="boolean") {
             if (elem) {
                 lstElement.innerHTML += toggleOn;
@@ -1149,7 +1179,7 @@ function createOptionsMenu() {
             domElement.addEventListener('click', (e)=>{
                 // input.checked = !input.checked;
                 e.stopPropagation();
-                if (e.detail>0){
+                if (e.detail > 0){
                     setOption(key, !options[key]);
                 } else { //This somehow fixes a visual bug that caused checkbox display to be inverted when you click the slider. IDK - JP
                     input.checked = !input.checked;
@@ -1176,41 +1206,54 @@ function createOptionsMenu() {
     resetAll.firstChild.addEventListener('click', resetAllOptions);
     optionsList.appendChild(resetAll);
 
-    // Add the constructed menu to the DOM.
-    function addContentToDOM() {
-        document.getElementById("options_container").appendChild(optionsList);
-        const options_dropdown_container = document.getElementById("options_dropdown_container");
-        const div = document.getElementById("options_container");
-        document.getElementById("options_button").addEventListener('click', (e)=>{
-            if (div.className.includes("hidden"))
-                div.className = div.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
-            else
-                div.className = div.className +" hidden";
-        });
-        document.addEventListener('click', (e)=>{
-            if (!options_dropdown_container.contains(e.target)) {
-                if (!div.className.includes("hidden"))
-                    div.className = div.className +" hidden";
-            }
-        });
+    return optionsList;
+}
+
+// Add the constructed menu to the DOM.
+function addDropdownToDOM(button, container, content) {
+    if (content) {
+        container.appendChild(content);
     }
-    if (document.readyState==='interactive' || document.readyState==='complete'){
-        addContentToDOM();
-    } else {
-        document.addEventListener("DOMContentLoaded", addContentToDOM);
-    }
+    
+    button.addEventListener('click', (e) => {
+        if (container.className.includes("hidden"))
+            container.className = container.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
+        else
+            container.className = container.className +" hidden";
+    });
+    document.addEventListener('click', (e) => {
+        if (!(container.contains(e.target) || button.contains(e.target))) {
+            if (!container.className.includes("hidden"))
+                container.className = container.className +" hidden";
+        }
+    });
+}
+function addAllToDOM() {
+    addDropdownToDOM(
+        document.getElementById("help_button"),
+        document.getElementById("help_content"),
+        null
+    );
+    addDropdownToDOM(
+        document.getElementById("options_button"),
+        document.getElementById("options_content"),
+        createOptionsMenu()
+    );
 }
 
 //=========
 // Utility
 //=========
-export var renderStageThrottled = throttle(() => app.renderer.render(stage), MIN_FRAME_TIME);
-export var renderStage = ()=>app.renderer.render(stage);
+export function renderStage() { app.renderer.render(stage) };
+export var renderStageThrottled = throttle(
+    () => app.renderer.render(stage),
+    MIN_FRAME_TIME
+);
 
 const REGION_TIER_STORAGE_KEY = 'regionTiers';
-var storeRegionTiers = debounce(
-    () => {window.localStorage.setItem(REGION_TIER_STORAGE_KEY, JSON.stringify(regionTiers));}
-    , 1500
+const storeRegionTiers = debounce(
+    () => { window.localStorage.setItem(REGION_TIER_STORAGE_KEY, JSON.stringify(regionTiers)); },
+    1500
 );
 
 function loadRegionTiers() {

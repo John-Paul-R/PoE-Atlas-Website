@@ -24,13 +24,65 @@
                         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                     </form> -->
-                    <button class="swap_palette"><p>Theme</p><i class="material-icons">style</i></button>
-                    <script>bindPaletteSwapButtons();</script>
-                    <div id="options_dropdown_container" class='dropdown menu'>
-                        <button id="options_button" class='dropdown'><p>Options</p><i class="material-icons">tune</i></button>
-                        <div id="options_container" class="dropdown options content hidden"></div>
+                    <div id="help_container" class="dropdown_container">
+                        <button id="help_button" class="dropdown_button"><i class="material-icons">help</i></button>
+                        <div id="help_content" class="dropdown content hidden">
+                            <h3>Help</h3>
+                            <hr>
+                            <p class="bold">
+                                Hi there! Welcome to PoE Atlas.
+                            </p>
+                            <p>
+                                You can navigate this site similarly to the Atlas within PoE.
+                                (Zoom, pan, hover over maps, etc.)
+                            </p>
+                            <p>
+                                However, this site also has some unique features that the
+                                in-game atlas does not have:
+                            </p>
+                            <p>
+                                <span class="bold">Improved Search: </span>
+                                In addition to searching for specific maps, you can also
+                                search by map tier.
+                            </p>
+                            <p>
+                                <span class="bold">Clickable Maps: </span>
+                                You can click any map node to bring up an information pane
+                                which shows the tiers at which that map can drop, as well as
+                                a list of all the map nodes it connects to at the region's
+                                highest watchstone level.
+                            </p>
+
+                            <hr>
+                            <p class="bold">Support me Financially</p>
+                            <p>
+                                If you find this site helpful and wish to support me
+                                financially, you can do so via
+                                <a href="https://patreon.com/jpcode">Patreon</a> or
+                                <a href="https://ko-fi.com/johnpaul">KoFi</a>!
+                            </p>
+                            <p class="bold">Report a Bug</p>
+                            <p>
+                                Find a bug? You can report it at the
+                                <a href="https://github.com/John-Paul-R/PoE-Atlas-Website/issues">
+                                issue tracker</a>, so that I know to fix it!
+                            </p>
+                            <p class="bold">Contribute Code</p>
+                            <p>
+                                Want to make a code contribution to the project?
+                                You can do so on the project's
+                                <a href="https://github.com/John-Paul-R/PoE-Atlas-Website">
+                                    GitHub page</a>.
+                            </p>
+                        </div>
                     </div>
                     
+                    <button class="dropdown_button fl swap_palette"><p>Theme</p><i class="material-icons">style</i></button>
+                    <script>bindPaletteSwapButtons();</script>
+                    <div id="options_container" class="dropdown_container">
+                        <button id="options_button" class='fl dropdown'><p>Options</p><i class="material-icons">tune</i></button>
+                        <div id="options_content" class="dropdown options content hidden"></div>    
+                    </div>
                 </div>
             </div>
         </header>
@@ -40,7 +92,7 @@
                     <div class="searchbar filled marginLRauto">
                         <!-- display option show all -->
                         <i class="material-icons first"><label for="search_field">search</label></i>
-                        <input type="text" id="search_field" class="searchField" placeholder="Search for a map, region, tier, item drop, etc." tabindex="0" autofocus>
+                        <input type="text" id="search_field" class="searchField" placeholder="Search for a map or tier." tabindex="0" autofocus>
                     </div>
                 </div>
                 <div class="overlay left"></div>
@@ -71,8 +123,8 @@
                             </table>
                             <h3>Connections</h3>
                             <ul id="node_connections_list" class="nobullet"></ul>
-                            <h3>Pantheon</h3>
-                            <p id="node_pantheon_desc">Lorem Ipsum</p>    
+                            <!-- <h3>Pantheon</h3>
+                            <p id="node_pantheon_desc">Lorem Ipsum</p>     -->
                         </div>
                     </div>
                 <!-- </div> -->
@@ -83,7 +135,7 @@
             <div class="shadow">
                 <p class='small text aligncenter'>
                     &#169; 2020 <a href="https://github.com/John-Paul-R"> John Paul R.</a> -
-                    This web site is fan-made and not endorsed by, directly affiliated with, maintained, authorized, or sponsored by Grinding Gear Games.
+                    This website is fan-made and not endorsed by, directly affiliated with, maintained, authorized, or sponsored by Grinding Gear Games.
                     <a href="https://www.pathofexile.com/">PATH OF EXILE</a> is a registered trademark of
                     <a href="https://www.grindinggear.com/">Grinding Gear Games</a>.</p>
                 

@@ -65,7 +65,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
 var app, stage, loader;
 console.log("Creating PIXI Atlas app.");
 setTimeout(()=> {
-    app = new PIXI.Application({
+    try {
+        app = new PIXI.Application({
         width: pixiAtlasW,
         height: pixiAtlasH,
         autoStart: false,
@@ -76,6 +77,25 @@ setTimeout(()=> {
     });
     app.stage = new PIXI.display.Stage();
     stage = app.stage;
+    } catch (e) {
+        const addMsgElement = () => {
+            let msgElement = document.createElement('p');
+            msgElement.innerHTML = `<span class="bold">Page not loading? </span>
+            Make sure you have WebGL enabled.
+            The site depends on it to function.
+            <ul>
+            <li><a href="https://www.interplaylearning.com/help/how-to-enable-webgl-in-chrome">Enable WebGL on Chrome</a></li>
+            <li><a href="https://www.interplaylearning.com/help/how-to-enable-webgl-in-firefox">Enable WebGL on Firefox</a></li>
+            </ul>`;
+            document.getElementById("atlas_of_worlds").appendChild(msgElement);
+        }
+        if (document.readyState === "complete" 
+            || document.readyState === "loaded" 
+            || document.readyState === "interactive") {
+            addMsgElement();
+        }
+        window.addEventListener('DOMContentLoaded', addMsgElement);
+    }
 });
 
 //Load Pixi resources
@@ -1122,7 +1142,6 @@ function resetAllOptions() {
 }
 
 function loadDisplayOptions() {
-    //TODO IMPORTANT: The current version of this does allow adding of options if a client has already visited the site. They will have only the OLD options.
     let stored = JSON.parse(window.localStorage.getItem(DISPLAY_OPTIONS_STORAGE_KEY));
     if (stored) {
         options = stored;

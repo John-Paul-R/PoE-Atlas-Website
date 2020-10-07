@@ -262,6 +262,15 @@ header .dropdown.content {
     box-sizing: content-box;
     padding:12px;
 }
+#help_content {
+    /* TODO: Make this not terrible on mobile */
+    width: 512px;
+    max-width: 100vw;
+    transform:translateX(-50%);
+
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+}
 #help_content hr {
     margin-top: 8px;
     margin-bottom: 6px;

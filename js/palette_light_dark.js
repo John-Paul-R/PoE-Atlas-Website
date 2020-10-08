@@ -68,8 +68,14 @@ function loadStoredPalette() {
     if (stored) {
         paletteIndex = parseInt(stored, 10);
     } else {
-        paletteIndex = 0;
-        window.localStorage.setItem(STORAGE_KEY, '0');
+        let mql = window.matchMedia('(prefers-color-scheme: dark)');
+        if (mql.matches){
+            paletteIndex = 1;
+        } else {
+            paletteIndex = 0;
+        }
+        
+        window.localStorage.setItem(STORAGE_KEY, paletteIndex);
     }
     displayPalette(paletteIndex);
 }

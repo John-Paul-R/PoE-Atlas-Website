@@ -886,6 +886,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
     //Remove previous nodes and lines for this region.
     // Clear the lines graphics
     let regionLinesGraph = linesContainer.getChildAt(regionID).clear();//destroy(true, false, false);
+    regionLinesGraph.lineStyle(lineThickness, lineColor);
     // The nodesContainer can be cached...
     let regionNodesContainer = nodesContainer.getChildAt(regionID);
     regionNodesContainer.removeChildren();//.destroy(true, false, false);
@@ -900,11 +901,17 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
     regionsRedrawn[regionID] = true;
 
     // TODO Make these constants user-configurable (Perhaps an "advanced options" pane, same w/ nodeHover)
+    const symPoint = (num) => {
+        return new PIXI.Point(num, num);
+    };
     const
-        NAME_SCALE = new PIXI.Point(2/3 * mapScaleFactor, 2/3 * mapScaleFactor),
-        IMG_SCALE = new PIXI.Point(1/4 * mapScaleFactor, 1/4 * mapScaleFactor),
-        TIER_SCALE = new PIXI.Point(0.15 * mapScaleFactor, 0.15 * mapScaleFactor),
-        NAME_Y = 0 - (nodeRadius+nodeCenterOffset/4),
+        CONTAINER_SCALE = symPoint(options.nodeScaleFactor),
+        NAME_SCALE = symPoint(2/3 * mapScaleFactor * options.nodeTextScale),
+        IMG_SCALE = symPoint(1/4 * mapScaleFactor),
+        // 78 is l/w of standard node img 47 is l/w of unique node img
+        IMG_SCALE_UNIQUE = symPoint(1/4 * mapScaleFactor * (78/47)),
+        TIER_SCALE = symPoint(0.15 * mapScaleFactor * options.nodeTextScale),
+        NAME_Y = 0 - (nodeRadius + nodeCenterOffset/4),
         TIER_Y = nodeRadius + nodeCenterOffset/4;
 
     //loop over nodes in this region
@@ -920,7 +927,8 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
             if (options.drawLines) {
                 for (let i=0; i<tieredNodeData.atlasNodeKeys.length; i++) {
                     let adjNodeID = tieredNodeData.atlasNodeKeys[i];
-                    let adjTieredNodeData = getTieredNodeData(getNodeByID(adjNodeID));
+                    let adjNodeData = getNodeByID(adjNodeID);
+                    let adjTieredNodeData = getTieredNodeData(adjNodeData);
 
                     //Draw Lines
                     let startX = tieredNodeData.x+nodeCenterOffset,
@@ -928,15 +936,16 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
                         endX = adjTieredNodeData.x+nodeCenterOffset,
                         endY = adjTieredNodeData.y+nodeCenterOffset;
 
-                    regionLinesGraph.lineStyle(lineThickness, lineColor)
-                        .moveTo(startX, startY)
+                    regionLinesGraph.moveTo(startX, startY)
                         .lineTo(endX, endY);
 
                     //Redraw adjacent region if not already done.
-                    let adjNodeRegionKey = getNodeByID(adjNodeID).AtlasRegionsKey;
-                    if (boolRedrawAdjacent && regionsRedrawn[adjNodeRegionKey] === false) {
-                        regionsRedrawn[adjNodeRegionKey] = true;
-                        drawAtlasRegion(adjNodeRegionKey, false, false);
+                    if (boolRedrawAdjacent) {
+                        let adjNodeRegionKey = adjNodeData.AtlasRegionsKey;
+                        if (regionsRedrawn[adjNodeRegionKey] === false) {
+                            regionsRedrawn[adjNodeRegionKey] = true;
+                            drawAtlasRegion(adjNodeRegionKey, false, false);
+                        }
                     }
                 }
             }
@@ -946,7 +955,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
             if (options.drawNodes) {
                 let nodeContainer = nodePixiObj.container;
                 nodeContainer.position.set(tieredNodeData.x+nodeCenterOffset, tieredNodeData.y+nodeCenterOffset)
-                nodeContainer.scale.set(options.nodeScaleFactor, options.nodeScaleFactor);
+                nodeContainer.scale = CONTAINER_SCALE;
                 // Circle Sprite
                 // nodePixiObj.circleSprite.scale.set(mapScaleFactor, mapScaleFactor);
                 //Add node label text sprites to 'nodeContainer' 
@@ -957,7 +966,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
 
                 if (true && spritesheetLoaded) {
                     nodePixiObj.imgSprite.texture = nodePixiObj.getSpriteImg(tieredNodeData.tier);
-                    nodePixiObj.imgSprite.scale = IMG_SCALE;
+                    nodePixiObj.imgSprite.scale = cNode.IsUniqueMapArea ? IMG_SCALE_UNIQUE: IMG_SCALE;
                 }
 
                 //Add node tier text sprites to 'nodeContainer'
@@ -1091,7 +1100,8 @@ const DEFAULT_OPTIONS = {
     drawTiers: true,
     Watchstones: true,
     MasterWatchstone: true,
-    nodeScaleFactor: 1
+    nodeScaleFactor: 1,
+    nodeTextScale: 1
 };
 const DEFAULT_OPTIONS_LIST = [
     new Option("Show Lines", "drawLines"),
@@ -1101,7 +1111,8 @@ const DEFAULT_OPTIONS_LIST = [
     new Option("Hover Effect", "nodeHover"),
     new Option("Show Watchstones", "Watchstones"),
     new Option("Show 'Cycle' Button", "MasterWatchstone"),
-    new Option("Node Size", "nodeScaleFactor")
+    new Option("Node Size", "nodeScaleFactor"),
+    new Option("Node Text Size", "nodeTextScale")
 ];
 
 function updateNodesVisibility() {

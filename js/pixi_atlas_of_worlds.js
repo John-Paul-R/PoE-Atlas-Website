@@ -1064,10 +1064,9 @@ class HTMLElement{
     }
 }
 const DISPLAY_OPTIONS_STORAGE_KEY = 'displayOptions';
-function storeDisplayOptions() { debounce(
-    () => { window.localStorage.setItem(DISPLAY_OPTIONS_STORAGE_KEY, JSON.stringify(options)); }
-    , 1500
-)};
+function storeDisplayOptions() {
+    window.localStorage.setItem(DISPLAY_OPTIONS_STORAGE_KEY, JSON.stringify(options));
+}
 class Option {
     constructor(name, key) {
         this.name = name;
@@ -1085,7 +1084,7 @@ const DEFAULT_OPTIONS = {
     MasterWatchstone: true,
     nodeScaleFactor: 1
 };
-const DEFAULT_OPTIONS_LIST = [
+const OPTIONS_LIST = [
     new Option("Show Lines", "drawLines"),
     new Option("Show Nodes", "drawNodes"),
     new Option("Show Names", "drawNames"),
@@ -1175,11 +1174,11 @@ function createOptionsMenu() {
     const optionsList = document.createElement('ul');
     optionsList.id = "options_list";
     // Generate dropdown elements for each option
-    for (let opt of DEFAULT_OPTIONS_LIST) {
+    for (let opt of OPTIONS_LIST) {
         const key = opt.key;
         const elem = options[opt.key];
-        let div = document.createElement('div');
-        let lstElement = new HTMLElement('li');
+        const div = document.createElement('div');
+        const lstElement = new HTMLElement('li');
         lstElement.innerHTML = "<p>"+opt.name+"</p>\n";
         if (typeof(elem)=="boolean") {
             if (elem) {
@@ -1192,18 +1191,13 @@ function createOptionsMenu() {
         }
         div.innerHTML = lstElement.asString();
         
-        let domElement = div.firstChild;
-        let input = domElement.getElementsByTagName('input')[0];
+        const domElement = div.firstChild;
+        const input = domElement.getElementsByTagName('input')[0];
         if (input.type==="checkbox") {
-            domElement.addEventListener('click', (e)=>{
-                // input.checked = !input.checked;
-                e.stopPropagation();
-                if (e.detail > 0){
-                    setOption(key, !options[key]);
-                } else { //This somehow fixes a visual bug that caused checkbox display to be inverted when you click the slider. IDK - JP
-                    input.checked = !input.checked;
-                }
-                
+            const slider = domElement.getElementsByClassName('slider')[0];
+            slider.addEventListener('click', (e)=>{
+                e.preventDefault();
+                setOption(key, !options[key]);
             });
         } else if (input.type==='text') {
             domElement.addEventListener('input', (e)=>{
@@ -1270,10 +1264,9 @@ export var renderStageThrottled = throttle(
 );
 
 const REGION_TIER_STORAGE_KEY = 'regionTiers';
-const storeRegionTiers = debounce(
-    () => { window.localStorage.setItem(REGION_TIER_STORAGE_KEY, JSON.stringify(regionTiers)); },
-    1500
-);
+function storeRegionTiers() {
+    window.localStorage.setItem(REGION_TIER_STORAGE_KEY, JSON.stringify(regionTiers));
+}
 
 function loadRegionTiers() {
     let stored = JSON.parse(window.localStorage.getItem(REGION_TIER_STORAGE_KEY));

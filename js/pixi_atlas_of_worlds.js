@@ -425,19 +425,11 @@ class NodePixiObject {
         // Temp, until I figure out how to load placeholder circleSprite from graphics effieciently via RenderTexture
         this.circleSprite = this.imgSprite;
         
-        if (options.nodeHover) {
-            this.circleSprite.interactive = true;
-            this.circleSprite.buttonMode = true;
-            const scaleMult = 1.325;
-            this.circleSprite.pointerover = ()=>{
-                this.gainLightFocus(scaleMult);
-                app.renderer.render(stage);
-            };
-            this.circleSprite.pointerout = (mouseData)=>{
-                this.loseLightFocus(scaleMult);
-                app.renderer.render(stage);
-            };
-        }
+        this.circleSprite.interactive = true;
+        this.circleSprite.buttonMode = true;
+
+        this.setHover(options.nodeHover);
+
 
         this.circleSprite.pointertap = ()=>this.onSelect();
         // this.circleSprite = circleSprite;
@@ -461,7 +453,23 @@ class NodePixiObject {
         this.additionalGraphics = new PIXI.Container();
         this.container.addChild(this.additionalGraphics);
     }
-
+    setHover(boolEnabled) {
+        if (boolEnabled) {
+            const scaleMult = 1.325;
+            this.circleSprite.pointerover = ()=>{
+                this.gainLightFocus(scaleMult);
+                app.renderer.render(stage);
+            };
+            this.circleSprite.pointerout = (mouseData)=>{
+                this.loseLightFocus(scaleMult);
+                app.renderer.render(stage);
+            };
+        } else {
+            this.circleSprite.pointerover = null;
+            this.circleSprite.pointerout = null;
+        }
+        
+    }
     gainLightFocus(scaleMult, hoverGraphic) {
         this.container.scale.x *=scaleMult;
         this.container.scale.y *=scaleMult;
@@ -1065,8 +1073,8 @@ class HTMLElement{
 }
 const DISPLAY_OPTIONS_STORAGE_KEY = 'displayOptions';
 const storeDisplayOptions = debounce(
-    () => { window.localStorage.setItem(DISPLAY_OPTIONS_STORAGE_KEY, JSON.stringify(options)); }
-    , 1500
+    () => { window.localStorage.setItem(DISPLAY_OPTIONS_STORAGE_KEY, JSON.stringify(options)); },
+    1000
 );
 class Option {
     constructor(name, key) {
@@ -1115,6 +1123,12 @@ const OPTIONS_CHANGED_HANDLERS = {
     drawTiers: updateNodesVisibility,
     Watchstones: updateWatchstoneVisibility,
     MasterWatchstone: updateWatchstoneVisibility,
+    nodeHover: () => {
+        let hoverEnabled = options.nodeHover;
+        for (let i = 0; i < nodePixiObjects.length; i++) {
+            nodePixiObjects[i].setHover(hoverEnabled);
+        }
+    }
 }
 
 function setOption(optionKey, value) {
@@ -1272,7 +1286,7 @@ export var renderStageThrottled = throttle(
 const REGION_TIER_STORAGE_KEY = 'regionTiers';
 const storeRegionTiers = debounce(
     () => { window.localStorage.setItem(REGION_TIER_STORAGE_KEY, JSON.stringify(regionTiers)); },
-    1500
+    1000
 );
 
 function loadRegionTiers() {

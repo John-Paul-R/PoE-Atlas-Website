@@ -10,12 +10,25 @@
 */
 
 //================
-// Module Imports
+// Module Imports / Exports
 //================
-import { initSearch } from './atlas_search.js';
-import { initZoomPanInput, bindZoomPanInput } from './graphics_zoom_pan.js';
-// import { logger } from './logger.js';
-import { throttle, debounce } from './util.js';
+export {
+    app,
+    atlasSprite,
+    nodeData,
+    nodePixiObjects,
+    getNodeRegionTier,
+    registerResourceLoadFunc,
+    getMapScaleFactor,
+    renderStage,
+    renderStageThrottled
+};
+
+import { 
+    throttle,
+    debounce,
+    executeIfWhenDOMContentLoaded
+} from './util.js';
 
 //===========
 //  Globals
@@ -28,10 +41,31 @@ var optionsElements;
 const MIN_FRAME_TIME = 1000/60;//(60fps)
 
 //Parsed json data file w/ map positions & other node data
-export var nodeData;
+var nodeData;
 var atlasRegions;
+
+class DynamicSprite extends PIXI.Sprite {
+    constructor(scaleFunc, posFunc, texture=null) {
+        super(texture);
+        this.getScale = scaleFunc;
+        this.getPosition = posFunc;
+        this.updateScale = () => {
+            super.scale = this.getScale();
+        }
+        this.updatePosition = () => {
+            super.position = this.getPosition();
+        }
+    }
+}
+
 //The main sprite for the Atlas. (background image)
-let atlasSprite;
+var atlasSprite = new DynamicSprite(
+    // Scale Func
+    //Adjust for Atlas img size being large
+    () => new PIXI.Point(pixiAtlasW/maxW, pixiAtlasH/maxH),
+    // Pos Func
+    () => new PIXI.Point((app.screen.width-pixiAtlasW)/2, (app.screen.height-pixiAtlasH)/2)
+);
 //Self explanatory.
 let linesContainer;
 let nodesContainer;
@@ -48,9 +82,6 @@ let pixiScreenH = 4096;
 let pixiAtlasH = 2304;
 let pixiAtlasW = 4096;
 var CONTAINER;
-//The center position of the PIXI canvas. Updates automatically when resized.
-let midx = 0;
-let midy = 0;
 // Center position for pixi objects that are children of atlasSprite (has x & y)
 const atlasScreenMid = {}
 
@@ -78,7 +109,8 @@ setTimeout(()=> {
     app.stage = new PIXI.display.Stage();
     stage = app.stage;
     } catch (e) {
-        const addMsgElement = () => {
+        // If PIXI App init fails, display message to user, telling them to enable WebGL
+        executeIfWhenDOMContentLoaded(() => {
             let msgElement = document.createElement('p');
             msgElement.innerHTML = `<span class="bold">Page not loading? </span>
             Make sure you have WebGL enabled.
@@ -88,13 +120,7 @@ setTimeout(()=> {
             <li><a href="https://www.interplaylearning.com/help/how-to-enable-webgl-in-firefox">Enable WebGL on Firefox</a></li>
             </ul>`;
             document.getElementById("atlas_of_worlds").appendChild(msgElement);
-        }
-        if (document.readyState === "complete" 
-            || document.readyState === "loaded" 
-            || document.readyState === "interactive") {
-            addMsgElement();
-        }
-        window.addEventListener('DOMContentLoaded', addMsgElement);
+        });
     }
 });
 
@@ -102,6 +128,7 @@ setTimeout(()=> {
 loader = PIXI.Loader.shared;
 loader.onComplete.once(createPixiView);
 let timers = []
+console.time("load");
 loader.onStart.add((resource)=>{
     console.timeLog("load");
     for (let value of Object.values(resource.resources)) {
@@ -126,6 +153,10 @@ loader
 //===========
 // Functions
 //===========
+var resourceLoadFuncs = [];
+function registerResourceLoadFunc(func) {
+    resourceLoadFuncs.push(func);
+}
 function setup(loader, resources) {
     loader.reset();
     console.timeLog("load");
@@ -156,9 +187,9 @@ function setup(loader, resources) {
         });
     loadMapsData();
 
-    //Bind input to Atlas
-    bindZoomPanInput(atlasSprite, getAtlasSpriteScale, getAtlasSpritePosition);
-    initZoomPanInput(app, renderStageThrottled);
+    for (let func of resourceLoadFuncs) {
+        func();
+    }
 
     //TODO break this ^^^ up again and put "initialization" outside of "setup," and into the main thread.
     //TODO make it so that loadMapsData doesn't need to wait for Atlas.jpg to load. (a part of the above)
@@ -167,14 +198,14 @@ function setup(loader, resources) {
     app.renderer.render(stage);
     onWindowResize();
     // createPixiView();
-    window.addEventListener('resize', onWindowResizeDebounced);
+    window.addEventListener('resize', () => window.requestAnimationFrame(onWindowResize) );
     // initAtlasTierButtons();
     
     //60fps (more?) Animation Ticker (is this fps capped?)
     // app.ticker.add(delta => animationLoop(delta));
 }
 function createPixiView() {
-    console.time("load");
+    console.timeLog("load");
     //Add the canvas that Pixi automatically created for you to the HTML document
     CONTAINER = document.getElementById("atlas_of_worlds")
     CONTAINER.appendChild(app.view);
@@ -182,8 +213,8 @@ function createPixiView() {
 }
 
 function resizePixiDisplayObjects() {
-    atlasSprite.scale.copyFrom(getAtlasSpriteScale());
-    atlasSprite.position.copyFrom(getAtlasSpritePosition());
+    atlasSprite.updateScale();
+    atlasSprite.updatePosition();
 
     let containerScale = getAtlasContainersScale();
     linesContainer.scale.copyFrom(containerScale);
@@ -209,24 +240,12 @@ function getAtlasContainersPosition() {
         y: 0
     };
 }
-function getAtlasSpriteScale() {
-    return {//Adjust for Atlas img size being large
-        x: pixiAtlasW/maxW,
-        y: pixiAtlasH/maxH
-    };
-}
-function getAtlasSpritePosition() {
-    return {
-        x: (app.screen.width-pixiAtlasW)/2,
-        y: (app.screen.height-pixiAtlasH)/2
-    };
-}
 
 var spritesheetLoaded = false
 var sheet;
 function initPixiDisplayObjects(resources) {
     //Create main Atlas sprite
-    atlasSprite = new PIXI.Sprite(resources["img/Atlas47kb.webp"].texture);
+    atlasSprite.texture = resources["img/Atlas47kb.webp"].texture;
 
     // atlasSprite = new PIXI.Sprite();
     //Add Atlas sprite to stage
@@ -381,7 +400,7 @@ function updateWatchstoneVisibility() {
     masterButton.visible = options.MasterWatchstone;
 }
 //Factor by which to multiply node positions from the data file when drawing
-export function getMapScaleFactor() {
+function getMapScaleFactor() {
     return mapScaleFactor;
 }
 var mapScaleFactor;// = pixiAtlasW/maxW*4;//4.05;
@@ -401,7 +420,7 @@ for (let i=0; i < NUM_REGIONS; i++) {
 }
 
 var nodeTierTextures;
-export var nodePixiObjects;
+var nodePixiObjects;
 var nodeInfoSidebar;
 document.addEventListener('DOMContentLoaded', ()=>nodeInfoSidebar={
     container: document.getElementById("node_info"),
@@ -664,7 +683,7 @@ function loadMapsData(loader, resources, atlasSprite) {
 
     let nodeDataRequest = new XMLHttpRequest();
     nodeDataRequest.open("GET", "data/AtlasDataCombined_Itemized-1600754911.json", true);
-    nodeDataRequest.send(null);
+    nodeDataRequest.send();
     nodeDataRequest.onreadystatechange = function() {
         if ( nodeDataRequest.readyState === 4 && nodeDataRequest.status === 200 ) {
             nodeDataResponseReceived = true;
@@ -672,7 +691,6 @@ function loadMapsData(loader, resources, atlasSprite) {
             let combinedData = JSON.parse(nodeDataRequest.responseText);
             nodeData = combinedData["AtlasNode+WorldAreas"];
             atlasRegions = combinedData["AtlasRegions.dat"];
-            initSearch(nodeData);
             initWatchstones();
             preloadStaticGraphics();
             //Draw Atlas Nodes & Lines
@@ -694,10 +712,10 @@ function loadMapsData(loader, resources, atlasSprite) {
         }
     }
     //send next request
-    //TODO make sure this waits for the other request, OR combine with base data file in backend
+    // //TODO make sure this waits for the other request, OR combine with base data file in backend
     let nodeImagesDictRequest = new XMLHttpRequest();
     nodeImagesDictRequest.open("GET", "data/Maps155-DICT-heist-1.json", true);
-    nodeImagesDictRequest.send(null);
+    nodeImagesDictRequest.send();
     nodeImagesDictRequest.onreadystatechange = function() {
         if ( nodeImagesDictRequest.readyState === 4 && nodeImagesDictRequest.status === 200 ) {
             nodeImagesDictResponseReceived = true;
@@ -711,7 +729,7 @@ function preloadStaticGraphics() {
     //Init main container object
     nodePixiObjects = [];
     //Set text display options
-    const fontSize = 18;//*mapScaleFactor/4
+    const fontSize = 18;
     // TODO: Use the font that PoE Uses
     const fontFamily = 'Arial';
     const tierFontStyle = 'bold';
@@ -750,7 +768,7 @@ function preloadStaticGraphics() {
         nameSprite.anchor.set(0.5,1);
 
         //Add the constructed Node object to the global list.
-        nodePixiObjects.push(new NodePixiObject(nameSprite, data));
+        nodePixiObjects.push(new NodePixiObject(nameSprite, data));        
     }
     
     //===========
@@ -826,42 +844,54 @@ function preloadStaticGraphics() {
     updateNodesVisibility();
 }
 
+var TIMERS_PRINT_ENABLED = false;
 class Timer {
-    constructor() {
+    constructor(name) {
         this.count = 0;
         this.avg = 0;
+        this.lastTime = 0;
+        this.name = name;
+
+        this.startTime = 0;
     }
 
+    start() {
+        this.startTime = window.performance.now();
+    }
+    end() {
+        this.addTime(window.performance.now() - this.startTime);
+    }
     addTime(time) {
         this.count += 1;
         this.avg = (this.avg*(this.count-1) + time)/ this.count;    
+        this.lastTime = time;
+        if (TIMERS_PRINT_ENABLED) {
+            this.printInstance();
+            this.printAverage();
+        }
+    }
+
+    printInstance() {
+        console.log(`[Timer][I] ${this.name}: ${this.lastTime.toFixed(2)} ms`);
+    }
+    printAverage() {
+        console.log(`[Timer][A] ${this.name}: ${this.avg.toFixed(2)} ms`);
     }
 }
 var perfTimers = {
-    allRegionsUpdate: new Timer(),
-    renderAllAtlasRegions: new Timer()
+    allRegionsUpdate: new Timer("Update All AtlasRegions"),
+    regionsRender: new Timer("Render AtlasRegions")
 }
 function drawAllAtlasRegions() {
-    var start = window.performance.now();
-
+    perfTimers.allRegionsUpdate.start();
     for(let i=0; i<NUM_REGIONS; i++) {
         drawAtlasRegion(i, false, false);
     }
-    var end = window.performance.now();
-    var time = end-start;
-    console.log(`[TIMER][I] ALL AtlasRegions: ${time} ms`);
-    perfTimers.allRegionsUpdate.addTime(time);
-    console.log(`[TIMER][A] Average ALL AtlasRegions: ${perfTimers.allRegionsUpdate.avg} ms`);
+    perfTimers.allRegionsUpdate.end();
 
-    var start = window.performance.now()
-    // console.time("Render (drawAllAtlasRegions)");
+    perfTimers.regionsRender.start();
     app.renderer.render(app.stage);
-    // console.timeEnd("Render (drawAllAtlasRegions)");
-    var end = window.performance.now();
-    var time = end-start;
-    console.log(`[TIMER][I] Render AtlasRegions: ${time} ms`);
-    perfTimers.renderAllAtlasRegions.addTime(time);
-    console.log(`[TIMER][A] Average Render AtlasRegions: ${perfTimers.renderAllAtlasRegions.avg} ms`);
+    perfTimers.regionsRender.end();
 }
 
 // Globals (Display properties)
@@ -870,26 +900,17 @@ var nodeRadius;
 var lineThickness;
 const lineColor = 0x333333;//ffffff;
 function initAtlasRegion(regionID) {
-    
-    // //init region lines Graphics object (Lines)
-    // regionLinesGraph = new PIXI.Graphics();
-    // //init region nodes Graphics object (Nodes)
-    // regionNodesContainer = new PIXI.Container();
-    // //Enable 'sortableChildren' so we can bring focused nodes to front.
-    // regionNodesContainer.sortableChildren = true;
-    //Add Nodes and Lines to their respective containers and renderedRegion list
     linesContainer.addChildAt(new PIXI.Graphics(), regionID);
     nodesContainer.addChildAt(new PIXI.Container(), regionID);
-    
 }
 function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=true) {
     //Remove previous nodes and lines for this region.
     // Clear the lines graphics
-    let regionLinesGraph = linesContainer.getChildAt(regionID).clear();//destroy(true, false, false);
+    let regionLinesGraph = linesContainer.getChildAt(regionID).clear();
     regionLinesGraph.lineStyle(lineThickness, lineColor);
     // The nodesContainer can be cached...
     let regionNodesContainer = nodesContainer.getChildAt(regionID);
-    regionNodesContainer.removeChildren();//.destroy(true, false, false);
+    regionNodesContainer.removeChildren();
 
     //This bit keeps track of whether adjacent regions have been redrawn w/in this func call
     let regionsRedrawn = [false, false, false, false, false, false, false, false];
@@ -952,7 +973,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
 
             //Draw Nodes on 'regionNodesGraph'
             let nodePixiObj = nodePixiObjects[nodeID];
-            if (options.drawNodes) {
+            if (options.drawNodes && nodePixiObj) {
                 let nodeContainer = nodePixiObj.container;
                 nodeContainer.position.set(tieredNodeData.x+nodeCenterOffset, tieredNodeData.y+nodeCenterOffset)
                 nodeContainer.scale = CONTAINER_SCALE;
@@ -993,7 +1014,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
 function getNodeByID(nodeID) {
     return nodeData[nodeID];
 }
-export function getNodeRegionTier(nodeObject) {
+function getNodeRegionTier(nodeObject) {
     return regionTiers[nodeObject.AtlasRegionsKey];
 }
 class TieredNodeData {
@@ -1034,9 +1055,6 @@ function onWindowResize() {
     
     app.renderer.resize(pixiScreenW, pixiScreenH);
 
-    midx = pixiScreenW/2+app.screen.x;
-    midy = pixiScreenH/2+app.screen.y;
-
     let containerScale = getAtlasContainersScale();
     atlasScreenMid.x = pixiAtlasW/2*containerScale.x;
     atlasScreenMid.y = pixiAtlasH/2*containerScale.y;
@@ -1052,7 +1070,6 @@ function onWindowResize() {
     positionWatchstones();
     drawAllAtlasRegions();
 }
-var onWindowResizeDebounced = debounce(onWindowResize, MIN_FRAME_TIME);
 
 //==============
 // User Options
@@ -1288,11 +1305,12 @@ function addAllToDOM() {
 //=========
 // Utility
 //=========
-export function renderStage() { app.renderer.render(stage) };
-export var renderStageThrottled = throttle(
-    () => app.renderer.render(stage),
-    MIN_FRAME_TIME
-);
+function renderStage() { app.renderer.render(stage) };
+var renderStageThrottled = () => requestAnimationFrame(renderStage);
+// throttle(
+//     () => app.renderer.render(stage),
+//     MIN_FRAME_TIME
+// );
 
 const REGION_TIER_STORAGE_KEY = 'regionTiers';
 const storeRegionTiers = debounce(

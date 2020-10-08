@@ -1,5 +1,10 @@
 
-export { throttle, debounce };
+export {
+    throttle,
+    debounce,
+    executeOrWait,
+    executeIfWhenDOMContentLoaded
+};
 
 function throttle(func, timeInterval) {
     var lastTime = 0;
@@ -22,4 +27,22 @@ function debounce(func, delay) {
                 debounceTimer 
             = setTimeout(() => func.apply(context, args), delay) 
     } 
+}
+function executeOrWait(execFunc, condition, waitFunc) {
+    if (condition) {
+        execFunc();
+    } else {
+        waitFunc(execFunc);
+    }
+}
+function executeIfWhenDOMContentLoaded(func) {
+    executeOrWait(
+        func, 
+        (
+            document.readyState === "complete" 
+            || document.readyState === "loaded" 
+            || document.readyState === "interactive"
+        ),
+        () => window.addEventListener('DOMContentLoaded', func)
+    );
 }

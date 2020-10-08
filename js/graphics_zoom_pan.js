@@ -3,11 +3,19 @@
  * !Original Source: https://github.com/anvaka/ngraph/blob/master/examples/pixi.js/03%20-%20Zoom%20And%20Pan/globalInput.js
 */
 
-export { initZoomPanInput, bindZoomPanInput };
+// export { initZoomPanInput, bindZoomPanInput };
 //The first object that is added to this should be the background
 //(Must have defined bounds, like a sprite)
 //(this ^^^ is for constraining the zoom/pan to the screen)
-var displayObjs = []
+import { 
+    app,
+    renderStageThrottled,
+    atlasSprite,
+    registerResourceLoadFunc
+} from './pixi_atlas_of_worlds.js';
+import { executeOrWait } from './util.js'
+
+var displayObjs = [];
 
 function initZoomPanInput(pixiApp, renderStageThrottled) {
 
@@ -15,7 +23,6 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
     stage.interactive = true;
 
     var mainObj = displayObjs[0];
-    var mainObjO = mainObj.obj;
 
     //---------------------
     // Add Event Listeners
@@ -38,11 +45,9 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
         for (let i=0; i<displayObjs.length; i++) {
             let dispObj = displayObjs[i];
             //reset positions of bound objects to their starting positions
-            let pos = dispObj.posFunc();
-            dispObj.obj.position.set(pos.x, pos.y);
+            dispObj.updatePosition();
             //reset zoom/scale of bound objects to starting values
-            let scale = dispObj.scaleFunc();
-            dispObj.obj.scale.set(scale.x, scale.y);
+            dispObj.updateScale();
         }
         renderStageThrottled();
     }
@@ -131,8 +136,8 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
                     //limit positions to Atlas sprite display bounds
                     let delta = limitMoveToRange(dx, dy);
    
-                    mainObjO.position.x += delta.x;
-                    mainObjO.position.y += delta.y;
+                    mainObj.position.x += delta.x;
+                    mainObj.position.y += delta.y;
                     prevX = pos.x;
                     prevY = pos.y;
                     
@@ -156,15 +161,15 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
     function limitMoveToRange(dx, dy) {
         let screen = pixiApp.screen;
 
-        if (mainObjO.width >= screen.width)
-            dx = confine2dViewportToObj(mainObjO.x, mainObjO.width, dx, screen.x, screen.x+screen.width);
+        if (mainObj.width >= screen.width)
+            dx = confine2dViewportToObj(mainObj.x, mainObj.width, dx, screen.x, screen.x+screen.width);
         else
-            dx = confine2dObjToViewport(mainObjO.x, mainObjO.width, dx, screen.x, screen.x+screen.width);
+            dx = confine2dObjToViewport(mainObj.x, mainObj.width, dx, screen.x, screen.x+screen.width);
 
-        if (mainObjO.height >= screen.height)
-            dy = confine2dViewportToObj(mainObjO.y, mainObjO.height, dy, screen.y, screen.y+screen.height);
+        if (mainObj.height >= screen.height)
+            dy = confine2dViewportToObj(mainObj.y, mainObj.height, dy, screen.y, screen.y+screen.height);
         else
-            dy = confine2dObjToViewport(mainObjO.y, mainObjO.height, dy, screen.y, screen.y+screen.height);
+            dy = confine2dObjToViewport(mainObj.y, mainObj.height, dy, screen.y, screen.y+screen.height);
         
         return {x: dx, y: dy}
     }
@@ -192,10 +197,10 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
 
     // function limitZoom(dx, dy) {
     //     let screen = pixiApp.screen;
-    //     if (mainObjO.width >= screen.width)
-    //         dx = confine2dViewportToObj(mainObjO.x, mainObjO.width, dx, screen.x, screen.x+screen.width);
-    //     if (mainObjO.height >= screen.height)
-    //         dy = confine2dViewportToObj(mainObjO.y, mainObjO.height, dy, screen.y, screen.y+screen.height);
+    //     if (mainObj.width >= screen.width)
+    //         dx = confine2dViewportToObj(mainObj.x, mainObj.width, dx, screen.x, screen.x+screen.width);
+    //     if (mainObj.height >= screen.height)
+    //         dy = confine2dViewportToObj(mainObj.y, mainObj.height, dy, screen.y, screen.y+screen.height);
     //     return {x: dx, y: dy}
     // }
     //TODO Note: when you zoom in, then resize the window, the containers don't resize/reposition correctly.
@@ -219,24 +224,24 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
         // -- We could also do it relative to the average of the elements...? idk, will see
         // let direction = isZoomIn ? 1 : -1;
         var factor = (1 + zoomAmount); //(1 + direction * 0.1);
-        let minScale = mainObj.scaleFunc();
+        let minScale = mainObj.getScale();
         let maxScale = minScale.x*5
-        let cScale = mainObj.obj.scale;
+        let cScale = mainObj.scale;
         if (cScale.x*factor > minScale.x && cScale.y*factor > minScale.y) {
             if (cScale.x*factor <= maxScale) {
                 //Scale Atlas
-                mainObjO.scale.x *= factor;
-                mainObjO.scale.y *= factor;
+                mainObj.scale.x *= factor;
+                mainObj.scale.y *= factor;
 
-                let beforeTransform = getGraphCoordinates(mainObjO, x, y);
-                mainObjO.updateTransform();
-                let afterTransform = getGraphCoordinates(mainObjO, x, y);
+                let beforeTransform = getGraphCoordinates(mainObj, x, y);
+                mainObj.updateTransform();
+                let afterTransform = getGraphCoordinates(mainObj, x, y);
                 let delta = limitMoveToRange(
-                    (afterTransform.x - beforeTransform.x) * mainObjO.scale.x,
-                    (afterTransform.y - beforeTransform.y) * mainObjO.scale.y);
-                mainObjO.position.x += delta.x;
-                mainObjO.position.y += delta.y;
-                mainObjO.updateTransform();
+                    (afterTransform.x - beforeTransform.x) * mainObj.scale.x,
+                    (afterTransform.y - beforeTransform.y) * mainObj.scale.y);
+                mainObj.position.x += delta.x;
+                mainObj.position.y += delta.y;
+                mainObj.updateTransform();
             }
 
         } else {
@@ -252,11 +257,20 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
     }
 }
 
-function bindZoomPanInput(displayObj, defaultScaleFunc, defaultPositionFunc) {
+function bindZoomPanInput(dynamicSprite) {
     //Add the DisplayObject to the list of objects to be affected by mouse/wheel input events
-    displayObjs.push({
-        obj: displayObj,
-        scaleFunc: defaultScaleFunc,
-        posFunc: defaultPositionFunc
-    });
+    displayObjs.push(dynamicSprite);
 }
+
+const bindAtlas = () => bindZoomPanInput(atlasSprite);
+const initAtlas = () => initZoomPanInput(app, renderStageThrottled);
+executeOrWait(
+    bindAtlas,
+    app,
+    () => registerResourceLoadFunc(bindAtlas)
+);
+executeOrWait(
+    initAtlas,
+    app,
+    () => registerResourceLoadFunc(initAtlas)
+);

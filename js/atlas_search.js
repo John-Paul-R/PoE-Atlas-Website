@@ -1,9 +1,21 @@
 
-import { getNodeRegionTier, nodeData, nodePixiObjects, renderStage, renderStageThrottled, getMapScaleFactor } from './pixi_atlas_of_worlds.js';
+import {
+    getNodeRegionTier,
+    nodeData,
+    nodePixiObjects,
+    renderStage,
+    renderStageThrottled,
+    getMapScaleFactor 
+} from './pixi_atlas_of_worlds.js';
+
+import {
+    executeIfWhenDOMContentLoaded
+} from './util.js'
+
 // import { logger } from './logger.js';
 export { initSearch };
 
-let searchElements = document.getElementsByClassName("searchField");
+var searchElements;;
 const scale = 1.2;
 
 function searchTextChanged(query) {
@@ -85,6 +97,7 @@ function setFormAction(formElem) {
 }
 
 function initSearch() {
+    searchElements = document.getElementsByClassName("searchField")
     for (let i=0; i<searchElements.length; i++) {
         searchElements[i].addEventListener('input', searchTextChanged);
         searchElements[i].addEventListener('keydown', (e) => {
@@ -97,6 +110,7 @@ function initSearch() {
     }
     console.info("atlas_search.js initialization complete!");
 }
+executeIfWhenDOMContentLoaded(initSearch);
 
 function clearSearchDisplayMods(pixiObjList) {
     for(let i=0; i<pixiObjList.length; i++) {

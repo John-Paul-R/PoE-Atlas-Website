@@ -1064,10 +1064,10 @@ class HTMLElement{
     }
 }
 const DISPLAY_OPTIONS_STORAGE_KEY = 'displayOptions';
-function storeDisplayOptions() { debounce(
+const storeDisplayOptions = debounce(
     () => { window.localStorage.setItem(DISPLAY_OPTIONS_STORAGE_KEY, JSON.stringify(options)); }
     , 1500
-)};
+);
 class Option {
     constructor(name, key) {
         this.name = name;

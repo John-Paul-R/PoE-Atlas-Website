@@ -6,7 +6,7 @@
 
 (ign)*
 
-pixi/*.js
+# pixi/*.min.js
 
 *.key
 *.crt

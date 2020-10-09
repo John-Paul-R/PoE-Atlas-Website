@@ -19,7 +19,7 @@
                 <div id="title"><h4>PoE Atlas by <a href="https://github.com/John-Paul-R">JP</a></h4></div>
                 <div class="end flex row">
                     <div id="help_container" class="dropdown_container">
-                        <button id="help_button" class="dropdown_button"><i class="material-icons">help</i></button>
+                        <button id="help_button" class="dropdown_button"><i class="material-icons", style="display: block;">help</i></button>
                         <div id="help_content" class="dropdown content hidden">
                             <h3>Help</h3>
                             <hr>
@@ -89,12 +89,18 @@
                         <input type="text" id="search_field" class="searchField" placeholder="Search for a map or tier." tabindex="0" autofocus>
                     </div>
                 </div>
-                <div class="overlay left"></div>
+                <div id="search_results" class="overlay left flex col filled">
+                    <h3>Search Results</h3>
+                    <hr>
+                    <p><span class="bold">Query: </span><span id="search_query_text"></span></p>
+                    <hr>
+                    <ol id="search_results_list"></ol>
+                </div>
                 <!-- <div class="overlay right flex col"> -->
                     <div id="node_info" class="overlay flex col filled hidden">
                         <div id="node_head" class="head flex row">
                             <h2 id="node_name">Node Name</h2>
-                            <button id="node_exit" class="end">&times;</button>
+                            <button id="node_exit" class="overlay_exit end">&times;</button>
                         </div>
                         <hr>
                         <div id="node_body" class="flex col">
@@ -139,8 +145,11 @@
     <div id="eof_scripts">
         <script src="js/util.js"                type="module"></script>
     
-        
-        <script id="PIXI" src="pixi/pixi.min.js"></script>
+        <!-- todo: Warn user if using canvas instead of webgl. Webgl is faster/smoother. -->
+        <script id="PIXI" src="pixi/pixi-legacy.min.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/pixi-filters@latest/dist/pixi-filters.js"></script> -->
+        <script defer src="pixi/filter-kawase-blur.js"></script>
+        <script defer src="pixi/filter-drop-shadow.js"></script>
         <script src="pixi/pixi-layers.js"></script>
         <script src="js/pixi_atlas_of_worlds.js" type="module"></script>
 

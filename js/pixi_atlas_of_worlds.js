@@ -30,6 +30,7 @@ import {
     executeIfWhenDOMContentLoaded
 } from './util.js';
 
+// import * as PIXI from 'pixi.js';
 //===========
 //  Globals
 //===========
@@ -83,7 +84,7 @@ let pixiAtlasH = 2304;
 let pixiAtlasW = 4096;
 var CONTAINER;
 // Center position for pixi objects that are children of atlasSprite (has x & y)
-const atlasScreenMid = {}
+const atlasScreenMid = {};
 
 window.addEventListener('DOMContentLoaded', ()=>{
     //// Load Pixi App
@@ -104,7 +105,10 @@ setTimeout(()=> {
         antialias: true,
         sharedLoader: true,
         sharedTicker: false,
-        resolution: devicePixelRatio 
+        resolution: devicePixelRatio,
+        // init width and height to 0 in order to prevent issue where page load (onLoad, DCL0) were being blocked for a long time
+        width: 0,
+        height:0
     });
     app.stage = new PIXI.display.Stage();
     stage = app.stage;
@@ -286,6 +290,7 @@ function initWatchstones() {
 
     masterButton = new PIXI.Graphics();
     const mText = new PIXI.Text("Cycle All Region Tiers", {
+        fontFamily: 'Fontin-Regular',
         fontSize: 18,
         align: "center",
         fontWeight: "bold",
@@ -295,6 +300,7 @@ function initWatchstones() {
     masterButton.lineStyle(lineThickness/mapScaleFactor, '0x0', 1, 0.5, false)
     mText.anchor.set(0.5, 0.5);
     masterButton.addChild(mText);
+    masterButton.filters = [new PIXI.filters.DropShadowFilter()];
     let mW = (mText.width + padding),
         mH = (mText.height + padding);
     masterButton.beginFill('0xffffff',1)
@@ -304,6 +310,7 @@ function initWatchstones() {
     for (let i=0; i < NUM_REGIONS; i++) {
         let button = new PIXI.Graphics();
         let bText = new PIXI.Text("", {
+            fontFamily: 'Fontin-Regular',
             fontSize: 18,
             align: "center",
             fontWeight: "bold",
@@ -495,11 +502,14 @@ class NodePixiObject {
         this.container.zIndex = 1;
         this.nameContainer.visible = true;
         let nameBG = new PIXI.Sprite(PIXI.Texture.WHITE);
-        nameBG.width = this.nameSprite.width, nameBG.height = this.nameSprite.height;
+        const paddingHoriz = 3;
+        nameBG.width = this.nameSprite.width + paddingHoriz;
+        nameBG.height = this.nameSprite.height;
         nameBG.anchor.set(0.5,1);
         this.nameContainer.addChildAt(nameBG, 0);
         this.tierSprite.visible = true;
         this.container.parentGroup = focusedNodesContainer;
+        this.container.filters = [new PIXI.filters.DropShadowFilter()];
         if (hoverGraphic) {
             this.additionalGraphics.addChild(hoverGraphic);
         }
@@ -514,6 +524,7 @@ class NodePixiObject {
             this.nameContainer.removeChildAt(0);
         this.tierSprite.visible = options.drawTiers;
         this.container.parentGroup = unfocusedNodesContainer;
+        this.container.filters = [];
         if (clearHoverGraphic) {
             this.additionalGraphics.children.forEach((el)=>el.destroy());
         }
@@ -731,7 +742,7 @@ function preloadStaticGraphics() {
     //Set text display options
     const fontSize = 18;
     // TODO: Use the font that PoE Uses
-    const fontFamily = 'Arial';
+    const fontFamily = 'Fontin-Regular';
     const tierFontStyle = 'bold';
     const nameFontStyle = 'bold';
     const textResolution = 3;

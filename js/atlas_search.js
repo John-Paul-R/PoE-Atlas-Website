@@ -10,9 +10,8 @@ import {
 
 import {
     executeIfWhenDOMContentLoaded
-} from './util.js'
+} from './util.js';
 
-// import { logger } from './logger.js';
 export { initSearch };
 
 var searchElements;;
@@ -20,15 +19,19 @@ const scale = 1.2;
 
 function searchTextChanged(query) {
     console.info("running searchAtlas... "+query)
+    let results = null;
     if (query.target.value){
-        searchAtlas(query.target.value);
+        results = searchAtlas(query.target.value);
     } else {
         // console.log("No query data was found.")
         clearSearchDisplayMods(nodePixiObjects);
     }
+    updateSearchResultsListElement(results);
+    queryDisplayElement.innerText = query.target.value;
     renderStageThrottled();
 }
-
+var fuzzysortAvg = 0;
+var searchCount = 0;
 function searchAtlas(queryText, selectBest=false) {
     console.info("Query: " + queryText)
     let objects = nodeData.map(el => { return {
@@ -36,6 +39,8 @@ function searchAtlas(queryText, selectBest=false) {
         id: el.RowID.toString(),
         tier: el.TieredData[getNodeRegionTier(el)].Tier.toString() 
     }; });
+
+    var fuzzysortStart = performance.now();
     let results = fuzzysort.go(queryText.trim(), objects, {
         keys: ['name', /*'id',*/ 'tier'],
         allowTypo: true,
@@ -47,6 +52,11 @@ function searchAtlas(queryText, selectBest=false) {
             a[2]?a[2].score-100:-1000
         )
     });
+    var fuzzysortTime = performance.now() - fuzzysortStart;
+    searchCount += 1;
+    fuzzysortAvg = (fuzzysortAvg * (searchCount - 1) + fuzzysortTime) / searchCount;
+    console.log(`fuzzysort.js - A:${fuzzysortAvg.toFixed(3)} ms, I:${(fuzzysortTime).toFixed(3)} ms, found: "${results[0] ? results[0].obj.name : ""}", numMatches: ${results.length}`)
+
     // TODO Only change scale for name matches, not tier matches. (gets too cluttered atm)
     let bestResult = results[0]
 
@@ -89,13 +99,15 @@ function searchAtlas(queryText, selectBest=false) {
     // premade collections of all nodes at each tier
     // collections of nodes by region (we have this)
     console.info(bestResult?(bestResult.obj.name + " - Score: " + bestResult.score):"NO-MATCH-FOUND")
+    return results;
 }
 
 function setFormAction(formElem) {
     let textInput = formElem.getElementsByClassName("searchField")[0];
     searchAtlas(textInput.value, true);
 }
-
+var resultsListElement;
+var queryDisplayElement;
 function initSearch() {
     searchElements = document.getElementsByClassName("searchField")
     for (let i=0; i<searchElements.length; i++) {
@@ -108,9 +120,23 @@ function initSearch() {
         });
         // console.info(searchElements[i], " will now listen for input events and trigger searchAtlas.");
     }
+    resultsListElement = document.getElementById("search_results_list");
+    queryDisplayElement = document.getElementById("search_query_text");
     console.info("atlas_search.js initialization complete!");
 }
 executeIfWhenDOMContentLoaded(initSearch);
+
+function updateSearchResultsListElement(resultsArray) {
+    let resultsElem = resultsListElement;//new HTMLOListElement();
+    while (resultsElem.firstChild) {
+        resultsElem.removeChild(resultsElem.lastChild);
+    }
+    if (resultsArray) {
+        for (const node of resultsArray) {
+            resultsElem.appendChild(document.createElement('li')).innerText = node.obj.name;
+        }
+    }
+}
 
 function clearSearchDisplayMods(pixiObjList) {
     for(let i=0; i<pixiObjList.length; i++) {

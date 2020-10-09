@@ -1,4 +1,38 @@
 
+
+:root, button, input {
+    font-family: 'Fontin-Regular', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-display: swap;
+}
+table, footer, button.overlay_exit, #help_content {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+button.overlay_exit {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@font-face {
+    /* A font by Jos Buivenga (exljbris) -> www.exljbris.com */
+    /* https://www.exljbris.com/fontin.html */
+    font-family: 'Fontin-Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/Fontin-Regular.woff2) format('woff2');
+    font-display: swap;
+}
+.fontinR {
+    font-family: 'Fontin-Regular';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+}
 #content_main {
     grid-row: mid-start / mid-end;
     width:100%;
@@ -73,7 +107,8 @@
 }
 .overlay.left {
     grid-column: hstart / hmid-start;
-    grid-row: vmid-start / vend;
+    grid-row: vmid-start / vmid-end/*vend*/;
+    pointer-events: visibleFill;
     /* background-color: beige; */
 }
 .overlay.right {
@@ -329,7 +364,15 @@ ul.nobullet {
 ul.inline > * {
     display:inline
 }
-
+#node_info, .overlay.left {
+    position:relative;
+    border-radius: 4px 0 0 4px;
+    align-items:stretch;
+    box-sizing: border-box;
+    padding:16px;
+    opacity:90%;
+    pointer-events: visibleFill;
+}
 .expand {
     height:100%;
     width:100%;
@@ -350,22 +393,17 @@ ul.inline > * {
     #node_info {
         grid-column: hmid-end / hend;
         grid-row: vmid-start / vmid-end/*vend*/;
-        height: fit-content;
+        height: min-content;
+    }
+    .overlay.left {
+        height: min-content;
     }
 }
-#node_info {
-    position:relative;
-    border-radius: 4px 0 0 4px;
-    align-items:stretch;
-    box-sizing: border-box;
-    padding:16px;
-    opacity:90%;
-    pointer-events: visibleFill;
-}
+
 h2#node_name {
     max-width:80%;
 }
-button#node_exit {
+button.overlay_exit {
     align-self: flex-start;
     min-width:28px;
     min-height:28px;
@@ -376,12 +414,13 @@ button#node_exit {
     text-align: center;
     background-color: #be1537;
 }
-button#node_exit:hover {
+button.overlay_exit:hover {
     background-color: #dc143c;
     filter:none;
 }
 #node_info > *, 
-#node_body > * {
+#node_body > *,
+#search_results > *:not(li) {
     margin-bottom:12px;
     width:100%;
 }

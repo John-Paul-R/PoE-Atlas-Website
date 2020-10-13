@@ -83,14 +83,21 @@
         <div id="content_main" class="filled">
             <div id="atlas_of_worlds">
                 <div class="overlay top">
-                    <div class="searchbar filled marginLRauto">
-                        <!-- display option show all -->
-                        <i class="material-icons first"><label for="search_field">search</label></i>
-                        <input type="text" id="search_field" class="searchField" placeholder="Search for a map or tier." tabindex="0" autofocus>
+                    <div class="flex row aligncenter justifycenter">
+                        <div class="searchbar filled">
+                            <!-- display option show all -->
+                            <i class="material-icons first"><label for="search_field">search</label></i>
+                            <input type="text" id="search_field" class="searchField" placeholder="Search for a map or tier." tabindex="0" autofocus>
+                            <button id="show_results_btn">Show Results</button>
+
+                        </div>
                     </div>
                 </div>
-                <div id="search_results" class="overlay left flex col filled">
-                    <h3>Search Results</h3>
+                <div id="search_results" class="overlay left flex col filled hidden">
+                    <div id="node_head" class="head flex row">
+                        <h3>Search Results</h3>
+                        <button id="search_exit" class="overlay_exit end">&times;</button>
+                    </div>
                     <hr>
                     <p><span class="bold">Query: </span><span id="search_query_text"></span></p>
                     <hr>

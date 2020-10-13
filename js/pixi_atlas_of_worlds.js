@@ -1792,3 +1792,23 @@ function loadRegionTiers() {
         storeRegionTiers();
     }
 }
+
+// Bind search results interactables
+executeIfWhenDOMContentLoaded(() => {
+    const search_results = document.getElementById("search_results");
+    const show_btn = document.getElementById("show_results_btn");
+    const exit_btn = document.getElementById("search_exit");
+
+    const showHide = () => {
+        if (search_results.className.includes("hidden")) {
+            search_results.className = search_results.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
+            show_btn.innerText = "Hide Results";
+        } else {
+            search_results.className = search_results.className +" hidden";
+            show_btn.innerText = "Show Results"
+        }
+    };
+    show_btn.addEventListener('click', showHide);
+
+    exit_btn.addEventListener('click', showHide);
+});

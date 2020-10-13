@@ -379,9 +379,17 @@ ul.inline > * {
 }
 @media only screen and (max-width: 512px) {
     #node_info {
-        max-height: 80vh;
+        /* TODO Make this accurate for mobile */
+        max-height: 70vh;
         grid-column: hstart / hend;
         grid-row: vmid-end / vend;
+    }
+    .overlay.left {
+        grid-column: hstart / hend;
+        max-height: 50vh;
+        min-height: 30vh;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
     #node_body {
         width: 100%;
@@ -396,6 +404,7 @@ ul.inline > * {
         height: min-content;
     }
     .overlay.left {
+        grid-column: hstart / hmid-start;
         height: min-content;
     }
 }
@@ -446,6 +455,10 @@ button.overlay_exit:hover {
     border: 1px solid var(--color-text);
     border-collapse: collapse;
     text-align: center;
+}
+
+#show_results_btn {
+    
 }
 
 #eof_scripts {

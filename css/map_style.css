@@ -405,7 +405,15 @@ ul.inline > * {
     }
     .overlay.left {
         grid-column: hstart / hmid-start;
-        height: min-content;
+        min-height: 64px;
+        max-height: 100%;
+        /* height: min-content; */
+    }
+    #search_results ol {
+        min-height: 64px;
+        max-height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 }
 
@@ -455,10 +463,6 @@ button.overlay_exit:hover {
     border: 1px solid var(--color-text);
     border-collapse: collapse;
     text-align: center;
-}
-
-#show_results_btn {
-    
 }
 
 #eof_scripts {

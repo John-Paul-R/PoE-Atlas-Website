@@ -2,7 +2,9 @@
 
 :root, button, input {
     font-family: 'Fontin-Regular', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-display: swap;
+}
+button, .button {
+    font-variant: small-caps;
 }
 table, footer, button.overlay_exit, #help_content {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

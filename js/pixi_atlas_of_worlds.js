@@ -1454,6 +1454,8 @@ function onWindowResize() {
 
     mapScaleFactor = (pixiAtlasW + pixiAtlasH)/(maxH+maxW)*4;
     
+    nodeCenterOffset = 25/4 * mapScaleFactor;
+    lineThickness = 2.5/4 * mapScaleFactor;
     // placeAtlasTierButtonsCircle();
     resizePixiDisplayObjects();
     // Update NodePixiObjs

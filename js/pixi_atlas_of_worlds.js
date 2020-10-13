@@ -30,20 +30,16 @@ import {
     debounce,
     executeIfWhenDOMContentLoaded
 } from './util.js';
+import {
+    createOptionsMenu,
+    OptionsManager
+
+} from './options.js';
 
 // import * as PIXI from 'pixi.js';
 //===========
 //  Globals
 //===========
-//Render Toggles
-/**
- * @type {Array<any>}
- */
-var options;
-/**
- * @type {Array<HTMLElement>}
- */
-var optionsElements;
 
 //The minimum allowable time between stage renders. (Calls made while the function is on cooldown are ignored.)
 const MIN_FRAME_TIME = 1000/60;//(60fps)
@@ -105,13 +101,45 @@ var CONTAINER;
 // Center position for pixi objects that are children of atlasSprite (has x & y)
 const atlasScreenMid = {};
 
-window.addEventListener('DOMContentLoaded', ()=>{
-    //// Load Pixi App
-    //Load User Options
-    loadDisplayOptions();
+var optsMgr = new OptionsManager('displayOptions', [drawAllAtlasRegions]);
+optsMgr.register("drawLines", "Show Lines", true, null)
+    .register("drawNodes", "Show Nodes", true, updateNodesVisibility)
+    .register("drawNames", "Show Names", true, updateNodesVisibility)
+    .register("drawTiers", "Show Tiers", true, updateNodesVisibility)
+    .register("nodeHover", "Hover Effect", true, () => {
+        if (nodePixiObjects) {
+            let hoverEnabled = optsMgr.currentOptions.nodeHover;
+            for (let i = 0; i < nodePixiObjects.length; i++) {
+                nodePixiObjects[i].setupHover(hoverEnabled);
+            }
+        }
+    })
+    .register("Watchstones", "Show Watchstones", true, updateWatchstoneVisibility)
+    .register("MasterWatchstone", "Show 'Cycle' Button", true, updateWatchstoneVisibility)
+    .register("nodeScaleFactor", "Node Size", 1, updateNodeSize)
+    .register("nodeTextScale", "Node Text Size", 1, updateNodesTextScale);
+
+// Add generated HTML elements to DOM
+executeIfWhenDOMContentLoaded(() => {
     // Add runtime-generated HTML elements to DOM
     addAllToDOM();
 });
+
+function updateNodeSize() {
+    NodePixiObject.CONTAINER_SCALE = symPoint(optsMgr.currentOptions.nodeScaleFactor * mapScaleFactor);
+}
+function updateNodesTextScale() {
+    NodePixiObject.NAME_SCALE = symPoint(2/3 * optsMgr.currentOptions.nodeTextScale);
+    NodePixiObject.TIER_SCALE = symPoint(0.15 * optsMgr.currentOptions.nodeTextScale);
+    if (nodePixiObjects) {
+        for (const obj of nodePixiObjects) {
+            obj.nameContainer.scale = NodePixiObject.NAME_SCALE;
+            obj.tierSprite.scale = NodePixiObject.TIER_SCALE;
+        }
+        updateAllNodeGraphics();
+    }
+}
+
 //Create the Pixi Application
 /**
  * @type {PIXI.Application}
@@ -446,18 +474,6 @@ function positionWatchstones() {
         masterButton.scale.set(btnScale*mapScaleFactor);
     }
 }
-/**
- * Updates the visibility of all watchstones according to current options.
- */
-function updateWatchstoneVisibility() {
-    if (watchstoneButtons) {
-        for(let i=0; i<watchstoneButtons.length; i++) {
-            watchstoneButtons[i].visible = options.Watchstones;
-        }
-        masterButton.visible = options.MasterWatchstone;
-    }
-}
-
 
 /**
  * @returns {number} Factor by which to multiply node positions from the data file when drawing
@@ -549,7 +565,7 @@ class NodePixiObject {
         this.circleSprite.interactive = true;
         this.circleSprite.buttonMode = true;
 
-        this.setupHover(options.nodeHover);
+        this.setupHover(optsMgr.currentOptions.nodeHover);
 
         this.circleSprite.pointertap = ()=>this.onSelect();
         // this.circleSprite = circleSprite;
@@ -613,7 +629,7 @@ class NodePixiObject {
      * "Sums" the effects of all conditions on the node.
      */
     updateNodeGraphics() {
-        let lightFocused =  options.nodeHover && this.isHovered
+        let lightFocused =  optsMgr.currentOptions.nodeHover && this.isHovered
                             || this.isSearchMatch
                             || this.isSelected;
         // Actual logic shown here. Is made more effecient in actual code.
@@ -624,7 +640,7 @@ class NodePixiObject {
         // let shadowEnabled = lightFocused;
         
         // Draw shadow
-        if (options.nodeHover) {
+        if (optsMgr.currentOptions.nodeHover) {
             if (this.isHovered && this.container.filters.length == 0)
                 this.container.filters.push(new PIXI.filters.DropShadowFilter());
             // Remove shadow
@@ -655,8 +671,8 @@ class NodePixiObject {
                 this.nameContainer.addChildAt(this.nameBg(), 0);
 
         } else {
-            this.nameContainer.visible = options.drawNames;
-            this.tierSprite.visible = options.drawTiers;
+            this.nameContainer.visible = optsMgr.currentOptions.drawNames;
+            this.tierSprite.visible = optsMgr.currentOptions.drawTiers;
 
             // Send to normal layer
             this.container.parentGroup = unfocusedNodesContainer;
@@ -1132,7 +1148,8 @@ function preloadStaticGraphics() {
         //Add the constructed Node object to the global list.
         nodePixiObjects.push(new NodePixiObject(nameSprite, data));        
     }
-    
+    updateNodeSize();
+    updateNodesTextScale();
     //===========
     // FUNCTIONS
     //===========
@@ -1307,7 +1324,7 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
         //if node exists at this tier
         if (tieredNodeData.tier > 0) {
             //Draw Connecting Lines between nodes (PIXI.Graphics)
-            if (options.drawLines) {
+            if (optsMgr.currentOptions.drawLines) {
                 for (let i=0; i<tieredNodeData.atlasNodeKeys.length; i++) {
                     let adjNodeID = tieredNodeData.atlasNodeKeys[i];
                     let adjNodeData = getNodeByID(adjNodeID);
@@ -1335,7 +1352,7 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
 
             //Draw Nodes on 'regionNodesGraph'
             let nodePixiObj = nodePixiObjects[nodeID];
-            if (options.drawNodes && nodePixiObj) {
+            if (optsMgr.currentOptions.drawNodes && nodePixiObj) {
                 let nodeContainer = nodePixiObj.container;
                 nodeContainer.position.set(tieredNodeData.x, tieredNodeData.y)
                 nodeContainer.scale = NodePixiObject.CONTAINER_SCALE;
@@ -1347,7 +1364,7 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
                 }
 
                 //Add node tier text sprites to 'nodeContainer'
-                if (options.drawTiers || options.nodeHover) {
+                if (optsMgr.currentOptions.drawTiers || optsMgr.currentOptions.nodeHover) {
                     let tierSprite = nodePixiObj.tierSprite;
                     tierSprite.texture = nodeTierTextures[tieredNodeData.tier-1];
                 }
@@ -1419,11 +1436,37 @@ function getTieredNodeData(node) {
  * @type {function}
  */
 var updateAllNodeGraphics = debounce(() => {
-    for (const obj of nodePixiObjects) {
-        obj.updateNodeGraphics();
+    if (nodePixiObjects) {
+        for (const obj of nodePixiObjects) {
+            obj.updateNodeGraphics();
+        }
+        renderStageThrottled();
     }
-    renderStageThrottled();
 }, 50)
+function updateNodesVisibility() {
+    //lines, nodes, hover, names, tiers, scaleFactor
+    console.time("updateNodesVisibility");
+    if (nodePixiObjects) {
+        for (let i = 0; i < nodePixiObjects.length; i++) {
+            let nodePixiObj = nodePixiObjects[i];
+            nodePixiObj.container.visible = optsMgr.currentOptions.drawNodes;
+            nodePixiObj.tierSprite.visible = optsMgr.currentOptions.drawTiers;
+            nodePixiObj.nameContainer.visible = optsMgr.currentOptions.drawNames;
+        }
+    }    
+    console.timeEnd("updateNodesVisibility");
+}
+/**
+ * Updates the visibility of all watchstones according to current options.
+ */
+function updateWatchstoneVisibility() {
+    if (watchstoneButtons) {
+        for(let i=0; i<watchstoneButtons.length; i++) {
+            watchstoneButtons[i].visible = optsMgr.currentOptions.Watchstones;
+        }
+        masterButton.visible = optsMgr.currentOptions.MasterWatchstone;
+    }
+}
 
 //Stores the position of the center of the PIXI canvas, not the window.
 /**
@@ -1459,272 +1502,14 @@ function onWindowResize() {
     // placeAtlasTierButtonsCircle();
     resizePixiDisplayObjects();
     // Update NodePixiObjs
-    NodePixiObject.CONTAINER_SCALE = symPoint(options.nodeScaleFactor * mapScaleFactor),
+    NodePixiObject.CONTAINER_SCALE = symPoint(optsMgr.currentOptions.nodeScaleFactor * mapScaleFactor),
 
     positionWatchstones();
     drawAllAtlasRegions();
     updateAllNodeGraphics();
 }
 
-//==============
-// User Options
-//==============
-class HTMLElement{
-    constructor(tag, id="", className="", options="", innerHTML="") {
-        this.tag = tag;
-        this.id = id;
-        this.className = className;
-        this.options = options;
-        this.innerHTML = innerHTML;
-    }
-    asString() {
-        let tagString = "<"+this.tag;
-        if (this.id) {
-            tagString += " id="+this.id;
-        }
-        if (this.className) {
-            tagString += " class="+this.className;
-        }
-        if (this.options) {
-            tagString += " "+this.options;
-        }
-        tagString += ">"+this.innerHTML+"</"+this.tag+">";
-        return tagString;
-    }
-}
-const DISPLAY_OPTIONS_STORAGE_KEY = 'displayOptions';
-const storeDisplayOptions = debounce(
-    () => { window.localStorage.setItem(DISPLAY_OPTIONS_STORAGE_KEY, JSON.stringify(options)); },
-    1000
-);
-class Option {
-    constructor(name, key) {
-        this.name = name;
-        this.key = key;
-    }
-}
 
-const DEFAULT_OPTIONS = {
-    drawLines: true,
-    drawNodes: true,
-    nodeHover: true,
-    drawNames: true,
-    drawTiers: true,
-    Watchstones: true,
-    MasterWatchstone: true,
-    nodeScaleFactor: 1,
-    nodeTextScale: 1
-};
-/**
- * An array of all possible options, mapping their keys to their display names
- * @type {Array<Option>}
- */
-const DEFAULT_OPTIONS_LIST = [
-    new Option("Show Lines", "drawLines"),
-    new Option("Show Nodes", "drawNodes"),
-    new Option("Show Names", "drawNames"),
-    new Option("Show Tiers", "drawTiers"),
-    new Option("Hover Effect", "nodeHover"),
-    new Option("Show Watchstones", "Watchstones"),
-    new Option("Show 'Cycle' Button", "MasterWatchstone"),
-    new Option("Node Size", "nodeScaleFactor"),
-    new Option("Node Text Size", "nodeTextScale")
-];
-
-function updateNodesVisibility() {
-    //lines, nodes, hover, names, tiers, scaleFactor
-    console.time("updateNodesVisibility");
-    if (nodePixiObjects) {
-        for (let i = 0; i < nodePixiObjects.length; i++) {
-            let nodePixiObj = nodePixiObjects[i];
-            nodePixiObj.container.visible = options.drawNodes;
-            nodePixiObj.tierSprite.visible = options.drawTiers;
-            nodePixiObj.nameContainer.visible = options.drawNames;
-        }
-    }    
-    console.timeEnd("updateNodesVisibility");
-}
-/**
- * An object containing functions that should be executed whenever certain 
- * options are changed, mapped by option key.
- */
-const OPTIONS_CHANGED_HANDLERS = {
-    // drawLines: updateNodesVisibility,
-    drawNodes: updateNodesVisibility,
-    nodeHover: updateNodesVisibility,
-    drawNames: updateNodesVisibility,
-    drawTiers: updateNodesVisibility,
-    Watchstones: updateWatchstoneVisibility,
-    MasterWatchstone: updateWatchstoneVisibility,
-    nodeHover: () => {
-        if (nodePixiObjects) {
-            let hoverEnabled = options.nodeHover;
-            for (let i = 0; i < nodePixiObjects.length; i++) {
-                nodePixiObjects[i].setupHover(hoverEnabled);
-            }
-        }
-    },
-    nodeScaleFactor: () => {
-        NodePixiObject.CONTAINER_SCALE = symPoint(options.nodeScaleFactor * mapScaleFactor);
-    },
-    nodeTextScale: () => {
-        NodePixiObject.NAME_SCALE = symPoint(2/3 * options.nodeTextScale);
-        NodePixiObject.TIER_SCALE = symPoint(0.15 * options.nodeTextScale);
-        if (nodePixiObjects) {
-            for (const obj of nodePixiObjects) {
-                obj.nameContainer.scale = NodePixiObject.NAME_SCALE;
-                obj.tierSprite.scale = NodePixiObject.TIER_SCALE;
-            }
-            updateAllNodeGraphics();
-        }
-    }
-}
-
-/**
- * Option setter function, to be used when a user changes an options from the
- * options menu.
- * 
- * @param {string} optionKey 
- * @param {} value 
- */
-function setOption(optionKey, value) {
-    options[optionKey] = value;
-    if (OPTIONS_CHANGED_HANDLERS[optionKey])
-        OPTIONS_CHANGED_HANDLERS[optionKey]();
-    storeDisplayOptions();
-    drawAllAtlasRegions();
-    // console.log(optionsElements[optionKey]);
-    let input = optionsElements[optionKey].input;
-    if (input.type==="checkbox") {
-        input.checked = value;
-    } else if (input.type==="text") {
-        input.value = value;
-    }
-}
-/**
- * Resets the specified option to its defualt value. Should be used when a 
- * user resets an options from the options menu.
- * 
- * @param {optionKey}
- */
-function resetOption(optionKey) {
-    setOption(optionKey, DEFAULT_OPTIONS[optionKey]);
-}
-/**
- * Calls {@link resetOption} on every option.
- */
-function resetAllOptions() {
-    for (const key of Object.keys(options)) {
-        resetOption(key);
-    }
-}
-
-/**
- * Loads the display options from the client's LocalStorage, falling back to 
- * DEFAULT_OPTIONS if necessary.
- * 
- * (Re)Stores all options once loaded.
- * 
- * Calls all OPTIONS_CHANGED_HANDLES once loaded.  
- */
-function loadDisplayOptions() {
-    let stored = JSON.parse(window.localStorage.getItem(DISPLAY_OPTIONS_STORAGE_KEY));
-    if (stored) {
-        options = {};
-        for (let key in DEFAULT_OPTIONS) {
-            // If possible options does not exist in stored options, load from default
-            // if (!(key in stored)) {
-            if (key in stored) {
-                options[key] = stored[key];
-            } else {
-                options[key] = DEFAULT_OPTIONS[key];
-            }
-  
-            // }
-        }
-        storeDisplayOptions();
-    } else {
-        options = DEFAULT_OPTIONS;
-        storeDisplayOptions();
-    }
-    for (let key in options) {
-        if (OPTIONS_CHANGED_HANDLERS[key])
-            OPTIONS_CHANGED_HANDLERS[key]();
-    }
-}
-
-/**
- * Builds the DOM element for the options menu
- */
-function createOptionsMenu() {
-    const toggleOn = 
-        '<label class="switch">'
-        +'  <input type="checkbox" checked>'
-        +'  <span class="slider round"></span>'
-        +'</label>';
-    const toggleOff = 
-        '<label class="switch">'
-        +'  <input type="checkbox">'
-        +'  <span class="slider round"></span>'
-        +'</label>';
-    
-    optionsElements = {};
-
-    const optionsList = document.createElement('ul');
-    optionsList.id = "options_list";
-    // Generate dropdown elements for each option
-    for (let opt of DEFAULT_OPTIONS_LIST) {
-        const key = opt.key;
-        const elem = options[opt.key];
-        let div = document.createElement('div');
-        let lstElement = new HTMLElement('li');
-        lstElement.innerHTML = "<p>"+opt.name+"</p>\n";
-        if (typeof(elem)=="boolean") {
-            if (elem) {
-                lstElement.innerHTML += toggleOn;
-            } else {
-                lstElement.innerHTML += toggleOff;
-            }
-        } else {
-            lstElement.innerHTML += '<input type="text" value="' + elem + '">';
-        }
-        div.innerHTML = lstElement.asString();
-        
-        let domElement = div.firstChild;
-        let input = domElement.getElementsByTagName('input')[0];
-        if (input.type==="checkbox") {
-            domElement.addEventListener('click', (e)=>{
-                // input.checked = !input.checked;
-                e.stopPropagation();
-                if (e.detail > 0){
-                    setOption(key, !options[key]);
-                } else { //This somehow fixes a visual bug that caused checkbox display to be inverted when you click the slider. IDK - JP
-                    input.checked = !input.checked;
-                }
-                
-            });
-        } else if (input.type==='text') {
-            domElement.addEventListener('input', (e)=>{
-                if (e.target.value) {
-                    setOption(key, e.target.value);
-                }
-            });
-        }
-        optionsElements[key] = {
-            element: domElement,
-            input: input
-        };
-        optionsList.appendChild(domElement);
-    }
-
-    // Add "Reset All" Button
-    let resetAll = document.createElement('li');
-    resetAll.innerHTML = `<div id="reset_options_btn" class="button expand">Reset All</button>`;
-    resetAll.firstChild.addEventListener('click', resetAllOptions);
-    optionsList.appendChild(resetAll);
-
-    return optionsList;
-}
 
 /**
  * Add the constructed menu to the DOM.
@@ -1759,7 +1544,7 @@ function addAllToDOM() {
     addDropdownToDOM(
         document.getElementById("options_button"),
         document.getElementById("options_content"),
-        createOptionsMenu()
+        createOptionsMenu(optsMgr)
     );
 }
 
@@ -1773,8 +1558,8 @@ var renderStageThrottled = () => requestAnimationFrame(renderStage);
 //     MIN_FRAME_TIME
 // );
 
-const REGION_TIER_STORAGE_KEY = 'regionTiers';
-const storeRegionTiers = debounce(
+var REGION_TIER_STORAGE_KEY = 'regionTiers';
+var storeRegionTiers = debounce(
     () => { window.localStorage.setItem(REGION_TIER_STORAGE_KEY, JSON.stringify(regionTiers)); },
     1000
 );

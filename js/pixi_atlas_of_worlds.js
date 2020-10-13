@@ -36,7 +36,13 @@ import {
 //  Globals
 //===========
 //Render Toggles
+/**
+ * @type {Array<any>}
+ */
 var options;
+/**
+ * @type {Array<HTMLElement>}
+ */
 var optionsElements;
 
 //The minimum allowable time between stage renders. (Calls made while the function is on cooldown are ignored.)
@@ -69,8 +75,17 @@ var atlasSprite = new DynamicSprite(
     () => new PIXI.Point((app.screen.width-pixiAtlasW)/2, (app.screen.height-pixiAtlasH)/2)
 );
 //Self explanatory.
+/**
+ * @type {PIXI.Container}
+ */
 let linesContainer;
+/**
+ * @type {PIXI.Container}
+ */
 let nodesContainer;
+/**
+ * @type {PIXI.Container}
+ */
 let watchstonesContainer;
 
 //Dimensions of the Atlas image (the largest sprite, which all other sprites are children of)
@@ -83,6 +98,9 @@ let pixiScreenH = 4096;
 // this should represent the actual visual size of the Atlas image.) (updates on resize and on init)
 let pixiAtlasH = 2304;
 let pixiAtlasW = 4096;
+/**
+ * @type {HTMLElement}
+ */
 var CONTAINER;
 // Center position for pixi objects that are children of atlasSprite (has x & y)
 const atlasScreenMid = {};
@@ -95,7 +113,18 @@ window.addEventListener('DOMContentLoaded', ()=>{
     addAllToDOM();
 });
 //Create the Pixi Application
-var app, stage, loader;
+/**
+ * @type {PIXI.Application}
+ */
+var app;
+/**
+ * @type {PIXI.Container}
+ */
+var stage;
+/**
+ * @type {PIXI.Loader}
+ */
+var loader;
 console.log("Creating PIXI Atlas app.");
 // setTimeout(()=> {
     try {
@@ -209,9 +238,11 @@ function setup(loader, resources) {
     //60fps (more?) Animation Ticker (is this fps capped?)
     // app.ticker.add(delta => animationLoop(delta));
 }
+/**
+ * Add the canvas (that Pixi created) to the HTML document
+ */
 function createPixiView() {
     console.timeLog("load");
-    //Add the canvas that Pixi automatically created for you to the HTML document
     CONTAINER = document.getElementById("atlas_of_worlds")
     CONTAINER.appendChild(app.view);
     CONTAINER.lastChild.className = "pixi_atlas_of_worlds";
@@ -247,7 +278,12 @@ function getAtlasContainersPosition() {
 }
 
 var spritesheetLoaded = false
+/**
+ * The Spritesheet containing all map Node images.
+ * @type {PIXI.Spritesheet}
+ */
 var sheet;
+
 function initPixiDisplayObjects(resources) {
     //Create main Atlas sprite
     atlasSprite.texture = resources["img/Atlas47kb.webp"].texture;
@@ -262,7 +298,14 @@ function initPixiDisplayObjects(resources) {
         initAtlasRegion(i);
     }
 }
+
+/**
+ * @type {PIXI.display.Group}
+ */
 var unfocusedNodesContainer;
+/**
+ * @type {PIXI.display.Group}
+ */
 var focusedNodesContainer;
 function initPixiContainers() {
     //Create main containers for Lines, Nodes, and Watchstones
@@ -372,7 +415,9 @@ function initWatchstones() {
     positionWatchstones();
     updateWatchstoneVisibility();
 }
-
+/**
+ * Positions all watchstone buttons (including master) on the Atlas.
+ */
 function positionWatchstones() {
     const watchstoneLocations = {
         "InsideBottomLeft" : { "x": 434, "y": 463 },
@@ -401,7 +446,9 @@ function positionWatchstones() {
         masterButton.scale.set(btnScale*mapScaleFactor);
     }
 }
-
+/**
+ * Updates the visibility of all watchstones according to current options.
+ */
 function updateWatchstoneVisibility() {
     if (watchstoneButtons) {
         for(let i=0; i<watchstoneButtons.length; i++) {
@@ -411,33 +458,47 @@ function updateWatchstoneVisibility() {
     }
 }
 
-//Factor by which to multiply node positions from the data file when drawing
+
+/**
+ * @returns {number} Factor by which to multiply node positions from the data file when drawing
+ */
 function getMapScaleFactor() {
     return mapScaleFactor;
 }
 var mapScaleFactor;// = pixiAtlasW/maxW*4;//4.05;
 window.addEventListener('DOMContentLoaded', loadRegionTiers);
-var regionTiers = []; //Tiers of each region (array index = regionID)
-var regionNodes = [[], [], [], [], [], [], [], []]; //lists of nodes(IDs) in each region
-var regions = [{}, {}, {}, {}, {}, {}, {}, {}]
-class Region {
-    constructor(tier=0, nodes=[], name="") {
-        this.nodes = nodes;
-        this.tier = tier;
-        this.name = name;
-    }
-}
-for (let i=0; i < NUM_REGIONS; i++) {
-    regions.push(new Region())
-}
+/**
+ * Tiers of each region (array index = regionID)
+ * @type {Array<number>}
+ */
+var regionTiers = [];
+/**
+ * Array of lists of nodes(IDs) in each region
+ * @type {Array<Array<number>>}
+ */
+var regionNodes = [[], [], [], [], [], [], [], []];
+// var regions = [{}, {}, {}, {}, {}, {}, {}, {}]
+// class Region {
+//     constructor(tier=0, nodes=[], name="") {
+//         this.nodes = nodes;
+//         this.tier = tier;
+//         this.name = name;
+//     }
+// }
+// for (let i=0; i < NUM_REGIONS; i++) {
+//     regions.push(new Region())
+// }
 
+/**
+ * @type {Array<PIXI.RenderTexture>}
+ */
 var nodeTierTextures;
 /**
  * @type {Array<NodePixiObject>}
  */
 var nodePixiObjects;
 var nodeInfoSidebar;
-document.addEventListener('DOMContentLoaded', ()=>nodeInfoSidebar={
+document.addEventListener('DOMContentLoaded', () => nodeInfoSidebar = {
     container: document.getElementById("node_info"),
     name: document.getElementById("node_name"),
     poedb: document.getElementById("node_poedb"),
@@ -466,6 +527,11 @@ var nodeRadius = 30/4;
 var lineThickness = 2.5/4;
 const lineColor = 0x333333;//ffffff;
 class NodePixiObject {
+    /**
+     * Create a NodePixiObject
+     * @param {PIXI.Text} nameSprite  
+     * @param {Object} data a node data object
+     */
     constructor(nameSprite, data) {
         this.container = new PIXI.Container();
         this.container.parentGroup = unfocusedNodesContainer;
@@ -503,12 +569,22 @@ class NodePixiObject {
         this.container.addChild(this.tierSprite);
         this.tierSprite.anchor.set(0.5,0);
 
+        // init from static values
+        this.nameContainer.y = this.constructor.NAME_Y;
+        this.nameContainer.scale = this.constructor.NAME_SCALE;
+        this.tierSprite.scale = this.constructor.TIER_SCALE;
+        this.tierSprite.y = this.constructor.TIER_Y;
+        this.imgSprite.scale = data.IsUniqueMapArea ? this.constructor.IMG_SCALE_UNIQUE : this.constructor.IMG_SCALE;
+        this.backgroundContainer.scale = this.constructor.BACKGROUND_SCALE;
+
         this.data = data;
 
         this.isSearchMatch = false;;
         this.isHovered = false;
         this.isSelected = false;
     }
+
+    // TODO - Implement or remove.
     /**
      * Called on each NodePixiObject during each search. Updates node graphics based on whether node is a match.
      * 
@@ -548,11 +624,13 @@ class NodePixiObject {
         // let shadowEnabled = lightFocused;
         
         // Draw shadow
-        if (this.isHovered && this.container.filters.length == 0)
-            this.container.filters.push(new PIXI.filters.DropShadowFilter());
-        // Remove shadow
-        else if (this.container.filters.length > 0)
+        if (options.nodeHover) {
+            if (this.isHovered && this.container.filters.length == 0)
+                this.container.filters.push(new PIXI.filters.DropShadowFilter());
+            // Remove shadow
+            else if (this.container.filters.length > 0)
                 this.container.filters.pop(0);
+        }
 
         // Set scale 
         const scale = this.constructor.CONTAINER_SCALE.x
@@ -600,6 +678,10 @@ class NodePixiObject {
     }
 
     static hoverScaleMult = 1.325;
+    /**
+     * Enable/Disable node hover effects.
+     * @param {boolean} boolEnabled 
+     */
     setupHover(boolEnabled) {
         if (boolEnabled) {
             
@@ -642,14 +724,6 @@ class NodePixiObject {
         // this.container.scale.y /= scaleMult;
 
         this.updateNodeGraphics();
-
-        // TODO Make alternative to this for search scale clearing. Atm this causes a bug...
-        // if you hover over a searched node, then Backspace out the query, then stop hovering
-        // (hover reduces scale from the Base scale instead of hoverScale (because actual
-        // scale has been set to base scale by the below operation vvv))
-        // if (forceBaseScale) {
-        //     this.container.scale.copyFrom(this.constructor.CONTAINER_SCALE);
-        // }
     }
 
     /**
@@ -663,6 +737,10 @@ class NodePixiObject {
      * @type {function}
      */
     static removePrevCloseHandler = null;
+    /**
+     * Select this node, remove selection of the previously selected node,
+     * then render the stage (throttled)
+     */
     onSelect() {
         if (this.constructor.prevSelected) {
             this.constructor.prevSelected.isSelected = false;
@@ -691,11 +769,8 @@ class NodePixiObject {
         }
         sidebarCloseButton.addEventListener('click', sidebarCloseClickHandler);
         this.constructor.removePrevCloseHandler = () => sidebarCloseButton.removeEventListener("click", sidebarCloseClickHandler);
-        // console.log(this.data);
-        // console.log(this.data.poeDBLink);
-        // Show info sidebar if it is hidden
-        sidebar.container.className = sidebar.container.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
         
+        // Update Node Info Sidebar Content
         sidebar.name.innerText = this.data.Name;
         let nodeExternalLinks = getNodeExternalLinks(this.data);
         sidebar.poedb.href = nodeExternalLinks.poeDBLink;
@@ -717,9 +792,17 @@ class NodePixiObject {
         }
         sidebar.connections.innerText = connectionsText;
 
+        // Show info sidebar if it is hidden
+        sidebar.container.className = sidebar.container.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
+
         this.updateNodeGraphics();
         renderStageThrottled();
     }
+    /**
+     * Get the texture of this node at the specified tier.
+     * @param {number} [tier=0]
+     * @returns {PIXI.Texture}
+     */
     getSpriteImg(tier=0) {
         let strTier;
         if (this.data.IsUniqueMapArea) {
@@ -737,6 +820,10 @@ class NodePixiObject {
         // console.log(out);
         return sheet.textures[out];
     }
+    /**
+     * Get the base64 image string for this node at the specified tier.
+     * @param {number} tier 
+     */
     getImgBase64(tier=0) {
         return app.renderer.extract.base64(
             PIXI.Sprite.from(this.getSpriteImg(tier)),
@@ -764,7 +851,10 @@ class NodePixiObject {
     // NodePixiObject.NAME_Y = 0 - (nodeRadius + nodeCenterOffset/4),
     // NodePixiObject.TIER_Y = nodeRadius + nodeCenterOffset/4;
 
-    static TEX_SELECTED;
+    /**
+     * The Sprite that shows when a Node is selected. (Max 1)
+     * @type {PIXI.Sprite}
+     */
     static SPRITE_SELECTED;
 }
 (function() {
@@ -784,8 +874,6 @@ class NodePixiObject {
     graphSelected.position.set(textureSize/2, textureSize/2);
 
     app.renderer.render(graphSelected, texSelected);
-
-    NodePixiObject.TEX_SELECTED = texSelected;
     
     // TODO - Choose outline color based on Theme accent color.
     graphSelected = new PIXI.Graphics()
@@ -806,13 +894,22 @@ class NodePixiObject {
     NodePixiObject.SPRITE_SELECTED = spriteSelected;
 })();
 
+/**
+ * Generates a symmetrical (x == y) PIXI.Point from the provided number.
+ * @param {number} num 
+ * @returns {PIXI.Point}
+ */
 function symPoint(num) {
     return new PIXI.Point(num, num);
 };
 // NodePixiObject.searchMatchTexture = testTexture;
 
 class PoECDN {
-
+    /**
+     * @param {number} defaultScale 
+     * @param {number} defaultLeague 
+     * @param {number} defaultTier 
+     */
     constructor (defaultScale, defaultLeague, defaultTier) {
         this.defaultScale = defaultScale;
         this.defaultLeague = defaultLeague;
@@ -822,6 +919,15 @@ class PoECDN {
     
     }
 
+    /**
+     * 
+     * @param {Object} nodeData 
+     * @param {number} [scale=0] 
+     * @param {number} [league=0] 
+     * @param {number} [tier=0] 
+     * 
+     * @returns {string}
+     */
     buildNodeImageLink(nodeData, scale=0, league=0, tier=0) {
         const cdnScale = "scale=";
         const cdnLeague = "mn="
@@ -843,6 +949,11 @@ class PoECDN {
         return out;
     }
 
+    /**
+     * 
+     * @param {string} link 
+     * @returns {string} 
+     */
     keyFromLink(link) {
         let out = link.includes(this.baseNormalLink) ? link.replace(this.baseNormalLink, '') : link.replace(this.baseUniqueLink, '');
         return out.replace(/\?scale.*/g, "");
@@ -850,7 +961,15 @@ class PoECDN {
 }
 
 var poecdnHelper = new PoECDN(0, 0, 0);
-
+/**
+ * Convert an exact Map Node display name (without "map") (with spaces) to a
+ * PoEDB link node-name token
+ * 
+ * @param {string} strName 
+ * @param {boolean} isUnique 
+ * 
+ * @returns {string} a PoEDB link node-name token
+ */
 function toPoEDBName(strName, isUnique=false) {
     if (isUnique) {
         strName = (strName === "The Hall of Grandmasters") ? "Hall of Grandmasters" : strName;
@@ -860,6 +979,10 @@ function toPoEDBName(strName, isUnique=false) {
     }
     return strName;
 }
+/**
+ * 
+ * @param {Object} node a Node Data object
+ */
 function getNodeExternalLinks(node) {
     // const regionCode = 'us'
     let poeDBLink, poeWikiLink;
@@ -873,7 +996,16 @@ function getNodeExternalLinks(node) {
     
     return { poeDBLink, poeWikiLink };
 }
-//Request map data, parse it, and draw all Atlas regions for the 1st time.
+
+
+/**
+ * Request map data files, parse them, 
+ * and draw all Atlas regions for the 1st time.
+ * 
+ * @param {PIXI.Loader} loader 
+ * @param {} resources 
+ * @param {PIXI.Sprite} atlasSprite 
+ */
 function loadMapsData(loader, resources, atlasSprite) {
     let nodeImagesDict;
     let nodeImagesDictResponseReceived = false;
@@ -952,6 +1084,9 @@ function loadMapsData(loader, resources, atlasSprite) {
     }
 }
 
+/**
+ * Preload static graphics and create all nodePixiObjects.
+ */
 function preloadStaticGraphics() {
     //Init main container object
     nodePixiObjects = [];
@@ -1109,6 +1244,10 @@ var perfTimers = {
     allRegionsUpdate: new Timer("Update All AtlasRegions"),
     regionsRender: new Timer("Render AtlasRegions")
 }
+/**
+ * Calls drawAtlasRegion on all regions.
+ * @see {drawAtlasRegion} for more information.
+ */
 function drawAllAtlasRegions() {
     perfTimers.allRegionsUpdate.start();
     for(let i=0; i<NUM_REGIONS; i++) {
@@ -1125,7 +1264,20 @@ function initAtlasRegion(regionID) {
     linesContainer.addChildAt(new PIXI.Graphics(), regionID);
     nodesContainer.addChildAt(new PIXI.Container(), regionID);
 }
-function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=true) {
+/**
+ * Builds the graphics for the specified atlas region based that region's 
+ * current tier (watchstone level).
+ * 
+ * Manages lines between the nodes and some elements of the nodes themselves 
+ * 
+ * Will redraw adjacent regions in order to update the connecting lines 
+ * if necessary (unless disabled). 
+ * 
+ * @param {number} regionID 
+ * @param {boolean} redrawAdjacent 
+ * @param {boolean} renderOnComplete 
+ */
+function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) {
     //Remove previous nodes and lines for this region.
     // Clear the lines graphics
     let regionLinesGraph = linesContainer.getChildAt(regionID).clear();
@@ -1171,7 +1323,7 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
                         .lineTo(endX, endY);
 
                     //Redraw adjacent region if not already done.
-                    if (boolRedrawAdjacent) {
+                    if (redrawAdjacent) {
                         let adjNodeRegionKey = adjNodeData.AtlasRegionsKey;
                         if (regionsRedrawn[adjNodeRegionKey] === false) {
                             regionsRedrawn[adjNodeRegionKey] = true;
@@ -1189,26 +1341,18 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
                 nodeContainer.scale = NodePixiObject.CONTAINER_SCALE;
                 // Circle Sprite
                 // nodePixiObj.circleSprite.scale.set(mapScaleFactor, mapScaleFactor);
-                //Add node label text sprites to 'nodeContainer' 
-                if (options.drawNames || options.nodeHover) {
-                    nodePixiObj.nameContainer.y = NodePixiObject.NAME_Y;
-                    nodePixiObj.nameContainer.scale = NodePixiObject.NAME_SCALE;
-                }
 
                 if (true && spritesheetLoaded) {
                     nodePixiObj.imgSprite.texture = nodePixiObj.getSpriteImg(tieredNodeData.tier);
-                    nodePixiObj.imgSprite.scale = cNode.IsUniqueMapArea ? NodePixiObject.IMG_SCALE_UNIQUE: NodePixiObject.IMG_SCALE;
                 }
 
                 //Add node tier text sprites to 'nodeContainer'
                 if (options.drawTiers || options.nodeHover) {
                     let tierSprite = nodePixiObj.tierSprite;
                     tierSprite.texture = nodeTierTextures[tieredNodeData.tier-1];
-                    tierSprite.scale = NodePixiObject.TIER_SCALE;
-                    tierSprite.y = NodePixiObject.TIER_Y;
                 }
                 
-                nodePixiObj.backgroundContainer.scale = NodePixiObject.BACKGROUND_SCALE;
+                // nodePixiObj.backgroundContainer.scale = NodePixiObject.BACKGROUND_SCALE;
 
                 regionNodesContainer.addChild(nodeContainer);
             }
@@ -1223,9 +1367,20 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
 
 // Returns an array of length 3 based on the supplied region tier.
 // Format: [node_x_pos, node_y_pos, [list_of_neighbor_node_ids]]
+/**
+ * Gets the node data object associated with the specified nodeID
+ * @param {number} nodeID 
+ * @returns {object} a node data object
+ */
 function getNodeByID(nodeID) {
     return nodeData[nodeID];
 }
+/**
+ * Gets the current tier (watchstone level) of the region to which 
+ * the specfied node belongs.
+ * @param {object} nodeObject a node data object 
+ * @returns {number} a region tier
+ */
 function getNodeRegionTier(nodeObject) {
     return regionTiers[nodeObject.AtlasRegionsKey];
 }
@@ -1237,6 +1392,16 @@ class TieredNodeData {
         this.y = y;
     }
 }
+
+/**
+ * Gets the tier-dependent data of the specified node, with the
+ * tier of the node determined by current watchstone level of the
+ * region to which the node belongs. (Gets correct tier for current
+ * Atlas state)
+ * 
+ * @param {object} node a node data object
+ * @returns {TieredNodeData}
+ */
 function getTieredNodeData(node) {
     let tData = node.TieredData[regionTiers[node.AtlasRegionsKey]];
     return new TieredNodeData(
@@ -1247,7 +1412,12 @@ function getTieredNodeData(node) {
     );
 }
 
-
+/**
+ * A debounced function (50ms) that calls updateNodeGraphics on
+ * all nodePixiObjects, and then renders the stage (throttled)
+ * 
+ * @type {function}
+ */
 var updateAllNodeGraphics = debounce(() => {
     for (const obj of nodePixiObjects) {
         obj.updateNodeGraphics();
@@ -1256,6 +1426,9 @@ var updateAllNodeGraphics = debounce(() => {
 }, 50)
 
 //Stores the position of the center of the PIXI canvas, not the window.
+/**
+ * Updates values that are dependent on the window size.
+ */
 function onWindowResize() {
     // let innerHeight = CONTAINER.clientHeight;
     // let innerWidth = CONTAINER.clientWidth;
@@ -1340,6 +1513,10 @@ const DEFAULT_OPTIONS = {
     nodeScaleFactor: 1,
     nodeTextScale: 1
 };
+/**
+ * An array of all possible options, mapping their keys to their display names
+ * @type {Array<Option>}
+ */
 const DEFAULT_OPTIONS_LIST = [
     new Option("Show Lines", "drawLines"),
     new Option("Show Nodes", "drawNodes"),
@@ -1365,6 +1542,10 @@ function updateNodesVisibility() {
     }    
     console.timeEnd("updateNodesVisibility");
 }
+/**
+ * An object containing functions that should be executed whenever certain 
+ * options are changed, mapped by option key.
+ */
 const OPTIONS_CHANGED_HANDLERS = {
     // drawLines: updateNodesVisibility,
     drawNodes: updateNodesVisibility,
@@ -1387,9 +1568,23 @@ const OPTIONS_CHANGED_HANDLERS = {
     nodeTextScale: () => {
         NodePixiObject.NAME_SCALE = symPoint(2/3 * options.nodeTextScale);
         NodePixiObject.TIER_SCALE = symPoint(0.15 * options.nodeTextScale);
+        if (nodePixiObjects) {
+            for (const obj of nodePixiObjects) {
+                obj.nameContainer.scale = NodePixiObject.NAME_SCALE;
+                obj.tierSprite.scale = NodePixiObject.TIER_SCALE;
+            }
+            updateAllNodeGraphics();
+        }
     }
 }
 
+/**
+ * Option setter function, to be used when a user changes an options from the
+ * options menu.
+ * 
+ * @param {string} optionKey 
+ * @param {} value 
+ */
 function setOption(optionKey, value) {
     options[optionKey] = value;
     if (OPTIONS_CHANGED_HANDLERS[optionKey])
@@ -1404,16 +1599,32 @@ function setOption(optionKey, value) {
         input.value = value;
     }
 }
-
+/**
+ * Resets the specified option to its defualt value. Should be used when a 
+ * user resets an options from the options menu.
+ * 
+ * @param {optionKey}
+ */
 function resetOption(optionKey) {
     setOption(optionKey, DEFAULT_OPTIONS[optionKey]);
 }
+/**
+ * Calls {@link resetOption} on every option.
+ */
 function resetAllOptions() {
     for (const key of Object.keys(options)) {
         resetOption(key);
     }
 }
 
+/**
+ * Loads the display options from the client's LocalStorage, falling back to 
+ * DEFAULT_OPTIONS if necessary.
+ * 
+ * (Re)Stores all options once loaded.
+ * 
+ * Calls all OPTIONS_CHANGED_HANDLES once loaded.  
+ */
 function loadDisplayOptions() {
     let stored = JSON.parse(window.localStorage.getItem(DISPLAY_OPTIONS_STORAGE_KEY));
     if (stored) {
@@ -1440,6 +1651,9 @@ function loadDisplayOptions() {
     }
 }
 
+/**
+ * Builds the DOM element for the options menu
+ */
 function createOptionsMenu() {
     const toggleOn = 
         '<label class="switch">'
@@ -1510,7 +1724,9 @@ function createOptionsMenu() {
     return optionsList;
 }
 
-// Add the constructed menu to the DOM.
+/**
+ * Add the constructed menu to the DOM.
+ */
 function addDropdownToDOM(button, container, content) {
     if (content) {
         container.appendChild(content);
@@ -1529,6 +1745,9 @@ function addDropdownToDOM(button, container, content) {
         }
     });
 }
+/**
+ * Adds all generated HTML to DOM
+ */
 function addAllToDOM() {
     addDropdownToDOM(
         document.getElementById("help_button"),
@@ -1558,6 +1777,10 @@ const storeRegionTiers = debounce(
     1000
 );
 
+/**
+ * Loads the region tiers from LocalStorage. If no stored values are found, 
+ * defaults to all 0s and stores that to LocalStorage.
+ */
 function loadRegionTiers() {
     let stored = JSON.parse(window.localStorage.getItem(REGION_TIER_STORAGE_KEY));
     if (stored) {

@@ -6,6 +6,13 @@ export {
     executeIfWhenDOMContentLoaded
 };
 
+/**
+ * 
+ * @param {function} func The function to be throttled. 
+ * @param {number} timeInterval The time interval, in miliseconds, in which to apply the trottle.
+ * 
+ * @returns {function} The throttled function.
+ */
 function throttle(func, timeInterval) {
     var lastTime = 0;
     return function () {
@@ -18,6 +25,14 @@ function throttle(func, timeInterval) {
         }
     };
 }
+
+/**
+ * 
+ * @param {function} func The function to be debounced. 
+ * @param {number} delay The time interval, in miliseconds, in which to apply the debounce.
+ * 
+ * @returns {function} The debounced function.
+ */
 function debounce(func, delay) { 
     let debounceTimer 
     return function() { 
@@ -28,6 +43,13 @@ function debounce(func, delay) {
             = setTimeout(() => func.apply(context, args), delay) 
     } 
 }
+/**
+ * Conditionally executes 'execFunc' now (if 'condition' is met) otherwise 
+ * executes 'waitFunc'
+ * @param {function} execFunc 
+ * @param {boolean} condition 
+ * @param {function} waitFunc 
+ */
 function executeOrWait(execFunc, condition, waitFunc) {
     if (condition) {
         execFunc();
@@ -35,6 +57,13 @@ function executeOrWait(execFunc, condition, waitFunc) {
         waitFunc(execFunc);
     }
 }
+/**
+ * If DOM content is loaded, executes the provided function now,
+ * otherwise adds an event listener for 'DOMContentLoaded' to execute the
+ * provided function.
+ * 
+ * @param {function} func 
+ */
 function executeIfWhenDOMContentLoaded(func) {
     executeOrWait(
         func, 

@@ -5,7 +5,8 @@ import {
     nodePixiObjects,
     renderStage,
     renderStageThrottled,
-    getMapScaleFactor 
+    app,
+    NodePixiObject
 } from './pixi_atlas_of_worlds.js';
 
 import {
@@ -15,11 +16,31 @@ import {
 export { initSearch };
 
 var searchElements;;
-const scale = 1.2;
+
+const scale = 1.44;
+
+let lineThickness = 4;
+const searchMatchGraphics = new PIXI.Graphics()
+    .lineStyle(lineThickness, '0xff8888', 1, 0.5, false)
+    .beginFill('0x555555',0)
+    .drawCircle(0, 0, 30);//18/1.5
+    
+const textureSize = 64;
+var searchMatchTexture = PIXI.RenderTexture.create({
+    width: textureSize,
+    height: textureSize,
+    resolution: 6
+});
+searchMatchTexture.defaultAnchor = new PIXI.Point(0.5, 0.5);
+searchMatchGraphics.position.set(textureSize/2, textureSize/2);
+app.renderer.render(searchMatchGraphics, searchMatchTexture);
+
+
 
 function searchTextChanged(query) {
-    console.info("running searchAtlas... "+query)
+    // console.info("running searchAtlas... "+query.target.value)
     let results = null;
+    clearSearchDisplayMods(nodePixiObjects);
     if (query.target.value){
         results = searchAtlas(query.target.value);
     } else {
@@ -33,11 +54,11 @@ function searchTextChanged(query) {
 var fuzzysortAvg = 0;
 var searchCount = 0;
 function searchAtlas(queryText, selectBest=false) {
-    console.info("Query: " + queryText)
+    console.info("searchAtlas - Query: " + queryText)
     let objects = nodeData.map(el => { return {
         name: el.Name,
         id: el.RowID.toString(),
-        tier: el.TieredData[getNodeRegionTier(el)].Tier.toString() 
+        tier: el.TieredData[getNodeRegionTier(el)].Tier.toString()
     }; });
 
     var fuzzysortStart = performance.now();
@@ -60,31 +81,31 @@ function searchAtlas(queryText, selectBest=false) {
     // TODO Only change scale for name matches, not tier matches. (gets too cluttered atm)
     let bestResult = results[0]
 
-    clearSearchDisplayMods(nodePixiObjects);
-
+    // If there is a match
     if (bestResult) {
+        // Go through all partial (& full) matches...
         for(let i=0; i<results.length; i++) {
+            // And highlight them as search results
             let pixiObj = nodePixiObjects[results[i].obj.id];
-            pixiObj.container.scale.x *= scale;
-            pixiObj.container.scale.y *= scale;
-            let test = new PIXI.Graphics();
-            let mapScaleFactor = getMapScaleFactor();
-            let lineThickness = 2*mapScaleFactor/1.5;
-            //TODO Resize these withh onResizeWindow, otherwise they don't scale right
+            pixiObj.isSearchMatch = true;
+
+            //TODO Resize nodes withh onWindowResize, otherwise they don't scale right
             // (Note: This ^^^ is low priority, as the current implementation fixes itself upon new search being executed)
-            test.lineStyle(lineThickness, '0xff8888', 1, 0.5, false)
-                .beginFill('0x555555',0)
-                .drawCircle(0, 0, 18*mapScaleFactor/1.5);
             
+            // Add graphics to pixi obj
+            let matchGraphics = new PIXI.Sprite(searchMatchTexture);//searchMatchGraphics.clone();
+            pixiObj.searchMatchGraphic = matchGraphics;
+
+            pixiObj.gainLightFocus(matchGraphics);
+
+            // If this is the best match and 'selectBest' is true
             if (i==0 && selectBest) {
-                test.lineStyle(lineThickness, '0x77dddd', 1, 0.5, false)
-                .beginFill('0x555555',0)
-                .drawCircle(0, 0, 21*mapScaleFactor/1.5);
+                // Use "selectBest" graphics
+                //new PIXI.Sprite(NodePixiObject.TEX_SELECTED));
 
                 pixiObj.onSelect();
             }
             
-            pixiObj.gainLightFocus(scale, test);
             // if (results[i].score==0)
             //     break;
         }
@@ -98,14 +119,10 @@ function searchAtlas(queryText, selectBest=false) {
     // have alphabatized collection with all of the nodes by name
     // premade collections of all nodes at each tier
     // collections of nodes by region (we have this)
-    console.info(bestResult?(bestResult.obj.name + " - Score: " + bestResult.score):"NO-MATCH-FOUND")
+    // console.info(bestResult?(bestResult.obj.name + " - Score: " + bestResult.score):"NO-MATCH-FOUND")
     return results;
 }
 
-function setFormAction(formElem) {
-    let textInput = formElem.getElementsByClassName("searchField")[0];
-    searchAtlas(textInput.value, true);
-}
 var resultsListElement;
 var queryDisplayElement;
 function initSearch() {
@@ -114,8 +131,10 @@ function initSearch() {
         searchElements[i].addEventListener('input', searchTextChanged);
         searchElements[i].addEventListener('keydown', (e) => {
             
-            if (e.key === "Enter")
+            if (e.key === "Enter") {
+                clearSearchDisplayMods(nodePixiObjects);
                 searchAtlas(e.target.value, true);
+            }
             renderStage();
         });
         // console.info(searchElements[i], " will now listen for input events and trigger searchAtlas.");
@@ -140,6 +159,14 @@ function updateSearchResultsListElement(resultsArray) {
 
 function clearSearchDisplayMods(pixiObjList) {
     for(let i=0; i<pixiObjList.length; i++) {
-        pixiObjList[i].loseLightFocus(scale, true, true);
+        const pixiObj = pixiObjList[i];
+        pixiObj.isSearchMatch = false;
+        
+        if (pixiObj.searchMatchGraphic) {
+            pixiObj.searchMatchGraphic.destroy();
+            pixiObj.searchMatchGraphic = null;
+        }
+
+        pixiObj.loseLightFocus(scale, true);
     }
 }

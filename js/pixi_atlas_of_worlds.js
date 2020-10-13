@@ -21,7 +21,8 @@ export {
     registerResourceLoadFunc,
     getMapScaleFactor,
     renderStage,
-    renderStageThrottled
+    renderStageThrottled,
+    NodePixiObject
 };
 
 import { 
@@ -96,7 +97,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
 //Create the Pixi Application
 var app, stage, loader;
 console.log("Creating PIXI Atlas app.");
-setTimeout(()=> {
+// setTimeout(()=> {
     try {
         app = new PIXI.Application({
         width: pixiAtlasW,
@@ -126,7 +127,7 @@ setTimeout(()=> {
             document.getElementById("atlas_of_worlds").appendChild(msgElement);
         });
     }
-});
+// });
 
 //Load Pixi resources
 loader = PIXI.Loader.shared;
@@ -400,12 +401,16 @@ function positionWatchstones() {
         masterButton.scale.set(btnScale*mapScaleFactor);
     }
 }
+
 function updateWatchstoneVisibility() {
-    for(let i=0; i<watchstoneButtons.length; i++) {
-        watchstoneButtons[i].visible = options.Watchstones;
+    if (watchstoneButtons) {
+        for(let i=0; i<watchstoneButtons.length; i++) {
+            watchstoneButtons[i].visible = options.Watchstones;
+        }
+        masterButton.visible = options.MasterWatchstone;
     }
-    masterButton.visible = options.MasterWatchstone;
 }
+
 //Factor by which to multiply node positions from the data file when drawing
 function getMapScaleFactor() {
     return mapScaleFactor;
@@ -427,6 +432,9 @@ for (let i=0; i < NUM_REGIONS; i++) {
 }
 
 var nodeTierTextures;
+/**
+ * @type {Array<NodePixiObject>}
+ */
 var nodePixiObjects;
 var nodeInfoSidebar;
 document.addEventListener('DOMContentLoaded', ()=>nodeInfoSidebar={
@@ -439,11 +447,32 @@ document.addEventListener('DOMContentLoaded', ()=>nodeInfoSidebar={
     tiers: document.getElementById("node_tiers_list"),
     connections: document.getElementById("node_connections_list"),
     pantheon: document.getElementById("node_pantheon_desc"),
-}); 
+});
+
+/**
+ * @param {NodePixiObject} nodeThe node for which to build the graphics object.
+ * @param {Number} [detail=0]  The version (ordered by detail level) of hover graphics that should be built.
+ * 
+ * @return {PIXI.Graphics} The constructed hover graphics object.
+*/
+function buildNodeHoverGraphics(node, detail=0) {
+
+    return
+}
+
+// Globals (Display properties)
+var nodeCenterOffset = 25/4;//If I figure out how to scale the source data correctly, 'nodeCenterOffset' probably becomes 0 (and therefore unneeded)
+var nodeRadius = 30/4;
+var lineThickness = 2.5/4;
+const lineColor = 0x333333;//ffffff;
 class NodePixiObject {
     constructor(nameSprite, data) {
         this.container = new PIXI.Container();
         this.container.parentGroup = unfocusedNodesContainer;
+
+        this.backgroundContainer = new PIXI.Container();
+        this.container.addChild(this.backgroundContainer);
+
         //Placeholder img sprite
         this.imgSprite = new PIXI.Sprite();
         this.imgSprite.anchor.set(0.5);
@@ -454,8 +483,7 @@ class NodePixiObject {
         this.circleSprite.interactive = true;
         this.circleSprite.buttonMode = true;
 
-        this.setHover(options.nodeHover);
-
+        this.setupHover(options.nodeHover);
 
         this.circleSprite.pointertap = ()=>this.onSelect();
         // this.circleSprite = circleSprite;
@@ -476,72 +504,193 @@ class NodePixiObject {
         this.tierSprite.anchor.set(0.5,0);
 
         this.data = data;
-        this.additionalGraphics = new PIXI.Container();
-        this.container.addChild(this.additionalGraphics);
+
+        this.isSearchMatch = false;;
+        this.isHovered = false;
+        this.isSelected = false;
     }
-    setHover(boolEnabled) {
+    /**
+     * Called on each NodePixiObject during each search. Updates node graphics based on whether node is a match.
+     * 
+     * @param {boolean} isSearchMatch Whether or not the node matched the search query.
+     */
+    onSearch(isSearchMatch) {
+        if (this.isSearchMatch === isSearchMatch) {
+            // No change. Exit.
+            return;
+        } else if (isSearchMatch) {
+            // Is a new match. Modify graphics to highlight.
+
+        } else {
+            // Was a match, but isn't one anymore. Revert graphics to normal.
+
+        }
+        this.isSearchMatch = isSearchMatch;
+    }
+    
+    /**
+     * Updates Node Graphics based on the state of the node.
+     * (isSearchMatch, isHovered, isSelected)
+     * 
+     * When these values are updated via their respective functions,
+     * updateNodeGraphics is called if there was indeed a state change.
+     * "Sums" the effects of all conditions on the node.
+     */
+    updateNodeGraphics() {
+        let lightFocused =  options.nodeHover && this.isHovered
+                            || this.isSearchMatch
+                            || this.isSelected;
+        // Actual logic shown here. Is made more effecient in actual code.
+        // let nameVisible = options.drawNames || lightFocused;
+        // let tierVisible = options.drawTiers || lightFocused;
+        // let zIndex = (this.isSelected ? 2 : (lightFocused ? 1 : 0));
+        // let drawNameBg = lightFocused;
+        // let shadowEnabled = lightFocused;
+        
+        // Draw shadow
+        if (this.isHovered && this.container.filters.length == 0)
+            this.container.filters.push(new PIXI.filters.DropShadowFilter());
+        // Remove shadow
+        else if (this.container.filters.length > 0)
+                this.container.filters.pop(0);
+
+        // Set scale 
+        const scale = this.constructor.CONTAINER_SCALE.x
+        //this.constructor.hoverScaleMult
+            * (this.isHovered ? 1.25 : 1)
+            * (this.isSearchMatch ? 1.25 : 1)
+            * (this.isSelected ? 1.25 : 1)
+        this.container.scale.x = scale;
+        this.container.scale.y = scale;
+
+        this.container.zIndex = (this.isHovered ? 3 : (this.isSelected ? 2 : (lightFocused ? 1 : 0)));
+        if (lightFocused) {
+            // Bring to front?
+            this.container.parentGroup = focusedNodesContainer;
+
+            // Make name and tier visisble
+            this.nameContainer.visible = true;
+            this.tierSprite.visible = true;
+
+            // Draw name background
+            if (this.nameContainer.children.length < 2)
+                this.nameContainer.addChildAt(this.nameBg(), 0);
+
+        } else {
+            this.nameContainer.visible = options.drawNames;
+            this.tierSprite.visible = options.drawTiers;
+
+            // Send to normal layer
+            this.container.parentGroup = unfocusedNodesContainer;
+            this.container.zIndex = 0;
+
+            // Remove name bg
+            if (this.nameContainer.children.length > 1)
+                this.nameContainer.removeChildAt(0).destroy();
+        }
+    }
+
+    nameBg(texture=PIXI.Texture.WHITE) {
+        let nameBG = new PIXI.Sprite(texture);
+        nameBG.width = this.nameSprite.width + 3; // Horizontal padding = 3
+        nameBG.height = this.nameSprite.height;
+        nameBG.anchor.set(0.5,1); // Center sprite on text
+        nameBG.alpha = 0.8;
+        return nameBG;
+    }
+
+    static hoverScaleMult = 1.325;
+    setupHover(boolEnabled) {
         if (boolEnabled) {
-            const scaleMult = 1.325;
-            this.circleSprite.pointerover = ()=>{
-                this.gainLightFocus(scaleMult);
+            
+            this.circleSprite.pointerover = (pointerData)=>{
+                this.isHovered = true;
+                this.gainLightFocus();
                 app.renderer.render(stage);
             };
-            this.circleSprite.pointerout = (mouseData)=>{
-                this.loseLightFocus(scaleMult);
+
+            this.circleSprite.pointerout = (pointerData)=>{
+                this.isHovered = false;
+                this.loseLightFocus();
                 app.renderer.render(stage);
             };
+
+            this.container.filters = [];
         } else {
             this.circleSprite.pointerover = null;
             this.circleSprite.pointerout = null;
-        }
-        
+            this.container.filters = null;
+        } 
     }
-    gainLightFocus(scaleMult, hoverGraphic) {
-        this.container.scale.x *=scaleMult;
-        this.container.scale.y *=scaleMult;
-        this.container.zIndex = 1;
-        this.nameContainer.visible = true;
-        let nameBG = new PIXI.Sprite(PIXI.Texture.WHITE);
-        const paddingHoriz = 3;
-        nameBG.width = this.nameSprite.width + paddingHoriz;
-        nameBG.height = this.nameSprite.height;
-        nameBG.anchor.set(0.5,1);
-        this.nameContainer.addChildAt(nameBG, 0);
-        this.tierSprite.visible = true;
-        this.container.parentGroup = focusedNodesContainer;
-        this.container.filters = [new PIXI.filters.DropShadowFilter()];
+
+    gainLightFocus(hoverGraphic) {
+        // this.container.scale.x *=scaleMult;
+        // this.container.scale.y *=scaleMult;
+
+        this.updateNodeGraphics();
+
         if (hoverGraphic) {
-            this.additionalGraphics.addChild(hoverGraphic);
+            this.backgroundContainer.addChild(hoverGraphic);
         }
     }
 
-    loseLightFocus(scaleMult, clearHoverGraphic, forceBaseScale) {
-        this.container.scale.x /= scaleMult;
-        this.container.scale.y /= scaleMult;
-        this.container.zIndex = 0;
-        this.nameContainer.visible = options.drawNames;
-        if (this.nameContainer.children.length > 1)
-            this.nameContainer.removeChildAt(0);
-        this.tierSprite.visible = options.drawTiers;
-        this.container.parentGroup = unfocusedNodesContainer;
-        this.container.filters = [];
-        if (clearHoverGraphic) {
-            this.additionalGraphics.children.forEach((el)=>el.destroy());
-        }
-        if (forceBaseScale) {
-            this.container.scale.set(options.nodeScaleFactor, options.nodeScaleFactor);
-        }
+    /**
+     * 
+     */
+    loseLightFocus(forceBaseScale) {
+        // this.container.scale.x /= scaleMult;
+        // this.container.scale.y /= scaleMult;
+
+        this.updateNodeGraphics();
+
+        // TODO Make alternative to this for search scale clearing. Atm this causes a bug...
+        // if you hover over a searched node, then Backspace out the query, then stop hovering
+        // (hover reduces scale from the Base scale instead of hoverScale (because actual
+        // scale has been set to base scale by the below operation vvv))
+        // if (forceBaseScale) {
+        //     this.container.scale.copyFrom(this.constructor.CONTAINER_SCALE);
+        // }
     }
 
+    /**
+     * @type {NodePixiObject}
+     */
+    static prevSelected = null;
+    /**
+     * A function that removes the 'click' MouseEvent handler associated with
+     * the previously selected NodePixiObject from the 'node_exit' button.
+     * 
+     * @type {function}
+     */
+    static removePrevCloseHandler = null;
     onSelect() {
+        if (this.constructor.prevSelected) {
+            this.constructor.prevSelected.isSelected = false;
+            this.constructor.prevSelected.updateNodeGraphics();
+            this.constructor.removePrevCloseHandler();
+        }
+        this.constructor.prevSelected = this;
+        this.isSelected = true;
+        this.backgroundContainer.addChild(NodePixiObject.SPRITE_SELECTED);
         // Info sidebar
         const sidebar = nodeInfoSidebar;
         // Info sidebar close button
-        document.getElementById("node_exit").addEventListener('click', (e)=>{
-            if (!sidebar.container.className.includes("hidden"))
+        const sidebarCloseButton = document.getElementById("node_exit");
+        const sidebarCloseClickHandler = (e) => {
+            if (!sidebar.container.className.includes("hidden")) {
                 sidebar.container.className = sidebar.container.className +" hidden";
-        });
+                
+                this.constructor.prevSelected = null;
+                this.isSelected = false;
+                this.backgroundContainer.removeChild(NodePixiObject.SPRITE_SELECTED);
+                this.updateNodeGraphics();
+                renderStage();
 
+                sidebarCloseButton.removeEventListener("click", sidebarCloseClickHandler);
+            }
+        }
+        sidebarCloseButton.addEventListener('click', sidebarCloseClickHandler);
+        this.constructor.removePrevCloseHandler = () => sidebarCloseButton.removeEventListener("click", sidebarCloseClickHandler);
         // console.log(this.data);
         // console.log(this.data.poeDBLink);
         // Show info sidebar if it is hidden
@@ -568,6 +717,8 @@ class NodePixiObject {
         }
         sidebar.connections.innerText = connectionsText;
 
+        this.updateNodeGraphics();
+        renderStageThrottled();
     }
     getSpriteImg(tier=0) {
         let strTier;
@@ -593,7 +744,72 @@ class NodePixiObject {
             1
         );
     }
+
+    static CONTAINER_SCALE = new PIXI.Point(1,1);
+    static NAME_SCALE = symPoint(1);//2/3 * options.nodeTextScale);
+    static IMG_SCALE = symPoint(1/4);
+    // 78 is l/w of standard node img 47 is l/w of unique node img
+    static IMG_SCALE_UNIQUE = symPoint(1/4 * (78/47));
+    static TIER_SCALE = symPoint(1);//0.15 * options.nodeTextScale);
+    static BACKGROUND_SCALE = symPoint(0.4);
+    static NAME_Y = 0 - (nodeRadius + nodeCenterOffset/4);
+    static TIER_Y = nodeRadius + nodeCenterOffset/4;
+
+    // NodePixiObject.NAME_SCALE = symPoint(2/3 * options.nodeTextScale),
+    // NodePixiObject.IMG_SCALE = symPoint(1/4),
+    // // 78 is l/w of standard node img 47 is l/w of unique node img
+    // NodePixiObject.IMG_SCALE_UNIQUE = symPoint(1/4 * (78/47)),
+    // NodePixiObject.TIER_SCALE = symPoint(0.15 * options.nodeTextScale),
+    // NodePixiObject.BACKGROUND_SCALE = symPoint(0.4),
+    // NodePixiObject.NAME_Y = 0 - (nodeRadius + nodeCenterOffset/4),
+    // NodePixiObject.TIER_Y = nodeRadius + nodeCenterOffset/4;
+
+    static TEX_SELECTED;
+    static SPRITE_SELECTED;
 }
+(function() {
+    const textureSize = 128
+    const lineThickness = 4;
+    const texSelected = PIXI.RenderTexture.create({
+        width: textureSize,
+        height: textureSize,
+        resolution: 6
+    });
+    texSelected.defaultAnchor = new PIXI.Point(0.5, 0.5);
+
+    let graphSelected = new PIXI.Graphics()
+        .lineStyle(lineThickness, '0x77dddd', 1, 0.5, false)
+        .beginFill('0x555555',0)
+        .drawCircle(0, 0, 36)
+    graphSelected.position.set(textureSize/2, textureSize/2);
+
+    app.renderer.render(graphSelected, texSelected);
+
+    NodePixiObject.TEX_SELECTED = texSelected;
+    
+    // TODO - Choose outline color based on Theme accent color.
+    graphSelected = new PIXI.Graphics()
+        .lineStyle(6, 0x55bbbb, 1, 0.5, false)
+        .beginFill(0x302a30, 1)
+        .drawCircle(0, 0, 48)
+        .endFill();
+
+    graphSelected.position.set(textureSize/2, textureSize/2);
+    app.renderer.render(graphSelected, texSelected);
+
+    const spriteSelected = new PIXI.Sprite(texSelected);//PIXI.Texture.WHITE);
+    spriteSelected.alpha = 0.9;
+    // spriteSelected.width = 100;
+    // spriteSelected.height = 100;
+    spriteSelected.anchor.set(0.5, 0.5);
+    // spriteSelected.tint = 0x302a30;
+    NodePixiObject.SPRITE_SELECTED = spriteSelected;
+})();
+
+function symPoint(num) {
+    return new PIXI.Point(num, num);
+};
+// NodePixiObject.searchMatchTexture = testTexture;
 
 class PoECDN {
 
@@ -905,11 +1121,6 @@ function drawAllAtlasRegions() {
     perfTimers.regionsRender.end();
 }
 
-// Globals (Display properties)
-var nodeCenterOffset;//If I figure out how to scale the source data correctly, 'nodeCenterOffset' probably becomes 0 (and therefore unneeded)
-var nodeRadius;
-var lineThickness;
-const lineColor = 0x333333;//ffffff;
 function initAtlasRegion(regionID) {
     linesContainer.addChildAt(new PIXI.Graphics(), regionID);
     nodesContainer.addChildAt(new PIXI.Container(), regionID);
@@ -933,18 +1144,6 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
     regionsRedrawn[regionID] = true;
 
     // TODO Make these constants user-configurable (Perhaps an "advanced options" pane, same w/ nodeHover)
-    const symPoint = (num) => {
-        return new PIXI.Point(num, num);
-    };
-    const
-        CONTAINER_SCALE = symPoint(options.nodeScaleFactor),
-        NAME_SCALE = symPoint(2/3 * mapScaleFactor * options.nodeTextScale),
-        IMG_SCALE = symPoint(1/4 * mapScaleFactor),
-        // 78 is l/w of standard node img 47 is l/w of unique node img
-        IMG_SCALE_UNIQUE = symPoint(1/4 * mapScaleFactor * (78/47)),
-        TIER_SCALE = symPoint(0.15 * mapScaleFactor * options.nodeTextScale),
-        NAME_Y = 0 - (nodeRadius + nodeCenterOffset/4),
-        TIER_Y = nodeRadius + nodeCenterOffset/4;
 
     //loop over nodes in this region
     for (let i=0; i<region.length; i++) {
@@ -963,10 +1162,10 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
                     let adjTieredNodeData = getTieredNodeData(adjNodeData);
 
                     //Draw Lines
-                    let startX = tieredNodeData.x+nodeCenterOffset,
-                        startY = tieredNodeData.y+nodeCenterOffset,
-                        endX = adjTieredNodeData.x+nodeCenterOffset,
-                        endY = adjTieredNodeData.y+nodeCenterOffset;
+                    let startX = tieredNodeData.x,
+                        startY = tieredNodeData.y,
+                        endX = adjTieredNodeData.x,
+                        endY = adjTieredNodeData.y;
 
                     regionLinesGraph.moveTo(startX, startY)
                         .lineTo(endX, endY);
@@ -986,29 +1185,31 @@ function drawAtlasRegion(regionID, boolRedrawAdjacent=false, renderOnComplete=tr
             let nodePixiObj = nodePixiObjects[nodeID];
             if (options.drawNodes && nodePixiObj) {
                 let nodeContainer = nodePixiObj.container;
-                nodeContainer.position.set(tieredNodeData.x+nodeCenterOffset, tieredNodeData.y+nodeCenterOffset)
-                nodeContainer.scale = CONTAINER_SCALE;
+                nodeContainer.position.set(tieredNodeData.x, tieredNodeData.y)
+                nodeContainer.scale = NodePixiObject.CONTAINER_SCALE;
                 // Circle Sprite
                 // nodePixiObj.circleSprite.scale.set(mapScaleFactor, mapScaleFactor);
                 //Add node label text sprites to 'nodeContainer' 
                 if (options.drawNames || options.nodeHover) {
-                    nodePixiObj.nameContainer.y = NAME_Y;
-                    nodePixiObj.nameContainer.scale = NAME_SCALE;
+                    nodePixiObj.nameContainer.y = NodePixiObject.NAME_Y;
+                    nodePixiObj.nameContainer.scale = NodePixiObject.NAME_SCALE;
                 }
 
                 if (true && spritesheetLoaded) {
                     nodePixiObj.imgSprite.texture = nodePixiObj.getSpriteImg(tieredNodeData.tier);
-                    nodePixiObj.imgSprite.scale = cNode.IsUniqueMapArea ? IMG_SCALE_UNIQUE: IMG_SCALE;
+                    nodePixiObj.imgSprite.scale = cNode.IsUniqueMapArea ? NodePixiObject.IMG_SCALE_UNIQUE: NodePixiObject.IMG_SCALE;
                 }
 
                 //Add node tier text sprites to 'nodeContainer'
                 if (options.drawTiers || options.nodeHover) {
                     let tierSprite = nodePixiObj.tierSprite;
                     tierSprite.texture = nodeTierTextures[tieredNodeData.tier-1];
-                    tierSprite.scale = TIER_SCALE;
-                    tierSprite.y = TIER_Y;
+                    tierSprite.scale = NodePixiObject.TIER_SCALE;
+                    tierSprite.y = NodePixiObject.TIER_Y;
                 }
                 
+                nodePixiObj.backgroundContainer.scale = NodePixiObject.BACKGROUND_SCALE;
+
                 regionNodesContainer.addChild(nodeContainer);
             }
         }
@@ -1041,10 +1242,18 @@ function getTieredNodeData(node) {
     return new TieredNodeData(
         tData.Tier,
         tData.AtlasNodeKeys,
-        tData.X*mapScaleFactor,
-        tData.Y*mapScaleFactor
+        tData.X*mapScaleFactor+nodeCenterOffset,
+        tData.Y*mapScaleFactor+nodeCenterOffset
     );
 }
+
+
+var updateAllNodeGraphics = debounce(() => {
+    for (const obj of nodePixiObjects) {
+        obj.updateNodeGraphics();
+    }
+    renderStageThrottled();
+}, 50)
 
 //Stores the position of the center of the PIXI canvas, not the window.
 function onWindowResize() {
@@ -1071,15 +1280,15 @@ function onWindowResize() {
     atlasScreenMid.y = pixiAtlasH/2*containerScale.y;
 
     mapScaleFactor = (pixiAtlasW + pixiAtlasH)/(maxH+maxW)*4;
-
-    nodeCenterOffset =  25*mapScaleFactor/4;
-    nodeRadius = 30*mapScaleFactor/4;
-    lineThickness = 2.5*mapScaleFactor/4;
     
     // placeAtlasTierButtonsCircle();
     resizePixiDisplayObjects();
+    // Update NodePixiObjs
+    NodePixiObject.CONTAINER_SCALE = symPoint(options.nodeScaleFactor * mapScaleFactor),
+
     positionWatchstones();
     drawAllAtlasRegions();
+    updateAllNodeGraphics();
 }
 
 //==============
@@ -1146,12 +1355,14 @@ const DEFAULT_OPTIONS_LIST = [
 function updateNodesVisibility() {
     //lines, nodes, hover, names, tiers, scaleFactor
     console.time("updateNodesVisibility");
-    for (let i = 0; i < nodePixiObjects.length; i++) {
-        let nodePixiObj = nodePixiObjects[i];
-        nodePixiObj.container.visible = options.drawNodes;
-        nodePixiObj.tierSprite.visible = options.drawTiers;
-        nodePixiObj.nameContainer.visible = options.drawNames;
-    }
+    if (nodePixiObjects) {
+        for (let i = 0; i < nodePixiObjects.length; i++) {
+            let nodePixiObj = nodePixiObjects[i];
+            nodePixiObj.container.visible = options.drawNodes;
+            nodePixiObj.tierSprite.visible = options.drawTiers;
+            nodePixiObj.nameContainer.visible = options.drawNames;
+        }
+    }    
     console.timeEnd("updateNodesVisibility");
 }
 const OPTIONS_CHANGED_HANDLERS = {
@@ -1163,10 +1374,19 @@ const OPTIONS_CHANGED_HANDLERS = {
     Watchstones: updateWatchstoneVisibility,
     MasterWatchstone: updateWatchstoneVisibility,
     nodeHover: () => {
-        let hoverEnabled = options.nodeHover;
-        for (let i = 0; i < nodePixiObjects.length; i++) {
-            nodePixiObjects[i].setHover(hoverEnabled);
+        if (nodePixiObjects) {
+            let hoverEnabled = options.nodeHover;
+            for (let i = 0; i < nodePixiObjects.length; i++) {
+                nodePixiObjects[i].setupHover(hoverEnabled);
+            }
         }
+    },
+    nodeScaleFactor: () => {
+        NodePixiObject.CONTAINER_SCALE = symPoint(options.nodeScaleFactor * mapScaleFactor);
+    },
+    nodeTextScale: () => {
+        NodePixiObject.NAME_SCALE = symPoint(2/3 * options.nodeTextScale);
+        NodePixiObject.TIER_SCALE = symPoint(0.15 * options.nodeTextScale);
     }
 }
 
@@ -1197,17 +1417,26 @@ function resetAllOptions() {
 function loadDisplayOptions() {
     let stored = JSON.parse(window.localStorage.getItem(DISPLAY_OPTIONS_STORAGE_KEY));
     if (stored) {
-        options = stored;
-        for (let option in DEFAULT_OPTIONS) {
+        options = {};
+        for (let key in DEFAULT_OPTIONS) {
             // If possible options does not exist in stored options, load from default
-            if (!(option in options)) {
-                options[option] = DEFAULT_OPTIONS[option];
+            // if (!(key in stored)) {
+            if (key in stored) {
+                options[key] = stored[key];
+            } else {
+                options[key] = DEFAULT_OPTIONS[key];
             }
+  
+            // }
         }
         storeDisplayOptions();
     } else {
         options = DEFAULT_OPTIONS;
         storeDisplayOptions();
+    }
+    for (let key in options) {
+        if (OPTIONS_CHANGED_HANDLERS[key])
+            OPTIONS_CHANGED_HANDLERS[key]();
     }
 }
 

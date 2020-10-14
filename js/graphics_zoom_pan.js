@@ -11,7 +11,7 @@ import {
     app,
     renderStageThrottled,
     atlasSprite,
-    registerResourceLoadFunc
+    resourceLoadFuncs
 } from './pixi_atlas_of_worlds.js';
 import { executeOrWait } from './util.js'
 
@@ -267,10 +267,10 @@ const initAtlas = () => initZoomPanInput(app, renderStageThrottled);
 executeOrWait(
     bindAtlas,
     app,
-    () => registerResourceLoadFunc(bindAtlas)
+    () => resourceLoadFuncs.add(bindAtlas)
 );
 executeOrWait(
     initAtlas,
     app,
-    () => registerResourceLoadFunc(initAtlas)
+    () => resourceLoadFuncs.add(initAtlas)
 );

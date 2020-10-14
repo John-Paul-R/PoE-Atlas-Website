@@ -18,7 +18,7 @@ export {
     nodeData,
     nodePixiObjects,
     getNodeRegionTier,
-    registerResourceLoadFunc,
+    resourceLoadFuncs,
     getMapScaleFactor,
     renderStage, renderStageThrottled,
     NodePixiObject
@@ -51,6 +51,7 @@ import {
  */
 var nodeData;
 var atlasRegions;
+const NUM_REGIONS = 8;
 
 class DynamicSprite extends PIXI.Sprite {
     constructor(scaleFunc, posFunc, texture=null) {
@@ -103,6 +104,153 @@ let pixiAtlasW = 4096;
  */
 var CONTAINER_ELEMENT;
 
+// Global Display properties
+var nodeCenterOffset = 25/4;//If I figure out how to scale the source data correctly, 'nodeCenterOffset' probably becomes 0 (and therefore unneeded)
+var nodeRadius = 30/4;
+var lineThickness = 2.5/4 * mapScaleFactor;
+const lineColor = 0x333333;//ffffff;
+
+/**
+ * Watchstones Manager Object
+ */
+var watchstones = {
+    /**
+     * @type {Array<PIXI.Graphics>}
+     */
+    buttons: [],
+    masterButton: new PIXI.Graphics(),
+    init: () => {
+        const WATCHSTONE_TEXT_RESOLUTION = 3;
+        const padding = 6;
+    
+        // watchstones.masterButton = new PIXI.Graphics();
+        const mText = new PIXI.Text("Cycle All Region Tiers", {
+            fontFamily: 'Fontin-Regular',
+            fontSize: 18,
+            align: "center",
+            fontWeight: "bold",
+        });
+        mText.resolution = WATCHSTONE_TEXT_RESOLUTION;
+        mText.anchor.set(0.5, 0.5);
+
+        let mW = (mText.width + padding),
+            mH = (mText.height + padding);
+        watchstones.masterButton
+            .lineStyle(lineThickness/mapScaleFactor, '0x0', 1, 0.5, false)
+            .beginFill('0xffffff',1)
+            .drawRect(-mW/2, -mH/2, mW, mH)
+            .addChild(mText);
+        watchstones.masterButton.filters = [new PIXI.filters.DropShadowFilter()];
+        
+    
+        // watchstones.buttons = [];
+        for (let i=0; i < NUM_REGIONS; i++) {
+            let button = new PIXI.Graphics();
+            let bText = new PIXI.Text("", {
+                fontFamily: 'Fontin-Regular',
+                fontSize: 18,
+                align: "center",
+                fontWeight: "bold",
+            });
+            bText.resolution = WATCHSTONE_TEXT_RESOLUTION;
+            // TODO Create 2 text sprites: one for name, and one for region tier. Update only the latter.
+            button.textSprite = bText;
+            button.addChild(bText);
+            bText.anchor.set(0.5);
+    
+            //init click functions & tier text
+            button.interactive = true;
+            button.buttonMode = true;    
+            button.on("pointertap", () => { cycleAtlasRegionTier(i, button); });
+            bText.text = atlasRegions[i].Name+"\nTier "+regionTiers[i];
+    
+            let bW = (bText.width + padding),
+                bH = (bText.height + padding);
+            button.lineStyle(lineThickness/mapScaleFactor, '0x0', 1, 0.5, false)
+                .beginFill('0x997f87', 0.7)
+                .drawRect(-bW/2, -bH/2, bW, bH);
+    
+            watchstones.buttons.push(button);
+            watchstonesContainer.addChild(button);
+        }
+        
+        //init "master" tier button (cycle all nodes) click function
+        watchstones.masterButton.interactive = true;
+        watchstones.masterButton.buttonMode = true;    
+        watchstones.masterButton.on("pointertap", cycleAllAtlasRegionTiers);
+        watchstonesContainer.addChild(watchstones.masterButton);
+        watchstones.masterButton.position.set(0, 0);
+    
+        function cycleAtlasRegionTier(regionID, boolDrawRegion=true) {
+            if (regionTiers[regionID] < 4) {
+                regionTiers[regionID] += 1;
+            } else {
+                regionTiers[regionID] = 0;
+            }
+            //Update corresponding button label
+            watchstones.buttons[regionID].textSprite.text = atlasRegions[regionID].Name+"\nTier "+regionTiers[regionID];
+            //Redraw watchstones region & adjacent regions
+            if (boolDrawRegion) {
+                drawAtlasRegion(regionID, true);
+            }
+            //Store the current region tiers on the client
+            storeRegionTiers();
+        }
+    
+        function cycleAllAtlasRegionTiers() {
+            for(let i=0; i<NUM_REGIONS; i++) {
+                cycleAtlasRegionTier(i, false);
+            }
+            drawAllAtlasRegions();
+        }
+    
+        watchstones.updatePositions();
+        watchstones.updateVisibility();
+    },
+    /**
+     * Positions all watchstone buttons (including master) on the Atlas.
+     */
+    updatePositions: () => {
+        const watchstoneLocations = {
+            "InsideBottomLeft" : { "x": 434, "y": 463 },
+            "InsideBottomRight" : { "x": 627, "y": 500 },
+            "OutsideBottomRight" : { "x": 753, "y": 501 },
+            "InsideTopRight" : { "x": 647, "y": 299 },
+            "OutsideTopRight" : { "x": 823, "y": 231 },
+            "InsideTopLeft" : { "x": 255, "y": 206 },
+            "OutsideTopLeft" : { "x": 174, "y": 221 },
+            "OutsideBottomLeft" : { "x": 154, "y": 316 }
+        }
+        const posKeys = Object.keys(watchstoneLocations);
+        if (watchstones.buttons) {
+            const btnScale = 0.6;
+            for(let i=0; i<watchstones.buttons.length; i++) {
+                for (let key of posKeys) {
+                    if (key === atlasRegions[i].Id) {
+                        let loc = watchstoneLocations[key];
+                        watchstones.buttons[i].position.set(loc.x*mapScaleFactor, loc.y*mapScaleFactor);
+                        watchstones.buttons[i].scale.set(btnScale*mapScaleFactor)
+                        break;
+                    }
+                }
+            }
+            watchstones.masterButton.position.set(pixiAtlasW/2, pixiAtlasH/2);
+            watchstones.masterButton.scale.set(btnScale*mapScaleFactor);
+        }
+    },
+    /**
+     * Updates the visibility of all watchstones according to current options.
+     */
+    updateVisibility() {
+        if (watchstones.buttons) {
+            for(let i=0; i<watchstones.buttons.length; i++) {
+                watchstones.buttons[i].visible = optsMgr.currentOptions.Watchstones;
+            }
+            watchstones.masterButton.visible = optsMgr.currentOptions.MasterWatchstone;
+        }
+    }
+}
+
 var optsMgr = new OptionsManager('displayOptions', [drawAllAtlasRegions]);
 optsMgr.register("drawLines", "Show Lines", true, null)
     .register("drawNodes", "Show Nodes", true, updateNodesVisibility)
@@ -116,8 +264,8 @@ optsMgr.register("drawLines", "Show Lines", true, null)
             }
         }
     })
-    .register("Watchstones", "Show Watchstones", true, updateWatchstoneVisibility)
-    .register("MasterWatchstone", "Show 'Cycle' Button", true, updateWatchstoneVisibility)
+    .register("Watchstones", "Show Watchstones", true, watchstones.updateVisibility)
+    .register("MasterWatchstone", "Show 'Cycle' Button", true, watchstones.updateVisibility)
     .register("nodeScaleFactor", "Node Size", 1, updateNodeSize)
     .register("nodeTextScale", "Node Text Size", 1, updateNodesTextScale);
 
@@ -156,9 +304,8 @@ var stage;
  */
 var loader;
 console.log("Creating PIXI Atlas app.");
-// setTimeout(()=> {
-    try {
-        app = new PIXI.Application({
+try {
+    app = new PIXI.Application({
         width: pixiAtlasW,
         height: pixiAtlasH,
         autoStart: false,
@@ -170,27 +317,41 @@ console.log("Creating PIXI Atlas app.");
         width: 0,
         height:0
     });
-    app.stage = new PIXI.display.Stage();
-    stage = app.stage;
-    } catch (e) {
-        // If PIXI App init fails, display message to user, telling them to enable WebGL
-        executeIfWhenDOMContentLoaded(() => {
-            let msgElement = document.createElement('p');
-            msgElement.innerHTML = `<span class="bold">Page not loading? </span>
+} catch (e) {
+    // If PIXI App init fails, display message to user, telling them to enable WebGL
+    executeIfWhenDOMContentLoaded(() => {
+        let msgElement = document.createElement('p');
+        msgElement.innerHTML = 
+            `<span class="bold">Page not loading? </span>
             Make sure you have WebGL enabled.
             The site depends on it to function.
             <ul>
             <li><a href="https://www.interplaylearning.com/help/how-to-enable-webgl-in-chrome">Enable WebGL on Chrome</a></li>
             <li><a href="https://www.interplaylearning.com/help/how-to-enable-webgl-in-firefox">Enable WebGL on Firefox</a></li>
             </ul>`;
-            document.getElementById("atlas_of_worlds").appendChild(msgElement);
-        });
-    }
-// });
+        document.getElementById("atlas_of_worlds").appendChild(msgElement);
+    });
+}
+app.ticker.stop();
+PIXI.Ticker.shared.autoStart = false;
+PIXI.Ticker.shared.stop();
+app.stage = new PIXI.display.Stage();
+stage = app.stage;
+// Add Atlas sprite to stage
+stage.addChildAt(atlasSprite, 0);
 
+var resourceLoadFuncs = new FunctionBatch();
 //Load Pixi resources
 loader = PIXI.Loader.shared;
-loader.onComplete.once(createPixiView);
+// When 1st batch of resources are loaded...
+// ...Add the canvas (that Pixi created) to the HTML document (createPixiView)
+loader.onComplete.once(() => {
+    console.timeLog("load");
+    CONTAINER_ELEMENT = document.getElementById("atlas_of_worlds")
+    CONTAINER_ELEMENT.appendChild(app.view);
+    CONTAINER_ELEMENT.lastChild.className = "pixi_atlas_of_worlds";
+});
+
 let timers = [];
 console.time("load");
 loader.onStart.add((resource)=>{
@@ -198,7 +359,7 @@ loader.onStart.add((resource)=>{
     for (let value of Object.values(resource.resources)) {
         if (value.name) {
             timers.push(value.name);
-            console.time(value.name)
+            console.time(value.name);
         }
     }
 })
@@ -206,7 +367,7 @@ loader.onLoad.add((resource)=>{
     for (let value of Object.values(resource.resources)) {
         let index = timers.indexOf(value.name);
         if (index >= 0) {
-            timers.pop(index)
+            timers.pop(index);
             console.timeEnd(value.name);
         }
     }
@@ -214,32 +375,58 @@ loader.onLoad.add((resource)=>{
 loader
     .add("img/Atlas47kb.webp")
     .load(setup);
+
+// Load Atlas Data (Request, parse, and store file data)
+new AsyncDataResourceLoader()
+    .addResource("data/AtlasDataCombined_Itemized-1600754911.json", [
+        (resJson) => {
+            let combinedData = resJson;
+            nodeData = combinedData["AtlasNode+WorldAreas"];
+            atlasRegions = combinedData["AtlasRegions.dat"];
+
+            // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
+            for (let i=0; i<nodeData.length; i++) {
+                let entry = nodeData[i];
+                regionNodes[entry.AtlasRegionsKey].push(entry.RowID);
+                entry.interalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
+            }
+        },
+        watchstones.init,
+        preloadStaticGraphics,
+        //Draw Atlas Nodes & Lines
+        drawAllAtlasRegions,
+    ])
+    .fetchResources();
+
+// Create all main pixi containers and layers
+initPixiContainers();
+
+// Create all atlas region containers
+for (let regionID = 0; regionID < NUM_REGIONS; regionID++) {
+    linesContainer.addChildAt(new PIXI.Graphics(), regionID);
+    nodesContainer.addChildAt(new PIXI.Container(), regionID);
+}
+
 //===========
 // Functions
 //===========
-var resourceLoadFuncs = [];
-function registerResourceLoadFunc(func) {
-    resourceLoadFuncs.push(func);
-}
 function setup(loader, resources) {
     loader.reset();
     console.timeLog("load");
-    app.ticker.stop();
-    PIXI.Ticker.shared.autoStart = false;
-    PIXI.Ticker.shared.stop();
 
     //==================
     //  Initialization
     //==================
-    initPixiDisplayObjects(resources);
+    // Load main atlas sprite's initial texture
+    atlasSprite.texture = resources["img/Atlas47kb.webp"].texture;
 
-    //Queue next resources for loading
+    //Queue next pixi resources for loading
     loader.add("pixi/node_spritesheet-heist-1.json")
         .load(()=>{
             console.timeLog("load");
-            //TODO make sure this waits for nodeData to exist...
             sheet = loader.resources["pixi/node_spritesheet-heist-1.json"];
             spritesheetLoaded = true;
+            //TODO make sure this waits for nodeData to exist...
             drawAllAtlasRegions();
             loader.reset();
             loader.add("img/Atlas80.webp").load(()=>{
@@ -250,68 +437,18 @@ function setup(loader, resources) {
             });
         });
     
-    // Load Maps Data (Request and parse files)
-    let dataResourceLoader = new AsyncDataResourceLoader();
-    dataResourceLoader
-        .addResource("data/AtlasDataCombined_Itemized-1600754911.json", [
-            (resJson) => {
-                let combinedData = resJson;
-                nodeData = combinedData["AtlasNode+WorldAreas"];
-                atlasRegions = combinedData["AtlasRegions.dat"];
-    
-                // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
-                for (let i=0; i<nodeData.length; i++) {
-                    let entry = nodeData[i];
-                    regionNodes[entry.AtlasRegionsKey].push(entry.RowID);
-                    entry.interalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
-                }
-            },
-            initWatchstones,
-            preloadStaticGraphics,
-            //Draw Atlas Nodes & Lines
-            drawAllAtlasRegions,
-        ])
-        .fetchResources();
-    // loadMapsData();
-
-    for (let func of resourceLoadFuncs) {
-        func();
-    }
+    resourceLoadFuncs.runAll();
 
     //TODO break this ^^^ up again and put "initialization" outside of "setup," and into the main thread.
     //TODO make it so that loadMapsData doesn't need to wait for Atlas.jpg to load. (a part of the above)
     //TODO have a "initWindowSizeDependants" and an "onWindowSize", the former not affecting "atlasSprite", so it can run in main thread, not having to wait for "setup" to finish
-    // setTimeout(()=>atlasSprite.texture = app.loader.resources["img/Atlas.jpg"].texture, 0);
+
     app.renderer.render(stage);
     onWindowResize();
-    // createPixiView();
     window.addEventListener('resize', () => window.requestAnimationFrame(onWindowResize) );
-    // initAtlasTierButtons();
     
     //60fps (more?) Animation Ticker (is this fps capped?)
     // app.ticker.add(delta => animationLoop(delta));
-}
-/**
- * Add the canvas (that Pixi created) to the HTML document
- */
-function createPixiView() {
-    console.timeLog("load");
-    CONTAINER_ELEMENT = document.getElementById("atlas_of_worlds")
-    CONTAINER_ELEMENT.appendChild(app.view);
-    CONTAINER_ELEMENT.lastChild.className = "pixi_atlas_of_worlds";
-}
-
-function getAtlasContainersScale() {
-    return {
-        x: maxW/pixiAtlasW,
-        y: maxH/pixiAtlasH
-    };
-}
-function getAtlasContainersPosition() {
-    return {
-        x: 0,
-        y: 0
-    };
 }
 
 var spritesheetLoaded = false
@@ -320,21 +457,6 @@ var spritesheetLoaded = false
  * @type {PIXI.Spritesheet}
  */
 var sheet;
-
-function initPixiDisplayObjects(resources) {
-    //Create main Atlas sprite
-    atlasSprite.texture = resources["img/Atlas47kb.webp"].texture;
-
-    // atlasSprite = new PIXI.Sprite();
-    //Add Atlas sprite to stage
-    stage.addChildAt(atlasSprite, 0);
-
-    initPixiContainers();
-    // Init all atlas regions
-    for (let i = 0; i < NUM_REGIONS; i++) {
-        initAtlasRegion(i);
-    }
-}
 
 /**
  * @type {PIXI.display.Group}
@@ -361,128 +483,6 @@ function initPixiContainers() {
     atlasSprite.addChild(new PIXI.display.Layer(unfocusedNodesContainer));
     atlasSprite.addChild(new PIXI.display.Layer(focusedNodesContainer));
 }
-const NUM_REGIONS = 8;
-
-var watchstoneButtons;
-var masterButton;
-function initWatchstones() {
-    const WATCHSTONE_TEXT_RESOLUTION = 3;
-    const padding = 6;
-
-    masterButton = new PIXI.Graphics();
-    const mText = new PIXI.Text("Cycle All Region Tiers", {
-        fontFamily: 'Fontin-Regular',
-        fontSize: 18,
-        align: "center",
-        fontWeight: "bold",
-        
-    });
-    mText.resolution = WATCHSTONE_TEXT_RESOLUTION;
-    masterButton.lineStyle(lineThickness/mapScaleFactor, '0x0', 1, 0.5, false)
-    mText.anchor.set(0.5, 0.5);
-    masterButton.addChild(mText);
-    masterButton.filters = [new PIXI.filters.DropShadowFilter()];
-    let mW = (mText.width + padding),
-        mH = (mText.height + padding);
-    masterButton.beginFill('0xffffff',1)
-        .drawRect(-mW/2, -mH/2, mW, mH);
-
-    watchstoneButtons = []
-    for (let i=0; i < NUM_REGIONS; i++) {
-        let button = new PIXI.Graphics();
-        let bText = new PIXI.Text("", {
-            fontFamily: 'Fontin-Regular',
-            fontSize: 18,
-            align: "center",
-            fontWeight: "bold",
-            
-        });
-        bText.resolution = WATCHSTONE_TEXT_RESOLUTION;
-        // TODO Create 2 text sprites: one for name, and one for region tier. Update only the latter.
-        button.textSprite = bText;
-        button.addChild(bText);
-        bText.anchor.set(0.5);
-
-        //init click functions & tier text
-        button.interactive = true;
-        button.buttonMode = true;    
-        button.on("pointertap", () => { cycleAtlasRegionTier(i, button); });
-        bText.text = atlasRegions[i].Name+"\nTier "+regionTiers[i];
-
-        let bW = (bText.width + padding),
-            bH = (bText.height + padding);
-        button.lineStyle(lineThickness/mapScaleFactor, '0x0', 1, 0.5, false)
-            .beginFill('0x997f87', 0.7)
-            .drawRect(-bW/2, -bH/2, bW, bH);
-
-        watchstoneButtons.push(button);
-        watchstonesContainer.addChild(button);
-    }
-    
-    //init "master" tier button (cycle all nodes) click function
-    masterButton.interactive = true;
-    masterButton.buttonMode = true;    
-    masterButton.on("pointertap", cycleAllAtlasRegionTiers);
-    watchstonesContainer.addChild(masterButton);
-    masterButton.position.set(0, 0);
-
-    function cycleAtlasRegionTier(regionID, boolDrawRegion=true) {
-        if (regionTiers[regionID] < 4) {
-            regionTiers[regionID] += 1;
-        } else {
-            regionTiers[regionID] = 0;
-        }
-        //Update corresponding button label
-        watchstoneButtons[regionID].textSprite.text = atlasRegions[regionID].Name+"\nTier "+regionTiers[regionID];
-        //Redraw this region & adjacent regions
-        if (boolDrawRegion) {
-            drawAtlasRegion(regionID, true);
-        }
-        //Store the current region tiers on the client
-        storeRegionTiers();
-    }
-
-    function cycleAllAtlasRegionTiers() {
-        for(let i=0; i<NUM_REGIONS; i++) {
-            cycleAtlasRegionTier(i, false);
-        }
-        drawAllAtlasRegions();
-    }
-
-    positionWatchstones();
-    updateWatchstoneVisibility();
-}
-/**
- * Positions all watchstone buttons (including master) on the Atlas.
- */
-function positionWatchstones() {
-    const watchstoneLocations = {
-        "InsideBottomLeft" : { "x": 434, "y": 463 },
-        "InsideBottomRight" : { "x": 627, "y": 500 },
-        "OutsideBottomRight" : { "x": 753, "y": 501 },
-        "InsideTopRight" : { "x": 647, "y": 299 },
-        "OutsideTopRight" : { "x": 823, "y": 231 },
-        "InsideTopLeft" : { "x": 255, "y": 206 },
-        "OutsideTopLeft" : { "x": 174, "y": 221 },
-        "OutsideBottomLeft" : { "x": 154, "y": 316 }
-    }
-    const posKeys = Object.keys(watchstoneLocations);
-    if (watchstoneButtons) {
-        const btnScale = 0.6;
-        for(let i=0; i<watchstoneButtons.length; i++) {
-            for (let key of posKeys) {
-                if (key === atlasRegions[i].Id) {
-                    let loc = watchstoneLocations[key];
-                    watchstoneButtons[i].position.set(loc.x*mapScaleFactor, loc.y*mapScaleFactor);
-                    watchstoneButtons[i].scale.set(btnScale*mapScaleFactor)
-                    break;
-                }
-            }
-        }
-        masterButton.position.set(pixiAtlasW/2, pixiAtlasH/2);
-        masterButton.scale.set(btnScale*mapScaleFactor);
-    }
-}
 
 /**
  * @returns {number} Factor by which to multiply node positions from the data file when drawing
@@ -491,12 +491,35 @@ function getMapScaleFactor() {
     return mapScaleFactor;
 }
 var mapScaleFactor;// = pixiAtlasW/maxW*4;//4.05;
-window.addEventListener('DOMContentLoaded', loadRegionTiers);
 /**
  * Tiers of each region (array index = regionID)
  * @type {Array<number>}
  */
 var regionTiers = [];
+var REGION_TIER_STORAGE_KEY = 'regionTiers';
+/**
+ * Stores the regionTiers of the current Atlas state in localStorage.
+ * @type {Function}
+ */
+var storeRegionTiers = debounce(
+    () => { window.localStorage.setItem(REGION_TIER_STORAGE_KEY, JSON.stringify(regionTiers)); },
+    1000
+);
+/**
+ * Loads the region tiers from LocalStorage. If no stored values are found, 
+ * defaults to all 0s and stores that to LocalStorage.
+ */
+function loadRegionTiers() {
+    let stored = JSON.parse(window.localStorage.getItem(REGION_TIER_STORAGE_KEY));
+    if (stored) {
+        regionTiers = stored;
+    } else {
+        regionTiers = [0,0,0,0,0,0,0,0];
+        storeRegionTiers();
+    }
+}
+
+loadRegionTiers();
 /**
  * Array of lists of nodes(IDs) in each region
  * @type {Array<Array<number>>}
@@ -535,6 +558,7 @@ document.addEventListener('DOMContentLoaded', () => nodeInfoSidebar = {
     pantheon: document.getElementById("node_pantheon_desc"),
 });
 
+// TODO - Implement or remove
 /**
  * @param {NodePixiObject} nodeThe node for which to build the graphics object.
  * @param {Number} [detail=0]  The version (ordered by detail level) of hover graphics that should be built.
@@ -546,11 +570,6 @@ function buildNodeHoverGraphics(node, detail=0) {
     return
 }
 
-// Globals (Display properties)
-var nodeCenterOffset = 25/4;//If I figure out how to scale the source data correctly, 'nodeCenterOffset' probably becomes 0 (and therefore unneeded)
-var nodeRadius = 30/4;
-var lineThickness = 2.5/4;
-const lineColor = 0x333333;//ffffff;
 class NodePixiObject {
     /**
      * Create a NodePixiObject
@@ -1142,10 +1161,6 @@ function drawAllAtlasRegions() {
     perfTimers.regionsRender.end();
 }
 
-function initAtlasRegion(regionID) {
-    linesContainer.addChildAt(new PIXI.Graphics(), regionID);
-    nodesContainer.addChildAt(new PIXI.Container(), regionID);
-}
 /**
  * Builds the graphics for the specified atlas region based that region's 
  * current tier (watchstone level).
@@ -1224,7 +1239,7 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
                 // Circle Sprite
                 // nodePixiObj.circleSprite.scale.set(mapScaleFactor, mapScaleFactor);
 
-                if (true && spritesheetLoaded) {
+                if (spritesheetLoaded) {
                     nodePixiObj.imgSprite.texture = nodePixiObj.getSpriteImg(tieredNodeData.tier);
                 }
 
@@ -1321,17 +1336,6 @@ function updateNodesVisibility() {
     }    
     console.timeEnd("updateNodesVisibility");
 }
-/**
- * Updates the visibility of all watchstones according to current options.
- */
-function updateWatchstoneVisibility() {
-    if (watchstoneButtons) {
-        for(let i=0; i<watchstoneButtons.length; i++) {
-            watchstoneButtons[i].visible = optsMgr.currentOptions.Watchstones;
-        }
-        masterButton.visible = optsMgr.currentOptions.MasterWatchstone;
-    }
-}
 
 //Stores the position of the center of the PIXI canvas, not the window.
 /**
@@ -1365,21 +1369,15 @@ function onWindowResize() {
     atlasSprite.updateScale();
     atlasSprite.updatePosition();
 
-    let containerScale = getAtlasContainersScale();
+    let containerScale = new PIXI.Point(maxW/pixiAtlasW, maxH/pixiAtlasH);
     linesContainer.scale.copyFrom(containerScale);
     nodesContainer.scale.copyFrom(containerScale);
-
-    let containerPos = getAtlasContainersPosition();
-    linesContainer.position.copyFrom(containerPos);
-    nodesContainer.position.copyFrom(containerPos);
-
     watchstonesContainer.scale.copyFrom(containerScale);
-    watchstonesContainer.position.copyFrom(containerPos);
 
     // Update NodePixiObjs
     NodePixiObject.CONTAINER_SCALE = symPoint(optsMgr.currentOptions.nodeScaleFactor * mapScaleFactor),
 
-    positionWatchstones();
+    watchstones.updatePositions();
     drawAllAtlasRegions();
     updateAllNodeGraphics();
 }
@@ -1432,26 +1430,6 @@ var renderStageThrottled = () => requestAnimationFrame(renderStage);
 //     () => app.renderer.render(stage),
 //     MIN_FRAME_TIME
 // );
-
-var REGION_TIER_STORAGE_KEY = 'regionTiers';
-var storeRegionTiers = debounce(
-    () => { window.localStorage.setItem(REGION_TIER_STORAGE_KEY, JSON.stringify(regionTiers)); },
-    1000
-);
-
-/**
- * Loads the region tiers from LocalStorage. If no stored values are found, 
- * defaults to all 0s and stores that to LocalStorage.
- */
-function loadRegionTiers() {
-    let stored = JSON.parse(window.localStorage.getItem(REGION_TIER_STORAGE_KEY));
-    if (stored) {
-        regionTiers = stored;
-    } else {
-        regionTiers = [0,0,0,0,0,0,0,0];
-        storeRegionTiers();
-    }
-}
 
 // Bind search results interactables
 executeIfWhenDOMContentLoaded(() => {

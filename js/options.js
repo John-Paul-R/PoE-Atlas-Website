@@ -2,7 +2,6 @@
 import { debounce } from './util.js';
 
 export {
-    options,
     createOptionsMenu,
     OptionsManager
 };

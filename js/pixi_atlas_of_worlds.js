@@ -20,31 +20,35 @@ export {
     getNodeRegionTier,
     registerResourceLoadFunc,
     getMapScaleFactor,
-    renderStage,
-    renderStageThrottled,
+    renderStage, renderStageThrottled,
     NodePixiObject
 };
 
 import { 
     throttle,
     debounce,
-    executeIfWhenDOMContentLoaded
+    executeIfWhenDOMContentLoaded,
+    FunctionBatch
 } from './util.js';
+
 import {
     createOptionsMenu,
     OptionsManager
-
 } from './options.js';
+
+import {
+    AsyncDataResourceLoader
+} from './resource_loader.js';
 
 // import * as PIXI from 'pixi.js';
 //===========
 //  Globals
 //===========
 
-//The minimum allowable time between stage renders. (Calls made while the function is on cooldown are ignored.)
-const MIN_FRAME_TIME = 1000/60;//(60fps)
-
-//Parsed json data file w/ map positions & other node data
+/**
+ * Parsed json data file w/ map positions & other node data
+ * @type {Array<Object>} an array of node data objects 
+ */
 var nodeData;
 var atlasRegions;
 
@@ -97,9 +101,7 @@ let pixiAtlasW = 4096;
 /**
  * @type {HTMLElement}
  */
-var CONTAINER;
-// Center position for pixi objects that are children of atlasSprite (has x & y)
-const atlasScreenMid = {};
+var CONTAINER_ELEMENT;
 
 var optsMgr = new OptionsManager('displayOptions', [drawAllAtlasRegions]);
 optsMgr.register("drawLines", "Show Lines", true, null)
@@ -189,7 +191,7 @@ console.log("Creating PIXI Atlas app.");
 //Load Pixi resources
 loader = PIXI.Loader.shared;
 loader.onComplete.once(createPixiView);
-let timers = []
+let timers = [];
 console.time("load");
 loader.onStart.add((resource)=>{
     console.timeLog("load");
@@ -247,7 +249,30 @@ function setup(loader, resources) {
                 renderStage();
             });
         });
-    loadMapsData();
+    
+    // Load Maps Data (Request and parse files)
+    let dataResourceLoader = new AsyncDataResourceLoader();
+    dataResourceLoader
+        .addResource("data/AtlasDataCombined_Itemized-1600754911.json", [
+            (resJson) => {
+                let combinedData = resJson;
+                nodeData = combinedData["AtlasNode+WorldAreas"];
+                atlasRegions = combinedData["AtlasRegions.dat"];
+    
+                // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
+                for (let i=0; i<nodeData.length; i++) {
+                    let entry = nodeData[i];
+                    regionNodes[entry.AtlasRegionsKey].push(entry.RowID);
+                    entry.interalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
+                }
+            },
+            initWatchstones,
+            preloadStaticGraphics,
+            //Draw Atlas Nodes & Lines
+            drawAllAtlasRegions,
+        ])
+        .fetchResources();
+    // loadMapsData();
 
     for (let func of resourceLoadFuncs) {
         func();
@@ -271,25 +296,9 @@ function setup(loader, resources) {
  */
 function createPixiView() {
     console.timeLog("load");
-    CONTAINER = document.getElementById("atlas_of_worlds")
-    CONTAINER.appendChild(app.view);
-    CONTAINER.lastChild.className = "pixi_atlas_of_worlds";
-}
-
-function resizePixiDisplayObjects() {
-    atlasSprite.updateScale();
-    atlasSprite.updatePosition();
-
-    let containerScale = getAtlasContainersScale();
-    linesContainer.scale.copyFrom(containerScale);
-    nodesContainer.scale.copyFrom(containerScale);
-
-    let containerPos = getAtlasContainersPosition();
-    linesContainer.position.copyFrom(containerPos);
-    nodesContainer.position.copyFrom(containerPos);
-
-    watchstonesContainer.scale.copyFrom(containerScale);
-    watchstonesContainer.position.copyFrom(containerPos);
+    CONTAINER_ELEMENT = document.getElementById("atlas_of_worlds")
+    CONTAINER_ELEMENT.appendChild(app.view);
+    CONTAINER_ELEMENT.lastChild.className = "pixi_atlas_of_worlds";
 }
 
 function getAtlasContainersScale() {
@@ -920,81 +929,6 @@ function symPoint(num) {
 };
 // NodePixiObject.searchMatchTexture = testTexture;
 
-class PoECDN {
-    /**
-     * @param {number} defaultScale 
-     * @param {number} defaultLeague 
-     * @param {number} defaultTier 
-     */
-    constructor (defaultScale, defaultLeague, defaultTier) {
-        this.defaultScale = defaultScale;
-        this.defaultLeague = defaultLeague;
-        this.defaultTier = defaultTier;
-        this.baseNormalLink = "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/"
-        this.baseUniqueLink = "https://web.poecdn.com/gen/image/"
-    
-    }
-
-    /**
-     * 
-     * @param {Object} nodeData 
-     * @param {number} [scale=0] 
-     * @param {number} [league=0] 
-     * @param {number} [tier=0] 
-     * 
-     * @returns {string}
-     */
-    buildNodeImageLink(nodeData, scale=0, league=0, tier=0) {
-        const cdnScale = "scale=";
-        const cdnLeague = "mn="
-        const cdnTier = "mt="
-        let out;
-        if (nodeData.IsUniqueMapArea) {
-            out =   this.baseUniqueLink + nodeData.cdnKey
-                    +'?'+cdnScale + scale;
-        } else {
-            // Handle Vaal Temple
-            if (nodeData.RowID === 8) {
-                tier=0;
-            }
-            out =   this.baseNormalLink + nodeData.cdnKey
-                    +'?'+cdnScale + scale
-                    +'&'+cdnLeague + league
-                    +'&'+cdnTier + tier;
-        }
-        return out;
-    }
-
-    /**
-     * 
-     * @param {string} link 
-     * @returns {string} 
-     */
-    keyFromLink(link) {
-        let out = link.includes(this.baseNormalLink) ? link.replace(this.baseNormalLink, '') : link.replace(this.baseUniqueLink, '');
-        return out.replace(/\?scale.*/g, "");
-    }
-}
-
-var poecdnHelper = new PoECDN(0, 0, 0);
-/**
- * Convert an exact Map Node display name (without "map") (with spaces) to a
- * PoEDB link node-name token
- * 
- * @param {string} strName 
- * @param {boolean} isUnique 
- * 
- * @returns {string} a PoEDB link node-name token
- */
-function toPoEDBName(strName, isUnique=false) {
-    if (isUnique) {
-        strName = (strName === "The Hall of Grandmasters") ? "Hall of Grandmasters" : strName;
-        strName = (strName === "Perandus Manor") ? "The Perandus Manor" : strName;
-    } else {
-        strName = `${strName} Map`;
-    }
-    return strName;
-}
 /**
  * 
  * @param {Object} node a Node Data object
@@ -1013,93 +947,24 @@ function getNodeExternalLinks(node) {
     return { poeDBLink, poeWikiLink };
 }
 
-
 /**
- * Request map data files, parse them, 
- * and draw all Atlas regions for the 1st time.
+ * Convert an exact Map Node display name (without "map") (with spaces) to a
+ * PoEDB link node-name token
  * 
- * @param {PIXI.Loader} loader 
- * @param {} resources 
- * @param {PIXI.Sprite} atlasSprite 
+ * @param {string} strName 
+ * @param {boolean} isUnique 
+ * 
+ * @returns {string} a PoEDB link node-name token
  */
-function loadMapsData(loader, resources, atlasSprite) {
-    let nodeImagesDict;
-    let nodeImagesDictResponseReceived = false;
-    let nodeDataResponseReceived = false;
-    const allResponsesReceivedOps = (nodeImagesDict) => {
-        // for (const [key, elem] of Object.entries(nodeImages)) {
-        //     resetOption(key);
-        // }
-        if (nodeImagesDictResponseReceived && nodeDataResponseReceived) {
-            console.log(nodeImagesDict);
-            let erroredNames = []
-            console.groupCollapsed("CDN Key Error Log");
-            
-            for (let i=0; i<nodeData.length; i++) {
-                let entry = nodeData[i];
-                try {
-                    entry.cdnKey = poecdnHelper.keyFromLink(nodeImagesDict[toPoEDBName(entry.Name, entry.IsUniqueMapArea)].Icon);
-                    // console.log(`${entry.Name}: ${entry.cdnKey}`);
-    
-                } catch (error) {
-                    erroredNames.push(entry.Name)
-                    console.log(`Error finding matching icon for ${entry.Name}.`)
-                    console.error(error);
-                }
-            }
-            console.groupEnd();
-            if (erroredNames.length > 0) {
-                console.warn(`Failed to load ${erroredNames.length} node names/cdnKeys.`)
-            } else {
-                console.info("All node names & cndKeys loaded successfully! (in theory)")
-            }    
-        }
+function toPoEDBName(strName, isUnique=false) {
+    if (isUnique) {
+        strName = (strName === "The Hall of Grandmasters") ? "Hall of Grandmasters" : strName;
+        strName = (strName === "Perandus Manor") ? "The Perandus Manor" : strName;
+    } else {
+        strName = `${strName} Map`;
     }
-
-    let nodeDataRequest = new XMLHttpRequest();
-    nodeDataRequest.open("GET", "data/AtlasDataCombined_Itemized-1600754911.json", true);
-    nodeDataRequest.send();
-    nodeDataRequest.onreadystatechange = function() {
-        if ( nodeDataRequest.readyState === 4 && nodeDataRequest.status === 200 ) {
-            nodeDataResponseReceived = true;
-            //Parse response contents
-            let combinedData = JSON.parse(nodeDataRequest.responseText);
-            nodeData = combinedData["AtlasNode+WorldAreas"];
-            atlasRegions = combinedData["AtlasRegions.dat"];
-            initWatchstones();
-            preloadStaticGraphics();
-            //Draw Atlas Nodes & Lines
-            drawAllAtlasRegions();
-            //(This ^^^ must be in here, instead of after the call to loadMapsData, because the...
-            //  http request is async. The resources wouldn't necessarily be loaded when the...
-            //  drawAllAtlasRegions function is called.)
-
-            // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
-
-            for (let i=0; i<nodeData.length; i++) {
-                let entry = nodeData[i];
-                regionNodes[entry.AtlasRegionsKey].push(entry.RowID);
-                entry.interalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
-                
-            }
-
-            allResponsesReceivedOps(nodeImagesDict);
-        }
-    }
-    //send next request
-    // //TODO make sure this waits for the other request, OR combine with base data file in backend
-    let nodeImagesDictRequest = new XMLHttpRequest();
-    nodeImagesDictRequest.open("GET", "data/Maps155-DICT-heist-1.json", true);
-    nodeImagesDictRequest.send();
-    nodeImagesDictRequest.onreadystatechange = function() {
-        if ( nodeImagesDictRequest.readyState === 4 && nodeImagesDictRequest.status === 200 ) {
-            nodeImagesDictResponseReceived = true;
-            nodeImagesDict = JSON.parse(nodeImagesDictRequest.responseText);
-            allResponsesReceivedOps(nodeImagesDict);
-        }
-    }
+    return strName;
 }
-
 /**
  * Preload static graphics and create all nodePixiObjects.
  */
@@ -1473,8 +1338,8 @@ function updateWatchstoneVisibility() {
  * Updates values that are dependent on the window size.
  */
 function onWindowResize() {
-    // let innerHeight = CONTAINER.clientHeight;
-    // let innerWidth = CONTAINER.clientWidth;
+    // let innerHeight = CONTAINER_ELEMENT.clientHeight;
+    // let innerWidth = CONTAINER_ELEMENT.clientWidth;
     let nonAtlasContentHeightSum = document.getElementsByTagName("header")[0].offsetHeight
         + document.getElementsByTagName("footer")[0].offsetHeight;
     let nonAtlasContentWidthSum = 0;
@@ -1491,16 +1356,26 @@ function onWindowResize() {
     
     app.renderer.resize(pixiScreenW, pixiScreenH);
 
-    let containerScale = getAtlasContainersScale();
-    atlasScreenMid.x = pixiAtlasW/2*containerScale.x;
-    atlasScreenMid.y = pixiAtlasH/2*containerScale.y;
-
     mapScaleFactor = (pixiAtlasW + pixiAtlasH)/(maxH+maxW)*4;
     
     nodeCenterOffset = 25/4 * mapScaleFactor;
     lineThickness = 2.5/4 * mapScaleFactor;
-    // placeAtlasTierButtonsCircle();
-    resizePixiDisplayObjects();
+
+    // resizePixiDisplayObjects
+    atlasSprite.updateScale();
+    atlasSprite.updatePosition();
+
+    let containerScale = getAtlasContainersScale();
+    linesContainer.scale.copyFrom(containerScale);
+    nodesContainer.scale.copyFrom(containerScale);
+
+    let containerPos = getAtlasContainersPosition();
+    linesContainer.position.copyFrom(containerPos);
+    nodesContainer.position.copyFrom(containerPos);
+
+    watchstonesContainer.scale.copyFrom(containerScale);
+    watchstonesContainer.position.copyFrom(containerPos);
+
     // Update NodePixiObjs
     NodePixiObject.CONTAINER_SCALE = symPoint(optsMgr.currentOptions.nodeScaleFactor * mapScaleFactor),
 

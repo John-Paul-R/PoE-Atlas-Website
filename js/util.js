@@ -3,7 +3,8 @@ export {
     throttle,
     debounce,
     executeOrWait,
-    executeIfWhenDOMContentLoaded
+    executeIfWhenDOMContentLoaded,
+    FunctionBatch
 };
 
 /**
@@ -74,4 +75,33 @@ function executeIfWhenDOMContentLoaded(func) {
         ),
         () => window.addEventListener('DOMContentLoaded', func)
     );
+}
+
+class FunctionBatch {
+    /**
+     * 
+     * @param {Array<function>} arrFuncs an array of functions
+     */
+    constructor(arrFuncs) {
+        this.funcs = arrFuncs || [];
+    }
+
+    /**
+     * Add a function to the batch. Chainable.
+     * @param {function} func 
+     * @return {FunctionBatch}
+     */
+    add(func) {
+        this.funcs.push(func);
+        return this;
+    }
+
+    /**
+     * Execute all functions in the batch.
+     */
+    runAll(args) {
+        for (const func of this.funcs) {
+            func(args);
+        }
+    }
 }

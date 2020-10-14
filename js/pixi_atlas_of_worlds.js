@@ -576,7 +576,7 @@ class NodePixiObject {
      * @param {PIXI.Text} nameSprite  
      * @param {Object} data a node data object
      */
-    constructor(nameSprite, data) {
+    constructor(nameSprite, data, initialTexture) {
         this.container = new PIXI.Container();
         this.container.parentGroup = unfocusedNodesContainer;
 
@@ -584,25 +584,22 @@ class NodePixiObject {
         this.container.addChild(this.backgroundContainer);
 
         //Placeholder img sprite
-        this.imgSprite = new PIXI.Sprite();
+        this.imgSprite = new PIXI.Sprite(initialTexture);
         this.imgSprite.anchor.set(0.5);
-
-        // Temp, until I figure out how to load placeholder circleSprite from graphics effieciently via RenderTexture
-        this.circleSprite = this.imgSprite;
         
-        this.circleSprite.interactive = true;
-        this.circleSprite.buttonMode = true;
+        this.imgSprite.interactive = true;
+        this.imgSprite.buttonMode = true;
 
         this.setupHover(optsMgr.currentOptions.nodeHover);
 
-        this.circleSprite.pointertap = ()=>this.onSelect();
-        // this.circleSprite = circleSprite;
+        this.imgSprite.pointertap = ()=>this.onSelect();
         
-        this.container.addChild(this.circleSprite);
+        this.container.addChild(this.imgSprite);
 
         this.nameContainer = new PIXI.Container();
         
         this.nameSprite = nameSprite;
+        nameSprite.anchor.set(0.5, 1);
         this.nameContainer.addChild(this.nameSprite);
         this.container.addChild(this.nameContainer);
 
@@ -729,13 +726,13 @@ class NodePixiObject {
     setupHover(boolEnabled) {
         if (boolEnabled) {
             
-            this.circleSprite.pointerover = (pointerData)=>{
+            this.imgSprite.pointerover = (pointerData)=>{
                 this.isHovered = true;
                 this.gainLightFocus();
                 app.renderer.render(stage);
             };
 
-            this.circleSprite.pointerout = (pointerData)=>{
+            this.imgSprite.pointerout = (pointerData)=>{
                 this.isHovered = false;
                 this.loseLightFocus();
                 app.renderer.render(stage);
@@ -743,8 +740,8 @@ class NodePixiObject {
 
             this.container.filters = [];
         } else {
-            this.circleSprite.pointerover = null;
-            this.circleSprite.pointerout = null;
+            this.imgSprite.pointerover = null;
+            this.imgSprite.pointerout = null;
             this.container.filters = null;
         } 
     }
@@ -786,6 +783,7 @@ class NodePixiObject {
      * then render the stage (throttled)
      */
     onSelect() {
+        // Un-select previous node. Select this node.
         if (this.constructor.prevSelected) {
             this.constructor.prevSelected.isSelected = false;
             this.constructor.prevSelected.updateNodeGraphics();
@@ -794,8 +792,12 @@ class NodePixiObject {
         this.constructor.prevSelected = this;
         this.isSelected = true;
         this.backgroundContainer.addChild(NodePixiObject.SPRITE_SELECTED);
-        // Info sidebar
+        
+        //=====================
+        // Update Info sidebar
+        //=====================
         const sidebar = nodeInfoSidebar;
+
         // Info sidebar close button
         const sidebarCloseButton = document.getElementById("node_exit");
         const sidebarCloseClickHandler = (e) => {
@@ -815,17 +817,32 @@ class NodePixiObject {
         this.constructor.removePrevCloseHandler = () => sidebarCloseButton.removeEventListener("click", sidebarCloseClickHandler);
         
         // Update Node Info Sidebar Content
+        // Update Header (Node Name)
         sidebar.name.innerText = this.data.Name;
+        
+        // External Links (PoEDB and Wiki)
         let nodeExternalLinks = getNodeExternalLinks(this.data);
         sidebar.poedb.href = nodeExternalLinks.poeDBLink;
         sidebar.poewiki.href = nodeExternalLinks.poeWikiLink;
+        
+        // Region Name
         sidebar.region.innerText = "Region: " + atlasRegions[this.data.AtlasRegionsKey].Name;
-        sidebar.icon.src = this.getImgBase64(getTieredNodeData(this.data).tier);//buildCDNNodeImageLink(this.data, 0, 8, getTieredNodeData(this.data).tier);
+
+        // Sidebar Icon
+        try {
+            sidebar.icon.src = this.getImgBase64(getTieredNodeData(this.data).tier);//buildCDNNodeImageLink(this.data, 0, 8, getTieredNodeData(this.data).tier);
+        } catch (e) {
+            sidebar.icon.src = app.renderer.extract.base64(this.imgSprite.texture, 'image/png', 1);
+        }
+
+        // Tiers Table
         const tds = sidebar.tiers.getElementsByTagName('td');
         for (let i=0; i < tds.length; i++) {
             let tier = this.data.TieredData[i].Tier;
             tds[i].innerText = tier <= 0 ? "-" : tier;
         }
+
+        // Connections List
         let connectionsData = this.data.TieredData[4].AtlasNodeKeys;
         let connectionsText = "";
         for (let i=0; i < connectionsData.length; i++) {
@@ -1005,60 +1022,66 @@ function preloadStaticGraphics() {
     };
 
     // Static generic nodeCirleGraphics (In case images cannot be loaded)
-    //let nodeCircleGraphs = preloadNodeCircleGraphics();
+    let nodeCircleTex = preloadNodeCircleTextures();
 
     // Preload Tier Textures
     preloadTierTextures(fontSize, fontFamily, tierFontStyle, textResolution);
     // Init NodePixiObjects and Generate nameSprites for each node
     for (let i=0; i<nodeData.length; i++) {
         let cNodeData = nodeData[i];
-        let nameSprite, data;
-        data = cNodeData;
-
-        // //Load Node Circle Sprites
-        // let circleSprite;
-        // // let nodeNameU = cNodeData.Name.replace(/ /g,"_");
-        // if (cNodeData.IsUniqueMapArea) {
-        //     circleSprite = nodeCircleGraphs.unique.clone();
-        // } else {
-        //     circleSprite = nodeCircleGraphs.normal.clone();
-        // }
 
         //Load Name Sprites
-        nameSprite = new PIXI.Text(cNodeData.Name, nameTextStyleBlack);
+        let nameSprite = new PIXI.Text(cNodeData.Name, nameTextStyleBlack);
         nameSprite.resolution = textResolution;
-        nameSprite.anchor.set(0.5,1);
+
+        // Placeholder node texture
+        let tempTex = cNodeData.IsUniqueMapArea ? nodeCircleTex.unique : nodeCircleTex.normal;
 
         //Add the constructed Node object to the global list.
-        nodePixiObjects.push(new NodePixiObject(nameSprite, data));        
+        nodePixiObjects.push(new NodePixiObject(nameSprite, cNodeData, tempTex));        
     }
     updateNodeSize();
     updateNodesTextScale();
     //===========
     // FUNCTIONS
     //===========
-    function preloadNodeCircleGraphics() {
+    function preloadNodeCircleTextures() {
+        const lineStyle = {
+            width: 4,
+            color: 0x222222,
+            alpha: 1,
+            native: false
+        }
+        const nodeImgRad = 78/2;
         let nodeGraph = new PIXI.Graphics();
-        nodeGraph.lineStyle(lineThickness, '0x0', 1, 0.5, false)
-            .beginFill('0x555555',1)
-            .drawCircle(0, 0, 10);
-    
+        nodeGraph.lineStyle(lineStyle)
+            .beginFill('0x555555', 1)
+            .drawCircle(0, 0, nodeImgRad);
+        const uniqueNodeImageRad = 47/2;
         let uniqueNodeGraph = new PIXI.Graphics();
-        uniqueNodeGraph.lineStyle(lineThickness, '0x0', 1, 0.5, false)
-            .beginFill('0x554411',1)
-            .drawCircle(0, 0, 10);
+        uniqueNodeGraph.lineStyle(lineStyle)
+            .beginFill('0x554411', 1)
+            .drawCircle(0, 0, uniqueNodeImageRad);
     
-        // const renderSize = 128;
-        // const scaleMode = PIXI.SCALE_MODES.LINEAR;
-        // const res = 1;
-        let nodeCircleGraphics = {
-            normal: nodeGraph,//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res),
-            unique: uniqueNodeGraph//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res)
+        const texSizeNormal = nodeImgRad * 2 + lineStyle.width;
+        const texSizeUnique = uniqueNodeImageRad * 2 + lineStyle.width;
+        const res = 2;
+        
+        let normalTex = PIXI.RenderTexture.create({ width: texSizeNormal, height: texSizeNormal, resolution: res});
+        normalTex.defaultAnchor = new PIXI.Point(0.5, 0.5);
+        nodeGraph.position.set(texSizeNormal/2, texSizeNormal/2);
+
+        let uniqueTex = PIXI.RenderTexture.create({ width: texSizeUnique, height: texSizeUnique, resolution: res});
+        uniqueTex.defaultAnchor = new PIXI.Point(0.5, 0.5);
+        uniqueNodeGraph.position.set(texSizeUnique/2, texSizeUnique/2);
+
+        app.renderer.render(nodeGraph, normalTex);
+        app.renderer.render(uniqueNodeGraph, uniqueTex);
+        
+        return {
+            normal: normalTex,//nodeGraph,//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res),
+            unique: uniqueTex//uniqueNodeGraph//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res)
         };
-        // app.renderer.render(nodeGraph, nodeCircleTexture.normal);
-        // app.renderer.render(uniqueNodeGraph, nodeCircleTexture.unique);
-    
-        return nodeCircleGraphics;
     }
 
     function preloadTierTextures(fontSize, fontFamily, fontStyle, textResolution) {
@@ -1236,8 +1259,6 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
                 let nodeContainer = nodePixiObj.container;
                 nodeContainer.position.set(tieredNodeData.x, tieredNodeData.y)
                 nodeContainer.scale = NodePixiObject.CONTAINER_SCALE;
-                // Circle Sprite
-                // nodePixiObj.circleSprite.scale.set(mapScaleFactor, mapScaleFactor);
 
                 if (spritesheetLoaded) {
                     nodePixiObj.imgSprite.texture = nodePixiObj.getSpriteImg(tieredNodeData.tier);

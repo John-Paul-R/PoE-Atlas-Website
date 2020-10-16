@@ -389,7 +389,7 @@ new AsyncDataResourceLoader()
             for (let i=0; i<nodeData.length; i++) {
                 let entry = nodeData[i];
                 regionNodes[entry.AtlasRegionsKey].push(entry.RowID);
-                entry.interalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
+                entry.internalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"");
             }
         },
         watchstones.init,
@@ -422,10 +422,10 @@ function setup(loader, resources) {
     atlasSprite.texture = resources["img/Atlas47kb.webp"].texture;
 
     //Queue next pixi resources for loading
-    loader.add("pixi/node_spritesheet-heist-1.json")
+    loader.add("pixi/atlas-maps-heist-2.json")
         .load(()=>{
             console.timeLog("load");
-            sheet = loader.resources["pixi/node_spritesheet-heist-1.json"];
+            sheet = loader.resources["pixi/atlas-maps-heist-2.json"];
             spritesheetLoaded = true;
             //TODO make sure this waits for nodeData to exist...
             drawAllAtlasRegions();
@@ -863,24 +863,57 @@ class NodePixiObject {
     /**
      * Get the texture of this node at the specified tier.
      * @param {number} [tier=0]
+     * @param {boolean} [includeBg=false] Whether to combine the map-specific image with the base map bg img.
      * @returns {PIXI.Texture}
      */
-    getSpriteImg(tier=0) {
-        let strTier;
+    getSpriteImg(tier=0, includeBg=false) {
+        let outTexture;
+
+        let strTier, strPrefix;
         if (this.data.IsUniqueMapArea) {
-            strTier = "";
+            outTexture = sheet.textures[this.data.Name.replace(' ', '')+".dds"];
         } else {
-            if (tier < 6)
+            const map_tint = {
+                red: 0xF72514,
+                yellow: 0xFFCF46,
+                white:0xFDFDFD
+            }
+            let tint;
+            strPrefix = "Atlas2Maps/New/";
+            if (tier < 6) {
                 strTier = "-t0";
-            else if (tier < 11)
+                tint = map_tint.white;
+            } else if (tier < 11) {
                 strTier = "-t1";
-            else
+                tint = map_tint.yellow;
+            } else {
                 strTier = "-t2";
-        }
+                tint = map_tint.red;
+            }
+
+            let nodeTextureKey = strPrefix+this.data/*Name.replace(' ', '')*/.internalName/*+strTier*/+".dds"
+            let nodeTexture = sheet.textures[nodeTextureKey];
+            // console.log(out);
+            
+            if (includeBg) {
+                let baseTexture = sheet.textures['Atlas2Maps/New/Base9.dds'];
+                let outSprite = new PIXI.Sprite(baseTexture);
+                let nodeSprite = new PIXI.Sprite(nodeTexture);
+                outSprite.addChild(nodeSprite);
+                
+                nodeSprite.tint = tint;
+
+                const texSize = 78;
+                outSprite.position = symPoint(texSize/2);
+                outTexture = PIXI.RenderTexture.create({width: texSize, height: texSize, resolution: 2});
+                app.renderer.render(outSprite, outTexture);
+            } else {
+                outTexture = nodeTexture;
+            }
         
-        let out = this.data.interalName+strTier+".png"
-        // console.log(out);
-        return sheet.textures[out];
+        }
+
+        return outTexture;
     }
     /**
      * Get the base64 image string for this node at the specified tier.
@@ -888,7 +921,7 @@ class NodePixiObject {
      */
     getImgBase64(tier=0) {
         return app.renderer.extract.base64(
-            PIXI.Sprite.from(this.getSpriteImg(tier)),
+            PIXI.Sprite.from(this.getSpriteImg(tier, true)),
             'image/png',
             1
         );
@@ -898,7 +931,7 @@ class NodePixiObject {
     static NAME_SCALE = symPoint(1);//2/3 * options.nodeTextScale);
     static IMG_SCALE = symPoint(1/4);
     // 78 is l/w of standard node img 47 is l/w of unique node img
-    static IMG_SCALE_UNIQUE = symPoint(1/4 * (78/47));
+    static IMG_SCALE_UNIQUE = NodePixiObject.IMG_SCALE//symPoint(1/4 * (78/47));
     static TIER_SCALE = symPoint(1);//0.15 * options.nodeTextScale);
     static BACKGROUND_SCALE = symPoint(0.4);
     static NAME_Y = 0 - (nodeRadius + nodeCenterOffset/4);
@@ -974,11 +1007,11 @@ function getNodeExternalLinks(node) {
     // const regionCode = 'us'
     let poeDBLink, poeWikiLink;
     if (node.IsUniqueMapArea) {//${regionCode}
-        poeDBLink = `http://www.poedb.tw/unique.php?n=${encodeURI(node.interalName.replace(/_/g,"+"))}`;
-        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.interalName)}`;
+        poeDBLink = `http://www.poedb.tw/unique.php?n=${encodeURI(node.internalName.replace(/_/g,"+"))}`;
+        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.internalName)}`;
     } else {
-        poeDBLink = `http://www.poedb.tw/${node.interalName}`;
-        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.interalName)}`; 
+        poeDBLink = `http://www.poedb.tw/${node.internalName}`;
+        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.internalName)}`; 
     }
     
     return { poeDBLink, poeWikiLink };
@@ -998,7 +1031,7 @@ function toPoEDBName(strName, isUnique=false) {
         strName = (strName === "The Hall of Grandmasters") ? "Hall of Grandmasters" : strName;
         strName = (strName === "Perandus Manor") ? "The Perandus Manor" : strName;
     } else {
-        strName = `${strName} Map`;
+        // strName = `${strName} Map`;
     }
     return strName;
 }
@@ -1262,7 +1295,7 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
                 nodeContainer.scale = NodePixiObject.CONTAINER_SCALE;
 
                 if (spritesheetLoaded) {
-                    nodePixiObj.imgSprite.texture = nodePixiObj.getSpriteImg(tieredNodeData.tier);
+                    nodePixiObj.imgSprite.texture = nodePixiObj.getSpriteImg(tieredNodeData.tier, true);
                 }
 
                 //Add node tier text sprites to 'nodeContainer'

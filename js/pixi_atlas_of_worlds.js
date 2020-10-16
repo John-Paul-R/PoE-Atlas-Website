@@ -345,6 +345,7 @@ var resourceLoadFuncs = new FunctionBatch();
 loader = PIXI.Loader.shared;
 // When 1st batch of resources are loaded...
 // ...Add the canvas (that Pixi created) to the HTML document (createPixiView)
+// TODO Perhaps do this on DOM content load instead? Why are we waiting?
 loader.onComplete.once(() => {
     console.timeLog("load");
     CONTAINER_ELEMENT = document.getElementById("atlas_of_worlds")

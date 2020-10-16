@@ -379,7 +379,7 @@ loader
 
 // Load Atlas Data (Request, parse, and store file data)
 new AsyncDataResourceLoader()
-    .addResource("data/AtlasDataCombined_Itemized-1600754911.json", [
+    .addResource("data/AtlasDataCombined_Itemized-1602838451.json", [
         (resJson) => {
             let combinedData = resJson;
             nodeData = combinedData["AtlasNode+WorldAreas"];

@@ -422,10 +422,10 @@ function setup(loader, resources) {
     atlasSprite.texture = resources["img/Atlas47kb.webp"].texture;
 
     //Queue next pixi resources for loading
-    loader.add("pixi/atlas-maps-heist-2.json")
+    loader.add("pixi/atlas-maps-heist-2.1_Itemized-1602836784.json")
         .load(()=>{
             console.timeLog("load");
-            sheet = loader.resources["pixi/atlas-maps-heist-2.json"];
+            sheet = loader.resources["pixi/atlas-maps-heist-2.1_Itemized-1602836784.json"];
             spritesheetLoaded = true;
             //TODO make sure this waits for nodeData to exist...
             drawAllAtlasRegions();
@@ -869,9 +869,11 @@ class NodePixiObject {
     getSpriteImg(tier=0, includeBg=false) {
         let outTexture;
 
-        let strTier, strPrefix;
+        let nodeTextureKey = this.data.Name;
+        let nodeTexture = sheet.textures[nodeTextureKey];
+
         if (this.data.IsUniqueMapArea) {
-            outTexture = sheet.textures[this.data.Name.replace(' ', '')+".dds"];
+            outTexture = nodeTexture;
         } else {
             const map_tint = {
                 red: 0xF72514,
@@ -879,24 +881,16 @@ class NodePixiObject {
                 white:0xFDFDFD
             }
             let tint;
-            strPrefix = "Atlas2Maps/New/";
             if (tier < 6) {
-                strTier = "-t0";
                 tint = map_tint.white;
             } else if (tier < 11) {
-                strTier = "-t1";
                 tint = map_tint.yellow;
             } else {
-                strTier = "-t2";
                 tint = map_tint.red;
             }
-
-            let nodeTextureKey = strPrefix+this.data/*Name.replace(' ', '')*/.internalName/*+strTier*/+".dds"
-            let nodeTexture = sheet.textures[nodeTextureKey];
-            // console.log(out);
             
             if (includeBg) {
-                let baseTexture = sheet.textures['Atlas2Maps/New/Base9.dds'];
+                let baseTexture = sheet.textures['Art/2DItems/Maps/Atlas2Maps/New/Base9.dds'];
                 let outSprite = new PIXI.Sprite(baseTexture);
                 let nodeSprite = new PIXI.Sprite(nodeTexture);
                 outSprite.addChild(nodeSprite);
@@ -904,13 +898,12 @@ class NodePixiObject {
                 nodeSprite.tint = tint;
 
                 const texSize = 78;
-                outSprite.position = symPoint(texSize/2);
+                // outSprite.position = symPoint(texSize/2);
                 outTexture = PIXI.RenderTexture.create({width: texSize, height: texSize, resolution: 2});
                 app.renderer.render(outSprite, outTexture);
             } else {
                 outTexture = nodeTexture;
             }
-        
         }
 
         return outTexture;

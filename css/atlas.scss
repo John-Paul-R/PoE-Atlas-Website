@@ -1,0 +1,159 @@
+
+#atlas_of_worlds {
+    display: grid;
+    width: 100%;
+    height: 100%;
+}
+@media only screen and (min-width: 512px) {
+    #atlas_of_worlds {
+        grid-template-rows: [vstart]96px [vmid-start]1fr[vmid-end] 64px[vend];
+        grid-template-columns: [hstart]256px [hmid-start]1fr[hmid-end] 256px[hend];
+
+        /* position: absolute;
+        top:0;
+        left:0; */
+        /* z-index: 10; */
+        /* opacity:50%; */
+        
+    }
+}
+@media only screen and (max-width: 512px) {
+    #atlas_of_worlds {
+        grid-template-rows: [vstart]1.333fr [vmid-start]2fr[vmid-end] 7fr[vend];
+        grid-template-columns: [hstart]4fr [hmid-start]8fr[hmid-end] 4fr[hend];
+
+        /* position: absolute;
+        top:0;
+        left:0; */
+        /* z-index: 10; */
+        /* opacity:50%; */
+        
+    }
+}
+
+.pixi_atlas_of_worlds {
+    grid-column: hstart / hend;
+    grid-row: vstart / vend;
+    pointer-events:all;
+    /* margin-left:auto; */
+    /* margin-right:auto; */
+    max-width: 100%;
+    max-height: 100%;
+
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.overlay {
+    /* background-color: maroon; */
+    z-index: 10;
+    pointer-events:none;
+    /* opacity:75%; */
+}
+.overlay.top {
+    grid-column: hstart / hend;
+    grid-row: vstart / vmid-start;
+    /* background-color:aquamarine; */
+}
+.overlay.bottom {
+    grid-column: hmid-start / hmid-end;
+    grid-row: vmid-end / vend;
+}
+.overlay.left {
+    grid-column: hstart / hmid-start;
+    grid-row: vmid-start / vmid-end/*vend*/;
+    pointer-events: visibleFill;
+    /* background-color: beige; */
+}
+.overlay.right {
+    grid-column: hmid-end / hend;
+    grid-row: vmid-start / vmid-end/*vend*/;
+    /* background-color: beige; */
+}
+
+#node_info, .overlay.left {
+    position:relative;
+    align-items:stretch;
+    box-sizing: border-box;
+    padding:16px;
+    opacity:90%;
+    pointer-events: visibleFill;
+}
+
+@media only screen and (max-width: 512px) {
+    #node_info {
+        /* TODO Make this accurate for mobile */
+        max-height: 70vh;
+        grid-column: hstart / hend;
+        grid-row: vmid-end / vend;
+    }
+    .overlay.left {
+        grid-column: hstart / hend;
+        max-height: 50vh;
+        min-height: 30vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    #node_body {
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+}
+@media only screen and (min-width: 512px) {
+    #node_info {
+        grid-column: hmid-end / hend;
+        grid-row: vmid-start / vmid-end/*vend*/;
+        height: min-content;
+        border-radius: 4px 0 0 4px;
+    }
+    .overlay.left {
+        grid-column: hstart / hmid-start;
+        min-height: 64px;
+        max-height: 100%;
+        border-radius: 0 4px 4px 0;
+        /* height: min-content; */
+    }
+    #search_results ol {
+        min-height: 64px;
+        max-height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+
+h2#node_name {
+    max-width:80%;
+}
+
+#node_info > *, 
+#node_body > *,
+#search_results > *:not(li) {
+    margin-bottom:12px;
+    width:100%;
+}
+#node_body > #links > * * {
+    display:inline;
+    /* word-wrap: normal; */
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+#node_image {
+    width:64px;
+    height:64px;
+}
+#node_body table {
+    width: fit-content;
+}
+#node_body td {
+    height: 32px;
+    width: 36px;
+}
+#node_info table, td {
+    border: 1px solid var(--color-text);
+    border-collapse: collapse;
+    text-align: center;
+}
+

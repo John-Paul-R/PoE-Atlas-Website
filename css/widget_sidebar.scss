@@ -1,0 +1,124 @@
+
+#widget_sidebar {
+    background-color: var(--color-base);
+    width: 100%;
+    height: 100%;
+    border-right: 2px solid var(--color-accent-1);
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    // align-content: stretch;
+    justify-content: flex-start;
+    --w-header-height: 64px;
+    max-height: var(--content-height);
+}
+#widget_sidebar > * {
+    margin-top: 12px;
+}
+#widget_list {
+    // max-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: calc(var(--content-height) - var(--w-header-height));
+}
+#w_header {
+    height: var(--w-header-height);
+    min-height: var(--w-header-height);
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+}
+#w_sidebar_showhide {
+    cursor: pointer;
+
+    position: absolute;
+    left: var(--sidebar-width);
+    top: 48px;
+
+    background-color: var(--color-element-1);
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    
+    border: 2px solid var(--color-accent-1);
+    border-left: none;
+
+    padding: 6px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#widget_sidebar.hidden + #w_sidebar_showhide {
+    left: 0;
+}
+#widget_sidebar.hidden + #w_sidebar_showhide > .material-icons {
+    transform: rotate(180deg);
+    transition: transform 0.25s;
+}
+#w_sidebar_showhide:hover {
+    background-color: var(--color-element-1-2);
+}
+.widget {
+    margin: 4px;
+    margin-bottom: 6px;
+    // border-radius: 4px;
+    padding: 8px;
+    box-sizing: border-box;
+
+    border: 1px solid transparent;
+}
+.widget:hover {
+    border: 1px solid var(--color-accent-1);
+}
+
+.widget:not(:last-child) {
+    // border-top: 2px solid gold;
+    // border-bottom: 1px dotted gold;
+}
+.widget:nth-child(even) {
+    background-color: var(--color-element-1);
+}
+.widget:nth-child(odd) {
+    background-color: var(--color-element-1-2);
+}
+
+.widget {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+.w_head {
+    height: 48px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+}
+#w_sidebar_showhide {
+    // margin: 8px;
+}
+.w_front {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.w_end {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+// .w_name { grid-area: n; }
+.w_drop_btn {
+    cursor: pointer;
+    
+}

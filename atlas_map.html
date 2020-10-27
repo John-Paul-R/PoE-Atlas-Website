@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="keywords" content="poeatlas,poe,path of exile,guides,tools,atlas,atlas of worlds,map,tier,normal,white,yellow,rare,magic,shaper,orb,upgrade,shape,guardians,sextant,mods,progress">
     <meta name="Description" content="A tool for navigating Path of Exile's Atlas of Worlds from the web!">
-    <meta name="viewport" content="width=device-width, height=device-height">
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="css/core_style.css">
     <link rel="stylesheet" type="text/css" href="css/map_style.css">
     <script src="js/palette_light_dark.js"></script>
@@ -81,6 +81,16 @@
             </div>
         </header>
         <div id="content_main" class="filled">
+            <div id="widget_sidebar">
+                <div id="w_header">
+                    <div class="w_head">
+                        <h2>Widgets</h2>
+                    </div> 
+                    <hr>
+                </div>
+                <div id="widget_list"></div>
+            </div>
+            <button id="w_sidebar_showhide"><i class="material-icons">chevron_left</i></button>
             <div id="atlas_of_worlds">
                 <div class="overlay top">
                     <div class="flex row aligncenter justifycenter">
@@ -163,6 +173,8 @@
         <script src='js/graphics_zoom_pan.js'   type="module"></script>
         <script src="js/fuzzysort.js"></script>
         <script src="js/atlas_search.js"        type="module"></script>
+        
+        <script src='js/widget.js'              type="module"></script>
 
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
         <script src='js/searchbar_focus.js'     type="module"></script>

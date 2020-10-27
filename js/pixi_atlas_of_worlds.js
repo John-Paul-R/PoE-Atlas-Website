@@ -41,15 +41,6 @@ import {
     AsyncDataResourceLoader
 } from './resource_loader.js';
 
-// import {
-//     Modular,
-//     Widget,
-//     AtlasWidget,
-//     SidebarWidget,
-//     WidgetSidebar
-// } from './widget.js';
-
-// var sidebarManager;
 // import * as PIXI from 'pixi.js';
 //===========
 //  Globals

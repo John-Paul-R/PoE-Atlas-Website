@@ -2,7 +2,7 @@
 // in es6 modules that import Widget from './widgets.js' 
 export { Modular, AbstractWidget as Widget, SidebarWidget, AtlasWidget, WidgetSidebar, sidebar };
 import { app, atlasSprite, nodeData, atlasRegions, nodePixiObjects, getNodeRegionTier, renderStage, renderStageThrottled, onWindowResize, } from './pixi_atlas_of_worlds.js';
-import { executeIfWhenDOMContentLoaded } from './util.js';
+import { executeIfWhenDOMContentLoaded, FunctionBatch, executeOrBatch, dcl } from './util.js';
 /**
  *  Any piece of modular code that hooks into PoEAtlas website
  */
@@ -53,24 +53,28 @@ AtlasWidget.renderStage = renderStage;
 AtlasWidget.renderStageThrottled = renderStageThrottled;
 class WidgetSidebar extends HTMLWidget {
     constructor() {
-        super('widget_sidebar', "Widget Sidebar", () => document.getElementById('widget_sidebar'), true);
-        // this.htmlElement = document.getElementById('widget_sidebar');
-        this.listElement = document.getElementById('widget_list');
+        super('widget_sidebar', "Widget Sidebar", () => document.createElement('div'), true);
         this.widgets = [];
+        this.initBatch = new FunctionBatch([]);
+        executeIfWhenDOMContentLoaded(() => {
+            this.htmlElement = document.getElementById('widget_sidebar');
+            this.listElement = document.getElementById('widget_list');
+            this.initBatch.runAll();
+        });
     }
     /**
      * Adds a widget to the sidebar.
      * @param {SidebarWidget} widget The widget to register.
      */
     registerWidget(widget) {
-        executeIfWhenDOMContentLoaded(() => {
+        executeOrBatch(() => {
             this.widgets.push(widget);
             // this.htmlElement.appendChild(widget.htmlElement);
             const listElem = WidgetSidebar._buildWidgetListElem(widget);
             this.listElement.appendChild(listElem);
             console.info(`WidgetSidebar: Registered ${widget.displayName} (${widget.moduleName})`);
             // console.info();
-        });
+        }, dcl(), this.initBatch);
     }
     getWidget(index) {
         return this.widgets[index];
@@ -125,6 +129,7 @@ class WidgetSidebar extends HTMLWidget {
                 widget.htmlElement.style.display = 'none';
             }
         });
+        // TODO utilize open() to allow users to pop out widgets if they choose.
         return elem;
     }
 }
@@ -138,7 +143,7 @@ function init() {
             return elem;
         }));
     }
-    initStaticSidebarInteractables(sidebar);
+    ;
 }
 function initStaticSidebarInteractables(sidebar) {
     const widget_sidebar = sidebar.htmlElement;
@@ -164,5 +169,6 @@ function toggleShowHide(widget) {
         widget.htmlElement.classList.add('hidden');
     }
 }
-executeIfWhenDOMContentLoaded(init);
+init();
+executeIfWhenDOMContentLoaded(() => initStaticSidebarInteractables(sidebar));
 //# sourceMappingURL=widget.js.map

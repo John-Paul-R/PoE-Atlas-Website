@@ -4,7 +4,9 @@ export {
     debounce,
     executeOrWait,
     executeIfWhenDOMContentLoaded,
-    FunctionBatch
+    FunctionBatch,
+    executeOrBatch,
+    dcl
 };
 
 /**
@@ -104,4 +106,26 @@ class FunctionBatch {
             func(args);
         }
     }
+}
+/**
+ * Conditionally executes 'execFunc' now (if 'condition' is met) otherwise 
+ * executes 'waitFunc'
+ * @param {function} execFunc 
+ * @param {boolean} condition 
+ * @param {FunctionBatch} waitFunc 
+ */
+function executeOrBatch(execFunc, condition, funcBatch) {
+    if (condition) {
+        execFunc();
+    } else {
+        funcBatch.add(execFunc);
+    }
+}
+
+function dcl() {
+    return(
+        document.readyState === "complete" 
+        || document.readyState === "loaded" 
+        || document.readyState === "interactive"
+    )
 }

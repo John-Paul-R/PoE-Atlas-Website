@@ -25,7 +25,9 @@ import {
     throttle,
     debounce,
     executeIfWhenDOMContentLoaded,
-    FunctionBatch
+    FunctionBatch,
+    executeOrBatch,
+    dcl
 } from './util.js';
 
 import {
@@ -97,11 +99,18 @@ class WidgetSidebar extends HTMLWidget {
     htmlElement: HTMLElement;
     listElement: HTMLElement;
     widgets: SidebarWidget[];
+    initBatch: FunctionBatch;
     constructor() {
-        super('widget_sidebar', "Widget Sidebar", ()=>document.getElementById('widget_sidebar'), true);
-        // this.htmlElement = document.getElementById('widget_sidebar');
-        this.listElement = document.getElementById('widget_list');
+        super('widget_sidebar', "Widget Sidebar", ()=>document.createElement('div'), true);
+        
         this.widgets = [];
+        this.initBatch = new FunctionBatch([]);
+        executeIfWhenDOMContentLoaded(() => {
+            this.htmlElement = document.getElementById('widget_sidebar');
+            this.listElement = document.getElementById('widget_list');
+    
+            this.initBatch.runAll();
+        });
     }
 
     /**
@@ -109,7 +118,7 @@ class WidgetSidebar extends HTMLWidget {
      * @param {SidebarWidget} widget The widget to register.
      */
     registerWidget(widget: SidebarWidget) {
-        executeIfWhenDOMContentLoaded(() => {
+        executeOrBatch(() => {
             this.widgets.push(widget);
             // this.htmlElement.appendChild(widget.htmlElement);
             const listElem = WidgetSidebar._buildWidgetListElem(widget);
@@ -118,7 +127,7 @@ class WidgetSidebar extends HTMLWidget {
             console.info(`WidgetSidebar: Registered ${widget.displayName} (${widget.moduleName})`);
             // console.info();
     
-        })
+        }, dcl(), this.initBatch);
     }
 
     getWidget(index: number) {
@@ -181,7 +190,7 @@ class WidgetSidebar extends HTMLWidget {
                 widget.htmlElement.style.display = 'none';
             }
         });
-
+        // TODO utilize open() to allow users to pop out widgets if they choose.
         return elem;
     }
     
@@ -199,7 +208,7 @@ function init() {
             return elem;
         }));
     }
-    initStaticSidebarInteractables(sidebar);
+    ;
 }
 function initStaticSidebarInteractables(sidebar: WidgetSidebar) {
     const widget_sidebar = sidebar.htmlElement;
@@ -224,4 +233,5 @@ function toggleShowHide(widget: HTMLWidget) {
         widget.htmlElement.classList.add('hidden');
     }
 }
-executeIfWhenDOMContentLoaded(init);
+init();
+executeIfWhenDOMContentLoaded(()=>initStaticSidebarInteractables(sidebar));

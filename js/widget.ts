@@ -6,7 +6,8 @@ export {
     AbstractWidget as Widget,
     SidebarWidget,
     AtlasWidget,
-    WidgetSidebar
+    WidgetSidebar,
+    sidebar
 };
 
 import {

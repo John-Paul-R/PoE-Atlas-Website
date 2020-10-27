@@ -1,6 +1,6 @@
 // Widgets are classes that extend Widget
 // in es6 modules that import Widget from './widgets.js' 
-export { Modular, AbstractWidget as Widget, SidebarWidget, AtlasWidget, WidgetSidebar };
+export { Modular, AbstractWidget as Widget, SidebarWidget, AtlasWidget, WidgetSidebar, sidebar };
 import { app, atlasSprite, nodeData, atlasRegions, nodePixiObjects, getNodeRegionTier, renderStage, renderStageThrottled, onWindowResize, } from './pixi_atlas_of_worlds.js';
 import { executeIfWhenDOMContentLoaded } from './util.js';
 /**

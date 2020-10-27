@@ -63,12 +63,14 @@ class WidgetSidebar extends HTMLWidget {
      * @param {SidebarWidget} widget The widget to register.
      */
     registerWidget(widget) {
-        this.widgets.push(widget);
-        // this.htmlElement.appendChild(widget.htmlElement);
-        const listElem = WidgetSidebar._buildWidgetListElem(widget);
-        this.listElement.appendChild(listElem);
-        console.info(`WidgetSidebar: Registered ${widget.displayName} (${widget.moduleName})`);
-        // console.info();
+        executeIfWhenDOMContentLoaded(() => {
+            this.widgets.push(widget);
+            // this.htmlElement.appendChild(widget.htmlElement);
+            const listElem = WidgetSidebar._buildWidgetListElem(widget);
+            this.listElement.appendChild(listElem);
+            console.info(`WidgetSidebar: Registered ${widget.displayName} (${widget.moduleName})`);
+            // console.info();
+        });
     }
     getWidget(index) {
         return this.widgets[index];

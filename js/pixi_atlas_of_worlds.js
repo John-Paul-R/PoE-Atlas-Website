@@ -403,7 +403,7 @@ new AsyncDataResourceLoader()
             for (let i=0; i<nodeData.length; i++) {
                 let entry = nodeData[i];
                 regionNodes[entry.AtlasRegionsKey].push(i);
-                entry.interalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
+                entry.internalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
             }
         },
         watchstones.init,
@@ -1016,7 +1016,7 @@ function getNodeExternalLinks(node) {
         poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.internalName)}`;
     } else {
         poeDBLink = `http://www.poedb.tw/${node.internalName}`;
-        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.internalName)}`; 
+        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.internalName)}_Map`; 
     }
     
     return { poeDBLink, poeWikiLink };

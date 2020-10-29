@@ -289,12 +289,16 @@ executeIfWhenDOMContentLoaded(() => {
     addAllToDOM();
 });
 
+function getNodeScale() {
+    return symPoint(0.75 * optsMgr.currentOptions.nodeScaleFactor * mapScaleFactor);
+}
 function updateNodeSize() {
-    NodePixiObject.CONTAINER_SCALE = symPoint(optsMgr.currentOptions.nodeScaleFactor * mapScaleFactor);
+    NodePixiObject.CONTAINER_SCALE = getNodeScale();
+    updateAllNodeGraphics();
 }
 function updateNodesTextScale() {
-    NodePixiObject.NAME_SCALE = symPoint(2/3 * optsMgr.currentOptions.nodeTextScale);
-    NodePixiObject.TIER_SCALE = symPoint(0.15 * optsMgr.currentOptions.nodeTextScale);
+    NodePixiObject.NAME_SCALE = symPoint(2/3 * 0.9 * optsMgr.currentOptions.nodeTextScale);
+    NodePixiObject.TIER_SCALE = symPoint(0.15 * 0.9 * optsMgr.currentOptions.nodeTextScale);
     if (nodePixiObjects) {
         for (const obj of nodePixiObjects) {
             obj.nameContainer.scale = NodePixiObject.NAME_SCALE;
@@ -1435,7 +1439,7 @@ function onWindowResize() {
     watchstonesContainer.scale.copyFrom(containerScale);
 
     // Update NodePixiObjs
-    NodePixiObject.CONTAINER_SCALE = symPoint(optsMgr.currentOptions.nodeScaleFactor * mapScaleFactor),
+    NodePixiObject.CONTAINER_SCALE = getNodeScale(),
 
     watchstones.updatePositions();
     drawAllAtlasRegions();

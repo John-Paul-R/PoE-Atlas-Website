@@ -290,11 +290,12 @@ executeIfWhenDOMContentLoaded(() => {
 });
 
 function updateNodeSize() {
-    NodePixiObject.CONTAINER_SCALE = symPoint(optsMgr.currentOptions.nodeScaleFactor * mapScaleFactor);
+    NodePixiObject.CONTAINER_SCALE = symPoint(0.75 * optsMgr.currentOptions.nodeScaleFactor * mapScaleFactor);
 }
 function updateNodesTextScale() {
-    NodePixiObject.NAME_SCALE = symPoint(2/3 * optsMgr.currentOptions.nodeTextScale);
-    NodePixiObject.TIER_SCALE = symPoint(0.15 * optsMgr.currentOptions.nodeTextScale);
+    const text_scale_fac = 0.9;
+    NodePixiObject.NAME_SCALE = symPoint(2/3 * text_scale_fac * optsMgr.currentOptions.nodeTextScale);
+    NodePixiObject.TIER_SCALE = symPoint(0.15 * text_scale_fac * optsMgr.currentOptions.nodeTextScale);
     if (nodePixiObjects) {
         for (const obj of nodePixiObjects) {
             obj.nameContainer.scale = NodePixiObject.NAME_SCALE;

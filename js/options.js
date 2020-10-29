@@ -163,14 +163,14 @@ class OptionsManager {
      * @param {optionKey}
      */
     resetOption(optionKey) {
-        setOption(optionKey, this.defaultOptions[optionKey]);
+        this.setOption(optionKey, this.defaultOptions[optionKey]);
     }
     /**
      * Calls {@link resetOption} on every option.
      */
     resetAllOptions() {
         for (const key of Object.keys(this.currentOptions)) {
-            resetOption(key);
+            this.resetOption(key);
         }
     }
     
@@ -246,7 +246,7 @@ function createOptionsMenu(optsMgr) {
     // Add "Reset All" Button
     let resetAll = document.createElement('li');
     resetAll.innerHTML = `<div id="reset_options_btn" class="button expand">Reset All</button>`;
-    resetAll.firstChild.addEventListener('click', optsMgr.resetAllOptions);
+    resetAll.firstChild.addEventListener('click', () => { optsMgr.resetAllOptions() });
     optionsList.appendChild(resetAll);
 
     return optionsList;

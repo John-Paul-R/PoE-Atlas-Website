@@ -15,13 +15,14 @@
 export {
     app,
     atlasSprite,
-    nodeData,
+    nodeData, atlasRegions,
     nodePixiObjects,
     getNodeRegionTier,
     resourceLoadFuncs,
     getMapScaleFactor,
     renderStage, renderStageThrottled,
-    NodePixiObject
+    onWindowResize,
+    NodePixiObject,
 };
 
 import { 
@@ -40,6 +41,15 @@ import {
     AsyncDataResourceLoader
 } from './resource_loader.js';
 
+// import {
+//     Modular,
+//     Widget,
+//     AtlasWidget,
+//     SidebarWidget,
+//     WidgetSidebar
+// } from './widget.js';
+
+// var sidebarManager;
 // import * as PIXI from 'pixi.js';
 //===========
 //  Globals
@@ -50,6 +60,10 @@ import {
  * @type {Array<Object>} an array of node data objects 
  */
 var nodeData;
+/**
+ * Parsed json data file w/ atlas region data
+ * @type {Array<Object>} an array of atlas region data objects 
+ */
 var atlasRegions;
 const NUM_REGIONS = 8;
 
@@ -388,8 +402,8 @@ new AsyncDataResourceLoader()
             // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
             for (let i=0; i<nodeData.length; i++) {
                 let entry = nodeData[i];
-                regionNodes[entry.AtlasRegionsKey].push(entry.RowID);
-                entry.internalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"");
+                regionNodes[entry.AtlasRegionsKey].push(i);
+                entry.interalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
             }
         },
         watchstones.init,
@@ -422,11 +436,10 @@ function setup(loader, resources) {
     atlasSprite.texture = resources["img/Atlas47kb.webp"].texture;
 
     //Queue next pixi resources for loading
-    loader.add("pixi/atlas-maps-heist-2.1_Itemized-1602836784.json")
+    loader.add("img/spritesheets/atlas-maps-heist-2.1_Itemized-1602836784.json")
         .load(()=>{
             console.timeLog("load");
-            sheet = loader.resources["pixi/atlas-maps-heist-2.1_Itemized-1602836784.json"];
-            spritesheetLoaded = true;
+            sheet = loader.resources["img/spritesheets/atlas-maps-heist-2.1_Itemized-1602836784.json"];
             //TODO make sure this waits for nodeData to exist...
             drawAllAtlasRegions();
             loader.reset();
@@ -452,7 +465,6 @@ function setup(loader, resources) {
     // app.ticker.add(delta => animationLoop(delta));
 }
 
-var spritesheetLoaded = false
 /**
  * The Spritesheet containing all map Node images.
  * @type {PIXI.Spritesheet}
@@ -1287,7 +1299,7 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
                 nodeContainer.position.set(tieredNodeData.x, tieredNodeData.y)
                 nodeContainer.scale = NodePixiObject.CONTAINER_SCALE;
 
-                if (spritesheetLoaded) {
+                if (sheet && sheet.textures) {
                     nodePixiObj.imgSprite.texture = nodePixiObj.getSpriteImg(tieredNodeData.tier, true);
                 }
 
@@ -1390,13 +1402,13 @@ function updateNodesVisibility() {
  * Updates values that are dependent on the window size.
  */
 function onWindowResize() {
-    // let innerHeight = CONTAINER_ELEMENT.clientHeight;
-    // let innerWidth = CONTAINER_ELEMENT.clientWidth;
+    let innerHeight = CONTAINER_ELEMENT.clientHeight;
+    let innerWidth = CONTAINER_ELEMENT.clientWidth;
     let nonAtlasContentHeightSum = document.getElementsByTagName("header")[0].offsetHeight
         + document.getElementsByTagName("footer")[0].offsetHeight;
     let nonAtlasContentWidthSum = 0;
-    pixiScreenH = window.innerHeight-nonAtlasContentHeightSum;
-    pixiScreenW = window.innerWidth-nonAtlasContentWidthSum;
+    pixiScreenH = innerHeight;//window.innerHeight-nonAtlasContentHeightSum;
+    pixiScreenW = innerWidth;//window.innerWidth-nonAtlasContentWidthSum;
 
     if (pixiScreenH > pixiScreenW) {
         pixiAtlasW = pixiScreenW;

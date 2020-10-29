@@ -35,6 +35,9 @@ class ColorPalette {
         this.background = base;
         // this.background = background;
         this.element1 = element1;
+        this.element1_1 = pSBC(0.15, element1, false, true);
+        this.element1_2 = pSBC(-0.15, element1, false, true);
+
         this.accent1 = accent1;
         this.accent1_1 = pSBC(variantPercent, accent1, false, true);
         this.accent2 = accent2;
@@ -47,7 +50,7 @@ class ColorPalette {
 }
 var colorPalettes = [//Name     , base     , element-1, accent-1 , accent-2 , text     , text-inverse
      new ColorPalette('Light'   , '#fafafa', '#e0e0e0', '#aaaaaa', '#888888', '#353535', '#d0d0d0')
-    ,new ColorPalette('Dark'    , '#252525', '#252525', '#af0404', '#888888', '#f0f0f0', '#414141')
+    ,new ColorPalette('Dark'    , '#252525', '#353637', '#af0404', '#888888', '#f0f0f0', '#414141')
     ,new ColorPalette('Color1'  , '#000000', '#14213d', '#fca311', '#e5e5e5', '#ffffff', '#000000')
 ]; //todo load this from external file? or from online library of available palettes?
 
@@ -95,6 +98,8 @@ function displayPalette(paletteID) {
     style.setProperty('--color-base',           p.base);
     style.setProperty('--color-background',     p.background);
     style.setProperty('--color-element-1',      p.element1);
+    style.setProperty('--color-element-1-1',    p.element1_1);
+    style.setProperty('--color-element-1-2',    p.element1_2);
     style.setProperty('--color-accent-1',       p.accent1);
     style.setProperty('--color-accent-1-1',     p.accent1_1);
     style.setProperty('--color-accent-2',       p.accent2);

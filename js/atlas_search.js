@@ -152,7 +152,11 @@ function updateSearchResultsListElement(resultsArray) {
     }
     if (resultsArray) {
         for (const node of resultsArray) {
-            resultsElem.appendChild(document.createElement('li')).innerText = node.obj.name;
+            const li = resultsElem.appendChild(document.createElement('li'));
+            li.innerText = node.obj.name;
+            li.addEventListener('click', (e) => {
+                nodePixiObjects[node.obj.id].onSelect();
+            });
         }
     }
 }

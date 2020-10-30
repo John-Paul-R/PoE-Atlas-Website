@@ -133,6 +133,10 @@ h2#node_name {
     margin-bottom:12px;
     width:100%;
 }
+#search_results li:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
 #node_body > #links > * * {
     display:inline;
     /* word-wrap: normal; */

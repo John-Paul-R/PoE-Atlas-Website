@@ -150,9 +150,9 @@ var watchstones = {
         let mW = (mText.width + padding),
             mH = (mText.height + padding);
         watchstones.masterButton
-            .lineStyle(lineThickness/mapScaleFactor, '0x0', 1, 0.5, false)
+            .lineStyle(1, 0x121212, 1, 0.5, false)
             .beginFill('0xffffff',1)
-            .drawRect(-mW/2, -mH/2, mW, mH)
+            .drawRoundedRect(-mW/2, -mH/2, mW, mH, 5)
             .addChild(mText);
         watchstones.masterButton.filters = [new PIXI.filters.DropShadowFilter()];
         
@@ -180,9 +180,9 @@ var watchstones = {
     
             let bW = (bText.width + padding),
                 bH = (bText.height + padding);
-            button.lineStyle(lineThickness/mapScaleFactor, '0x0', 1, 0.5, false)
+            button.lineStyle(1, 0x121212, 1, 0.5, false)
                 .beginFill('0x997f87', 1)
-                .drawRect(-bW/2, -bH/2, bW, bH);
+                .drawRoundedRect(-bW/2, -bH/2, bW, bH, 5);
             watchstones.buttons.push(button);
             watchstonesContainer.addChild(button);
     

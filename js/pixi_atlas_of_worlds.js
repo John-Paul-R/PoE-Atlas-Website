@@ -175,7 +175,11 @@ var watchstones = {
             //init click functions & tier text
             button.interactive = true;
             button.buttonMode = true;    
-            button.on("pointertap", () => { cycleAtlasRegionTier(i, button); });
+            button.on("pointertap", (interactEvent) => { 
+                if (interactEvent.data.button === 0) {
+                    cycleAtlasRegionTier(i, button); 
+                }
+            });
             bText.text = atlasRegions[i].Name+"\nTier "+regionTiers[i];
     
             let bW = (bText.width + padding),
@@ -206,7 +210,11 @@ var watchstones = {
         //init "master" tier button (cycle all nodes) click function
         watchstones.masterButton.interactive = true;
         watchstones.masterButton.buttonMode = true;    
-        watchstones.masterButton.on("pointertap", cycleAllAtlasRegionTiers);
+        watchstones.masterButton.on("pointertap", (interactEvent) => {
+            if (interactEvent.data.button === 0) {
+                cycleAllAtlasRegionTiers();
+            }
+        });
         watchstonesContainer.addChild(watchstones.masterButton);
         watchstones.masterButton.position.set(0, 0);
         
@@ -629,7 +637,11 @@ class NodePixiObject {
 
         this.setupHover(optsMgr.currentOptions.nodeHover);
 
-        this.imgSprite.pointertap = ()=>this.onSelect();
+        this.imgSprite.pointertap = (interactEvent)=>{
+            if (interactEvent.data.button === 0) {
+                this.onSelect();
+            }
+        };
         
         this.container.addChild(this.imgSprite);
 

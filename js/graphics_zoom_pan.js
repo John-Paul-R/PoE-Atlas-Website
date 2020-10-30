@@ -112,11 +112,13 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
             prevX, prevY;
 
         stage.pointerdown = function (interactEvent) {
-            var pos = interactEvent.data.global;
-            prevX = pos.x;
-            prevY = pos.y;
-            // isDragging = true;
-            isMouseDown = true;
+            if (interactEvent.data.button === 0) {
+                var pos = interactEvent.data.global;
+                prevX = pos.x;
+                prevY = pos.y;
+                // isDragging = true;
+                isMouseDown = true;
+            }
         };
 
         stage.pointermove = function (interactEvent) {

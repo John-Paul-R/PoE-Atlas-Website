@@ -146,7 +146,7 @@ var watchstones = {
         });
         mText.resolution = WATCHSTONE_TEXT_RESOLUTION;
         mText.anchor.set(0.5, 0.5);
-
+        watchstones.masterButton.textSprite = mText;
         let mW = (mText.width + padding),
             mH = (mText.height + padding);
         watchstones.masterButton
@@ -181,20 +181,40 @@ var watchstones = {
             let bW = (bText.width + padding),
                 bH = (bText.height + padding);
             button.lineStyle(lineThickness/mapScaleFactor, '0x0', 1, 0.5, false)
-                .beginFill('0x997f87', 0.7)
+                .beginFill('0x997f87', 1)
                 .drawRect(-bW/2, -bH/2, bW, bH);
-    
             watchstones.buttons.push(button);
             watchstonesContainer.addChild(button);
+    
         }
-        
+        function setButtonHover(button) {
+            button.alpha = 0.75;
+            button.textSprite.alpha = 1/.75;
+            button.filters = [new PIXI.filters.DropShadowFilter()];
+            button.filters[0].enabled = false;
+            button.mouseover = function(pointerData) {
+                this.alpha = 0.95;
+                this.filters[0].enabled = true;
+                renderStageThrottled();
+            }
+            button.mouseout = function(pointerData) {
+                this.alpha = 0.75;
+                this.filters[0].enabled = false;
+                renderStageThrottled();
+            }
+        }
         //init "master" tier button (cycle all nodes) click function
         watchstones.masterButton.interactive = true;
         watchstones.masterButton.buttonMode = true;    
         watchstones.masterButton.on("pointertap", cycleAllAtlasRegionTiers);
         watchstonesContainer.addChild(watchstones.masterButton);
         watchstones.masterButton.position.set(0, 0);
-    
+        
+        for (const button of watchstones.buttons) {
+            setButtonHover(button);
+        }
+        setButtonHover(watchstones.masterButton);
+
         function cycleAtlasRegionTier(regionID, boolDrawRegion=true) {
             if (regionTiers[regionID] < 4) {
                 regionTiers[regionID] += 1;

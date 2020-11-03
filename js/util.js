@@ -4,7 +4,8 @@ export {
     debounce,
     executeOrWait,
     executeIfWhenDOMContentLoaded,
-    FunctionBatch
+    FunctionBatch,
+    hashtagToCppHex
 };
 
 /**
@@ -104,4 +105,8 @@ class FunctionBatch {
             func(args);
         }
     }
+}
+
+function hashtagToCppHex(hashtagHex) {
+    return '0x'+hashtagHex.slice(1);
 }

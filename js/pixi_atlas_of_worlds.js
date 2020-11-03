@@ -29,7 +29,8 @@ import {
     throttle,
     debounce,
     executeIfWhenDOMContentLoaded,
-    FunctionBatch
+    FunctionBatch,
+    hashtagToCppHex
 } from './util.js';
 
 import {
@@ -156,7 +157,8 @@ var watchstones = {
             .addChild(mText);
         watchstones.masterButton.filters = [new PIXI.filters.DropShadowFilter()];
         
-    
+        const accentColor = hashtagToCppHex(document.documentElement.style.getPropertyValue('--color-element-1'));
+        const textColor = hashtagToCppHex(document.documentElement.style.getPropertyValue('--color-text-1'));
         // watchstones.buttons = [];
         for (let i=0; i < NUM_REGIONS; i++) {
             let button = new PIXI.Graphics();
@@ -185,12 +187,22 @@ var watchstones = {
             let bW = (bText.width + padding),
                 bH = (bText.height + padding);
             button.lineStyle(1, 0x121212, 1, 0.5, false)
-                .beginFill('0x997f87', 1)
+                .beginFill('0xffffff', 1)//.beginFill('0x997f87', 1)
                 .drawRoundedRect(-bW/2, -bH/2, bW, bH, 5);
             watchstones.buttons.push(button);
             watchstonesContainer.addChild(button);
-    
+            button.tint = accentColor;
+            button.textSprite.style.fill = textColor;
+
+            
         }
+        window.onPaletteChange((newPalette)=>{
+            for (const button of watchstones.buttons) {
+                button.tint = hashtagToCppHex(newPalette.element1[0]);
+                button.textSprite.style.fill = newPalette.text[1];
+                renderStageThrottled();
+            }
+        });
         function setButtonHover(button) {
             button.alpha = 0.75;
             button.textSprite.alpha = 1/.75;
@@ -903,7 +915,7 @@ class NodePixiObject {
         sidebar.connections.innerText = connectionsText;
 
         // Show info sidebar if it is hidden
-        sidebar.container.className = sidebar.container.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
+        sidebar.container.classList.remove('hidden');
 
         this.updateNodeGraphics();
         renderStageThrottled();
@@ -1013,7 +1025,7 @@ class NodePixiObject {
     
     // TODO - Choose outline color based on Theme accent color.
     graphSelected = new PIXI.Graphics()
-        .lineStyle(6, 0x55bbbb, 1, 0.5, false)
+        .lineStyle(6, 0xffffff, 1, 0.5, false)
         .beginFill(0x302a30, 1)
         .drawCircle(0, 0, 48)
         .endFill();
@@ -1021,13 +1033,17 @@ class NodePixiObject {
     graphSelected.position.set(textureSize/2, textureSize/2);
     app.renderer.render(graphSelected, texSelected);
 
-    const spriteSelected = new PIXI.Sprite(texSelected);//PIXI.Texture.WHITE);
+    const spriteSelected = new PIXI.Sprite(texSelected);
     spriteSelected.alpha = 0.9;
     // spriteSelected.width = 100;
     // spriteSelected.height = 100;
     spriteSelected.anchor.set(0.5, 0.5);
     // spriteSelected.tint = 0x302a30;
     NodePixiObject.SPRITE_SELECTED = spriteSelected;
+    
+    window.onPaletteChange((newPalette)=>{
+        NodePixiObject.SPRITE_SELECTED.tint = hashtagToCppHex(newPalette.accent1[0]);
+    })
 })();
 
 /**

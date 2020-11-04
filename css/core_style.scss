@@ -191,6 +191,7 @@ $angle-o: 4px;
     -moz-appearance: button;
     appearance: button;
     
+    font-weight: 600;
     text-decoration: none;
     text-align: center;
 
@@ -223,11 +224,6 @@ $angle-o: 4px;
         left: -4px;
         box-shadow: none;
     }
-}
-.button:hover {
-    // background-color: var(--color-accent-1-1);
-    // border: 1px solid var(--color-accent-1);
-    // box-shadow: none;
 }
 
 .bold {

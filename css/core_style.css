@@ -209,6 +209,7 @@ header > #navbar > .end {
   -webkit-appearance: button;
   -moz-appearance: button;
   appearance: button;
+  font-weight: 600;
   text-decoration: none;
   text-align: center;
   cursor: pointer;

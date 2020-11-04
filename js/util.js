@@ -6,7 +6,8 @@ export {
     executeIfWhenDOMContentLoaded,
     FunctionBatch,
     executeOrBatch,
-    dcl
+    dcl,
+    hashtagToCppHex
 };
 
 /**
@@ -128,4 +129,8 @@ function dcl() {
         || document.readyState === "loaded" 
         || document.readyState === "interactive"
     )
+}
+
+function hashtagToCppHex(hashtagHex) {
+    return '0x'+hashtagHex.slice(1);
 }

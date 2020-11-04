@@ -1,0 +1,1523 @@
+{"frames": {
+
+"Atlas2Maps/New/Abyss.dds":
+{
+	"frame": {"x":0,"y":0,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Academy.dds":
+{
+	"frame": {"x":78,"y":0,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/AcidLakes.dds":
+{
+	"frame": {"x":156,"y":0,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Alleyways.dds":
+{
+	"frame": {"x":234,"y":0,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Antiquary.dds":
+{
+	"frame": {"x":312,"y":0,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Arachnid.dds":
+{
+	"frame": {"x":390,"y":0,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/ArachnidNest.dds":
+{
+	"frame": {"x":468,"y":0,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Arcade.dds":
+{
+	"frame": {"x":546,"y":0,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Arena.dds":
+{
+	"frame": {"x":624,"y":0,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/AridLake.dds":
+{
+	"frame": {"x":702,"y":0,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Armory.dds":
+{
+	"frame": {"x":780,"y":0,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Arsenal.dds":
+{
+	"frame": {"x":858,"y":0,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Atoll.dds":
+{
+	"frame": {"x":936,"y":0,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Barrows.dds":
+{
+	"frame": {"x":0,"y":78,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Base9.dds":
+{
+	"frame": {"x":78,"y":78,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Base9Drawn.dds":
+{
+	"frame": {"x":156,"y":78,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Base9Elder.dds":
+{
+	"frame": {"x":234,"y":78,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Base9Infected.dds":
+{
+	"frame": {"x":312,"y":78,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Base9Shaper.dds":
+{
+	"frame": {"x":390,"y":78,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/BaseInfected.dds":
+{
+	"frame": {"x":468,"y":78,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Basilica.dds":
+{
+	"frame": {"x":546,"y":78,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Baths.dds":
+{
+	"frame": {"x":624,"y":78,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Bazaar.dds":
+{
+	"frame": {"x":702,"y":78,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Beach.dds":
+{
+	"frame": {"x":780,"y":78,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Beacon.dds":
+{
+	"frame": {"x":858,"y":78,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Belfry.dds":
+{
+	"frame": {"x":936,"y":78,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Bog.dds":
+{
+	"frame": {"x":0,"y":156,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Boulevard.dds":
+{
+	"frame": {"x":78,"y":156,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/BurialChambers.dds":
+{
+	"frame": {"x":156,"y":156,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Cage.dds":
+{
+	"frame": {"x":234,"y":156,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Canyon.dds":
+{
+	"frame": {"x":312,"y":156,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Carcass.dds":
+{
+	"frame": {"x":390,"y":156,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/CastleRuins.dds":
+{
+	"frame": {"x":468,"y":156,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Catacomb.dds":
+{
+	"frame": {"x":546,"y":156,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Cavern.dds":
+{
+	"frame": {"x":624,"y":156,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Cells.dds":
+{
+	"frame": {"x":702,"y":156,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Cemetery.dds":
+{
+	"frame": {"x":780,"y":156,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Chambers.dds":
+{
+	"frame": {"x":858,"y":156,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Channel.dds":
+{
+	"frame": {"x":936,"y":156,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Chateau.dds":
+{
+	"frame": {"x":0,"y":234,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Chimera.dds":
+{
+	"frame": {"x":78,"y":234,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/CitySquare.dds":
+{
+	"frame": {"x":156,"y":234,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Colonnade.dds":
+{
+	"frame": {"x":234,"y":234,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Colosseum.dds":
+{
+	"frame": {"x":312,"y":234,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Core.dds":
+{
+	"frame": {"x":390,"y":234,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Corpse.dds":
+{
+	"frame": {"x":468,"y":234,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/CorpseTrench.dds":
+{
+	"frame": {"x":546,"y":234,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Corrosion.dds":
+{
+	"frame": {"x":624,"y":234,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Courthouse.dds":
+{
+	"frame": {"x":702,"y":234,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Courtyard.dds":
+{
+	"frame": {"x":780,"y":234,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Coves.dds":
+{
+	"frame": {"x":858,"y":234,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Crematorium.dds":
+{
+	"frame": {"x":936,"y":234,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Crypt.dds":
+{
+	"frame": {"x":0,"y":312,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/CrystalOre.dds":
+{
+	"frame": {"x":78,"y":312,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/DarkForest.dds":
+{
+	"frame": {"x":156,"y":312,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/DefiledCathedral.dds":
+{
+	"frame": {"x":234,"y":312,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Desert.dds":
+{
+	"frame": {"x":312,"y":312,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Dig.dds":
+{
+	"frame": {"x":390,"y":312,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/DryPeninsula.dds":
+{
+	"frame": {"x":468,"y":312,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/DryWoods.dds":
+{
+	"frame": {"x":546,"y":312,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Dunes.dds":
+{
+	"frame": {"x":624,"y":312,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Dungeon.dds":
+{
+	"frame": {"x":702,"y":312,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Estuary.dds":
+{
+	"frame": {"x":780,"y":312,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Excavation.dds":
+{
+	"frame": {"x":858,"y":312,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Factory.dds":
+{
+	"frame": {"x":936,"y":312,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Fields.dds":
+{
+	"frame": {"x":0,"y":390,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/FungalCaverns.dds":
+{
+	"frame": {"x":78,"y":390,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Ghetto.dds":
+{
+	"frame": {"x":156,"y":390,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Glacier.dds":
+{
+	"frame": {"x":234,"y":390,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Gorge.dds":
+{
+	"frame": {"x":312,"y":390,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Graveyard.dds":
+{
+	"frame": {"x":390,"y":390,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Grotto.dds":
+{
+	"frame": {"x":468,"y":390,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/HighGardens.dds":
+{
+	"frame": {"x":546,"y":390,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Hydra.dds":
+{
+	"frame": {"x":624,"y":390,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Iceberg.dds":
+{
+	"frame": {"x":702,"y":390,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Infestation.dds":
+{
+	"frame": {"x":780,"y":390,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/IvoryTemple.dds":
+{
+	"frame": {"x":858,"y":390,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/JungleValley.dds":
+{
+	"frame": {"x":936,"y":390,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Laboratory.dds":
+{
+	"frame": {"x":0,"y":468,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Lair.dds":
+{
+	"frame": {"x":78,"y":468,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Lookout.dds":
+{
+	"frame": {"x":156,"y":468,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/LunarisTemple.dds":
+{
+	"frame": {"x":234,"y":468,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Malformation.dds":
+{
+	"frame": {"x":312,"y":468,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Marshes.dds":
+{
+	"frame": {"x":390,"y":468,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Mausoleum.dds":
+{
+	"frame": {"x":468,"y":468,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Maze.dds":
+{
+	"frame": {"x":546,"y":468,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Mesa.dds":
+{
+	"frame": {"x":624,"y":468,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/MineralPools.dds":
+{
+	"frame": {"x":702,"y":468,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Minotaur.dds":
+{
+	"frame": {"x":780,"y":468,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/MudGeyser.dds":
+{
+	"frame": {"x":858,"y":468,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Museum.dds":
+{
+	"frame": {"x":936,"y":468,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Necropolis.dds":
+{
+	"frame": {"x":0,"y":546,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Oasis.dds":
+{
+	"frame": {"x":78,"y":546,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Orchard.dds":
+{
+	"frame": {"x":156,"y":546,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/OvergrownRuin.dds":
+{
+	"frame": {"x":234,"y":546,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/OvergrownShrine.dds":
+{
+	"frame": {"x":312,"y":546,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Palace.dds":
+{
+	"frame": {"x":390,"y":546,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Park.dds":
+{
+	"frame": {"x":468,"y":546,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Pen.dds":
+{
+	"frame": {"x":546,"y":546,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Phantasmagoria.dds":
+{
+	"frame": {"x":624,"y":546,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Phoenix.dds":
+{
+	"frame": {"x":702,"y":546,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Pier.dds":
+{
+	"frame": {"x":780,"y":546,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Pit1.dds":
+{
+	"frame": {"x":858,"y":546,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Plateau.dds":
+{
+	"frame": {"x":936,"y":546,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Plaza.dds":
+{
+	"frame": {"x":0,"y":624,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Precinct.dds":
+{
+	"frame": {"x":78,"y":624,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/PrimevalRuins.dds":
+{
+	"frame": {"x":156,"y":624,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/PrimordialPool.dds":
+{
+	"frame": {"x":234,"y":624,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Promenade.dds":
+{
+	"frame": {"x":312,"y":624,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Quarry.dds":
+{
+	"frame": {"x":390,"y":624,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Quay.dds":
+{
+	"frame": {"x":468,"y":624,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Racecourse.dds":
+{
+	"frame": {"x":546,"y":624,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Ramparts.dds":
+{
+	"frame": {"x":624,"y":624,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Reef.dds":
+{
+	"frame": {"x":702,"y":624,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Residence.dds":
+{
+	"frame": {"x":780,"y":624,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Ring.dds":
+{
+	"frame": {"x":858,"y":624,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Sanctuary.dds":
+{
+	"frame": {"x":936,"y":624,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Scriptorium.dds":
+{
+	"frame": {"x":0,"y":702,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Sepulchre.dds":
+{
+	"frame": {"x":78,"y":702,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Sewer.dds":
+{
+	"frame": {"x":156,"y":702,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Shipyard.dds":
+{
+	"frame": {"x":234,"y":702,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Shore.dds":
+{
+	"frame": {"x":312,"y":702,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Shrine.dds":
+{
+	"frame": {"x":390,"y":702,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/SpiderForest.dds":
+{
+	"frame": {"x":468,"y":702,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/SpiderLair.dds":
+{
+	"frame": {"x":546,"y":702,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Springs.dds":
+{
+	"frame": {"x":624,"y":702,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Strand.dds":
+{
+	"frame": {"x":702,"y":702,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/SulphurVents.dds":
+{
+	"frame": {"x":780,"y":702,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/SulphurWastes.dds":
+{
+	"frame": {"x":858,"y":702,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Summit.dds":
+{
+	"frame": {"x":936,"y":702,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/SunkenCity.dds":
+{
+	"frame": {"x":0,"y":780,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Temple.dds":
+{
+	"frame": {"x":78,"y":780,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Terrace.dds":
+{
+	"frame": {"x":156,"y":780,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Thicket.dds":
+{
+	"frame": {"x":234,"y":780,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/TortureChamber.dds":
+{
+	"frame": {"x":312,"y":780,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Tower.dds":
+{
+	"frame": {"x":390,"y":780,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Tribunal.dds":
+{
+	"frame": {"x":468,"y":780,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/TropicalIsland.dds":
+{
+	"frame": {"x":546,"y":780,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/UndergroundRiver.dds":
+{
+	"frame": {"x":624,"y":780,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/UndergroundSea.dds":
+{
+	"frame": {"x":702,"y":780,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/VaalBase9.dds":
+{
+	"frame": {"x":780,"y":780,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/VaalCity.dds":
+{
+	"frame": {"x":858,"y":780,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/VaalPyramid.dds":
+{
+	"frame": {"x":936,"y":780,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/VaalTemple.dds":
+{
+	"frame": {"x":0,"y":858,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/VaalTempleBase.dds":
+{
+	"frame": {"x":78,"y":858,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Vault.dds":
+{
+	"frame": {"x":156,"y":858,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Villa.dds":
+{
+	"frame": {"x":234,"y":858,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Volcano.dds":
+{
+	"frame": {"x":312,"y":858,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Wasteland.dds":
+{
+	"frame": {"x":390,"y":858,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/WastePool.dds":
+{
+	"frame": {"x":468,"y":858,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Waterways.dds":
+{
+	"frame": {"x":546,"y":858,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Atlas2Maps/New/Wharf.dds":
+{
+	"frame": {"x":624,"y":858,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Celestial.dds":
+{
+	"frame": {"x":702,"y":858,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"DeathandTaxes.dds":
+{
+	"frame": {"x":780,"y":858,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"Doryanis.dds":
+{
+	"frame": {"x":858,"y":858,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"FairgravesMap01.dds":
+{
+	"frame": {"x":936,"y":858,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"HallOfGrandmasters.dds":
+{
+	"frame": {"x":0,"y":936,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"HallowedGround.dds":
+{
+	"frame": {"x":78,"y":936,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"MaelstromofChaos.dds":
+{
+	"frame": {"x":156,"y":936,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"MaligarosSanctum.dds":
+{
+	"frame": {"x":234,"y":936,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"musicbox.dds":
+{
+	"frame": {"x":312,"y":936,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"oba.dds":
+{
+	"frame": {"x":390,"y":936,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"olmec.dds":
+{
+	"frame": {"x":468,"y":936,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"PerandusManor.dds":
+{
+	"frame": {"x":546,"y":936,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"PillarsOfVastiri.dds":
+{
+	"frame": {"x":624,"y":936,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"PoorjoysAsylum.dds":
+{
+	"frame": {"x":702,"y":936,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"PutridCloister.dds":
+{
+	"frame": {"x":780,"y":936,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+},
+"WolfMap.dds":
+{
+	"frame": {"x":858,"y":936,"w":78,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":78},
+	"sourceSize": {"w":78,"h":78},
+	"anchor": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "atlas-maps-heist-2.png",
+	"format": "RGBA8888",
+	"size": {"w":1014,"h":1014},
+	"scale": "1"
+}
+}

@@ -98,10 +98,11 @@ header .dropdown.content {
     flex-direction: row;
     align-items: center;
     padding: 4px;
+    cursor: pointer;
     /* border-bottom: 1px solid var(--color-accent-2); */
 }
-.dropdown.content > ul > li:hover {
-    background-color: var(--color-accent-2);
+.dropdown.content > ul > li:hover:not(:last-child) {
+    background-color: var(--color-base-1);
     /* border-bottom: 1px solid var(--color-accent-2); */
 }
 .dropdown.options > ul > li > .switch {
@@ -110,7 +111,12 @@ header .dropdown.content {
 .dropdown.content.options > ul > li > input {
     margin-left: auto;
     width:46px;
-    color: var(--color-text-inverse);
+    color: var(--color-text);
+    background-color: var(--color-base-2);
+    border: 1px solid var(--color-accent-1);
+    box-sizing: border-box;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 .dropdown.content * {
     margin-right:0;

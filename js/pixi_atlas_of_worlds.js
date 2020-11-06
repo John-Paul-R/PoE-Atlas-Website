@@ -685,26 +685,6 @@ class NodePixiObject {
         this.isHovered = false;
         this.isSelected = false;
     }
-
-    // TODO - Implement or remove.
-    /**
-     * Called on each NodePixiObject during each search. Updates node graphics based on whether node is a match.
-     * 
-     * @param {boolean} isSearchMatch Whether or not the node matched the search query.
-     */
-    onSearch(isSearchMatch) {
-        if (this.isSearchMatch === isSearchMatch) {
-            // No change. Exit.
-            return;
-        } else if (isSearchMatch) {
-            // Is a new match. Modify graphics to highlight.
-
-        } else {
-            // Was a match, but isn't one anymore. Revert graphics to normal.
-
-        }
-        this.isSearchMatch = isSearchMatch;
-    }
     
     /**
      * Updates Node Graphics based on the state of the node.
@@ -990,15 +970,6 @@ class NodePixiObject {
     static NAME_Y = 0 - (nodeRadius + nodeCenterOffset/4);
     static TIER_Y = nodeRadius + nodeCenterOffset/4;
 
-    // NodePixiObject.NAME_SCALE = symPoint(2/3 * options.nodeTextScale),
-    // NodePixiObject.IMG_SCALE = symPoint(1/4),
-    // // 78 is l/w of standard node img 47 is l/w of unique node img
-    // NodePixiObject.IMG_SCALE_UNIQUE = symPoint(1/4 * (78/47)),
-    // NodePixiObject.TIER_SCALE = symPoint(0.15 * options.nodeTextScale),
-    // NodePixiObject.BACKGROUND_SCALE = symPoint(0.4),
-    // NodePixiObject.NAME_Y = 0 - (nodeRadius + nodeCenterOffset/4),
-    // NodePixiObject.TIER_Y = nodeRadius + nodeCenterOffset/4;
-
     /**
      * The Sprite that shows when a Node is selected. (Max 1)
      * @type {PIXI.Sprite}
@@ -1170,8 +1141,8 @@ function preloadStaticGraphics() {
         app.renderer.render(uniqueNodeGraph, uniqueTex);
         
         return {
-            normal: normalTex,//nodeGraph,//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res),
-            unique: uniqueTex//uniqueNodeGraph//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res)
+            normal: normalTex,
+            unique: uniqueTex
         };
     }
 
@@ -1454,13 +1425,8 @@ function updateNodesVisibility() {
  * Updates values that are dependent on the window size.
  */
 function onWindowResize() {
-    let innerHeight = CONTAINER_ELEMENT.clientHeight;
-    let innerWidth = CONTAINER_ELEMENT.clientWidth;
-    let nonAtlasContentHeightSum = document.getElementsByTagName("header")[0].offsetHeight
-        + document.getElementsByTagName("footer")[0].offsetHeight;
-    let nonAtlasContentWidthSum = 0;
-    pixiScreenH = innerHeight;//window.innerHeight-nonAtlasContentHeightSum;
-    pixiScreenW = innerWidth;//window.innerWidth-nonAtlasContentWidthSum;
+    const pixiScreenH = CONTAINER_ELEMENT.clientHeight;
+    const pixiScreenW = CONTAINER_ELEMENT.clientWidth;
 
     if (pixiScreenH > pixiScreenW) {
         pixiAtlasW = pixiScreenW;
@@ -1487,7 +1453,7 @@ function onWindowResize() {
     watchstonesContainer.scale.copyFrom(containerScale);
 
     // Update NodePixiObjs
-    NodePixiObject.CONTAINER_SCALE = getNodeScale(),
+    NodePixiObject.CONTAINER_SCALE = getNodeScale();
 
     watchstones.updatePositions();
     drawAllAtlasRegions();
@@ -1498,22 +1464,35 @@ function onWindowResize() {
 
 /**
  * Add the constructed menu to the DOM.
+ * 
+ * @param {HTMLElement} button
+ * @param {HTMLElement} container
+ * @param {HTMLElement} content
  */
 function addDropdownToDOM(button, container, content) {
     if (content) {
         container.appendChild(content);
     }
-    
-    button.addEventListener('click', (e) => {
-        if (container.className.includes("hidden"))
-            container.className = container.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
-        else
-            container.className = container.className +" hidden";
-    });
-    document.addEventListener('click', (e) => {
+
+    const show = () => {
+        container.classList.remove("hidden");
+        document.addEventListener('click', onOtherElementClick);
+    };
+    const hide = () => {
+        container.classList.add("hidden");
+        document.removeEventListener('click', onOtherElementClick);
+    };
+    const onOtherElementClick = (e) => {
         if (!(container.contains(e.target) || button.contains(e.target))) {
-            if (!container.className.includes("hidden"))
-                container.className = container.className +" hidden";
+            if (!container.classList.contains("hidden"))
+                hide();
+        }
+    };
+    button.addEventListener('click', (e) => {
+        if (container.classList.contains("hidden")) {
+            show();
+        } else {
+            hide();
         }
     });
 }
@@ -1538,10 +1517,6 @@ function addAllToDOM() {
 //=========
 function renderStage() { app.renderer.render(stage) };
 var renderStageThrottled = () => requestAnimationFrame(renderStage);
-// throttle(
-//     () => app.renderer.render(stage),
-//     MIN_FRAME_TIME
-// );
 
 // Bind search results interactables
 executeIfWhenDOMContentLoaded(() => {
@@ -1550,11 +1525,11 @@ executeIfWhenDOMContentLoaded(() => {
     const exit_btn = document.getElementById("search_exit");
 
     const showHide = () => {
-        if (search_results.className.includes("hidden")) {
-            search_results.className = search_results.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
+        if (search_results.classList.contains("hidden")) {
+            search_results.classList.remove("hidden");
             show_btn.innerText = "Hide Results";
         } else {
-            search_results.className = search_results.className +" hidden";
+            search_results.classList.add("hidden");
             show_btn.innerText = "Show Results"
         }
     };

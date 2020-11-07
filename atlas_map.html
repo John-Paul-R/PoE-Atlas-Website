@@ -138,11 +138,20 @@
                 <div class="overlay bottom"></div>
             </div>
         </div>
+
+        <div id="iframe_1_container_outer" class="frame_container_outer hidden">
+            <div id="iframe_1_container" class="frame_container">
+                <iframe id="iframe_1" name="iframe_1" src="null"  title="iframe - terms & support"></iframe>
+                <button id="iframe_1_exit" class="overlay_exit end">&times;</button>
+            </div>    
+        </div>
+        <script src="js/iframe_controller.js"></script>
+
         <footer>
             <div><p class='small text aligncenter'>
                 &#169; 2020 <a href="https://github.com/John-Paul-R" target="_blank"> John Paul R.</a> - 
-                <a href="terms.html" target="_blank">Terms</a> - 
-                <a href="support.html" target="_blank">Support</a>
+                <a href="terms.html" target="iframe_1" onclick="window.iframe.show()">Terms</a> - 
+                <a href="support.html" target="iframe_1" onclick="window.iframe.show()">Support</a>
             </p></div>
         </footer>
     </div>

@@ -1,0 +1,23 @@
+ 
+doctype html
+html(lang='en')
+ head
+    link(rel="stylesheet", href="https://www.poeatlas.net/css/core_style.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    script(src="https://www.poeatlas.net/js/palette_light_dark.js")
+    meta(name="theme-color", content="var(--color-base)")
+    block head
+ body
+  #page_container
+    header
+        #navbar.shadow
+            #title
+                h4 PoEAtlas by 
+                    a(href="http://github.com/John-Paul-R") JP
+            .end.flex.row
+                button.dropdown_button.fl.swap_palette
+                    p Theme
+                    i.material-icons style
+            script bindPaletteSwapButtons();
+    #content_main.filled
+        block body

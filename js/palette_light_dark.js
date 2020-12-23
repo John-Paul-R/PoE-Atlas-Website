@@ -101,6 +101,7 @@ function bindPaletteSwapButtons(btnElements) {
         buttonElements[i].addEventListener('click', swapPalette);
     }
 }
+var changeFuncs = [];
 bindPaletteSwapButtons();
 loadStoredPalette();
 var currentPalette;
@@ -120,7 +121,6 @@ function loadStoredPalette() {
     }
     displayPalette(paletteIndex);
 }
-var changeFuncs = [];
 
 function swapPalette() {
     paletteIndex +=1;
@@ -129,9 +129,6 @@ function swapPalette() {
     }
     displayPalette(paletteIndex);
     window.localStorage.setItem(STORAGE_KEY, paletteIndex);
-    for (const func of changeFuncs) {
-        func(currentPalette);
-    }
 }
 function onPaletteChange(func) {
     changeFuncs.push(func);
@@ -161,5 +158,6 @@ function displayPalette(paletteID) {
     //     buttonElements[i].textContent = p.paletteName;
     // }
     currentPalette = p;
+    changeFuncs.forEach((fn)=>fn(p));
     return p;
 }

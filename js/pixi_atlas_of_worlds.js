@@ -1011,10 +1011,10 @@ class NodePixiObject {
     spriteSelected.anchor.set(0.5, 0.5);
     // spriteSelected.tint = 0x302a30;
     NodePixiObject.SPRITE_SELECTED = spriteSelected;
-    
     window.onPaletteChange((newPalette)=>{
         NodePixiObject.SPRITE_SELECTED.tint = hashtagToCppHex(newPalette.accent1[0]);
     })
+    window.changeFuncs.forEach((fn)=>fn(window.currentPalette));
 })();
 
 /**

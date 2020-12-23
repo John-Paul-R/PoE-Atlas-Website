@@ -148,15 +148,21 @@
                 <div class="overlay bottom"></div>
             </div>
         </div>
+
+        <div id="iframe_1_container_outer" class="frame_container_outer hidden">
+            <div id="iframe_1_container" class="frame_container">
+                <iframe id="iframe_1" name="iframe_1" src="about:blank"  title="iframe - terms & support"></iframe>
+                <button id="iframe_1_exit" class="overlay_exit end">&times;</button>
+            </div>    
+        </div>
+        <script src="js/iframe_controller.js"></script>
+
         <footer>
-            <div class="shadow">
-                <p class='small text aligncenter'>
-                    &#169; 2020 <a href="https://github.com/John-Paul-R"> John Paul R.</a> -
-                    This website is fan-made and not endorsed by, directly affiliated with, maintained, authorized, or sponsored by Grinding Gear Games.
-                    <a href="https://www.pathofexile.com/">PATH OF EXILE</a> is a registered trademark of
-                    <a href="https://www.grindinggear.com/">Grinding Gear Games</a>.</p>
-                
-            </div>
+            <div><p class='small text aligncenter'>
+                &#169; 2020 <a href="https://github.com/John-Paul-R" target="_blank"> John Paul R.</a> - 
+                <a href="terms.html" target="iframe_1" onclick="window.iframe.show()">Terms</a> - 
+                <a href="support.html" target="iframe_1" onclick="window.iframe.show()">Support</a>
+            </p></div>
         </footer>
     </div>
     <div id="eof_scripts">
@@ -176,7 +182,8 @@
         
         <script src='js/widget.js'              type="module"></script>
 
-        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+        <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script> -->
+        <script defer src="js/gsap.min.js"></script>
         <script src='js/searchbar_focus.js'     type="module"></script>
 
     </div>

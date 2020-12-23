@@ -29,7 +29,8 @@ import {
     throttle,
     debounce,
     executeIfWhenDOMContentLoaded,
-    FunctionBatch
+    FunctionBatch,
+    hashtagToCppHex
 } from './util.js';
 
 import {
@@ -137,17 +138,18 @@ var watchstones = {
         });
         mText.resolution = WATCHSTONE_TEXT_RESOLUTION;
         mText.anchor.set(0.5, 0.5);
-
+        watchstones.masterButton.textSprite = mText;
         let mW = (mText.width + padding),
             mH = (mText.height + padding);
         watchstones.masterButton
-            .lineStyle(lineThickness/mapScaleFactor, '0x0', 1, 0.5, false)
+            .lineStyle(1, 0x121212, 1, 0.5, false)
             .beginFill('0xffffff',1)
-            .drawRect(-mW/2, -mH/2, mW, mH)
+            .drawRoundedRect(-mW/2, -mH/2, mW, mH, 5)
             .addChild(mText);
         watchstones.masterButton.filters = [new PIXI.filters.DropShadowFilter()];
         
-    
+        const accentColor = hashtagToCppHex(document.documentElement.style.getPropertyValue('--color-element-1'));
+        const textColor = hashtagToCppHex(document.documentElement.style.getPropertyValue('--color-text-1'));
         // watchstones.buttons = [];
         for (let i=0; i < NUM_REGIONS; i++) {
             let button = new PIXI.Graphics();
@@ -166,26 +168,64 @@ var watchstones = {
             //init click functions & tier text
             button.interactive = true;
             button.buttonMode = true;    
-            button.on("pointertap", () => { cycleAtlasRegionTier(i, button); });
+            button.on("pointertap", (interactEvent) => { 
+                if (interactEvent.data.button === 0) {
+                    cycleAtlasRegionTier(i, button); 
+                }
+            });
             bText.text = atlasRegions[i].Name+"\nTier "+regionTiers[i];
     
             let bW = (bText.width + padding),
                 bH = (bText.height + padding);
-            button.lineStyle(lineThickness/mapScaleFactor, '0x0', 1, 0.5, false)
-                .beginFill('0x997f87', 0.7)
-                .drawRect(-bW/2, -bH/2, bW, bH);
-    
+            button.lineStyle(1, 0x121212, 1, 0.5, false)
+                .beginFill('0xffffff', 1)//.beginFill('0x997f87', 1)
+                .drawRoundedRect(-bW/2, -bH/2, bW, bH, 5);
             watchstones.buttons.push(button);
             watchstonesContainer.addChild(button);
+            button.tint = accentColor;
+            button.textSprite.style.fill = textColor;
+
+            
         }
-        
+        window.onPaletteChange((newPalette)=>{
+            for (const button of watchstones.buttons) {
+                button.tint = hashtagToCppHex(newPalette.element1[0]);
+                button.textSprite.style.fill = newPalette.text[1];
+                renderStageThrottled();
+            }
+        });
+        function setButtonHover(button) {
+            button.alpha = 0.75;
+            button.textSprite.alpha = 1/.75;
+            button.filters = [new PIXI.filters.DropShadowFilter()];
+            button.filters[0].enabled = false;
+            button.mouseover = function(pointerData) {
+                this.alpha = 0.95;
+                this.filters[0].enabled = true;
+                renderStageThrottled();
+            }
+            button.mouseout = function(pointerData) {
+                this.alpha = 0.75;
+                this.filters[0].enabled = false;
+                renderStageThrottled();
+            }
+        }
         //init "master" tier button (cycle all nodes) click function
         watchstones.masterButton.interactive = true;
         watchstones.masterButton.buttonMode = true;    
-        watchstones.masterButton.on("pointertap", cycleAllAtlasRegionTiers);
+        watchstones.masterButton.on("pointertap", (interactEvent) => {
+            if (interactEvent.data.button === 0) {
+                cycleAllAtlasRegionTiers();
+            }
+        });
         watchstonesContainer.addChild(watchstones.masterButton);
         watchstones.masterButton.position.set(0, 0);
-    
+        
+        for (const button of watchstones.buttons) {
+            setButtonHover(button);
+        }
+        setButtonHover(watchstones.masterButton);
+
         function cycleAtlasRegionTier(regionID, boolDrawRegion=true) {
             if (regionTiers[regionID] < 4) {
                 regionTiers[regionID] += 1;
@@ -280,12 +320,16 @@ executeIfWhenDOMContentLoaded(() => {
     addAllToDOM();
 });
 
+function getNodeScale() {
+    return symPoint(0.75 * optsMgr.currentOptions.nodeScaleFactor * mapScaleFactor);
+}
 function updateNodeSize() {
-    NodePixiObject.CONTAINER_SCALE = symPoint(optsMgr.currentOptions.nodeScaleFactor * mapScaleFactor);
+    NodePixiObject.CONTAINER_SCALE = getNodeScale();
+    updateAllNodeGraphics();
 }
 function updateNodesTextScale() {
-    NodePixiObject.NAME_SCALE = symPoint(2/3 * optsMgr.currentOptions.nodeTextScale);
-    NodePixiObject.TIER_SCALE = symPoint(0.15 * optsMgr.currentOptions.nodeTextScale);
+    NodePixiObject.NAME_SCALE = symPoint(2/3 * 0.9 * optsMgr.currentOptions.nodeTextScale);
+    NodePixiObject.TIER_SCALE = symPoint(0.15 * 0.9 * optsMgr.currentOptions.nodeTextScale);
     if (nodePixiObjects) {
         for (const obj of nodePixiObjects) {
             obj.nameContainer.scale = NodePixiObject.NAME_SCALE;
@@ -384,7 +428,7 @@ loader
 
 // Load Atlas Data (Request, parse, and store file data)
 new AsyncDataResourceLoader()
-    .addResource("data/AtlasDataCombined_Itemized-1600754911.json", [
+    .addResource("data/AtlasDataCombined_Itemized-1602838451.json", [
         (resJson) => {
             let combinedData = resJson;
             nodeData = combinedData["AtlasNode+WorldAreas"];
@@ -394,7 +438,7 @@ new AsyncDataResourceLoader()
             for (let i=0; i<nodeData.length; i++) {
                 let entry = nodeData[i];
                 regionNodes[entry.AtlasRegionsKey].push(i);
-                entry.interalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
+                entry.internalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
             }
         },
         watchstones.init,
@@ -427,10 +471,10 @@ function setup(loader, resources) {
     atlasSprite.texture = resources["img/Atlas47kb.webp"].texture;
 
     //Queue next pixi resources for loading
-    loader.add("img/spritesheets/node_spritesheet-heist-1.json")
+    loader.add("img/spritesheets/atlas-maps-heist-2.1_Itemized-1602836784.json")
         .load(()=>{
             console.timeLog("load");
-            sheet = loader.resources["img/spritesheets/node_spritesheet-heist-1.json"];
+            sheet = loader.resources["img/spritesheets/atlas-maps-heist-2.1_Itemized-1602836784.json"];
             //TODO make sure this waits for nodeData to exist...
             drawAllAtlasRegions();
             loader.reset();
@@ -596,7 +640,11 @@ class NodePixiObject {
 
         this.setupHover(optsMgr.currentOptions.nodeHover);
 
-        this.imgSprite.pointertap = ()=>this.onSelect();
+        this.imgSprite.pointertap = (interactEvent)=>{
+            if (interactEvent.data.button === 0) {
+                this.onSelect();
+            }
+        };
         
         this.container.addChild(this.imgSprite);
 
@@ -627,26 +675,6 @@ class NodePixiObject {
         this.isSearchMatch = false;;
         this.isHovered = false;
         this.isSelected = false;
-    }
-
-    // TODO - Implement or remove.
-    /**
-     * Called on each NodePixiObject during each search. Updates node graphics based on whether node is a match.
-     * 
-     * @param {boolean} isSearchMatch Whether or not the node matched the search query.
-     */
-    onSearch(isSearchMatch) {
-        if (this.isSearchMatch === isSearchMatch) {
-            // No change. Exit.
-            return;
-        } else if (isSearchMatch) {
-            // Is a new match. Modify graphics to highlight.
-
-        } else {
-            // Was a match, but isn't one anymore. Revert graphics to normal.
-
-        }
-        this.isSearchMatch = isSearchMatch;
     }
     
     /**
@@ -858,7 +886,7 @@ class NodePixiObject {
         sidebar.connections.innerText = connectionsText;
 
         // Show info sidebar if it is hidden
-        sidebar.container.className = sidebar.container.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
+        sidebar.container.classList.remove('hidden');
 
         this.updateNodeGraphics();
         renderStageThrottled();
@@ -866,24 +894,50 @@ class NodePixiObject {
     /**
      * Get the texture of this node at the specified tier.
      * @param {number} [tier=0]
+     * @param {boolean} [includeBg=false] Whether to combine the map-specific image with the base map bg img.
      * @returns {PIXI.Texture}
      */
-    getSpriteImg(tier=0) {
-        let strTier;
+    getSpriteImg(tier=0, includeBg=false) {
+        let outTexture;
+
+        let nodeTextureKey = this.data.Name;
+        let nodeTexture = sheet.textures[nodeTextureKey];
+
         if (this.data.IsUniqueMapArea) {
-            strTier = "";
+            outTexture = nodeTexture;
         } else {
-            if (tier < 6)
-                strTier = "-t0";
-            else if (tier < 11)
-                strTier = "-t1";
-            else
-                strTier = "-t2";
+            const map_tint = {
+                red: 0xF72514,
+                yellow: 0xFFCF46,
+                white:0xFDFDFD
+            }
+            let tint;
+            if (tier < 6) {
+                tint = map_tint.white;
+            } else if (tier < 11) {
+                tint = map_tint.yellow;
+            } else {
+                tint = map_tint.red;
+            }
+            
+            if (includeBg) {
+                let baseTexture = sheet.textures['Art/2DItems/Maps/Atlas2Maps/New/Base9.dds'];
+                let outSprite = new PIXI.Sprite(baseTexture);
+                let nodeSprite = new PIXI.Sprite(nodeTexture);
+                outSprite.addChild(nodeSprite);
+                
+                nodeSprite.tint = tint;
+
+                const texSize = 78;
+                // outSprite.position = symPoint(texSize/2);
+                outTexture = PIXI.RenderTexture.create({width: texSize, height: texSize, resolution: 2});
+                app.renderer.render(outSprite, outTexture);
+            } else {
+                outTexture = nodeTexture;
+            }
         }
-        
-        let out = this.data.interalName+strTier+".png"
-        // console.log(out);
-        return sheet.textures[out];
+
+        return outTexture;
     }
     /**
      * Get the base64 image string for this node at the specified tier.
@@ -891,7 +945,7 @@ class NodePixiObject {
      */
     getImgBase64(tier=0) {
         return app.renderer.extract.base64(
-            PIXI.Sprite.from(this.getSpriteImg(tier)),
+            PIXI.Sprite.from(this.getSpriteImg(tier, true)),
             'image/png',
             1
         );
@@ -901,20 +955,11 @@ class NodePixiObject {
     static NAME_SCALE = symPoint(1);//2/3 * options.nodeTextScale);
     static IMG_SCALE = symPoint(1/4);
     // 78 is l/w of standard node img 47 is l/w of unique node img
-    static IMG_SCALE_UNIQUE = symPoint(1/4 * (78/47));
+    static IMG_SCALE_UNIQUE = NodePixiObject.IMG_SCALE//symPoint(1/4 * (78/47));
     static TIER_SCALE = symPoint(1);//0.15 * options.nodeTextScale);
     static BACKGROUND_SCALE = symPoint(0.4);
     static NAME_Y = 0 - (nodeRadius + nodeCenterOffset/4);
     static TIER_Y = nodeRadius + nodeCenterOffset/4;
-
-    // NodePixiObject.NAME_SCALE = symPoint(2/3 * options.nodeTextScale),
-    // NodePixiObject.IMG_SCALE = symPoint(1/4),
-    // // 78 is l/w of standard node img 47 is l/w of unique node img
-    // NodePixiObject.IMG_SCALE_UNIQUE = symPoint(1/4 * (78/47)),
-    // NodePixiObject.TIER_SCALE = symPoint(0.15 * options.nodeTextScale),
-    // NodePixiObject.BACKGROUND_SCALE = symPoint(0.4),
-    // NodePixiObject.NAME_Y = 0 - (nodeRadius + nodeCenterOffset/4),
-    // NodePixiObject.TIER_Y = nodeRadius + nodeCenterOffset/4;
 
     /**
      * The Sprite that shows when a Node is selected. (Max 1)
@@ -942,7 +987,7 @@ class NodePixiObject {
     
     // TODO - Choose outline color based on Theme accent color.
     graphSelected = new PIXI.Graphics()
-        .lineStyle(6, 0x55bbbb, 1, 0.5, false)
+        .lineStyle(6, 0xffffff, 1, 0.5, false)
         .beginFill(0x302a30, 1)
         .drawCircle(0, 0, 48)
         .endFill();
@@ -950,13 +995,17 @@ class NodePixiObject {
     graphSelected.position.set(textureSize/2, textureSize/2);
     app.renderer.render(graphSelected, texSelected);
 
-    const spriteSelected = new PIXI.Sprite(texSelected);//PIXI.Texture.WHITE);
+    const spriteSelected = new PIXI.Sprite(texSelected);
     spriteSelected.alpha = 0.9;
     // spriteSelected.width = 100;
     // spriteSelected.height = 100;
     spriteSelected.anchor.set(0.5, 0.5);
     // spriteSelected.tint = 0x302a30;
     NodePixiObject.SPRITE_SELECTED = spriteSelected;
+    window.onPaletteChange((newPalette)=>{
+        NodePixiObject.SPRITE_SELECTED.tint = hashtagToCppHex(newPalette.accent1[0]);
+    })
+    window.changeFuncs.forEach((fn)=>fn(window.currentPalette));
 })();
 
 /**
@@ -977,11 +1026,11 @@ function getNodeExternalLinks(node) {
     // const regionCode = 'us'
     let poeDBLink, poeWikiLink;
     if (node.IsUniqueMapArea) {//${regionCode}
-        poeDBLink = `http://www.poedb.tw/unique.php?n=${encodeURI(node.interalName.replace(/_/g,"+"))}`;
-        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.interalName)}`;
+        poeDBLink = `http://www.poedb.tw/unique.php?n=${encodeURI(node.internalName.replace(/_/g,"+"))}`;
+        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.internalName)}`;
     } else {
-        poeDBLink = `http://www.poedb.tw/${node.interalName}`;
-        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.interalName)}`; 
+        poeDBLink = `http://www.poedb.tw/${node.internalName}`;
+        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.internalName)}_Map`; 
     }
     
     return { poeDBLink, poeWikiLink };
@@ -1001,7 +1050,7 @@ function toPoEDBName(strName, isUnique=false) {
         strName = (strName === "The Hall of Grandmasters") ? "Hall of Grandmasters" : strName;
         strName = (strName === "Perandus Manor") ? "The Perandus Manor" : strName;
     } else {
-        strName = `${strName} Map`;
+        // strName = `${strName} Map`;
     }
     return strName;
 }
@@ -1083,8 +1132,8 @@ function preloadStaticGraphics() {
         app.renderer.render(uniqueNodeGraph, uniqueTex);
         
         return {
-            normal: normalTex,//nodeGraph,//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res),
-            unique: uniqueTex//uniqueNodeGraph//PIXI.RenderTexture.create(renderSize, renderSize, scaleMode, res)
+            normal: normalTex,
+            unique: uniqueTex
         };
     }
 
@@ -1265,7 +1314,7 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
                 nodeContainer.scale = NodePixiObject.CONTAINER_SCALE;
 
                 if (sheet && sheet.textures) {
-                    nodePixiObj.imgSprite.texture = nodePixiObj.getSpriteImg(tieredNodeData.tier);
+                    nodePixiObj.imgSprite.texture = nodePixiObj.getSpriteImg(tieredNodeData.tier, true);
                 }
 
                 //Add node tier text sprites to 'nodeContainer'
@@ -1367,13 +1416,8 @@ function updateNodesVisibility() {
  * Updates values that are dependent on the window size.
  */
 function onWindowResize() {
-    let innerHeight = CONTAINER_ELEMENT.clientHeight;
-    let innerWidth = CONTAINER_ELEMENT.clientWidth;
-    let nonAtlasContentHeightSum = document.getElementsByTagName("header")[0].offsetHeight
-        + document.getElementsByTagName("footer")[0].offsetHeight;
-    let nonAtlasContentWidthSum = 0;
-    pixiScreenH = innerHeight;//window.innerHeight-nonAtlasContentHeightSum;
-    pixiScreenW = innerWidth;//window.innerWidth-nonAtlasContentWidthSum;
+    const pixiScreenH = CONTAINER_ELEMENT.clientHeight;
+    const pixiScreenW = CONTAINER_ELEMENT.clientWidth;
 
     if (pixiScreenH > pixiScreenW) {
         pixiAtlasW = pixiScreenW;
@@ -1400,7 +1444,7 @@ function onWindowResize() {
     watchstonesContainer.scale.copyFrom(containerScale);
 
     // Update NodePixiObjs
-    NodePixiObject.CONTAINER_SCALE = symPoint(optsMgr.currentOptions.nodeScaleFactor * mapScaleFactor),
+    NodePixiObject.CONTAINER_SCALE = getNodeScale();
 
     watchstones.updatePositions();
     drawAllAtlasRegions();
@@ -1411,22 +1455,35 @@ function onWindowResize() {
 
 /**
  * Add the constructed menu to the DOM.
+ * 
+ * @param {HTMLElement} button
+ * @param {HTMLElement} container
+ * @param {HTMLElement} content
  */
 function addDropdownToDOM(button, container, content) {
     if (content) {
         container.appendChild(content);
     }
-    
-    button.addEventListener('click', (e) => {
-        if (container.className.includes("hidden"))
-            container.className = container.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
-        else
-            container.className = container.className +" hidden";
-    });
-    document.addEventListener('click', (e) => {
+
+    const show = () => {
+        container.classList.remove("hidden");
+        document.addEventListener('click', onOtherElementClick);
+    };
+    const hide = () => {
+        container.classList.add("hidden");
+        document.removeEventListener('click', onOtherElementClick);
+    };
+    const onOtherElementClick = (e) => {
         if (!(container.contains(e.target) || button.contains(e.target))) {
-            if (!container.className.includes("hidden"))
-                container.className = container.className +" hidden";
+            if (!container.classList.contains("hidden"))
+                hide();
+        }
+    };
+    button.addEventListener('click', (e) => {
+        if (container.classList.contains("hidden")) {
+            show();
+        } else {
+            hide();
         }
     });
 }
@@ -1451,10 +1508,6 @@ function addAllToDOM() {
 //=========
 function renderStage() { app.renderer.render(stage) };
 var renderStageThrottled = () => requestAnimationFrame(renderStage);
-// throttle(
-//     () => app.renderer.render(stage),
-//     MIN_FRAME_TIME
-// );
 
 // Bind search results interactables
 executeIfWhenDOMContentLoaded(() => {
@@ -1463,11 +1516,11 @@ executeIfWhenDOMContentLoaded(() => {
     const exit_btn = document.getElementById("search_exit");
 
     const showHide = () => {
-        if (search_results.className.includes("hidden")) {
-            search_results.className = search_results.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
+        if (search_results.classList.contains("hidden")) {
+            search_results.classList.remove("hidden");
             show_btn.innerText = "Hide Results";
         } else {
-            search_results.className = search_results.className +" hidden";
+            search_results.classList.add("hidden");
             show_btn.innerText = "Show Results"
         }
     };

@@ -1,0 +1,12 @@
+
+extends standalone-base.pug
+
+block head
+    link(rel="stylesheet", href="https://www.poeatlas.net/css/widget_standalone.css")
+    title #{title}!
+
+block body
+    .widget_container
+        h1 #{title}
+        div.widget_content
+            p !{content}

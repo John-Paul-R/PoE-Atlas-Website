@@ -57,7 +57,7 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
         // Mouse Wheel Zoom
         pixiApp.view.addEventListener('wheel', function (e) {
             zoom(e.clientX, e.clientY, -0.25*Math.sign(e.deltaY));
-        });//require('./lib/addWheelListener');
+        });
       
         var pGestureData;
         stage.touchstart = (e) => {
@@ -112,11 +112,13 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
             prevX, prevY;
 
         stage.pointerdown = function (interactEvent) {
-            var pos = interactEvent.data.global;
-            prevX = pos.x;
-            prevY = pos.y;
-            // isDragging = true;
-            isMouseDown = true;
+            if (interactEvent.data.button === 0) {
+                var pos = interactEvent.data.global;
+                prevX = pos.x;
+                prevY = pos.y;
+                // isDragging = true;
+                isMouseDown = true;
+            }
         };
 
         stage.pointermove = function (interactEvent) {
@@ -175,7 +177,6 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
     }
 
     function confine2dViewportToObj(moverPos, moverLength, delta, min, max) {
-        
         if (delta>0 && moverPos+delta > min) {
             delta = min-moverPos;
         } else if (delta<0 && moverPos+moverLength+delta < max) {
@@ -183,9 +184,19 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
         }
         return delta;
     }
+    function confine2dViewportToObj2(moverPos, moverLength, min, max) {
+        let delta = 0;
+        const condition1 = moverPos+moverLength < max
+        const condition2 = moverPos > min
+        if (condition1 && !condition2) {
+            delta = max-(moverPos+moverLength);
+        } else if (condition2 && !condition1) {
+            delta = min-moverPos;
+        }
+        return delta;
+    }
 
     function confine2dObjToViewport(moverPos, moverLength, delta, min, max) {
-        
         if (moverPos+delta < min) {
             delta = min-moverPos;
         } else if (moverPos+moverLength+delta > max) {
@@ -194,15 +205,6 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
         return delta;
     }
 
-
-    // function limitZoom(dx, dy) {
-    //     let screen = pixiApp.screen;
-    //     if (mainObj.width >= screen.width)
-    //         dx = confine2dViewportToObj(mainObj.x, mainObj.width, dx, screen.x, screen.x+screen.width);
-    //     if (mainObj.height >= screen.height)
-    //         dy = confine2dViewportToObj(mainObj.y, mainObj.height, dy, screen.y, screen.y+screen.height);
-    //     return {x: dx, y: dy}
-    // }
     //TODO Note: when you zoom in, then resize the window, the containers don't resize/reposition correctly.
 
     var getGraphCoordinates = (function () {
@@ -236,11 +238,15 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
                 let beforeTransform = getGraphCoordinates(mainObj, x, y);
                 mainObj.updateTransform();
                 let afterTransform = getGraphCoordinates(mainObj, x, y);
-                let delta = limitMoveToRange(
-                    (afterTransform.x - beforeTransform.x) * mainObj.scale.x,
-                    (afterTransform.y - beforeTransform.y) * mainObj.scale.y);
+                let delta = //limitMoveToRange(
+                    {x:(afterTransform.x - beforeTransform.x) * mainObj.scale.x,
+                    y:(afterTransform.y - beforeTransform.y) * mainObj.scale.y}//);
                 mainObj.position.x += delta.x;
                 mainObj.position.y += delta.y;
+                let screen = pixiApp.screen;
+                mainObj.position.x += confine2dViewportToObj2(mainObj.position.x, mainObj.width, 0, screen.x+screen.width);
+                mainObj.position.y += confine2dViewportToObj2(mainObj.position.y, mainObj.height, 0, 0+screen.height);
+
                 mainObj.updateTransform();
             }
 
@@ -248,12 +254,6 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
             resetPositions();
         }
         renderStageThrottled();
-    }
-
-    function opOnDisplayObjs(func) {
-        for (let i=0; i<displayObjs.length; i++) {
-            func(displayObjs[i].obj);
-        }
     }
 }
 

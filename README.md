@@ -15,3 +15,9 @@ If you find the PoE Atlas Website helpful and wish to support me financially, yo
 This web site is fan-made and not endorsed by, directly affiliated with, maintained, authorized, or sponsored by Grinding Gear Games.
 
 [PATH OF EXILE](https://www.pathofexile.com/) is a registered trademark of [Grinding Gear Games](https://www.grindinggear.com/).
+
+## Contributors
+
+### LeightonJonker 
+
+Many thanks to [LeightonJonker](https://github.com/LeightonJonker) for writing the vast majority of PoEAtlas's widgets and informational text content.

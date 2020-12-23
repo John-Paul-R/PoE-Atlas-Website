@@ -10,7 +10,8 @@ import {
 } from './pixi_atlas_of_worlds.js';
 
 import {
-    executeIfWhenDOMContentLoaded
+    executeIfWhenDOMContentLoaded,
+    hashtagToCppHex
 } from './util.js';
 
 export { initSearch };
@@ -23,7 +24,7 @@ let lineThickness = 4;
 const searchMatchGraphics = new PIXI.Graphics()
     .lineStyle(lineThickness, '0xff8888', 1, 0.5, false)
     .beginFill('0x555555',0)
-    .drawCircle(0, 0, 30);//18/1.5
+    .drawCircle(0, 0, 30);
     
 const textureSize = 64;
 var searchMatchTexture = PIXI.RenderTexture.create({
@@ -100,14 +101,8 @@ function searchAtlas(queryText, selectBest=false) {
 
             // If this is the best match and 'selectBest' is true
             if (i==0 && selectBest) {
-                // Use "selectBest" graphics
-                //new PIXI.Sprite(NodePixiObject.TEX_SELECTED));
-
                 pixiObj.onSelect();
             }
-            
-            // if (results[i].score==0)
-            //     break;
         }
     }
     // When using multiple `keys`, results are different. They're indexable to get each normal result
@@ -146,13 +141,17 @@ function initSearch() {
 executeIfWhenDOMContentLoaded(initSearch);
 
 function updateSearchResultsListElement(resultsArray) {
-    let resultsElem = resultsListElement;//new HTMLOListElement();
+    let resultsElem = resultsListElement;
     while (resultsElem.firstChild) {
         resultsElem.removeChild(resultsElem.lastChild);
     }
     if (resultsArray) {
         for (const node of resultsArray) {
-            resultsElem.appendChild(document.createElement('li')).innerText = node.obj.name;
+            const li = resultsElem.appendChild(document.createElement('li'));
+            li.innerText = node.obj.name;
+            li.addEventListener('click', (e) => {
+                nodePixiObjects[node.obj.id].onSelect();
+            });
         }
     }
 }

@@ -1,8 +1,9 @@
 // Widgets are classes that extend Widget
 // in es6 modules that import Widget from './widgets.js' 
-export { Modular, AbstractWidget as Widget, SidebarWidget, AtlasWidget, WidgetSidebar, sidebar };
+export { Modular, AbstractWidget as Widget, SidebarWidget, AtlasWidget, WidgetSidebar, };
 import { app, atlasSprite, nodeData, atlasRegions, nodePixiObjects, getNodeRegionTier, renderStage, renderStageThrottled, onWindowResize, } from './pixi_atlas_of_worlds.js';
 import { executeIfWhenDOMContentLoaded, FunctionBatch, executeOrBatch, dcl } from './util.js';
+import { AsyncDataResourceLoader } from './resource_loader.js';
 /**
  *  Any piece of modular code that hooks into PoEAtlas website
  */
@@ -59,6 +60,7 @@ class WidgetSidebar extends HTMLWidget {
         executeIfWhenDOMContentLoaded(() => {
             this.htmlElement = document.getElementById('widget_sidebar');
             this.listElement = document.getElementById('widget_list');
+            initStaticSidebarInteractables(this);
             this.initBatch.runAll();
         });
     }
@@ -72,7 +74,7 @@ class WidgetSidebar extends HTMLWidget {
             // this.htmlElement.appendChild(widget.htmlElement);
             const listElem = WidgetSidebar._buildWidgetListElem(widget);
             this.listElement.appendChild(listElem);
-            console.info(`WidgetSidebar: Registered ${widget.displayName} (${widget.moduleName})`);
+            console.info(`WidgetSidebar: Registered '${widget.displayName}' (${widget.moduleName})`);
             // console.info();
         }, dcl(), this.initBatch);
     }
@@ -119,7 +121,7 @@ class WidgetSidebar extends HTMLWidget {
         widget.htmlElement.style.display = 'none';
         elem.appendChild(widget.htmlElement);
         // DEBUG
-        widget.htmlElement.style.backgroundColor = '#3233c4';
+        // widget.htmlElement.style.backgroundColor = '#3233c4';
         c_head.addEventListener('click', (e) => {
             widget.visible = !widget.visible;
             if (widget.visible) {
@@ -133,31 +135,11 @@ class WidgetSidebar extends HTMLWidget {
         return elem;
     }
 }
-var sidebar;
-function init() {
-    sidebar = new WidgetSidebar();
-    for (let i = 0; i < 15; i++) {
-        sidebar.registerWidget(new SidebarWidget(`w_${i}`, `Widget ${i}`, () => {
-            const elem = document.createElement('div');
-            elem.style.height = '256px';
-            return elem;
-        }));
-    }
-    ;
-}
 function initStaticSidebarInteractables(sidebar) {
-    const widget_sidebar = sidebar.htmlElement;
-    const widget_list = sidebar.listElement;
     const w_sidebar_showhide = document.getElementById("w_sidebar_showhide");
-    const content_main = document.getElementById("content_main");
     w_sidebar_showhide.addEventListener('click', () => {
         toggleShowHide(sidebar);
         onWindowResize();
-        // if (sidebar.visible) {
-        //     content_main.style.setProperty('--sidebar-width', '384px');
-        // } else {
-        //     content_main.style.setProperty('--sidebar-width', '0');
-        // }
     });
 }
 function toggleShowHide(widget) {
@@ -169,6 +151,21 @@ function toggleShowHide(widget) {
         widget.htmlElement.classList.add('hidden');
     }
 }
-init();
-executeIfWhenDOMContentLoaded(() => initStaticSidebarInteractables(sidebar));
-//# sourceMappingURL=widget.js.map
+// ================
+//  Widget Sidebar
+// ================
+var widgetSidebar = new WidgetSidebar();
+var widgetSidebarJson;
+new AsyncDataResourceLoader([])
+    .addResource('widget/sidebar-all-json', [
+    (responseData) => widgetSidebarJson = responseData
+]).addCompletionFunc(() => {
+    console.log("test");
+    for (const [key, value] of Object.entries(widgetSidebarJson)) {
+        widgetSidebar.registerWidget(new SidebarWidget(`w_${key}`, value['title'], () => {
+            const elem = document.createElement('div');
+            elem.innerHTML = value['content'];
+            return elem;
+        }));
+    }
+}).fetchResources();

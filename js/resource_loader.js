@@ -84,6 +84,7 @@ class AsyncDataResourceLoader {
         Promise.all(promises).then((values) => {
             for (const value of values) {
                 console.debug(value);
+                this.completionFuncs.runAll();
             }
         });
     }

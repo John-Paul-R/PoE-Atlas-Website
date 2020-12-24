@@ -221,8 +221,11 @@ new AsyncDataResourceLoader([])
     .addResource('widget/sidebar-all-json', [
         (responseData) => widgetSidebarJson = responseData
     ]).addCompletionFunc(() => {
-        console.log("test");
-        for (const [key, value] of Object.entries(widgetSidebarJson)) {
+        let sortedData = Object.keys(widgetSidebarJson).sort().reduce((obj, key) => { 
+            obj[key] = widgetSidebarJson[key];
+            return obj;
+        }, {});
+        for (const [key, value] of Object.entries(sortedData)) {
             widgetSidebar.registerWidget(new SidebarWidget(`w_${key}`, value['title'], () => {
                 const elem = document.createElement('div');
                 elem.innerHTML = value['content'];

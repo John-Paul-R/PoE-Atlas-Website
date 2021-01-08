@@ -225,6 +225,7 @@ new AsyncDataResourceLoader([])
         //     obj[key] = widgetSidebarJson[key];
         //     return obj;
         // }, {});
+        // !TODO Don't rely on object order. Is not guaranteed by spec. Use arr instead. (requires backend changes)
         for (const [key, value] of Object.entries(widgetSidebarJson)) {
             widgetSidebar.registerWidget(new SidebarWidget(`w_${key}`, value['title'], () => {
                 const elem = document.createElement('div');

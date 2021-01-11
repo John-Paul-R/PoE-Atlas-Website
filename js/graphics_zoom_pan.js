@@ -56,7 +56,7 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
     function addZoom(pixiApp) {
         // Mouse Wheel Zoom
         pixiApp.view.addEventListener('wheel', function (e) {
-            zoom(e.clientX, e.clientY, -0.25*Math.sign(e.deltaY));
+            zoom(e.clientX-app.screen.clientRect.x, e.clientY-app.screen.clientRect.y, -0.25*Math.sign(e.deltaY));
         });
       
         var pGestureData;
@@ -82,12 +82,13 @@ function initZoomPanInput(pixiApp, renderStageThrottled) {
         stage.touchcancel = touchEnd;
 
         function calcGestureData(e) {
+            const appBounds = app.screen.clientRect;
             return {
                 dist: Math.hypot(
                     e.touches[0].pageX - e.touches[1].pageX,
                     e.touches[0].pageY - e.touches[1].pageY),
-                avgX: (e.touches[0].pageX + e.touches[1].pageX)/2,
-                avgY: (e.touches[0].pageY + e.touches[1].pageY)/2
+                avgX: (e.touches[0].pageX + e.touches[1].pageX)/2 - appBounds.x,
+                avgY: (e.touches[0].pageY + e.touches[1].pageY)/2 - appBounds.y
             }
         }
         function pinchStart(touchEvent) {

@@ -1449,6 +1449,7 @@ function onWindowResize() {
     watchstones.updatePositions();
     drawAllAtlasRegions();
     updateAllNodeGraphics();
+    app.screen.clientRect = app.view.getBoundingClientRect();
 }
 
 

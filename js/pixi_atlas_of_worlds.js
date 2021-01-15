@@ -43,7 +43,6 @@ import {
     AsyncDataResourceLoader
 } from './resource_loader.js';
 
-// import * as PIXI from 'pixi.js';
 //===========
 //  Globals
 //===========
@@ -441,7 +440,6 @@ new AsyncDataResourceLoader()
             for (let i=0; i<nodeData.length; i++) {
                 let entry = nodeData[i];
                 regionNodes[entry.AtlasRegionsKey].push(i);
-                entry.internalName = toPoEDBName(entry.Name, entry.IsUniqueMapArea).replace(/ /g,"_");
             }
         },
         watchstones.init,
@@ -491,16 +489,9 @@ function setup(loader, resources) {
     
     resourceLoadFuncs.runAll();
 
-    //TODO break this ^^^ up again and put "initialization" outside of "setup," and into the main thread.
-    //TODO make it so that loadMapsData doesn't need to wait for Atlas.jpg to load. (a part of the above)
-    //TODO have a "initWindowSizeDependants" and an "onWindowSize", the former not affecting "atlasSprite", so it can run in main thread, not having to wait for "setup" to finish
-
     app.renderer.render(stage);
     onWindowResize();
     window.addEventListener('resize', () => window.requestAnimationFrame(onWindowResize) );
-    
-    //60fps (more?) Animation Ticker (is this fps capped?)
-    // app.ticker.add(delta => animationLoop(delta));
 }
 
 /**
@@ -1031,15 +1022,15 @@ function symPoint(num) {
  */
 function getNodeExternalLinks(node) {
     // const regionCode = 'us'
+    let internalName = toPoEDBName(node.Name, node.IsUniqueMapArea).replace(/ /g,"_");
     let poeDBLink, poeWikiLink;
     if (node.IsUniqueMapArea) {//${regionCode}
-        poeDBLink = `http://www.poedb.tw/unique.php?n=${encodeURI(node.internalName.replace(/_/g,"+"))}`;
-        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.internalName)}`;
+        poeDBLink = `http://www.poedb.tw/unique.php?n=${encodeURI(internalName.replace(/_/g,"+"))}`;
+        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(internalName)}`;
     } else {
-        poeDBLink = `http://www.poedb.tw/${node.internalName}`;
-        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(node.internalName)}_Map`; 
+        poeDBLink = `http://www.poedb.tw/${internalName}`;
+        poeWikiLink = `http://www.pathofexile.gamepedia.com/${encodeURI(internalName)}_Map`; 
     }
-    
     return { poeDBLink, poeWikiLink };
 }
 
@@ -1056,8 +1047,6 @@ function toPoEDBName(strName, isUnique=false) {
     if (isUnique) {
         strName = (strName === "The Hall of Grandmasters") ? "Hall of Grandmasters" : strName;
         strName = (strName === "Perandus Manor") ? "The Perandus Manor" : strName;
-    } else {
-        // strName = `${strName} Map`;
     }
     return strName;
 }
@@ -1280,14 +1269,11 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
     //Do not redraw the region that is currently being drawn.
     regionsRedrawn[regionID] = true;
 
-    // TODO Make these constants user-configurable (Perhaps an "advanced options" pane, same w/ nodeHover)
-
     //loop over nodes in this region
     for (let i=0; i<region.length; i++) {
         let nodeID = region[i];
-        let cNode = getNodeByID(nodeID);
         //Node location and neighbor IDs
-        let tieredNodeData = getTieredNodeData(cNode);
+        let tieredNodeData = getTieredNodeData(getNodeByID(nodeID));
 
         //if node exists at this tier
         if (tieredNodeData) {
@@ -1340,8 +1326,6 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
         app.renderer.render(stage);
 }
 
-// Returns an array of length 3 based on the supplied region tier.
-// Format: [node_x_pos, node_y_pos, [list_of_neighbor_node_ids]]
 /**
  * Gets the node data object associated with the specified nodeID
  * @param {number} nodeID 
@@ -1531,6 +1515,5 @@ executeIfWhenDOMContentLoaded(() => {
         }
     };
     show_btn.addEventListener('click', showHide);
-
     exit_btn.addEventListener('click', showHide);
 });

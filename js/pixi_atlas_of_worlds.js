@@ -23,6 +23,7 @@ export {
     renderStage, renderStageThrottled,
     onWindowResize,
     NodePixiObject,
+    watchstones,
 };
 
 import { 
@@ -125,6 +126,7 @@ var watchstones = {
      */
     buttons: [],
     masterButton: new PIXI.Graphics(),
+    regionTierChangeFuncs: new FunctionBatch(),
     init: () => {
         const WATCHSTONE_TEXT_RESOLUTION = 3;
         const padding = 6;
@@ -170,7 +172,7 @@ var watchstones = {
             button.buttonMode = true;    
             button.on("pointertap", (interactEvent) => { 
                 if (interactEvent.data.button === 0) {
-                    cycleAtlasRegionTier(i, button); 
+                    cycleAtlasRegionTier(i, button, true); 
                 }
             });
             bText.text = atlasRegions[i].Name+"\nTier "+regionTiers[i];
@@ -226,7 +228,7 @@ var watchstones = {
         }
         setButtonHover(watchstones.masterButton);
 
-        function cycleAtlasRegionTier(regionID, boolDrawRegion=true) {
+        function cycleAtlasRegionTier(regionID, boolDrawRegion=true, execFuncs=false) {
             if (regionTiers[regionID] < 4) {
                 regionTiers[regionID] += 1;
             } else {
@@ -240,6 +242,8 @@ var watchstones = {
             }
             //Store the current region tiers on the client
             storeRegionTiers();
+            if (execFuncs)
+            watchstones.regionTierChangeFuncs.runAll()
         }
     
         function cycleAllAtlasRegionTiers() {
@@ -247,6 +251,7 @@ var watchstones = {
                 cycleAtlasRegionTier(i, false);
             }
             drawAllAtlasRegions();
+            watchstones.regionTierChangeFuncs.runAll();
         }
     
         watchstones.updatePositions();
@@ -869,8 +874,8 @@ class NodePixiObject {
         // Tiers Table
         const tds = sidebar.tiers.getElementsByTagName('td');
         for (let i=0; i < tds.length; i++) {
-            let tier = this.data.TieredData[i].Tier;
-            tds[i].innerText = tier <= 0 ? "-" : tier;
+            let tieredData = this.data.TieredData[i];
+            tds[i].innerText = tieredData ? tieredData.Tier : "-";
         }
 
         // Connections List
@@ -1090,7 +1095,8 @@ function preloadStaticGraphics() {
         let tempTex = cNodeData.IsUniqueMapArea ? nodeCircleTex.unique : nodeCircleTex.normal;
 
         //Add the constructed Node object to the global list.
-        nodePixiObjects.push(new NodePixiObject(nameSprite, cNodeData, tempTex));        
+        nodePixiObjects.push(new NodePixiObject(nameSprite, cNodeData, tempTex));
+        cNodeData.id = i;
     }
     updateNodeSize();
     updateNodesTextScale();
@@ -1281,18 +1287,12 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
             //Draw Connecting Lines between nodes (PIXI.Graphics)
             if (optsMgr.currentOptions.drawLines) {
                 for (let i=0; i<tieredNodeData.atlasNodeKeys.length; i++) {
-                    let adjNodeID = tieredNodeData.atlasNodeKeys[i];
-                    let adjNodeData = getNodeByID(adjNodeID);
+                    let adjNodeData = getNodeByID(tieredNodeData.atlasNodeKeys[i]);
                     let adjTieredNodeData = getTieredNodeData(adjNodeData);
 
                     //Draw Lines
-                    let startX = tieredNodeData.x,
-                        startY = tieredNodeData.y,
-                        endX = adjTieredNodeData.x,
-                        endY = adjTieredNodeData.y;
-
-                    regionLinesGraph.moveTo(startX, startY)
-                        .lineTo(endX, endY);
+                    regionLinesGraph.moveTo(tieredNodeData.x, tieredNodeData.y)
+                        .lineTo(adjTieredNodeData.x, adjTieredNodeData.y);
 
                     //Redraw adjacent region if not already done.
                     if (redrawAdjacent) {
@@ -1309,8 +1309,7 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
             let nodePixiObj = nodePixiObjects[nodeID];
             if (optsMgr.currentOptions.drawNodes && nodePixiObj) {
                 let nodeContainer = nodePixiObj.container;
-                nodeContainer.position.set(tieredNodeData.x, tieredNodeData.y)
-                nodeContainer.scale = NodePixiObject.CONTAINER_SCALE;
+                nodeContainer.position.set(tieredNodeData.x, tieredNodeData.y);
 
                 if (nodesSheet && nodesSheet.textures) {
                     nodePixiObj.imgSprite.texture = nodePixiObj.getSpriteImg(tieredNodeData.tier, true);
@@ -1318,8 +1317,7 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
 
                 //Add node tier text sprites to 'nodeContainer'
                 if (optsMgr.currentOptions.drawTiers || optsMgr.currentOptions.nodeHover) {
-                    let tierSprite = nodePixiObj.tierSprite;
-                    tierSprite.texture = nodeTierTextures[tieredNodeData.tier-1];
+                    nodePixiObj.tierSprite.texture = nodeTierTextures[tieredNodeData.tier-1];
                 }
                 
                 // nodePixiObj.backgroundContainer.scale = NodePixiObject.BACKGROUND_SCALE;

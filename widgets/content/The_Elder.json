@@ -1,4 +1,5 @@
 {
     "title": "The Elder",
-    "content-file": "The_Elder.md"
+    "content-file": "The_Elder.md",
+	"icon-file": "elderset.ico"
 }

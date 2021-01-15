@@ -1,4 +1,5 @@
 {
     "title": "The Shaper",
-    "content-file": "The_Shaper.md"
+    "content-file": "The_Shaper.md",
+	"icon-file": "shaperset.ico"
 }

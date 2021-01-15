@@ -1,4 +1,5 @@
 {
     "title": "The Pantheon",
-    "content-file": "The_Pantheon.md"
+    "content-file": "The_Pantheon.md",
+	"icon-file": "vessel.ico"
 }

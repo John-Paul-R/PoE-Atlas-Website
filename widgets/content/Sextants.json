@@ -1,4 +1,5 @@
 {
     "title": "Sextants",
-    "content-file": "Sextants.md"
+    "content-file": "Sextants.md",
+	"icon-file": "sextant.ico"
 }

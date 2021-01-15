@@ -12,6 +12,6 @@ Unique Map Bosses have 3% more Life <br>
 
 \+1% chance for additional Map Currency Items to drop from Unique Map Bosses <br>
 
-Increased chance per Awakening Level for the Conquerors of the Atlas to drop additional rewards <br>
+\+Increased chance per Awakening Level for the Conquerors of the Atlas to drop additional rewards <br>
 
-5% increased chance for Influenced Items to drop in Maps influenced by the Conquerors of the Atlas
+\+5% increased chance for Influenced Items to drop in Maps influenced by the Conquerors of the Atlas

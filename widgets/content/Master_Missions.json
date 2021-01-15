@@ -1,4 +1,5 @@
 {
     "title": "Master Missions",
-    "content-file": "Master_Missions.md"
+    "content-file": "Master_Missions.md",
+	"icon-file": "atlasmission.ico"
 }

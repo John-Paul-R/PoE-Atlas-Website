@@ -10,4 +10,4 @@ Once one of the previous main bosses of the Atlas, the [Shaper](<https://pathofe
 
 Each guardian has their own map which can only dropped from high level map bosses, with higher awakener levels contributing to a higher percentage for the maps to drop. <br>
 
-For detailed information of how to fight the Shaper and his multiple phases + possible loot, click [here](<https://www.poelab.com/the-shaper-master-of-the-void/>).
+For detailed information on how to fight the Shaper and his multiple phases + possible loot, click [here](<https://www.poelab.com/the-shaper-master-of-the-void/>).

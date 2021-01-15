@@ -1,4 +1,5 @@
 {
     "title": "Divination Cards",
-    "content-file": "Divination_Cards.md"
+    "content-file": "Divination_Cards.md",
+	"icon-file": "divcard.ico"
 }

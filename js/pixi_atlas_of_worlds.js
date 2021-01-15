@@ -430,7 +430,7 @@ loader
 
 // Load Atlas Data (Request, parse, and store file data)
 new AsyncDataResourceLoader()
-    .addResource("data/poe_atlas_data-QMYDDV.json", [
+    .addResource("data/poe_atlas_data-QMZWQA.json", [
         (resJson) => {
             let combinedData = resJson;
             nodeData = combinedData["AtlasNode+WorldAreas"];
@@ -472,11 +472,11 @@ function setup(loader, resources) {
 
     //Queue next pixi resources for loading
     loader
-        .add("img/spritesheets/bases_spritesheet-ritual.json")
-        .add("img/spritesheets/nodes_spritesheet-ritual.json")
+        .add("img/spritesheets/bases_spritesheet10.json")
+        .add("img/spritesheets/nodes_spritesheet10.json")
         .load(()=>{
-            basesSheet = loader.resources["img/spritesheets/bases_spritesheet-ritual.json"];
-            nodesSheet = loader.resources["img/spritesheets/nodes_spritesheet-ritual.json"];
+            basesSheet = loader.resources["img/spritesheets/bases_spritesheet10.json"];
+            nodesSheet = loader.resources["img/spritesheets/nodes_spritesheet10.json"];
             //TODO make sure this waits for nodeData to exist...
             drawAllAtlasRegions();
             loader.reset();

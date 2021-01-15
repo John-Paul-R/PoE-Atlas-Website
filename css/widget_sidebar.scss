@@ -106,15 +106,16 @@
 #w_sidebar_showhide {
     // margin: 8px;
 }
-.w_front {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+.w_front,
 .w_end {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+.w_front > img {
+    margin-right: 8px;
+    width: 36px;
+    height: 36px;
 }
 
 // .w_name { grid-area: n; }

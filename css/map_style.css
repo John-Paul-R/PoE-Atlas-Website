@@ -569,16 +569,17 @@ input.searchField::placeholder {
   justify-content: space-between;
 }
 
-.w_front {
+.w_front,
+.w_end {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.w_end {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.w_front > img {
+  margin-right: 8px;
+  width: 36px;
+  height: 36px;
 }
 
 .w_drop_btn {

@@ -170,7 +170,7 @@ class WidgetSidebar extends HTMLWidget {
         // Front Container
         if (widget.iconSrc) {
             const icon = document.createElement('img');
-            icon.setAttribute('src', widget.iconSrc);
+            icon.setAttribute('src', `widgets/favicon/${widget.iconSrc}`);
             c_front.appendChild(icon);
         }
         const name = document.createElement('b');
@@ -248,7 +248,7 @@ new AsyncDataResourceLoader([])
                 elem.innerHTML = value['content'];
     
                 return elem;
-            }));
+            }, value['icon-file']));
         }
         console.groupEnd();
     }).fetchResources();

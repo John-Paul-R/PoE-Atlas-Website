@@ -61,6 +61,14 @@ class WidgetSidebar extends HTMLWidget {
             this.htmlElement = document.getElementById('widget_sidebar');
             this.listElement = document.getElementById('widget_list');
             initStaticSidebarInteractables(this);
+            const sidebarHiddenPref = localStorage.getItem("sidebar_hidden");
+            if (sidebarHiddenPref === 'true') {
+                toggleShowHide(this);
+                // onWindowResize();        
+            }
+            else if (sidebarHiddenPref === null) {
+                localStorage.setItem("sidebar_hidden", 'false');
+            }
             this.initBatch.runAll();
         });
     }
@@ -137,8 +145,9 @@ class WidgetSidebar extends HTMLWidget {
 function initStaticSidebarInteractables(sidebar) {
     const w_sidebar_showhide = document.getElementById("w_sidebar_showhide");
     w_sidebar_showhide.addEventListener('click', () => {
-        toggleShowHide(sidebar);
+        let isVisible = toggleShowHide(sidebar);
         onWindowResize();
+        localStorage.setItem("sidebar_hidden", `${!isVisible}`);
     });
 }
 function toggleShowHide(widget) {
@@ -149,6 +158,7 @@ function toggleShowHide(widget) {
     else {
         widget.htmlElement.classList.add('hidden');
     }
+    return widget.visible;
 }
 // ================
 //  Widget Sidebar

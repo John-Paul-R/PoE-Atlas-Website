@@ -17,6 +17,7 @@ import {
     getNodeRegionTier,
     renderStage, renderStageThrottled,
     onWindowResize,
+    resourceLoadFuncs,
     NodePixiObject,
 } from './pixi_atlas_of_worlds.js';
 
@@ -109,6 +110,13 @@ class WidgetSidebar extends HTMLWidget {
             this.htmlElement = document.getElementById('widget_sidebar');
             this.listElement = document.getElementById('widget_list');
             initStaticSidebarInteractables(this);
+            const sidebarHiddenPref = localStorage.getItem("sidebar_hidden");
+            if (sidebarHiddenPref === 'true') {
+                toggleShowHide(this);
+                // onWindowResize();        
+            } else if (sidebarHiddenPref === null) {
+                localStorage.setItem("sidebar_hidden", 'false');
+            }
             this.initBatch.runAll();
         });
     }
@@ -197,8 +205,9 @@ class WidgetSidebar extends HTMLWidget {
 function initStaticSidebarInteractables(sidebar: WidgetSidebar) {
     const w_sidebar_showhide = document.getElementById("w_sidebar_showhide");
     w_sidebar_showhide.addEventListener('click', () => {
-        toggleShowHide(sidebar);
+        let isVisible = toggleShowHide(sidebar);
         onWindowResize();
+        localStorage.setItem("sidebar_hidden", `${!isVisible}`);
     });
 }
 function toggleShowHide(widget: HTMLWidget) {
@@ -208,6 +217,7 @@ function toggleShowHide(widget: HTMLWidget) {
     } else {
         widget.htmlElement.classList.add('hidden');
     }
+    return widget.visible;
 }
 
 // ================

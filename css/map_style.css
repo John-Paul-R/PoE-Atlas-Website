@@ -136,7 +136,8 @@ h2#node_name {
   width: 100%;
 }
 
-#search_results li:hover {
+#search_results li:hover,
+#node_connections_list li:hover {
   cursor: pointer;
   text-decoration: underline;
 }

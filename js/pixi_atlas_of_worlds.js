@@ -587,6 +587,19 @@ var nodeTierTextures;
  * @type {Array<NodePixiObject>}
  */
 var nodePixiObjects;
+/**
+ * @type {{
+    * container: HTMLElement,
+    * name: HTMLElement,
+    * poedb: HTMLElement,
+    * poewiki: HTMLElement,
+    * region: HTMLElement,
+    * icon: HTMLElement,
+    * tiers: HTMLElement,
+    * connections: HTMLElement,
+    * pantheon: HTMLElement
+    * }}
+    */
 var nodeInfoSidebar;
 document.addEventListener('DOMContentLoaded', () => nodeInfoSidebar = {
     container: document.getElementById("node_info"),
@@ -874,14 +887,24 @@ class NodePixiObject {
 
         // Connections List
         let connectionsData = this.data.TieredData[4].AtlasNodeKeys;
-        let connectionsText = "";
-        for (let i=0; i < connectionsData.length; i++) {
-            connectionsText += getNodeByID(connectionsData[i]).Name;
-            if (i < connectionsData.length-1) {
-                connectionsText += ", ";
-            }
+        // let connectionsText = "";
+        while (sidebar.connections.lastChild) {
+            sidebar.connections.removeChild(sidebar.connections.lastChild);
         }
-        sidebar.connections.innerText = connectionsText;
+        for (let i=0; i < connectionsData.length; i++) {
+            const li = document.createElement('li');
+            let node = getNodeByID(connectionsData[i]);
+            let text = node.Name;
+            // if (i < connectionsData.length-1) {
+            //     text += ", ";
+            // }
+            li.textContent = text;
+            li.addEventListener('click', (e) => {
+                nodePixiObjects[connectionsData[i]].onSelect();
+            });
+
+            sidebar.connections.appendChild(li);
+        }
 
         // Show info sidebar if it is hidden
         sidebar.container.classList.remove('hidden');

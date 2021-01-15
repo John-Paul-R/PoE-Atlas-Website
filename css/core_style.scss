@@ -99,7 +99,8 @@ button {
     padding: 3px;
     text-align: center;
 }
-button:hover {
+button:hover,
+button:focus {
     background-color: var(--color-accent-1-1);
     cursor: pointer;
 }

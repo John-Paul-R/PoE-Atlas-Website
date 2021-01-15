@@ -92,23 +92,35 @@ header .dropdown.content {
 
 .dropdown.content > ul {
     width:100%;
-}
-.dropdown.content > ul > li {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.dropdown.content > ul > li{
+    align-items: stretch;
+}
+.dropdown.content > ul > li > label {
+    width: 100%;
     align-items: center;
     padding: 4px;
-    cursor: pointer;
+}
+.dropdown.content > ul > li,
+.dropdown.content > ul > li > label {
+    display: flex;
+    flex-direction: row;
+
+    cursor: pointer;    
     /* border-bottom: 1px solid var(--color-accent-2); */
 }
 .dropdown.content > ul > li:hover:not(:last-child) {
     background-color: var(--color-base-1);
     /* border-bottom: 1px solid var(--color-accent-2); */
 }
-.dropdown.options > ul > li > .switch {
+.dropdown.options .switch {
     margin-left: auto;
 }
-.dropdown.content.options > ul > li > input {
+.dropdown.content.options input {
     margin-left: auto;
     width:46px;
     color: var(--color-text);

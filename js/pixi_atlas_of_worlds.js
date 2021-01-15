@@ -301,7 +301,8 @@ var watchstones = {
     }
 }
 
-var optsMgr = new OptionsManager('displayOptions', [drawAllAtlasRegions]);
+var optsMgr = new OptionsManager('displayOptions');
+optsMgr.globalChangeHandlers.add(() => drawAllAtlasRegions(false));
 optsMgr.register("drawLines", "Show Lines", true, null)
     .register("drawNodes", "Show Nodes", true, updateNodesVisibility)
     .register("drawNames", "Show Names", true, updateNodesVisibility)
@@ -328,11 +329,12 @@ executeIfWhenDOMContentLoaded(() => {
 function getNodeScale() {
     return symPoint(0.75 * optsMgr.currentOptions.nodeScaleFactor * mapScaleFactor);
 }
-function updateNodeSize() {
+function updateNodeSize(updateNodes=true) {
     NodePixiObject.CONTAINER_SCALE = getNodeScale();
-    updateAllNodeGraphics();
+    if (updateNodes)
+        updateAllNodeGraphics();
 }
-function updateNodesTextScale() {
+function updateNodesTextScale(updateNodes=true) {
     NodePixiObject.NAME_SCALE = symPoint(2/3 * 0.9 * optsMgr.currentOptions.nodeTextScale);
     NodePixiObject.TIER_SCALE = symPoint(0.15 * 0.9 * optsMgr.currentOptions.nodeTextScale);
     if (nodePixiObjects) {
@@ -340,7 +342,8 @@ function updateNodesTextScale() {
             obj.nameContainer.scale = NodePixiObject.NAME_SCALE;
             obj.tierSprite.scale = NodePixiObject.TIER_SCALE;
         }
-        updateAllNodeGraphics();
+        if (updateNodes)
+            updateAllNodeGraphics();
     }
 }
 
@@ -1230,16 +1233,20 @@ var perfTimers = {
  * Calls drawAtlasRegion on all regions.
  * @see {drawAtlasRegion} for more information.
  */
-function drawAllAtlasRegions() {
+function drawAllAtlasRegions(immediateRender=true) {
     perfTimers.allRegionsUpdate.start();
     for(let i=0; i<NUM_REGIONS; i++) {
         drawAtlasRegion(i, false, false);
     }
     perfTimers.allRegionsUpdate.end();
 
-    perfTimers.regionsRender.start();
-    app.renderer.render(app.stage);
-    perfTimers.regionsRender.end();
+    if (immediateRender) {
+            perfTimers.regionsRender.start();
+        app.renderer.render(app.stage);
+        perfTimers.regionsRender.end();
+    } else {
+        renderStageThrottled();
+    }
 }
 
 /**

@@ -1,5 +1,8 @@
 
-import { debounce } from './util.js';
+import { 
+    debounce,
+    FunctionBatch
+} from './util.js';
 
 export {
     createOptionsMenu,
@@ -19,30 +22,6 @@ var optionsElements;
 //==============
 // User Options
 //==============
-class HTMLElement{
-    constructor(tag, id="", className="", options="", innerHTML="") {
-        this.tag = tag;
-        this.id = id;
-        this.className = className;
-        this.options = options;
-        this.innerHTML = innerHTML;
-    }
-    asString() {
-        let tagString = "<"+this.tag;
-        if (this.id) {
-            tagString += " id="+this.id;
-        }
-        if (this.className) {
-            tagString += " class="+this.className;
-        }
-        if (this.options) {
-            tagString += " "+this.options;
-        }
-        tagString += ">"+this.innerHTML+"</"+this.tag+">";
-        return tagString;
-    }
-}
-
 class Option {
     constructor(name, key) {
         this.name = name;
@@ -53,9 +32,9 @@ class OptionsManager {
     /**
      * 
      * @param {string} storageKey 
-     * @param {Array<function>} globalChangeHandlers 
+     * @param {FunctionBatch} globalChangeHandlers 
      */
-    constructor(storageKey, globalChangeHandlers=[]) {
+    constructor(storageKey, globalChangeHandlers=new FunctionBatch()) {
         this.storageKey = storageKey;
         this.storedOptions = this.getStoredOptions();
 
@@ -109,28 +88,6 @@ class OptionsManager {
             storedOpts = {};
         }
         return storedOpts;
-        // if (storedOpts) {
-        //     options = {};
-        //     for (let key in DEFAULT_OPTIONS) {
-        //         // If possible options does not exist in stored options, load from default
-        //         // if (!(key in stored)) {
-        //         if (key in storedOpts) {
-        //             options[key] = storedOpts[key];
-        //         } else {
-        //             options[key] = DEFAULT_OPTIONS[key];
-        //         }
-    
-        //         // }
-        //     }
-        //     storeDisplayOptions();
-        // } else {
-        //     options = DEFAULT_OPTIONS;
-        //     storeDisplayOptions();
-        // }
-        // for (let key in options) {
-        //     if (OPTIONS_CHANGED_HANDLERS[key])
-        //         OPTIONS_CHANGED_HANDLERS[key]();
-        // }
     }
     /**
      * Option setter function, to be used when a user changes an options from the
@@ -144,17 +101,15 @@ class OptionsManager {
         if (this.optionChangeHandlers[optionKey])
             this.optionChangeHandlers[optionKey]();
         this.storeDisplayOptions();
-        for (const func of this.globalChangeHandlers) {
-            func();
-        }
-        //TODO - Take this vvv out of this method.
-        // // console.log(optionsElements[optionKey]);
+        this.globalChangeHandlers.runAll();
+
         let input = optionsElements[optionKey].input;
-        if (input.type==="checkbox") {
+        if (input.type === "checkbox") {
             input.checked = value;
-        } else if (input.type==="text") {
+        } else if (input.type === "number") {
             input.value = value;
         }
+        return value;
     }
     /**
      * Resets the specified option to its defualt value. Should be used when a 
@@ -174,7 +129,6 @@ class OptionsManager {
         }
     }
     
-    
 }
 
 
@@ -183,16 +137,44 @@ class OptionsManager {
  * @param {OptionsManager} optsMgr 
  */
 function createOptionsMenu(optsMgr) {
-    const toggleOn = 
-        '<label class="switch">'
-        +'  <input type="checkbox" checked>'
-        +'  <span class="slider round"></span>'
-        +'</label>';
-    const toggleOff = 
-        '<label class="switch">'
-        +'  <input type="checkbox">'
-        +'  <span class="slider round"></span>'
-        +'</label>';
+    const createToggleSwitch = (checked, optionKey) => {
+        // Create Element
+        const toggleContainer = document.createElement('label');
+        toggleContainer.classList.add('switch');
+        const input = toggleContainer.appendChild(document.createElement('input'));
+        input.type = 'checkbox';
+        const slider = toggleContainer.appendChild(document.createElement('span'));
+        slider.classList.add('slider');
+        slider.classList.add('round');
+
+        input.checked = checked;
+
+        // Action / Logic
+        input.addEventListener('change', (e)=>{
+            // input.checked = !input.checked;
+            e.stopPropagation();
+            input.checked = optsMgr.setOption(optionKey, !optsMgr.currentOptions[optionKey]);
+        });
+        return {
+            containerElem: toggleContainer,
+            inputElem: input
+        };
+    }
+    const createNumInput = (value, optionKey, step=0.05, max=10, min=0.01) => {
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.value = value;
+        input.step = step;
+        input.max = max;
+        input.min = min;
+
+        input.addEventListener('input', (e)=>{
+            if (e.target.value) {
+                optsMgr.setOption(optionKey, e.target.value);
+            }
+        });
+        return input;
+    }
     
     optionsElements = {};
 
@@ -201,53 +183,37 @@ function createOptionsMenu(optsMgr) {
     // Generate dropdown elements for each option
     for (let opt of optsMgr.optionsArr) {
         const key = opt.key;
-        const elem = optsMgr.currentOptions[opt.key];
-        let div = document.createElement('div');
-        let lstElement = new HTMLElement('li');
-        lstElement.innerHTML = "<p>"+opt.name+"</p>\n";
-        if (typeof(elem)=="boolean") {
-            if (elem) {
-                lstElement.innerHTML += toggleOn;
-            } else {
-                lstElement.innerHTML += toggleOff;
-            }
+        const optionValue = optsMgr.currentOptions[opt.key];
+        const lstElement = document.createElement('li');
+        const clickableContainer = lstElement.appendChild(document.createElement('label'));
+        const optionText = clickableContainer.appendChild(document.createElement('p'));
+        optionText.appendChild(document.createTextNode(opt.name));
+
+        let inputElement;
+        if (typeof(optionValue) === "boolean") {
+            let temp = createToggleSwitch(optionValue, opt.key);
+            inputElement = temp.inputElem;
+            clickableContainer.appendChild(temp.containerElem);
         } else {
-            lstElement.innerHTML += '<input type="text" value="' + elem + '">';
+            inputElement = clickableContainer.appendChild(createNumInput(optionValue, opt.key));
         }
-        div.innerHTML = lstElement.asString();
-        
-        let domElement = div.firstChild;
-        let input = domElement.getElementsByTagName('input')[0];
-        if (input.type==="checkbox") {
-            domElement.addEventListener('click', (e)=>{
-                // input.checked = !input.checked;
-                e.stopPropagation();
-                if (e.detail > 0){
-                    optsMgr.setOption(key, !optsMgr.currentOptions[key]);
-                } else { //This somehow fixes a visual bug that caused checkbox display to be inverted when you click the slider. IDK - JP
-                    input.checked = !input.checked;
-                }
-                
-            });
-        } else if (input.type==='text') {
-            domElement.addEventListener('input', (e)=>{
-                if (e.target.value) {
-                    optsMgr.setOption(key, e.target.value);
-                }
-            });
-        }
+
         optionsElements[key] = {
-            element: domElement,
-            input: input
+            element: lstElement,
+            input: inputElement
         };
-        optionsList.appendChild(domElement);
+        optionsList.appendChild(lstElement);
     }
 
     // Add "Reset All" Button
-    let resetAll = document.createElement('li');
-    resetAll.innerHTML = `<div id="reset_options_btn" class="button expand">Reset All</button>`;
-    resetAll.firstChild.addEventListener('click', () => { optsMgr.resetAllOptions() });
-    optionsList.appendChild(resetAll);
+    let resetAll = optionsList.appendChild(document.createElement('li'));
+    let resetDiv = resetAll.appendChild(document.createElement('div'));
+    resetDiv.appendChild(document.createTextNode("Reset All"));
+    resetDiv.id = 'reset_options_btn';
+    resetDiv.classList.add('button');
+    resetDiv.classList.add('expand');
+
+    resetAll.firstChild.addEventListener('click', () => optsMgr.resetAllOptions());
 
     return optionsList;
 }

@@ -35,8 +35,9 @@ class HTMLWidget extends AbstractWidget {
  * Standard sidebar widget
  */
 class SidebarWidget extends HTMLWidget {
-    constructor(moduleName, displayName, sidebarElemBuilder, default_visibility = false) {
+    constructor(moduleName, displayName, sidebarElemBuilder, icon_link = null, default_visibility = false) {
         super(moduleName, displayName, sidebarElemBuilder);
+        this.iconSrc = icon_link;
     }
 }
 /**
@@ -110,6 +111,11 @@ class WidgetSidebar extends HTMLWidget {
         c_head.appendChild(c_end);
         elem.appendChild(c_head);
         // Front Container
+        if (widget.iconSrc) {
+            const icon = document.createElement('img');
+            icon.setAttribute('src', widget.iconSrc);
+            c_front.appendChild(icon);
+        }
         const name = document.createElement('b');
         name.setAttribute('class', 'w_name');
         c_front.appendChild(name);

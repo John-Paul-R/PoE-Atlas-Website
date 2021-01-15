@@ -207,11 +207,11 @@ function createOptionsMenu(optsMgr) {
 
     // Add "Reset All" Button
     let resetAll = optionsList.appendChild(document.createElement('li'));
-    let resetDiv = resetAll.appendChild(document.createElement('div'));
-    resetDiv.appendChild(document.createTextNode("Reset All"));
-    resetDiv.id = 'reset_options_btn';
-    resetDiv.classList.add('button');
-    resetDiv.classList.add('expand');
+    let resetButton = resetAll.appendChild(document.createElement('button'));
+    resetButton.appendChild(document.createTextNode("Reset All"));
+    resetButton.id = 'reset_options_btn';
+    resetButton.classList.add('button');
+    resetButton.classList.add('expand');
 
     resetAll.firstChild.addEventListener('click', () => optsMgr.resetAllOptions());
 

@@ -396,20 +396,16 @@ loader = PIXI.Loader.shared;
 // ...Add the canvas (that Pixi created) to the HTML document (createPixiView)
 // TODO Perhaps do this on DOM content load instead? Why are we waiting?
 loader.onComplete.once(() => {
-    console.timeLog("load");
     CONTAINER_ELEMENT = document.getElementById("atlas_of_worlds")
     CONTAINER_ELEMENT.appendChild(app.view);
     CONTAINER_ELEMENT.lastChild.className = "pixi_atlas_of_worlds";
 });
 
 let timers = [];
-console.time("load");
 loader.onStart.add((resource)=>{
-    console.timeLog("load");
     for (let value of Object.values(resource.resources)) {
         if (value.name) {
             timers.push(value.name);
-            console.time(value.name);
         }
     }
 })
@@ -418,7 +414,6 @@ loader.onLoad.add((resource)=>{
         let index = timers.indexOf(value.name);
         if (index >= 0) {
             timers.pop(index);
-            console.timeEnd(value.name);
         }
     }
 })
@@ -462,7 +457,6 @@ for (let regionID = 0; regionID < NUM_REGIONS; regionID++) {
 //===========
 function setup(loader, resources) {
     loader.reset();
-    console.timeLog("load");
 
     //==================
     //  Initialization
@@ -475,7 +469,6 @@ function setup(loader, resources) {
         .add("img/spritesheets/bases_spritesheet-ritual.json")
         .add("img/spritesheets/nodes_spritesheet-ritual.json")
         .load(()=>{
-            console.timeLog("load");
             basesSheet = loader.resources["img/spritesheets/bases_spritesheet-ritual.json"];
             nodesSheet = loader.resources["img/spritesheets/nodes_spritesheet-ritual.json"];
             //TODO make sure this waits for nodeData to exist...
@@ -484,7 +477,6 @@ function setup(loader, resources) {
             loader.add("img/Atlas80.webp").load(()=>{
                 atlasSprite.texture = loader.resources["img/Atlas80.webp"].texture;
                 //DEBUG
-                console.timeEnd("load");
                 renderStage();
             });
         });
@@ -1409,7 +1401,6 @@ var updateAllNodeGraphics = debounce(() => {
 }, 50)
 function updateNodesVisibility() {
     //lines, nodes, hover, names, tiers, scaleFactor
-    console.time("updateNodesVisibility");
     if (nodePixiObjects) {
         for (let i = 0; i < nodePixiObjects.length; i++) {
             let nodePixiObj = nodePixiObjects[i];
@@ -1418,7 +1409,6 @@ function updateNodesVisibility() {
             nodePixiObj.nameContainer.visible = optsMgr.currentOptions.drawNames;
         }
     }    
-    console.timeEnd("updateNodesVisibility");
 }
 
 //Stores the position of the center of the PIXI canvas, not the window.

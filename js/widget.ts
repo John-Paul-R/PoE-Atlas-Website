@@ -124,9 +124,7 @@ class WidgetSidebar extends HTMLWidget {
             const listElem = WidgetSidebar._buildWidgetListElem(widget);
     
             this.listElement.appendChild(listElem);
-            console.info(`WidgetSidebar: Registered '${widget.displayName}' (${widget.moduleName})`);
-            // console.info();
-    
+            console.info(`WidgetSidebar: Registered widget '${widget.displayName}' (${widget.moduleName})`);    
         }, dcl(), this.initBatch);
     }
 
@@ -226,6 +224,7 @@ new AsyncDataResourceLoader([])
         //     return obj;
         // }, {});
         // !TODO Don't rely on object order. Is not guaranteed by spec. Use arr instead. (requires backend changes)
+        console.groupCollapsed("WidgetSidebar");
         for (const [key, value] of Object.entries(widgetSidebarJson)) {
             widgetSidebar.registerWidget(new SidebarWidget(`w_${key}`, value['title'], () => {
                 const elem = document.createElement('div');
@@ -234,4 +233,5 @@ new AsyncDataResourceLoader([])
                 return elem;
             }));
         }
+        console.groupEnd();
     }).fetchResources();

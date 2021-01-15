@@ -428,11 +428,11 @@ loader
 
 // Load Atlas Data (Request, parse, and store file data)
 new AsyncDataResourceLoader()
-    .addResource("data/AtlasDataCombined_Itemized-1602838451.json", [
+    .addResource("data/poe_atlas_data-QMYDDV.json", [
         (resJson) => {
             let combinedData = resJson;
             nodeData = combinedData["AtlasNode+WorldAreas"];
-            atlasRegions = combinedData["AtlasRegions.dat"];
+            atlasRegions = combinedData["AtlasRegions"];
 
             // Init regionNodes (list) (Add RowIDs of nodes to their respective region lists)
             for (let i=0; i<nodeData.length; i++) {
@@ -471,10 +471,13 @@ function setup(loader, resources) {
     atlasSprite.texture = resources["img/Atlas47kb.webp"].texture;
 
     //Queue next pixi resources for loading
-    loader.add("img/spritesheets/atlas-maps-heist-2.1_Itemized-1602836784.json")
+    loader
+        .add("img/spritesheets/bases_spritesheet-ritual.json")
+        .add("img/spritesheets/nodes_spritesheet-ritual.json")
         .load(()=>{
             console.timeLog("load");
-            sheet = loader.resources["img/spritesheets/atlas-maps-heist-2.1_Itemized-1602836784.json"];
+            basesSheet = loader.resources["img/spritesheets/bases_spritesheet-ritual.json"];
+            nodesSheet = loader.resources["img/spritesheets/nodes_spritesheet-ritual.json"];
             //TODO make sure this waits for nodeData to exist...
             drawAllAtlasRegions();
             loader.reset();
@@ -504,7 +507,7 @@ function setup(loader, resources) {
  * The Spritesheet containing all map Node images.
  * @type {PIXI.Spritesheet}
  */
-var sheet;
+var nodesSheet, basesSheet;
 
 /**
  * @type {PIXI.display.Group}
@@ -656,8 +659,12 @@ class NodePixiObject {
         this.container.addChild(this.nameContainer);
 
         //Preload Node Tier Sprites
+        let t1 = 1;
+        if (data.TieredData[0])
+            t1 = data.TieredData[0].Tier
+
         this.tierSprite = new PIXI.Sprite.from(
-            nodeTierTextures[data.TieredData[0].Tier]
+            nodeTierTextures[t1]
         );
         this.container.addChild(this.tierSprite);
         this.tierSprite.anchor.set(0.5,0);
@@ -901,7 +908,7 @@ class NodePixiObject {
         let outTexture;
 
         let nodeTextureKey = this.data.Name;
-        let nodeTexture = sheet.textures[nodeTextureKey];
+        let nodeTexture = nodesSheet.textures[nodeTextureKey];
 
         if (this.data.IsUniqueMapArea) {
             outTexture = nodeTexture;
@@ -921,7 +928,7 @@ class NodePixiObject {
             }
             
             if (includeBg) {
-                let baseTexture = sheet.textures['Art/2DItems/Maps/Atlas2Maps/New/Base9.dds'];
+                let baseTexture = basesSheet.textures['Base'];
                 let outSprite = new PIXI.Sprite(baseTexture);
                 let nodeSprite = new PIXI.Sprite(nodeTexture);
                 outSprite.addChild(nodeSprite);
@@ -1278,7 +1285,7 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
         let tieredNodeData = getTieredNodeData(cNode);
 
         //if node exists at this tier
-        if (tieredNodeData.tier > 0) {
+        if (tieredNodeData) {
             //Draw Connecting Lines between nodes (PIXI.Graphics)
             if (optsMgr.currentOptions.drawLines) {
                 for (let i=0; i<tieredNodeData.atlasNodeKeys.length; i++) {
@@ -1313,7 +1320,7 @@ function drawAtlasRegion(regionID, redrawAdjacent=false, renderOnComplete=true) 
                 nodeContainer.position.set(tieredNodeData.x, tieredNodeData.y)
                 nodeContainer.scale = NodePixiObject.CONTAINER_SCALE;
 
-                if (sheet && sheet.textures) {
+                if (nodesSheet && nodesSheet.textures) {
                     nodePixiObj.imgSprite.texture = nodePixiObj.getSpriteImg(tieredNodeData.tier, true);
                 }
 
@@ -1375,12 +1382,15 @@ class TieredNodeData {
  */
 function getTieredNodeData(node) {
     let tData = node.TieredData[regionTiers[node.AtlasRegionsKey]];
-    return new TieredNodeData(
-        tData.Tier,
-        tData.AtlasNodeKeys,
-        tData.X*mapScaleFactor+nodeCenterOffset,
-        tData.Y*mapScaleFactor+nodeCenterOffset
-    );
+    let out = null;
+    if (tData)
+        out = new TieredNodeData(
+            tData.Tier,
+            tData.AtlasNodeKeys,
+            tData.X*mapScaleFactor+nodeCenterOffset,
+            tData.Y*mapScaleFactor+nodeCenterOffset
+        );
+    return out;
 }
 
 /**

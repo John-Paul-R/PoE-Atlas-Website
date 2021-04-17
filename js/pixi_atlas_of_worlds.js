@@ -430,7 +430,7 @@ loader
 
 // Load Atlas Data (Request, parse, and store file data)
 new AsyncDataResourceLoader()
-    .addResource("data/poe_atlas_data-QROQJ9.json", [
+    .addResource("data/poe_atlas_data-QROYUE.json", [
         (resJson) => {
             let combinedData = resJson;
             nodeData = combinedData["AtlasNode+WorldAreas"];

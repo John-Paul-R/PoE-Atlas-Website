@@ -472,11 +472,11 @@ function setup(loader, resources) {
 
     //Queue next pixi resources for loading
     loader
-        .add("img/spritesheets/bases_spritesheet11.json")
+        .add("img/spritesheets/bases_spritesheet10.json")
         .add("img/spritesheets/nodes_spritesheet11.json")
         .load(()=>{
             basesSheet = loader.resources["img/spritesheets/bases_spritesheet10.json"];
-            nodesSheet = loader.resources["img/spritesheets/nodes_spritesheet10.json"];
+            nodesSheet = loader.resources["img/spritesheets/nodes_spritesheet11.json"];
             //TODO make sure this waits for nodeData to exist...
             drawAllAtlasRegions();
             loader.reset();

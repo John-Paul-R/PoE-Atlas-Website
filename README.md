@@ -1,6 +1,10 @@
 # PoE-Atlas-Website
 The source code for the PoE Atlas (2020) website. © 2020 John Paul Rutigliano - See [LICENSE](./LICENSE) for usage & redistribution information.
 
+## Contact me
+
+The easiest way to contact me is through my [Discord Server](https://discord.gg/dwh9y7D).
+
 ## Contribute
 ### Bug Reports and Suggestions
 Feel free to report bugs, and leave feature suggestions in the [issue tracker](https://github.com/John-Paul-R/PoE-Atlas-Website/issues).

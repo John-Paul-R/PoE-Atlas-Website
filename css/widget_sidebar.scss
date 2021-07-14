@@ -42,7 +42,7 @@
     left: var(--sidebar-width);
     top: 48px;
 
-    background-color: var(--color-element-1);
+    background-color: var(--color-element);
     border-bottom-right-radius: 8px;
     border-top-right-radius: 8px;
     
@@ -63,7 +63,7 @@
     transition: transform 0.25s;
 }
 #w_sidebar_showhide:hover {
-    background-color: var(--color-element-1-2);
+    background-color: var(--color-element-2);
 }
 .widget {
     margin: 4px;
@@ -83,10 +83,10 @@
     // border-bottom: 1px dotted gold;
 }
 .widget:nth-child(even) {
-    background-color: var(--color-element-1);
+    background-color: var(--color-element);
 }
 .widget:nth-child(odd) {
-    background-color: var(--color-element-1-2);
+    background-color: var(--color-element-2);
 }
 
 .widget {

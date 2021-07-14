@@ -29,7 +29,7 @@ var searchbarFocus = (function(){
         if (!elem.contains(document.activeElement) && !elem.isHovered) { //&& (true || elem.parentElement.querySelector(".searchField").value == "")
             gsap.to(elem, .15, { scale: .99, opacity: 0.8});
             elem.style.setProperty("box-shadow", "none");
-            // elem.style.setProperty("border", "1px var(--color-element-1) solid");
+            // elem.style.setProperty("border", "1px var(--color-element) solid");
         }
     }
 })();

@@ -235,7 +235,7 @@ input:checked + .slider:before {
 }
 
 header .swap_palette {
-  background-color: var(--color-element-1);
+  background-color: var(--color-element);
   color: var(--color-text);
   border: none;
 }
@@ -511,7 +511,7 @@ input.searchField::placeholder {
   position: absolute;
   left: var(--sidebar-width);
   top: 48px;
-  background-color: var(--color-element-1);
+  background-color: var(--color-element);
   border-bottom-right-radius: 8px;
   border-top-right-radius: 8px;
   border: 2px solid var(--color-accent-1);
@@ -532,7 +532,7 @@ input.searchField::placeholder {
 }
 
 #w_sidebar_showhide:hover {
-  background-color: var(--color-element-1-2);
+  background-color: var(--color-element-2);
 }
 
 .widget {
@@ -548,11 +548,11 @@ input.searchField::placeholder {
 }
 
 .widget:nth-child(even) {
-  background-color: var(--color-element-1);
+  background-color: var(--color-element);
 }
 
 .widget:nth-child(odd) {
-  background-color: var(--color-element-1-2);
+  background-color: var(--color-element-2);
 }
 
 .widget {
@@ -704,7 +704,7 @@ div#options_content.dropdown.content {
   width: 80vw;
   top: 10vh;
   right: 10vw;
-  border: 2px solid var(--color-element-1);
+  border: 2px solid var(--color-element);
   background-color: var(--color-base);
 }
 

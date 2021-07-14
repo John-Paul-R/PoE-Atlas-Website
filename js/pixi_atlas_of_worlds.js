@@ -149,7 +149,7 @@ var watchstones = {
             .addChild(mText);
         watchstones.masterButton.filters = [new PIXI.filters.DropShadowFilter()];
         
-        const accentColor = hashtagToCppHex(document.documentElement.style.getPropertyValue('--color-element-1'));
+        const accentColor = hashtagToCppHex(document.documentElement.style.getPropertyValue('--color-element'));
         const textColor = hashtagToCppHex(document.documentElement.style.getPropertyValue('--color-text-1'));
         // watchstones.buttons = [];
         for (let i=0; i < NUM_REGIONS; i++) {
@@ -188,7 +188,7 @@ var watchstones = {
 
             
         }
-        window.onPaletteChange((newPalette)=>{
+        window.mpal.onPaletteChange((newPalette)=>{
             for (const button of watchstones.buttons) {
                 button.tint = hashtagToCppHex(newPalette.element1[0]);
                 button.textSprite.style.fill = newPalette.text[1];
@@ -1023,10 +1023,12 @@ class NodePixiObject {
     spriteSelected.anchor.set(0.5, 0.5);
     // spriteSelected.tint = 0x302a30;
     NodePixiObject.SPRITE_SELECTED = spriteSelected;
-    window.onPaletteChange((newPalette)=>{
+    let onPalChange = (newPalette)=>{
         NodePixiObject.SPRITE_SELECTED.tint = hashtagToCppHex(newPalette.accent1[0]);
-    })
-    window.changeFuncs.forEach((fn)=>fn(window.currentPalette));
+    };
+    window.mpal.onPaletteChange(onPalChange);
+    onPalChange(window.mpal.currentPalette);
+    // window.mpal.refreshPalette();//changeFuncs.forEach((fn)=>fn(window.currentPalette));
 })();
 
 /**

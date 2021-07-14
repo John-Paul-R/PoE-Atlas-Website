@@ -129,7 +129,7 @@ header * {
 
 header button,
 header button.material-icons {
-  background-color: var(--color-element-1);
+  background-color: var(--color-element);
   margin-top: 0;
   margin-bottom: 0;
   padding: 0;
@@ -139,7 +139,7 @@ header button.material-icons {
 }
 
 header button:hover {
-  background-color: var(--color-element-1-1);
+  background-color: var(--color-element-1);
 }
 
 header button.fl {

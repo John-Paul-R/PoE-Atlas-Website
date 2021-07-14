@@ -1,0 +1,18 @@
+
+.tooltip {
+    position: relative;
+}
+.tooltip:hover:after {
+    content: attr(data-tooltip);
+    padding: 4px 8px;
+    width: max-content;
+    transform: translateX(-50%);
+    color: var(--color-text);
+    background-color:var(--color-element);
+    position: absolute;
+    left: 50%; 
+    top: 100%;
+    z-index:10;
+    border:1px black solid;
+    box-shadow:0 0 3px #ccc;
+}

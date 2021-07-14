@@ -1,4 +1,8 @@
-As you progress through the atlas via defeating the conquerors and socketing the watchstones they drop into the citdels in the regions of the atlas, the tiers of maps that will drop and you will be able to run will increase. Alongside this increase you will gain [awakener levels](<https://pathofexile.gamepedia.com/Atlas_of_Worlds#Awakening_Level>). You will get 1 awakener level per 4 watchstones socketed anywhere in your atlas. There are a total of 8 awakener levels, with each awakener level granting the following bonuses:
+
+As you progress through the atlas via defeating the conquerors and socketing the watchstones they drop into the citdels in the regions of the atlas,
+the tiers of maps that will drop and you will be able to run will increase. Alongside this increase you will gain [awakener levels](<https://pathofexile.gamepedia.com/Atlas_of_Worlds#Awakening_Level>).
+
+You will get 1 awakener level per 4 watchstones socketed anywhere in your atlas. There are a total of 8 awakener levels, with each awakener level granting the following bonuses:
 
 Unique Map Bosses have 3% more Life
 

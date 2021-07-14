@@ -1,6 +1,6 @@
 
-One of the most basic atlas currency is the [Cartographers Chisel](<https://pathofexile.gamepedia.com/Cartographer%27s_Chisel>).
-The chisel will increase the quality of a map by either 5%, 2% or 1% if the map is normal, magic, rare or unique respecitvely.
+One of the most basic Atlas currencies is the [Cartographers Chisel](<https://pathofexile.gamepedia.com/Cartographer%27s_Chisel>).
+The chisel will increase the quality of a map by either *5%*, *2%* or *1%* if the map is *normal*, *magic*, or *rare/unique* respecitvely.
 
 Map quality has a standard maximum quality of 20 and will increase the quantity of items that will be dropped in the map,
 so if you want to get the most out of a good high tier map it is best to use chisels, preferably before you roll it.

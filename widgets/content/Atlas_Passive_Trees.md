@@ -1,11 +1,12 @@
 
-As you progress through the fights with the Maven you will gain Atlas Passive Tree skill points, 2 per every encounter per region.
+As you progress through the fights with the Maven you will gain passive points for the Atlas Passive Tree, 2 per every encounter per region.
 
-These points max out at 10 per region and allow you to customize how you want to play your maps.
-All skill tree benefits are only limited to their region and do not interact with others so be weary as to what you wish to focus on per region.
+You can collect & spend a maximum of 10 points per region.
+These points can be spent on the region's Atlas Passive Tree, allowing you to customize the types of endgame content you are likely to encounter in maps within that region.
+All skill tree benefits apply only to their own region and do not interact with others.
 
-These bonuses mainly focus on all the additional side content that occasionally appears in maps, which is mainly past-league content (Blight, Metamorph, Abyss, Breach etc.)
+These bonuses mainly focus on the additional side content that occasionally appears in maps, which is primarily content from previous leagues. (Blight, Metamorph, Abyss, Breach etc.)
 
-You can respec these points using a new currency as well.
+You can respec these points using a new currency, the Orb of Unmaking.
 
-A link to all the region's skill trees can be found [here](<https://www.pathofexile.com/forum/view-thread/3008533>).
+[List of region passive trees](<https://www.pathofexile.com/forum/view-thread/3008533>)

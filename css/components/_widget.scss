@@ -1,0 +1,16 @@
+
+.widget_content {
+    display: none;
+
+    &.open {
+        display: block;
+    }
+
+    background-color: var(--color-base-2);
+    border-radius: 0.5rem;
+    padding: 0.35rem;
+    color: var(--color-text-1);
+    & *{
+        color: inherit;
+    }
+}

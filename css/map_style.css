@@ -470,6 +470,20 @@ input.searchField::placeholder {
   opacity: 0.6;
 }
 
+.widget_content {
+  display: none;
+  background-color: var(--color-base-2);
+  border-radius: 0.5rem;
+  padding: 0.35rem;
+  color: var(--color-text-1);
+}
+.widget_content.open {
+  display: block;
+}
+.widget_content * {
+  color: inherit;
+}
+
 #widget_sidebar {
   background-color: var(--color-base);
   width: 100%;

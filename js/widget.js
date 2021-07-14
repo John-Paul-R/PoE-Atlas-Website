@@ -131,17 +131,17 @@ class WidgetSidebar extends HTMLWidget {
         name.textContent = widget.displayName;
         //TODO dropdown action opens actual widget...
         // Finalize
-        widget.htmlElement.style.display = 'none';
+        widget.htmlElement.classList.add('widget_content');
         elem.appendChild(widget.htmlElement);
         // DEBUG
         // widget.htmlElement.style.backgroundColor = '#3233c4';
         c_head.addEventListener('click', (e) => {
             widget.visible = !widget.visible;
             if (widget.visible) {
-                widget.htmlElement.style.display = 'block';
+                widget.htmlElement.classList.add('open');
             }
             else {
-                widget.htmlElement.style.display = 'none';
+                widget.htmlElement.classList.remove('open');
             }
         });
         // TODO utilize open() to allow users to pop out widgets if they choose.

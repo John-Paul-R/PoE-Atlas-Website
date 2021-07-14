@@ -56,13 +56,16 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    .material-icons {
+        transition: transform 0.25s;
+    }
 }
 #widget_sidebar.hidden + #w_sidebar_showhide {
     left: 0;
 }
 #widget_sidebar.hidden + #w_sidebar_showhide > .material-icons {
     transform: rotate(180deg);
-    transition: transform 0.25s;
 }
 #w_sidebar_showhide:hover {
     background-color: var(--color-element-2);

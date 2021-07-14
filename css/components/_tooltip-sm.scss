@@ -16,3 +16,8 @@
     border:1px black solid;
     box-shadow:0 0 3px #ccc;
 }
+.tooltip.right:after {
+    left: 100%;
+    transform: none;
+    width: auto;
+}

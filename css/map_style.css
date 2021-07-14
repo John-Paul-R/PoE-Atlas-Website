@@ -478,7 +478,9 @@ input.searchField::placeholder {
   color: var(--color-text-1);
 }
 .widget_content.open {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
 }
 .widget_content * {
   color: inherit;
@@ -584,6 +586,7 @@ input.searchField::placeholder {
   flex-direction: row;
   align-items: stretch;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .w_front,
@@ -597,10 +600,6 @@ input.searchField::placeholder {
   margin-right: 8px;
   width: 36px;
   height: 36px;
-}
-
-.w_drop_btn {
-  cursor: pointer;
 }
 
 :root, button, input {

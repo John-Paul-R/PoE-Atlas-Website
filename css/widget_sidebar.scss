@@ -107,6 +107,8 @@
     flex-direction: row;
     align-items: stretch;
     justify-content: space-between;
+
+    cursor: pointer;
 }
 #w_sidebar_showhide {
     // margin: 8px;
@@ -125,6 +127,6 @@
 
 // .w_name { grid-area: n; }
 .w_drop_btn {
-    cursor: pointer;
+    
     
 }

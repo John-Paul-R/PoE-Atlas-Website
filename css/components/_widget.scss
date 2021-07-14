@@ -3,7 +3,9 @@
     display: none;
 
     &.open {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35em;
     }
 
     background-color: var(--color-base-2);

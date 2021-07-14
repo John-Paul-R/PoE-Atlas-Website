@@ -210,6 +210,7 @@ function createOptionsMenu(optsMgr) {
     let resetButton = resetAll.appendChild(document.createElement('button'));
     resetButton.appendChild(document.createTextNode("Reset All"));
     resetButton.id = 'reset_options_btn';
+    resetButton.classList.add('push_button');
     resetButton.classList.add('button');
     resetButton.classList.add('expand');
 

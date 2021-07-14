@@ -1,0 +1,12 @@
+
+a.logo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    & img {
+        height: min(1.2em, 100%);
+        max-width: 3em;
+    }
+    padding: 0 0.25rem;
+}

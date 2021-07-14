@@ -1,3 +1,8 @@
+
+@import 'components/header';
+@import 'components/logo';
+@import 'components/push_button';
+
 :root {    
     background-color: var(--color-background);
 }
@@ -153,12 +158,12 @@ header > #navbar {
 header > #navbar > #title {
     margin-left: 8px;
 }
-header /*> /*#navbar*/ * {
-    margin-right: 12px;
-    /* margin-top:auto;
-    margin-bottom:auto; */
-    /*border: solid black 2px;*/
-}
+// header /*> /*#navbar*/ * {
+//     margin-right: 12px;
+//     /* margin-top:auto;
+//     margin-bottom:auto; */
+//     /*border: solid black 2px;*/
+// }
 header > #navbar > .end {
     margin-left:auto;
     margin-right:0;
@@ -202,48 +207,6 @@ header > #navbar > .end {
 
 .hidden {
     display: none !important;
-}
-
-$angle: 8px;
-$angle-o: 4px;
-.button {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    
-    font-weight: 600;
-    text-decoration: none;
-    text-align: center;
-
-    cursor: pointer;
-
-    padding: 4px 8px;
-    border-radius: 4px;
-    background-color: var(--color-accent-1);
-    // border: 1px solid var(--color-accent-1);
-    // box-shadow: 2px 2px var(--color-accent-1-1);
-
-    top: 0;
-    left: 0;
-    transition: all .15s linear 0s;
-    position: relative;
-    display: inline-block;
-    // padding: 15px 25px;
-    // background-color: $yellow;
-    box-shadow: -4px 4px 0 var(--color-accent-1-1);
-    text-decoration: none;
-
-    &:hover {
-        top: 2px;
-        left: -2px;
-        box-shadow: -2px 2px 0 var(--color-accent-1-1);
-    }
-        position: relative;
-    &:active {
-        top: 4px;
-        left: -4px;
-        box-shadow: none;
-    }
 }
 
 .bold {

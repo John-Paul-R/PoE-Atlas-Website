@@ -482,6 +482,11 @@ input.searchField::placeholder {
   flex-direction: column;
   gap: 0.35em;
 }
+.widget_content ul, .widget_content ol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
 .widget_content * {
   color: inherit;
 }

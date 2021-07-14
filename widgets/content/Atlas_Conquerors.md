@@ -7,7 +7,7 @@ In total there are 5 conquerors, with one, [Sirus][wiki:sirus], being a final bo
  - [Drox][wiki:drox], the Warlord: A physical damage based conqueror that spawns physical monsters and fortifying banners for enemies when his presence is influencing a map.
  - [Veritania][wiki:veritania], the Redeemer: A cold damage based conqueror that spawns cold monsters and cold monster spawning totems when her presence is influencing a map.
 
-Finally, there is [Sirus][sirus], Awakener of Worlds.
+Finally, there is [Sirus][wiki:sirus], Awakener of Worlds.
 He is the last conqueror, and can only be fought at [awakening level][wiki:awakening-level] 5, after the other 4 conquerors have each been defeated 5 times.
 Sirus uses a mix of physical and chaos damage.
 

@@ -8,6 +8,13 @@
         gap: 0.35em;
     }
 
+    & ul,
+    & ol {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2em;
+    }
+
     background-color: var(--color-base-2);
     border-radius: 0.5rem;
     padding: 0.35rem;

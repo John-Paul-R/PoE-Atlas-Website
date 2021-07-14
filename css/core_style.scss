@@ -18,6 +18,9 @@
 .button {
     color: var(--color-text);
 }
+p {
+    color: var(--color-text-1);
+}
 a:not(.button) {
     color: var(--color-accent-1-1);
 }

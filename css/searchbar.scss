@@ -5,7 +5,7 @@
     margin-top:12px;
     margin-bottom:12px;
     height:auto;
-    width: 650px;/*512px;/*66%;*/
+    width: clamp(16ch, 650px, 80%);
     max-width: 90vw;
     display:flex;
     flex-direction:row;

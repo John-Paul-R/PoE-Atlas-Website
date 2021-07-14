@@ -57,6 +57,7 @@ input:checked + .slider:before {
 /* Rounded sliders */
 .slider.round {
     border-radius: 34px;
+    border: 1px solid var(--color-accent-1);
 }
 
 .slider.round:before {
